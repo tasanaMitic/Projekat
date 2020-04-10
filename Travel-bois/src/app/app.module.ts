@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NeregistrovanKorisnikComponent } from './neregistrovan-korisnik/neregistrovan-korisnik.component';
+import { PocetnaStranaComponent } from './pocetna-strana/pocetna-strana.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NeregistrovanKorisnikComponent
+    NeregistrovanKorisnikComponent,
+    PocetnaStranaComponent
   ],
   imports: [
     BrowserModule,
