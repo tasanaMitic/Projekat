@@ -8,8 +8,8 @@ export class Avion {
         firstCena:number, brojFirstSedista:number, 
         economyCena:number, brojEconomySedista:number){
         this.segmenti = new Map<Klase, Segment>();
-        this.segmenti[Klase.business] = new Segment(businessCena, Klase.business, brojBusinessSedista))
-        this.segmenti[Klase.first] = new Segment(firstCena, Klase.first, brojFirstSedista));
-        this.segmenti[Klase.economy] = new Segment(economyCena, Klase.economy, brojEconomySedista));
+        this.segmenti[Klase.business] = new Segment(businessCena, Klase.business, brojBusinessSedista);
+        this.segmenti[Klase.first] = new Segment(firstCena, Klase.first, brojFirstSedista);
+        this.segmenti[Klase.economy] = new Segment(economyCena, Klase.economy, brojEconomySedista);
     }
 }
