@@ -10,4 +10,13 @@ export class IdHandler {
         fs.writeFileSync('./_ids.json', data);
         return retID;
     }
+    static GenerateLetID() {
+        var rawData = fs.readFileSync('./_ids.json').toString();
+        var ids = JSON.parse(rawData);
+        var retID = parseInt(ids.let) + 1;
+        ids.let = retID.toString();
+        let data = JSON.stringify(ids);
+        fs.writeFileSync('./_ids.json', data);
+        return retID;
+    }
 }
