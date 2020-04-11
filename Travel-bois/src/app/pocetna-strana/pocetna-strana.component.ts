@@ -15,8 +15,8 @@ export class PocetnaStranaComponent implements OnInit {
 
   ngOnInit(): void {
     //this.user = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
-    //this.user = new Admin();
-    this.user = new User();
+    this.user = new Admin();
+    //this.user = new User();
   }
   getType(){
     return this.user.constructor.name;
