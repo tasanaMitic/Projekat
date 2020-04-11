@@ -1,1 +1,0 @@
-treba ukucati komadnu 'npm i @types/node' da bi radilo.

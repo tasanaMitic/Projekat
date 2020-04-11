@@ -54,7 +54,7 @@ body {
 
 .servis-blok {
     position: relative;
-    background-color: rgb(189, 189, 189);
+    background-color: rgb(0, 0, 0);
     height: 200px;
     padding: 0;
     border-radius:10px;
@@ -62,6 +62,10 @@ body {
     display:flex;
     align-items:center;
     justify-content:center;
+}
+
+.servis-blok:hover {
+    opacity: 0.6;
 }
 
 .servis-image {
