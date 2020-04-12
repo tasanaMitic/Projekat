@@ -2,7 +2,7 @@
 <!--Contents-->
     <!--Blok u kome se nalaze linkovi na usluge-->
         <!--Prikaz neregistrovanim korisnicima-->
-<div *ngIf="getType() === 'User'" class="servis-blok-container"> 
+<div *ngIf="getType() === 'User'" class="grid-container"> 
     <a href="" routerLink="/avioKompanije" >
         <div class="servis-blok" >
             <img class="servis-image" src="assets/images/pocetna/unregistered/avio-kompanija.jpg" >
@@ -38,7 +38,7 @@
 </div>
         <!--Prikaz registrovanim korisnicima-->
 
-<div *ngIf="getType() === 'RegisteredUser'" class="servis-blok-container">    
+<div *ngIf="getType() === 'RegisteredUser'" class="grid-container">    
     <a href="">
         <div class="servis-blok">
             <img class="servis-image" src="">
@@ -51,7 +51,7 @@
 
         <!--Prikaz adminima avio kompanija-->
 
-<div *ngIf="getType() === 'AirlineAdmin'" class="servis-blok-container">    
+<div *ngIf="getType() === 'AirlineAdmin'" class="grid-container">    
     <a href="">
         <div class="servis-blok">
             <img class="servis-image" src="">
@@ -64,7 +64,7 @@
 
         <!--Prikaz adminima rent-a-car-a -->
 
-<div *ngIf="getType() === 'RentACarAdmin'" class="servis-blok-container" style='height:600px;'>    
+<div *ngIf="getType() === 'RentACarAdmin'" class="grid-container" style='height:600px;'>    
     <a href="">
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/rent-a-car-admin/kola.jpg">
@@ -117,7 +117,7 @@
     </a>
 </div>
         <!--Prikaz adminima-->
-<div *ngIf="getType() === 'Admin'" class="servis-blok-container">    
+<div *ngIf="getType() === 'Admin'" class="grid-container">    
     <a href="" routerLink="/regAdminaAvio">
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/admin/user.jpg">

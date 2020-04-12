@@ -8,6 +8,7 @@ export class AvioKompanija {
     adresa: string;
     naziv: string;
     opis: string;
+    slikaUrl: string;
     brzaRezervacijaPopust: number; //u procentima
     destinacije: Array<string>;
     letovi: Array<Let>;
@@ -20,9 +21,24 @@ export class AvioKompanija {
     constructor(adresa, naziv){
         this.adresa = adresa;
         this.naziv = naziv;
+        this.opis = 'Opis aviokompanije';
         this.brzaRezervacijaPopust = 0;
         this.destinacije = new Array<string>();
         this.moguceDestinacije = new Aerodromi();
+        this.ocene = new Array<Ocena>();
+    }
+
+    getType(){
+        return AvioKompanija.name;
+    }
+    IzracunajProsecnuOcenu(){
+        let n = 0;
+        let sum = 0;
+        this.ocene.forEach(element => {
+            n += 1;
+            sum += element.O;
+        });
+        return Math.round(sum / n);
     }
 
     DodajDestinaciju(dest:string){

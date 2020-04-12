@@ -1,1 +1,17 @@
-<p>avio-kompanije works!</p>
+<ul class="lista-kompanija">
+    <li *ngFor='let kompanija of kompanije'>
+        <div class="kompanija-container">
+            <div class="kompanija-element">{{kompanija.naziv}}</div>
+            <hr>
+            <div class="kompanija-element">Adresa: {{kompanija.adresa}}</div>
+            <hr>
+            <div class="kompanija-element">Opis: {{kompanija.opis}}</div>
+            <hr>
+            <div class="kompanija-element">Ocena: {{kompanija.IzracunajProsecnuOcenu()}}</div>
+            <dynamic-image 
+                [naziv]="kompanija.naziv"
+                [tip]=kompanija.getType()></dynamic-image>
+        </div>
+        <br>
+    </li>
+</ul>
