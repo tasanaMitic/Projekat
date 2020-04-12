@@ -2,6 +2,7 @@ export class Aerodromi {
     lokacije: Array<string>;
 
     constructor(){
+        this.lokacije = new Array<string>();
         this.lokacije.push('Pariz');
         this.lokacije.push('London');
         this.lokacije.push('Lisabon');
