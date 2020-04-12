@@ -1,1 +1,28 @@
-<p>reg-renta-kompaniju works!</p>
+<div>
+    <h1>Registracija rent-a-car kompanije</h1>
+    <form [formGroup]="regRentaForm" (ngSubmit)="onSubmit()">
+        <div>
+            <div>
+                <label for="naziv">Naziv:</label>
+                <input type="text" id="naziv" formControlName="naziv">
+                <div *ngIf="regRentaForm.controls.naziv.invalid">
+                    Unesite naziv
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="opis">Opis:</label>
+                <input type="text" id="opis" formControlName="opis">
+                <div *ngIf="regRentaForm.controls.opis.invalid">
+                    Unesite opis
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <button [disabled]="!regRentaForm.valid" type="submit">Sacuvaj</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reg-avio-kompaniju',
@@ -6,10 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reg-avio-kompaniju.component.css']
 })
 export class RegAvioKompanijuComponent implements OnInit {
-
+  regAvioForm: FormGroup;
   constructor() { }
 
   ngOnInit(): void {
+    this.initForm();
+  }
+
+  private initForm()
+  {
+    this.regAvioForm = new FormGroup({
+      'naziv': new FormControl('', Validators.required),
+      'adresa': new FormControl('', Validators.required),
+      'opis': new FormControl('', Validators.required),
+    });
+  }
+
+  onSubmit(){
+    console.log(this.regAvioForm.value);
+    console.log(this.regAvioForm);
   }
 
 }
