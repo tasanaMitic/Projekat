@@ -11,7 +11,9 @@ import { debuglog } from 'util';
 export class DynamicImageComponent {
   @Input() naziv: string; // slika MORA da se zove isto kao i kompanija i da ima .jpg extenziju
   @Input() tip: string; // ubacen da moze da se udje u odgovarajuci direktorijum
-  constructor(){}
+  constructor(){
+    console.debug(this.naziv)
+    console.debug(this.tip)}
 
   OnInit(){
   }

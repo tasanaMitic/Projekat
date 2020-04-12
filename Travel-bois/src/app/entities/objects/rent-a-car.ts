@@ -10,11 +10,11 @@ export class RentACar {
 
     constructor(naz:string) {
         this.Naziv = naz;
-        this.Opis = '';
+        this.Opis = 'Opis rente';
         this.Filijale = new Array<Filijala>();
         this.Ocene = new Array<Ocena>();
 //  Cisto da prikaze nesto
-        this.Filijale.push(new Filijala('Bogdana Garabantina 3', 'Car2Go'));
+        this.Filijale.push(new Filijala('Bogdana Garabantina 3', 'Car2Go-Liman'));
     }
     getType(){
         return RentACar.name;

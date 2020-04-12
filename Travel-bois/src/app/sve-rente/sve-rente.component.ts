@@ -5,10 +5,10 @@ import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-rent-a-car',
-  templateUrl: './rent-a-car.component.html',
-  styleUrls: ['./rent-a-car.component.css']
+  templateUrl: './sve-rente.component.html',
+  styleUrls: ['./sve-rente.component.css']
 })
-export class RentACarComponent implements OnInit {
+export class SveRenteComponent implements OnInit {
   rente: Array<RentACar>;
   currentUser: User;
   constructor() { 

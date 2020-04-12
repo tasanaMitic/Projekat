@@ -21,6 +21,7 @@ import { RegAvioKompanijuComponent } from './reg-avio-kompaniju/reg-avio-kompani
 import { RegRentaKompanijuComponent } from './reg-renta-kompaniju/reg-renta-kompaniju.component';
 import { DynamicImageComponent } from './dynamic-image/dynamic-image.component';
 import { LetoviComponent } from './letovi/letovi.component';
+import { SveRenteComponent } from './sve-rente/sve-rente.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { LetoviComponent } from './letovi/letovi.component';
     RegAvioKompanijuComponent,
     RegRentaKompanijuComponent,
     DynamicImageComponent,
-    LetoviComponent
+    LetoviComponent,
+    SveRenteComponent
   ],
   imports: [
     BrowserModule,

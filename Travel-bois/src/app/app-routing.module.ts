@@ -14,6 +14,7 @@ import { RegAdminaRenteComponent } from './reg-admina-rente/reg-admina-rente.com
 import { RegAvioKompanijuComponent } from './reg-avio-kompaniju/reg-avio-kompaniju.component';
 import { RegRentaKompanijuComponent } from './reg-renta-kompaniju/reg-renta-kompaniju.component';
 import { LetoviComponent } from './letovi/letovi.component';
+import { SveRenteComponent } from './sve-rente/sve-rente.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path:'avioKompanije', component: AvioKompanijeComponent},
   {path: 'letovi', component: LetoviComponent},
   { path:'rentAcar', component: RentACarComponent},
+  { path:'sveRente', component: SveRenteComponent},
   { path:'onama', component: InfoComponent},
   { path:'profil', component: ProfilAdminaComponent},
   { path:'regAdminaAvio', component: RegAdminaAvioComponent},
