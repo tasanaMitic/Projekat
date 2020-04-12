@@ -5,6 +5,7 @@ import { RentACarAdmin } from './entities/users/rent-a-car-admin/rent-a-car-admi
 import { AvioKompanijeComponent } from './avio-kompanije/avio-kompanije.component';
 import { AvioKompanija } from './entities/objects/avio-kompanija';
 import { RentACar } from './entities/objects/rent-a-car';
+import { Admin } from './entities/users/admin/admin';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { RentACar } from './entities/objects/rent-a-car';
 })
 export class AppComponent {
   static currentUser: User;
+  //currentUser: User;
   avioKompanije: Array<AvioKompanija>;
   rente: Array<RentACar>;
 
@@ -22,7 +24,7 @@ export class AppComponent {
   ngOnInit() {
     //this.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
     //this.currentUser = new Admin();
-    AppComponent.currentUser = new User();
+    AppComponent.currentUser = new Admin();
   }
 
   static getUser(){

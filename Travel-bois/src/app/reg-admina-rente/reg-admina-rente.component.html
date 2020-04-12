@@ -1,11 +1,11 @@
-<div class="containter">
-    <h1>Registracija</h1>
-    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+<div class="container">
+    <h1>Registracija admina rent-a-car kompanije</h1>
+    <form [formGroup]="regRenteAdminForm" (ngSubmit)="onSubmit()">
         <div class="row">
             <div class="col-sm-6 form-group">
                 <label for="ime">Ime:</label>
                 <input type="text" id="ime" class="form-control" formControlName="ime"> 
-                <div *ngIf="registrationForm.controls.ime.invalid">
+                <div *ngIf="regRenteAdminForm.controls.ime.invalid">
                     Unesite ime
                 </div>
             </div>
@@ -14,7 +14,7 @@
             <div class="col-sm-6 form-group">
                 <label for="prezime">Prezime:</label>
                 <input type="text" id="prezime" class="form-control" formControlName="prezime">
-                <div *ngIf="registrationForm.controls.prezime.invalid">
+                <div *ngIf="regRenteAdminForm.controls.prezime.invalid">
                     Unesite prezime
                 </div>
             </div>
@@ -23,8 +23,17 @@
             <div class="col-sm-6 form-group">
                 <label for="grad">Grad:</label>
                 <input type="text" id="grad" class="form-control" formControlName="grad">
-                <div *ngIf="registrationForm.controls.grad.invalid">
+                <div *ngIf="regRenteAdminForm.controls.grad.invalid">
                     Unesite grad
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="rentaKompanija">Rent-a-car kompanija:</label>
+                <input type="text" id="rentaKompanija" class="form-control" formControlName="rentaKompanija">
+                <div *ngIf="regRenteAdminForm.controls.rentaKompanija.invalid">
+                    Unesite ime rent-a-car kompanije
                 </div>
             </div>
         </div>
@@ -32,7 +41,7 @@
             <div class="col-sm-6 form-group">
                 <label for="brojTelefona">Broj telefona:</label>
                 <input type="number" id="brojTelefona" class="form-control" formControlName="brojTelefona">
-                <div *ngIf="registrationForm.controls.brojTelefona.invalid">
+                <div *ngIf="regRenteAdminForm.controls.brojTelefona.invalid">
                     Unesite broj telefona
                 </div>
             </div>
@@ -41,7 +50,7 @@
             <div class="col-sm-6 form-group">
                 <label for="brojPasosa">Broj pasosa:</label>
                 <input type="number" id="brojPasosa" class="form-control" formControlName="brojPasosa">
-                <div *ngIf="registrationForm.controls.brojPasosa.invalid">
+                <div *ngIf="regRenteAdminForm.controls.brojPasosa.invalid">
                     Unesite broj pasosa
                 </div>
             </div>
@@ -50,7 +59,7 @@
             <div class="col-sm-6 form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" class="form-control" formControlName="username">
-                <div *ngIf="registrationForm.controls.username.invalid">
+                <div *ngIf="regRenteAdminForm.controls.username.invalid">
                     Unesite username
                 </div>
             </div>
@@ -59,17 +68,16 @@
             <div class="col-sm-6 form-group">
                 <label for="password">Password:</label>
                 <input type="password" id="password" class="form-control" formControlName="password">
-                <div *ngIf="registrationForm.controls.password.invalid">
+                <div *ngIf="regRenteAdminForm.controls.password.invalid">
                     Unesite password
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-1">
-                <button [disabled]="!registrationForm.valid" class="btn btn-success" type="submit">Sacuvaj</button>
+                <button [disabled]="!regRenteAdminForm.valid" class="btn btn-success" type="submit">Sacuvaj</button>
             </div>
         </div>
 
     </form>
-
 </div>

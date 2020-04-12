@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-registracija',
-  templateUrl: './registracija.component.html',
-  styleUrls: ['./registracija.component.css']
+  selector: 'app-reg-admina-avio',
+  templateUrl: './reg-admina-avio.component.html',
+  styleUrls: ['./reg-admina-avio.component.css']
 })
-export class RegistracijaComponent implements OnInit {
-  registrationForm: FormGroup;
+export class RegAdminaAvioComponent implements OnInit {
+  regAvioAdminForm: FormGroup;
   constructor() { }
 
   ngOnInit(): void {
@@ -16,10 +16,11 @@ export class RegistracijaComponent implements OnInit {
 
   private initForm()
   {
-    this.registrationForm = new FormGroup({
-      'ime': new FormControl('ime', [Validators.required, Validators.maxLength(15), Validators.minLength(3)]),
+    this.regAvioAdminForm = new FormGroup({
+      'ime': new FormControl('ime',[Validators.required, Validators.maxLength(15), Validators.minLength(3)]),
       'prezime': new FormControl('pr', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
       'grad': new FormControl('grad', [Validators.required, Validators.maxLength(10), Validators.minLength(3)]),
+      'avioKompanija': new FormControl('avioKompanija',Validators.required),    //dodati posle da se ucitava jedna od postojecih aviokompanija
       'brojTelefona': new FormControl('0', Validators.required),
       'brojPasosa': new FormControl('0', Validators.required),
       'username': new FormControl('user', Validators.required),
@@ -28,8 +29,7 @@ export class RegistracijaComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.registrationForm.value);
-    console.log(this.registrationForm);
+    console.log(this.regAvioAdminForm.value);
+    console.log(this.regAvioAdminForm);
   }
-
 }

@@ -8,6 +8,11 @@ import { BrzeRezervacijeComponent } from './brze-rezervacije/brze-rezervacije.co
 import { AvioKompanijeComponent } from './avio-kompanije/avio-kompanije.component';
 import { RentACarComponent } from './rent-a-car/rent-a-car.component';
 import { InfoComponent } from './info/info.component';
+import { ProfilAdminaComponent } from './profil-admina/profil-admina.component';
+import { RegAdminaAvioComponent } from './reg-admina-avio/reg-admina-avio.component';
+import { RegAdminaRenteComponent } from './reg-admina-rente/reg-admina-rente.component';
+import { RegAvioKompanijuComponent } from './reg-avio-kompaniju/reg-avio-kompaniju.component';
+import { RegRentaKompanijuComponent } from './reg-renta-kompaniju/reg-renta-kompaniju.component';
 
 
 const routes: Routes = [
@@ -19,7 +24,12 @@ const routes: Routes = [
   { path:'brzeRezervacije', component: BrzeRezervacijeComponent},
   { path:'avioKompanije', component: AvioKompanijeComponent},
   { path:'rentAcar', component: RentACarComponent},
-  { path:'onama', component: InfoComponent}
+  { path:'onama', component: InfoComponent},
+  { path:'profil', component: ProfilAdminaComponent},
+  { path:'regAdminaAvio', component: RegAdminaAvioComponent},
+  { path:'regAdminaRente', component: RegAdminaRenteComponent},
+  { path:'regAvioKomp', component: RegAvioKompanijuComponent},
+  { path:'regRentaKomp', component: RegRentaKompanijuComponent}
 ];
 
 @NgModule({
