@@ -1,0 +1,16 @@
+<ul class="lista-kompanija">
+    <li *ngFor="let renta of rente">
+        <a routerLink="['/rentAcar', '{{renta.Naziv}}'">
+            <div class="kompanija-container">
+                <div class="kompanija-element">Naziv: {{renta.Naziv}}</div>
+                <hr>
+                <div class="kompanija-element">Opis: {{renta.Opis}}</div>
+                <hr>
+                <div class="kompanija-element">Ocena: {{renta.ProsecnaOcena()}}</div>
+                <dynamic-image
+                [tip]="renta.getType()"
+                [naziv]="renta.Naziv"></dynamic-image>
+            </div>
+        </a>
+    </li>
+</ul>

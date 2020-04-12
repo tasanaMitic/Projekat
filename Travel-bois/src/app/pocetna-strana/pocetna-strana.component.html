@@ -3,7 +3,7 @@
     <!--Blok u kome se nalaze linkovi na usluge-->
         <!--Prikaz neregistrovanim korisnicima-->
 <div *ngIf="getType() === 'User'" class="grid-container"> 
-    <a href="" routerLink="/avioKompanije" >
+    <a routerLink="/avioKompanije" >
         <div class="servis-blok" >
             <img class="servis-image" src="assets/images/pocetna/unregistered/avio-kompanija.jpg" >
             <div class="img-text-container" >
@@ -11,7 +11,7 @@
             </div>
         </div>
     </a>
-    <a href="" routerLink="/rentAcar" >
+    <a routerLink="/sveRente" >
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/unregistered/rent-a-car.jpg">
             <div class="img-text-container">
@@ -19,7 +19,7 @@
             </div>
         </div>
     </a>
-    <a href="" routerLink="/onama">
+    <a routerLink="/onama">
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/unregistered/TB.png">
             <div class="img-text-container">
@@ -27,7 +27,7 @@
             </div>
         </div>
     </a>
-    <a href="">
+    <a>
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/unregistered/ocene.jpg">
             <div class="img-text-container">
@@ -39,7 +39,7 @@
         <!--Prikaz registrovanim korisnicima-->
 
 <div *ngIf="getType() === 'RegisteredUser'" class="grid-container">    
-    <a href="">
+    <a>
         <div class="servis-blok">
             <img class="servis-image" src="">
             <div class="img-text-container">
@@ -52,7 +52,7 @@
         <!--Prikaz adminima avio kompanija-->
 
 <div *ngIf="getType() === 'AirlineAdmin'" class="grid-container">    
-    <a href="">
+    <a>
         <div class="servis-blok">
             <img class="servis-image" src="">
             <div class="img-text-container">
@@ -65,7 +65,7 @@
         <!--Prikaz adminima rent-a-car-a -->
 
 <div *ngIf="getType() === 'RentACarAdmin'" class="grid-container" style='height:600px;'>    
-    <a href="">
+    <a>
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/rent-a-car-admin/kola.jpg">
             <div class="img-text-container">
@@ -73,7 +73,7 @@
             </div>
         </div>
     </a>    
-    <a href="">
+    <a>
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/rent-a-car-admin/wallet.jpg">
             <div class="img-text-container">
@@ -81,7 +81,7 @@
             </div>
         </div>
     </a>
-    <a href="">
+    <a>
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/rent-a-car-admin/schedule.png">
             <div class="img-text-container">
@@ -91,7 +91,7 @@
             </div>
         </div>
     </a>
-    <a href="">
+    <a>
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/rent-a-car-admin/ocene.jpg">
             <div class="img-text-container">
@@ -99,7 +99,7 @@
             </div>
         </div>
     </a>
-    <a href="">
+    <a>
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/rent-a-car-admin/izvestaj-prihoda.jpeg">
             <div class="img-text-container">
@@ -107,7 +107,7 @@
             </div>
         </div>
     </a>
-    <a href="">
+    <a>
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/rent-a-car-admin/edit.png">
             <div class="img-text-container">
@@ -118,7 +118,7 @@
 </div>
         <!--Prikaz adminima-->
 <div *ngIf="getType() === 'Admin'" class="grid-container">    
-    <a href="" routerLink="/regAdminaAvio">
+    <a routerLink="/regAdminaAvio">
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/admin/user.jpg">
             <div class="img-text-container">
@@ -126,7 +126,7 @@
             </div>
         </div>
     </a>  
-    <a href="" routerLink="/regAdminaRente">
+    <a routerLink="/regAdminaRente">
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/admin/user.jpg">
             <div class="img-text-container">
@@ -134,7 +134,7 @@
             </div>
         </div>
     </a>  
-    <a href="" routerLink="/regAvioKomp">
+    <a routerLink="/regAvioKomp">
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/admin/avio-kompanija.jpg">
             <div class="img-text-container">
@@ -142,7 +142,7 @@
             </div>
         </div>
     </a>  
-    <a href="" routerLink="/regRentaKomp"> 
+    <a routerLink="/regRentaKomp"> 
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/admin/rent-a-car.jpg">
             <div class="img-text-container">
