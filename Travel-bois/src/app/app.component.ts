@@ -24,8 +24,8 @@ export class AppComponent {
   ngOnInit() {
     //this.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
     //this.currentUser = new Admin();
-    AppComponent.currentUser = new Admin();
-    //AppComponent.currentUser = new User();
+    //AppComponent.currentUser = new Admin();
+    AppComponent.currentUser = new User();
   }
     
   getType(){

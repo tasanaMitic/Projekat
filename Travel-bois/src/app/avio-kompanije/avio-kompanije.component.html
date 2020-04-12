@@ -7,10 +7,14 @@
             <hr>
             <div class="kompanija-element">Opis: {{kompanija.opis}}</div>
             <hr>
-            <div class="kompanija-element">Ocena: {{kompanija.IzracunajProsecnuOcenu()}}</div>
+            <div class="kompanija-element">Ocena: {{kompanija.IzracunajProsecnuOcenu()}}</div>            
             <dynamic-image 
                 [naziv]="kompanija.naziv"
-                [tip]=kompanija.getType()></dynamic-image>
+                [tip]=kompanija.getType()>
+            </dynamic-image>            
+            <div>
+                <a routerLink="/letovi"><button class="letovi-btn"> Prikazi letove</button></a>
+            </div>
         </div>
         <br>
     </li>

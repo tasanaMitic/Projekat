@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Location} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   logInForm: FormGroup;
-  constructor() { }
+  constructor(private location: Location) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -25,6 +26,11 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     console.log(this.logInForm.value);
     console.log(this.logInForm);
+  }
+
+  onBack()
+  {
+    this.location.back();
   }
 
 }

@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Registracija admina avio kompanije</h1>
+    <h1>Registracija admina aviokompanije</h1>
     <form [formGroup]="regAvioAdminForm" (ngSubmit)="onSubmit()">
         <div class="row">
             <div class="col-sm-6 form-group">
@@ -30,10 +30,10 @@
         </div>
         <div class="row">
             <div class="col-sm-6 form-group">
-                <label for="avioKompanija">Avio kompanija:</label>
+                <label for="avioKompanija">Aviokompanija:</label>
                 <input type="text" id="avioKompanija" class="form-control" formControlName="avioKompanija">
                 <div *ngIf="regAvioAdminForm.controls.avioKompanija.invalid">
-                    Unesite ime avio kompanije
+                    Unesite ime aviokompanije
                 </div>
             </div>
         </div>
@@ -76,6 +76,9 @@
         <div class="row">
             <div class="col-1">
                 <button [disabled]="!regAvioAdminForm.valid" class="btn btn-success" type="submit">Sacuvaj</button>
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
             </div>
         </div>
 

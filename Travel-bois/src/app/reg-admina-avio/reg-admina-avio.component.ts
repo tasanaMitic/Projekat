@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Location} from '@angular/common';
 
 @Component({
   selector: 'app-reg-admina-avio',
@@ -8,7 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RegAdminaAvioComponent implements OnInit {
   regAvioAdminForm: FormGroup;
-  constructor() { }
+  constructor(private location: Location) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -31,5 +32,10 @@ export class RegAdminaAvioComponent implements OnInit {
   onSubmit(){
     console.log(this.regAvioAdminForm.value);
     console.log(this.regAvioAdminForm);
+  }
+
+  onBack()
+  {
+    this.location.back();
   }
 }

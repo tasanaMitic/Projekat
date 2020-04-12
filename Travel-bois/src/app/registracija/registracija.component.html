@@ -1,4 +1,4 @@
-<div class="containter">
+<div class="container">
     <h1>Registracija</h1>
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
         <div class="row">
@@ -64,9 +64,12 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-1">
+        <div>
+            <div>
                 <button [disabled]="!registrationForm.valid" class="btn btn-success" type="submit">Sacuvaj</button>
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
             </div>
         </div>
 

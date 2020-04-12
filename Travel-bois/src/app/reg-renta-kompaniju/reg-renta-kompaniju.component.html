@@ -1,10 +1,10 @@
-<div>
+<div class="container"> 
     <h1>Registracija rent-a-car kompanije</h1>
     <form [formGroup]="regRentaForm" (ngSubmit)="onSubmit()">
         <div>
             <div>
                 <label for="naziv">Naziv:</label>
-                <input type="text" id="naziv" formControlName="naziv">
+                <input type="text" id="naziv" formControlName="naziv" class="form-control">
                 <div *ngIf="regRentaForm.controls.naziv.invalid">
                     Unesite naziv
                 </div>
@@ -13,7 +13,7 @@
         <div>
             <div>
                 <label for="opis">Opis:</label>
-                <input type="text" id="opis" formControlName="opis">
+                <input type="text" id="opis" formControlName="opis" class="form-control">
                 <div *ngIf="regRentaForm.controls.opis.invalid">
                     Unesite opis
                 </div>
@@ -21,7 +21,10 @@
         </div>
         <div>
             <div>
-                <button [disabled]="!regRentaForm.valid" type="submit">Sacuvaj</button>
+                <button [disabled]="!regRentaForm.valid" type="submit" class="btn btn-success">Sacuvaj</button>
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
             </div>
         </div>
     </form>

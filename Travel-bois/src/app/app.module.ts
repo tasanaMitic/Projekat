@@ -20,6 +20,7 @@ import { RegAdminaAvioComponent } from './reg-admina-avio/reg-admina-avio.compon
 import { RegAvioKompanijuComponent } from './reg-avio-kompaniju/reg-avio-kompaniju.component';
 import { RegRentaKompanijuComponent } from './reg-renta-kompaniju/reg-renta-kompaniju.component';
 import { DynamicImageComponent } from './dynamic-image/dynamic-image.component';
+import { LetoviComponent } from './letovi/letovi.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { DynamicImageComponent } from './dynamic-image/dynamic-image.component';
     RegAdminaAvioComponent,
     RegAvioKompanijuComponent,
     RegRentaKompanijuComponent,
-    DynamicImageComponent
+    DynamicImageComponent,
+    LetoviComponent
   ],
   imports: [
     BrowserModule,

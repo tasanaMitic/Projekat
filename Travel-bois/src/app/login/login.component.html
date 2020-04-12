@@ -21,7 +21,10 @@
         </div>
         <div class="row">
             <div class="col-1">
-                <button [disabled]="!logInForm.valid" class="btn btn-success" type="submit">Log In</button>
+                <button [disabled]="!logInForm.valid" class="btn btn-success" type="submit">Uloguj se</button>
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
             </div>
         </div>
     </form>

@@ -1,0 +1,35 @@
+<div >
+    <h3 class="title">Pretraga letova</h3>
+    <div class="form-row">
+        <div class="col-md-4" >
+            <div class="input-group form-group">
+                <input type="text" placeholder="polazni aerodrom" id="destOd" >
+                <input type="text" placeholder="odredisni aerodrom" id="destDo">
+                <div class="dropdown">
+                    <button class="dropbtn">klasa</button>
+                    <div class="dropdown-content">
+                      <a href="#">first</a>
+                      <a href="#">economy</a>
+                      <a href="#">business</a>
+                    </div>
+                </div>
+                <label for="datPolaska">datum polaska:</label>
+                <input type="date" id="datPolaska" name="datPolaska"value="2020-07-22" min="2020-01-01" max="2021-01-01">
+                <label for="datPovratka">datum povratka:</label>
+                <input type="date" id="datPovratka" name="datPovratka"value="2020-07-22" min="2020-01-01" max="2021-01-01">                
+                <input type="number" placeholder="broj osoba" id="brojOsoba">
+                <div class="dropdown">
+                    <button class="dropbtn">tip puta</button>
+                    <div class="dropdown-content">
+                      <a href="#">round-trip</a>
+                      <a href="#">one-way</a>
+                      <a href="#">multi-city</a>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-success" style="margin-left: 30px" (click)="filterLet()">Filtriraj</button>
+                <button type="button" class="btn btn-primary" style="float: right; margin-right: 30px;" (click)="filterReset()">Resetuj</button>
+            </div>            
+        </div>     
+    </div>    
+</div>
