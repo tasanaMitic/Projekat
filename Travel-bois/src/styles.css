@@ -50,7 +50,7 @@ body {
     margin: 20px auto;
     width:500px;
     height:400px;
-    background-color:#fff;
+    background-color:rgb(227, 241, 236);
     display:grid;
     grid-template-columns: 240px 240px;
     grid-row: auto auto;

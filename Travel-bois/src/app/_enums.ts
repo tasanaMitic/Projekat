@@ -21,5 +21,10 @@ export enum TipVozila {
     karavan,
     sport,
     kupe,
-    kombi
+    kombi,
+    hecbek,
+    sedan,
+    MUV_SUV,
+    kabriolet,
+    wagon,
 }

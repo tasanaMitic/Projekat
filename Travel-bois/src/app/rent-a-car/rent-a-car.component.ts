@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { RentACar } from '../entities/objects/rent-a-car';
+import { User } from '../entities/users/user/user';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-rent-a-car',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rent-a-car.component.css']
 })
 export class RentACarComponent implements OnInit {
-
-  constructor() { }
+  rente: Array<RentACar>;
+  currentUser: User;
+  constructor() { 
+    this.rente = new Array<RentACar>();
+    this.currentUser = AppComponent.currentUser;
+  }
 
   ngOnInit(): void {
+    this.rente.push(new RentACar('RentACar'));
+    console.debug(this.rente[0].Naziv);
   }
 
 }

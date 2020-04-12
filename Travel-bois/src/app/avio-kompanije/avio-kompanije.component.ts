@@ -13,6 +13,7 @@ export class AvioKompanijeComponent implements OnInit {
   currentUser: User;
   constructor() { 
     this.kompanije = new Array<AvioKompanija>();
+    this.currentUser = AppComponent.currentUser;
 
   }
 

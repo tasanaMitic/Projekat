@@ -13,6 +13,11 @@ export class RentACar {
         this.Opis = '';
         this.Filijale = new Array<Filijala>();
         this.Ocene = new Array<Ocena>();
+//  Cisto da prikaze nesto
+        this.Filijale.push(new Filijala('Bogdana Garabantina 3', 'Car2Go'));
+    }
+    getType(){
+        return RentACar.name;
     }
 
     ProsecnaOcena(){

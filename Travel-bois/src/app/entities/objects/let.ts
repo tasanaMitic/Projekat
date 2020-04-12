@@ -19,7 +19,8 @@ export class Let {
 
     constructor(cenaRucnogPrtljaga, cenaMalogPrtljaga, cenaVelikogPrtljaga,
         datumPolaska, datumDolaska, mestoPolaska, mestoDolaska, avion, presedanja = []){
-            this.ID = IdHandler.GenerateLetID();
+            //  Ne radi
+            //this.ID = IdHandler.GenerateLetID();
             this.cenovnikPrtljaga = new Map<TipPrtljaga, number>();
             this.cenovnikPrtljaga[TipPrtljaga.rucni] = cenaRucnogPrtljaga;
             this.cenovnikPrtljaga[TipPrtljaga.mali] = cenaMalogPrtljaga;

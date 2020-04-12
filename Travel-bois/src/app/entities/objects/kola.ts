@@ -23,8 +23,9 @@ export class Kola {
         this.Tip = tip;
         this.BrzaRezervacija = brzaRezervacija;
         this.Cena = cena;
-
-        this.ID = IdHandler.GenerateKolaID();
+        
+        //Ne radi kako treba
+        //this.ID = IdHandler.GenerateKolaID();
         this.Ocene = new Array<Ocena>();
         this.Zauzet = false;
         this.Zauzetost = new Array<[Date, Date]>();
