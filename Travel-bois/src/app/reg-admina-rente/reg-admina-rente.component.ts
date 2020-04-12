@@ -17,14 +17,14 @@ export class RegAdminaRenteComponent implements OnInit {
   private initForm()
   {
     this.regRenteAdminForm = new FormGroup({
-      'ime': new FormControl('ime',[Validators.required,Validators.maxLength(15), Validators.minLength(3)]),
-      'prezime': new FormControl('pr', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
-      'grad': new FormControl('grad', [Validators.required, Validators.maxLength(10), Validators.minLength(3)]),
-      'rentaKompanija': new FormControl('rentaKompanija',Validators.required),    //dodati posle da se ucitava jedna od postojecih aviokompanija
-      'brojTelefona': new FormControl('0', Validators.required),
-      'brojPasosa': new FormControl('0', Validators.required),
-      'username': new FormControl('user', Validators.required),
-      'password': new FormControl('pass', Validators.required),
+      'ime': new FormControl('',[Validators.required,Validators.maxLength(15), Validators.minLength(3)]),
+      'prezime': new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
+      'grad': new FormControl('', [Validators.required, Validators.maxLength(10), Validators.minLength(3)]),
+      'rentaKompanija': new FormControl('',Validators.required),    //dodati posle da se ucitava jedna od postojecih aviokompanija
+      'brojTelefona': new FormControl('', Validators.required),
+      'brojPasosa': new FormControl('', Validators.required),
+      'username': new FormControl('', Validators.required),
+      'password': new FormControl('', Validators.required),
     });
   }
 
