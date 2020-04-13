@@ -17,10 +17,10 @@ export class Filijala {
         this.ListaKola = new Array<Kola>();
         this.Rezervacije = new Array<[Kola, Date, Date]>();
 
-        this.ListaKola.push(new Kola(5, 2006, 'Volks Wagen', 'Golf', TipVozila.karavan));
-        this.ListaKola.push(new Kola(5, 2007, 'Ford', 'Focus', TipVozila.hecbek));
-        this.ListaKola.push(new Kola(2, 2000, 'Mercedes', 'Smart', TipVozila.hecbek));
-        this.ListaKola.push(new Kola(5, 2007, 'Volks Wagen', 'Passat', TipVozila.sedan));
+        this.ListaKola.push(new Kola(5, 2006, 'Volks Wagen', 'Golf', TipVozila.Karavan));
+        this.ListaKola.push(new Kola(5, 2007, 'Ford', 'Focus', TipVozila.Hecbek));
+        this.ListaKola.push(new Kola(2, 2000, 'Mercedes', 'Smart', TipVozila.Hecbek));
+        this.ListaKola.push(new Kola(5, 2007, 'Volks Wagen', 'Passat', TipVozila.Sedan));
     
     }
 

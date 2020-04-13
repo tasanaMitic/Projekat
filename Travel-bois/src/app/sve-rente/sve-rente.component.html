@@ -1,5 +1,5 @@
 <!--PRIKAZ SVIH RENTI-->
-<div *ngIf="!prikazRente">
+<div *ngIf="prikaz === 1">
     <ul class="lista-kompanija">
         <li *ngFor="let renta of rente">
             <div class="kompanija-container">
@@ -20,15 +20,15 @@
 
 <!--PRIKAZ ODABRANE RENTE-->
 
-<div *ngIf="prikazRente" style="display: inline;">
+<div *ngIf="prikaz === 2" style="display: inline;">
     <div style="position: absolute; top: 80px;">
         <div class="kompanija-container" style="margin: 0 30px;">
-            <h1>{{selectedRent.Naziv}}</h1>
+            <h1>{{sr.Naziv}}</h1>
         </div>
         <div class="kompanija-container" style="margin: 10px 30px;">
-            <h3>{{selectedRent.Opis}}</h3>
+            <h3>{{sr.Opis}}</h3>
             <hr>
-            <h3>{{selectedRent.ProsecnaOcena()}}</h3>
+            <h3>{{sr.ProsecnaOcena()}}</h3>
             <hr>
             <div style="position: relative; margin: 5px;">
                 <div class="filter-stavka">
@@ -45,15 +45,13 @@
                 </div>
                 <button style="position: absolute; top: 25px; right: 40px;">Primeni</button>
             </div>
-            <hr>
-            <h3><button (click)="prikaziListu()">Nazad</button></h3>
         </div>
     </div>
     <div style="position: absolute; top: 80px; left: 400px;">
         <div class="kompanija-container" style="float: left;">
             <ul class="kola-container">
-                <li *ngFor="let kola of selectedRent.filtriranaKola">
-                    <button class="kola-slika-blok" (click)="test(kola.Naziv)">
+                <li *ngFor="let kola of sr.filtriranaKola">
+                    <button class="kola-slika-blok" (click)="prikaziKola(kola)">
                         <dynamic-image 
                             [tip]="tip" 
                             [naziv]="kola.Naziv" 
@@ -66,5 +64,36 @@
                 </li>
             </ul>
         </div>
+        <h3><button (click)="prikaziListu()">Nazad</button></h3>
+    </div>
+</div>
+
+<!-- PRIKAZ ZASEBNIH KOLA PO SELEKCIJI -->
+
+<div *ngIf="prikaz === 3">
+    <div style="position: absolute; top: 50px; left: 10px;">
+        <div class="kompanija-container">
+            <dynamic-image
+                [tip]="tip"
+                [naziv]="sc.Naziv"
+                [klasa]="klasaKolaSlika"></dynamic-image>
+        </div>
+        <hr style="margin: 7px 5px;">
+        <div class="kompanija-container">
+            <h2>{{sc.GetMarka()}}</h2>
+            <h3>{{sc.GetModel()}}</h3>
+        </div>
+    </div>
+    <div style="position: absolute; top: 50px; left:380px">
+        <div class="kompanija-container">
+            <h3>Broj mesta: {{sc.BrojMesta}}</h3>
+            <h3>Tip: {{sc.GetTip()}}</h3>
+            <h3>Godiste: {{sc.Godiste}}</h3>
+            <h3>Cena po danu: {{sc.Cena}}</h3>
+            <h3></h3>
+            <h3></h3>
+            <h3>Ocena: {{sc.ProsecnaOcena()}}</h3>
+        </div>
+        <button (click)="prikaziRentu('')">Nazad</button>
     </div>
 </div>

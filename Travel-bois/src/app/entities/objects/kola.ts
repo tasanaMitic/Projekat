@@ -15,8 +15,6 @@ export class Kola {
     Zauzet: boolean;
     Zauzetost: Array<[Date, Date]>
 
-    
-
     constructor(brMesta:number, godiste:number, marka:string, model:string, 
         tip:TipVozila, brzaRezervacija:boolean = false, cena:number = 0){
         this.BrojMesta = brMesta;
@@ -47,5 +45,15 @@ export class Kola {
     }
     SetModel(model:string){
         this.Naziv = this.GetMarka() + '-' + model;
+    }
+    GetTip(){
+        return TipVozila[this.Tip];
+    }
+    ProsecnaOcena(){
+        let sum = 0;
+        this.Ocene.forEach(element => {
+            sum += element.O;
+        });
+        return Math.round(sum / this.Ocene.length)
     }
 }

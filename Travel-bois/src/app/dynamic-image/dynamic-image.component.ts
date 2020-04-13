@@ -17,8 +17,8 @@ export class DynamicImageComponent implements OnInit{
   }
 
   ngOnInit(){
-    console.debug('naziv: ' + this.naziv)
+    // console.debug('naziv: ' + this.naziv)
     // console.debug('tip: ' + this.tip)
-    // console.debug(this.klasa)
+    // console.debug('klasa:' + this.klasa)
   }
 }
