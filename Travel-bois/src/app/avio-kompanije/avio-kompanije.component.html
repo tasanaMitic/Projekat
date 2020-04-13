@@ -8,9 +8,11 @@
             <div class="kompanija-element">Opis: {{kompanija.opis}}</div>
             <hr>
             <div class="kompanija-element">Ocena: {{kompanija.IzracunajProsecnuOcenu()}}</div>            
+            <!--Ovako radi i msm da ako se ista pipne da ce opet odici dk-->
             <dynamic-image 
-                [naziv]="kompanija.naziv"
-                [tip]=kompanija.getType()>
+                [tip]="kompanija.getType()"
+                [naziv]='kompanija.naziv'
+                [klasa]="klasa">
             </dynamic-image>            
             <div>
                 <a routerLink="/letovi"><button class="letovi-btn"> Prikazi letove</button></a>

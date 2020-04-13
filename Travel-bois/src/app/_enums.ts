@@ -18,13 +18,19 @@ export enum Klase {
 }
 
 export enum TipVozila {
-    karavan,
-    sport,
-    kupe,
-    kombi,
-    hecbek,
-    sedan,
+    Karavan,
+    Sport,
+    Kupe,
+    Kombi,
+    Hecbek,
+    Sedan,
     MUV_SUV,
-    kabriolet,
-    wagon,
+    Kabriolet,
+    Wagon,
+}
+
+export enum RentPrikaz {
+    listaKompanija = 1,
+    kompanija,
+    kola
 }
