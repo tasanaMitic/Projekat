@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Let } from '../entities/objects/let';
+import {Location} from '@angular/common'
 
 @Component({
   selector: 'app-letovi',
@@ -9,13 +10,19 @@ import { Let } from '../entities/objects/let';
 export class LetoviComponent implements OnInit {
   sviLetovi: Array<Let>;
   filtriraniLetovi: Array<Let>;
-  constructor() { }
+  constructor(private location: Location) { }
 
   ngOnInit(): void {
   }
 
+  onBack(){
+    this.location.back();
+  }
+
   filterLet()  {}
   filterReset(){}
+
+  
 
 
 }
