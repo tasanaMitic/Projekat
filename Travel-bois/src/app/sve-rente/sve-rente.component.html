@@ -20,24 +20,51 @@
 
 <!--PRIKAZ ODABRANE RENTE-->
 
-<div *ngIf="prikazRente">
-    <button (click)="prikaziListu()">Nazad</button>
-    <div class="kompanija-container" style="margin: 20px 30px;">
-        <h1>{{selectedRent.Naziv}}</h1>
+<div *ngIf="prikazRente" style="display: inline;">
+    <div style="position: absolute; top: 80px;">
+        <div class="kompanija-container" style="margin: 0 30px;">
+            <h1>{{selectedRent.Naziv}}</h1>
+        </div>
+        <div class="kompanija-container" style="margin: 10px 30px;">
+            <h3>{{selectedRent.Opis}}</h3>
+            <hr>
+            <h3>{{selectedRent.ProsecnaOcena()}}</h3>
+            <hr>
+            <div style="position: relative; margin: 5px;">
+                <div class="filter-stavka">
+                    <input type="text" placeholder="Marka" id="fMarka">
+                    <input type="checkbox" id="chkMarka">
+                </div>
+                <div class="filter-stavka">
+                    <input type="text" placeholder="Godiste" id="fGodiste">
+                    <input type="checkbox" id="chkGodiste">
+                </div>
+                <div class="filter-stavka">
+                    <input type="text" placeholder="Cena" id="fCena">
+                    <input type="checkbox" id="chkCena">
+                </div>
+                <button style="position: absolute; top: 25px; right: 40px;">Primeni</button>
+            </div>
+            <hr>
+            <h3><button (click)="prikaziListu()">Nazad</button></h3>
+        </div>
     </div>
-    <div class="kompanija-container" style="margin: 10px 30px;">
-        <h3>{{selectedRent.Opis}}</h3>
-        <hr>
-        <div>{{selectedRent.ProsecnaOcena()}}</div>
-        <hr>
-        <ul class="kola-slika">
-            <li *ngFor="let kola of selectedRent.filtriranaKola">
-                <dynamic-image 
-                    [tip]="tip" 
-                    [naziv]="kola.Naziv" 
-                    [klasa]="klasa">
-                </dynamic-image>
-            </li>
-        </ul>
+    <div style="position: absolute; top: 80px; left: 400px;">
+        <div class="kompanija-container" style="float: left;">
+            <ul class="kola-container">
+                <li *ngFor="let kola of selectedRent.filtriranaKola">
+                    <button class="kola-slika-blok" (click)="test(kola.Naziv)">
+                        <dynamic-image 
+                            [tip]="tip" 
+                            [naziv]="kola.Naziv" 
+                            [klasa]="klasaKolaGrid">
+                        </dynamic-image>
+                            <div class="kola-model-text">
+                                {{kola.GetModel()}}
+                            </div>
+                    </button>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

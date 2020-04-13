@@ -13,22 +13,27 @@ export class SveRenteComponent implements OnInit {
   selectedRent: RentACar;
   currentUser: User;
   prikazRente: boolean;
+  prikazKola: boolean;
   listaRenti: boolean;
 
   //ZA CSS
-  klasa: string;
-  tip: string = 'RentACar'
+  klasa: string = 'kompanija-slika';
+  klasaKolaGrid: string = 'kola-slika';
+  tip: string = 'RentACar/Kola'
 
   constructor() { 
     this.rente = new Array<RentACar>();
     this.currentUser = AppComponent.currentUser;
     this.prikazRente = false;
-    this.klasa = 'kompanija-slika';
+    this.prikazKola = false;
   }
   ngOnInit(): void {
     this.rente.push(new RentACar('Car2Go'));
-    //this.prikazRente = true;
+    this.prikazRente = true;
     this.selectedRent = this.rente[0];
+  }
+  test(val){
+    console.debug(val)
   }
 
   prikaziListu(){

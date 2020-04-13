@@ -23,7 +23,7 @@ export class RentACar {
         this.Filijale.push(new Filijala('Bogdana Garabantina 3', 'Car2Go-Liman', 'Novi Sad'));
         this.Filijale.forEach(element => {
             element.ListaKola.forEach(k => {
-                console.debug(k.Naziv);
+                //console.debug(k.Naziv);
                 this.filtriranaKola.push(k);
             });
         });

@@ -15,6 +15,8 @@ export class Kola {
     Zauzet: boolean;
     Zauzetost: Array<[Date, Date]>
 
+    
+
     constructor(brMesta:number, godiste:number, marka:string, model:string, 
         tip:TipVozila, brzaRezervacija:boolean = false, cena:number = 0){
         this.BrojMesta = brMesta;

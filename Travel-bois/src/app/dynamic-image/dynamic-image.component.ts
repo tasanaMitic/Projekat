@@ -8,17 +8,17 @@ import { debuglog } from 'util';
   templateUrl: './dynamic-image.component.html',
   //styles: [':host {display: block;}']
 })
-export class DynamicImageComponent {
+export class DynamicImageComponent implements OnInit{
   @Input() klasa: string; // ostaviti prazno za default klasu
   @Input() naziv: string; // slika MORA da se zove isto kao i kompanija i da ima .jpg extenziju
   @Input() tip: string; // ubacen da moze da se udje u odgovarajuci direktorijum
   
   constructor(){
-    console.debug('naziv: ' + this.naziv)
-    console.debug('tip: ' + this.tip)
-    // console.debug(this.klasa)
   }
 
-  OnInit(){
+  ngOnInit(){
+    console.debug('naziv: ' + this.naziv)
+    // console.debug('tip: ' + this.tip)
+    // console.debug(this.klasa)
   }
 }
