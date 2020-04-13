@@ -1,6 +1,7 @@
-<ul class="lista-kompanija">
-    <li *ngFor="let renta of rente">
-        <a routerLink="['/rentAcar', '{{renta.Naziv}}'">
+<!--PRIKAZ SVIH RENTI-->
+<div *ngIf="!prikazRente">
+    <ul class="lista-kompanija">
+        <li *ngFor="let renta of rente">
             <div class="kompanija-container">
                 <div class="kompanija-element">Naziv: {{renta.Naziv}}</div>
                 <hr>
@@ -8,9 +9,35 @@
                 <hr>
                 <div class="kompanija-element">Ocena: {{renta.ProsecnaOcena()}}</div>
                 <dynamic-image
-                [tip]="renta.getType()"
-                [naziv]="renta.Naziv"></dynamic-image>
+                [tip]="renta.tip"
+                [naziv]="renta.Naziv"
+                [klasa]="renta.klasa"></dynamic-image>
+                <button (click)="prikaziRentu(renta.Naziv)">Otvori</button>
             </div>
-        </a>
-    </li>
-</ul>
+        </li>
+    </ul>
+</div>
+
+<!--PRIKAZ ODABRANE RENTE-->
+
+<div *ngIf="prikazRente">
+    <button (click)="prikaziListu()">Nazad</button>
+    <div class="kompanija-container" style="margin: 20px 30px;">
+        <h1>{{selectedRent.Naziv}}</h1>
+    </div>
+    <div class="kompanija-container" style="margin: 10px 30px;">
+        <h3>{{selectedRent.Opis}}</h3>
+        <hr>
+        <div>{{selectedRent.ProsecnaOcena()}}</div>
+        <hr>
+        <ul class="kola-slika">
+            <li *ngFor="let kola of selectedRent.filtriranaKola">
+                <dynamic-image 
+                    [tip]="tip" 
+                    [naziv]="kola.Naziv" 
+                    [klasa]="klasa">
+                </dynamic-image>
+            </li>
+        </ul>
+    </div>
+</div>

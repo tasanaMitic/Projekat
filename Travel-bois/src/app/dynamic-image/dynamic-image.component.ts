@@ -5,15 +5,19 @@ import { debuglog } from 'util';
 @Component({
   selector: 'dynamic-image',
   //
-  template: `<img src="assets/images/{{tip}}/{{naziv}}.jpg" class="kompanija-slika">`,
+  templateUrl: './dynamic-image.component.html',
   //styles: [':host {display: block;}']
 })
 export class DynamicImageComponent {
+  @Input() klasa: string; // ostaviti prazno za default klasu
   @Input() naziv: string; // slika MORA da se zove isto kao i kompanija i da ima .jpg extenziju
   @Input() tip: string; // ubacen da moze da se udje u odgovarajuci direktorijum
+  
   constructor(){
-    console.debug(this.naziv)
-    console.debug(this.tip)}
+    console.debug('naziv: ' + this.naziv)
+    console.debug('tip: ' + this.tip)
+    // console.debug(this.klasa)
+  }
 
   OnInit(){
   }

@@ -11,10 +11,16 @@ import { AppComponent } from '../app.component';
 export class AvioKompanijeComponent implements OnInit {
   kompanije: Array<AvioKompanija>;
   currentUser: User;
+
+  //ZA CSS
+  klasa: string;
+  tip: string;
+
   constructor() { 
     this.kompanije = new Array<AvioKompanija>();
     this.currentUser = AppComponent.currentUser;
-
+    this.klasa = 'kompanija-slika';
+    this.tip = 'AvioKompanije';
   }
 
   ngOnInit(): void {

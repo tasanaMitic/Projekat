@@ -5,13 +5,15 @@ import { TipVozila } from 'src/app/_enums';
 
 export class Filijala {
     Adresa: string;
+    Grad: string;
     ListaKola: Array<Kola>;
     Rezervacije: Array<[Kola, Date, Date]>;
     Naziv: string;
 
-    constructor(adr:string, naziv:string){
+    constructor(adr:string, naziv:string, grad: string){
         this.Adresa = adr;
         this.Naziv = naziv;
+        this.Grad = grad;
         this.ListaKola = new Array<Kola>();
         this.Rezervacije = new Array<[Kola, Date, Date]>();
 
