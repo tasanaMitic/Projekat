@@ -39,9 +39,9 @@ export class SveRenteComponent implements OnInit {
   ngOnInit(): void {
     this.rente.push(new RentACar('Car2Go', 'Cirpanova 7'));
 
-     this.prikaz = RentPrikaz.kola;
-     this.sr = this.rente[0];
-     this.sc = this.rente[0].filtriranaKola[0];
+    //  this.prikaz = RentPrikaz.kola;
+    //  this.sr = this.rente[0];
+    //  this.sc = this.rente[0].filtriranaKola[0];
   }
   GetCurrentUserType(){
     return this.currentUser.constructor.name;
