@@ -36,18 +36,18 @@ export class Let {
             this.DatumDolaska = datumDolaska.getDate() + '/' + datumDolaska.getMonth() + '/' + datumDolaska.getFullYear() + '\n' + datumDolaska.getHours() + ':' + datumDolaska.getMinutes();
             this.mestoPolaska = mestoPolaska;
             this.mestoDolaska = mestoDolaska;
-            this.presedanja = presedanja === null ? new Array<string>() : presedanja;
+            //this.presedanja = presedanja === null ? new Array<string>() : presedanja;
             this.avion = avion;
             this.ocene = new Array<Ocena>();
             this.razdaljinaPutovanja = this.getRazdaljinaPutovanja();
-            this.trajanjePutovalja = this.getTrajanjePutovanja();
+            //this.trajanjePutovalja = this.getTrajanjePutovanja();
         }
 
     getRazdaljinaPutovanja(){
         return -1;
     }
     getTrajanjePutovanja(){
-        return Math.round(this.datDolaska.getTime() - this.datPolaska.getTime()) / 6000;
+        //return Math.round(this.datDolaska.getTime() - this.datPolaska.getTime()) / 6000;
     }
     ProsecnaOcena(){
         let sum = 0;
