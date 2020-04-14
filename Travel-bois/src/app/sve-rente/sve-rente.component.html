@@ -72,6 +72,7 @@
 
 <div *ngIf="prikaz === 3">
     <div style="position: absolute; top: 50px; left: 10px;">
+        <!--SLIKA-->
         <div class="kompanija-container">
             <dynamic-image
                 [tip]="tip"
@@ -79,12 +80,14 @@
                 [klasa]="klasaKolaSlika"></dynamic-image>
         </div>
         <hr style="margin: 7px 5px;">
+        <!--MARKA I MODEL-->
         <div class="kompanija-container">
             <h2>{{sc.GetMarka()}}</h2>
             <h3>{{sc.GetModel()}}</h3>
         </div>
     </div>
     <div style="position: absolute; top: 50px; left:380px">
+        <!--DETALJI-->
         <div class="kompanija-container">
             <h3>Broj mesta: {{sc.BrojMesta}}</h3>
             <h3>Tip: {{sc.GetTip()}}</h3>
@@ -93,6 +96,52 @@
             <h3></h3>
             <h3></h3>
             <h3>Ocena: {{sc.ProsecnaOcena()}}</h3>
+        </div>
+        <!--KALENDAR-->
+        <div *ngIf="GetCurrentUserType() !== 'User'">
+            <hr style="margin: 7px 5px;">
+            <div class="kompanija-container">
+                <div class="month">
+                    <ul>
+                        <li class="prev">&#10094;</li>
+                        <li class="next">&#10095;</li>
+                        <li>
+                            {{datum.GetMonth()}}
+                            <br>
+                            <span style="font-size:18px">{{datum.GetYear()}}</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <ul class="weekdays">
+                    <li>Mo</li>
+                    <li>Tu</li>
+                    <li>We</li>
+                    <li>Th</li>
+                    <li>Fr</li>
+                    <li>Sa</li>
+                    <li>Su</li>
+                </ul>
+                
+                <ul class="days">
+                    <li *ngFor="let dan of ' '.repeat(datum.danaUMesecu).split(''), let x = index">
+                        <span *ngIf="IsCarAvalable(x + 1, datum.mesec, datum.godina)">
+                            <span class="active" *ngIf="x + 1 === datum.GetDay()">
+                                {{x + 1}}
+                            </span>
+                            <span *ngIf="x + 1 !== datum.GetDay()">{{x + 1}}</span>
+                        </span>
+                        <span *ngIf="!IsCarAvalable(x + 1, datum.mesec, datum.godina)">
+                            <span class="occupied">
+                                <span class="active" *ngIf="x + 1 === datum.GetDay()">
+                                    {{x + 1}}
+                                </span>
+                                <span *ngIf="x + 1 !== datum.GetDay()">{{x + 1}}</span>
+                            </span>
+                        </span>
+                    </li>
+                </ul>
+            </div>
         </div>
         <button (click)="prikaziRentu('')">Nazad</button>
     </div>

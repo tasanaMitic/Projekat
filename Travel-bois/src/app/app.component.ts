@@ -15,6 +15,7 @@ import { Admin } from './entities/users/admin/admin';
 })
 export class AppComponent {
   static currentUser: User;
+  static datum: Date;
   //currentUser: User;
   avioKompanije: Array<AvioKompanija>;
   rente: Array<RentACar>;
@@ -22,10 +23,12 @@ export class AppComponent {
   title = 'Travel-bois';
 
   ngOnInit() {
-    //this.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
+    //AppComponent.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
     //this.currentUser = new Admin();
     //AppComponent.currentUser = new Admin();
-    AppComponent.currentUser = new User();
+    //AppComponent.currentUser = new User();
+    AppComponent.currentUser = new RegisteredUser('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password', 111546);
+    AppComponent.datum = new Date();
   }
     
   getType(){
