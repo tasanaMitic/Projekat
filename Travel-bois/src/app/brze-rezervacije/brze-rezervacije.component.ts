@@ -13,7 +13,7 @@ export class BrzeRezervacijeComponent implements OnInit {
   letHeaders = ['Avio kompanija', 'Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Klasa', 'Cena', 'Prosecna ocena', ''];
   letData : Array<Array<string>>;
 
-  kolaHeaders = ['Rent-A-Car', 'Marka', 'Model', 'Godiste', 'Broj mesta', 'Tip', 'Prosecna ocena'];
+  kolaHeaders = ['Rent-A-Car', 'Marka', 'Model', 'Godiste', 'Broj mesta', 'Tip', 'Cena po danu', 'Prosecna ocena'];
   kolaData: Array<Array<string>>;
 
 
@@ -47,6 +47,7 @@ export class BrzeRezervacijeComponent implements OnInit {
           temp.push(element.Godiste.toString())
           temp.push(element.BrojMesta.toString())
           temp.push(TipVozila[element.Tip])
+          temp.push('1500')
           temp.push(element.ProsecnaOcena().toString())
           this.kolaData.push(temp)
         });

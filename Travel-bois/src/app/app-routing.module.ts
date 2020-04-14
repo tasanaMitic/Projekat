@@ -28,7 +28,7 @@ const routes: Routes = [
   { path:'login', component: LoginComponent},
   { path:'brzeRezervacije', component: BrzeRezervacijeComponent},
   { path:'avioKompanije', component: AvioKompanijeComponent},
-  {path: 'letovi', component: LetoviComponent},
+  { path:'letovi', component: LetoviComponent},
   { path:'rentAcar', component: RentACarComponent},
   { path:'sveRente', component: SveRenteComponent},
   { path:'profilAdmina', component: ProfilAdminaComponent},
@@ -36,10 +36,10 @@ const routes: Routes = [
   { path:'regAdminaRente', component: RegAdminaRenteComponent},
   { path:'regAvioKomp', component: RegAvioKompanijuComponent},
   { path:'regRentaKomp', component: RegRentaKompanijuComponent},
-  { path: 'profilKorisnika', component: ProfilRegistrovanogComponent},
-  { path: 'profilAvio', component: ProfilAvioComponent},
-  { path: 'prijatelji', component: PrijateljiComponent},
-  { path: 'istorija', component: IstorijaComponent}
+  { path:'profilKorisnika', component: ProfilRegistrovanogComponent},
+  { path:'profilAvio', component: ProfilAvioComponent},
+  { path:'prijatelji', component: PrijateljiComponent},
+  { path:'istorija', component: IstorijaComponent}
 ];
 
 @NgModule({
