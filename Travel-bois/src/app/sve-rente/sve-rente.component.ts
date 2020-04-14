@@ -22,7 +22,8 @@ export class SveRenteComponent implements OnInit {
   danaUMesecu: number;
 
   // 
-  updateable: boolean = true;
+  static sd1: Date = new Date(1970, 1, 1);
+  static sd2: Date = new Date(1970, 1, 1);
 
   //ZA CSS
   klasa: string = 'kompanija-slika';
@@ -36,7 +37,7 @@ export class SveRenteComponent implements OnInit {
     this.prikaz = RentPrikaz.listaKompanija;
   }
   ngOnInit(): void {
-    this.rente.push(new RentACar('Car2Go'));
+    this.rente.push(new RentACar('Car2Go', 'Cirpanova 7'));
 
      this.prikaz = RentPrikaz.kola;
      this.sr = this.rente[0];
@@ -63,7 +64,7 @@ export class SveRenteComponent implements OnInit {
     this.prikaz = RentPrikaz.kompanija;
   }
   prikaziKola(k: Kola){
-    console.debug(k.Naziv);
+    //console.debug(k.Naziv);
     this.sc = k;
     this.prikaz = RentPrikaz.kola;
   }

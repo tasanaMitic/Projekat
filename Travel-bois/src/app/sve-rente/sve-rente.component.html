@@ -5,6 +5,8 @@
             <div class="kompanija-container">
                 <div class="kompanija-element">Naziv: {{renta.Naziv}}</div>
                 <hr>
+                <div class="kompanija-element">Adresa: {{renta.Adresa}}</div>
+                <hr>
                 <div class="kompanija-element">Opis: {{renta.Opis}}</div>
                 <hr>
                 <div class="kompanija-element">Ocena: {{renta.ProsecnaOcena()}}</div>
@@ -22,10 +24,14 @@
 
 <div *ngIf="prikaz === 2" style="display: inline;">
     <div style="position: absolute; top: 80px;">
+        <!--Naziv kompanije-->
         <div class="kompanija-container" style="margin: 0 30px;">
             <h1>{{sr.Naziv}}</h1>
         </div>
+        <!-- Podaci o kompaniji i pretraga -->
         <div class="kompanija-container" style="margin: 10px 30px;">
+            <h3>{{sr.Adresa}}</h3>
+            <hr>
             <h3>{{sr.Opis}}</h3>
             <hr>
             <h3>{{sr.ProsecnaOcena()}}</h3>
