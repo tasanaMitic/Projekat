@@ -424,4 +424,5 @@ body {
  table {
     border-collapse: collapse;
     display: inline;
+    border: black;
 }

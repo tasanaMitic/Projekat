@@ -31,9 +31,8 @@ export class AppComponent {
     //console.debug('ubacivanje rente u listu')
     AppComponent.rente.push(new RentACar('Car2Go', 'adresa 3'))
 
-    //AppComponent.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
+    AppComponent.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
     //AppComponent.currentUser = new Admin('sysAdmin', 'password');
-    //AppComponent.currentUser = new Admin();
     //AppComponent.currentUser = new User();
     AppComponent.currentUser = new RegisteredUser('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password', 111546);
     //AppComponent.currentUser = new AvioAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
