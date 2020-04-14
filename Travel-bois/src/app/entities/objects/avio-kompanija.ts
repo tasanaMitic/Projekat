@@ -24,10 +24,12 @@ export class AvioKompanija {
         this.naziv = naziv;
         this.opis = 'Opis aviokompanije';
         this.brzaRezervacijaPopust = 0;
+        this.letovi = new Array<Let>();
         this.destinacije = new Array<string>();
         this.moguceDestinacije = new Aerodromi();
         this.ocene = new Array<Ocena>();
-        //this.letovi.push(new Let(20,30,40,40 ,40,'bg', 'rim', new Avion()));
+
+        this.letovi.push(new Let(this, 0, 5000, 10000, new Date(2020, 1, 2), new Date(2020, 1, 2), 'Beograd', 'Bec', new Avion(10000, 20, 5000, 30, 1000, 50)))
     }
 
     getType(){

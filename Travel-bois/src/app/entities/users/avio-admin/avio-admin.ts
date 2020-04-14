@@ -1,7 +1,7 @@
 import { AvioKompanija } from '../../objects/avio-kompanija';
-import { Admin } from '../admin/admin';
+import { User } from '../user/user';
 
-export class AvioAdmin extends Admin{
+export class AvioAdmin extends User{
     promenioSifru:boolean;
     avioKompanija: AvioKompanija;
 

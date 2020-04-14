@@ -9,6 +9,7 @@ export class Segment {
     constructor(c: number, k: Klase, brojSedista: number){
         this.cena = c;
         this.klasa = k;
+        this.sedista = new Array<Sediste>();
         for(var i = 0; i < brojSedista; i+=1){
             this.sedista.push(new Sediste(i + 1));
         }

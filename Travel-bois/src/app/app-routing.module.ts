@@ -17,6 +17,7 @@ import { SveRenteComponent } from './sve-rente/sve-rente.component';
 import { ProfilRegistrovanogComponent } from './profil-registrovanog/profil-registrovanog.component';
 import { ProfilAvioComponent } from './profil-avio/profil-avio.component';
 import { PrijateljiComponent } from './prijatelji/prijatelji.component';
+import { IstorijaComponent } from './istorija/istorija.component';
 
 
 const routes: Routes = [
@@ -30,14 +31,15 @@ const routes: Routes = [
   {path: 'letovi', component: LetoviComponent},
   { path:'rentAcar', component: RentACarComponent},
   { path:'sveRente', component: SveRenteComponent},
-  { path:'profil', component: ProfilAdminaComponent},
+  { path:'profilAdmina', component: ProfilAdminaComponent},
   { path:'regAdminaAvio', component: RegAdminaAvioComponent},
   { path:'regAdminaRente', component: RegAdminaRenteComponent},
   { path:'regAvioKomp', component: RegAvioKompanijuComponent},
   { path:'regRentaKomp', component: RegRentaKompanijuComponent},
   { path: 'profilKorisnika', component: ProfilRegistrovanogComponent},
   { path: 'profilAvio', component: ProfilAvioComponent},
-  { path: 'prijatelji', component: PrijateljiComponent}
+  { path: 'prijatelji', component: PrijateljiComponent},
+  { path: 'istorija', component: IstorijaComponent}
 ];
 
 @NgModule({

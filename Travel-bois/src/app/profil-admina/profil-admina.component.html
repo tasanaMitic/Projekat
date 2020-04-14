@@ -1,1 +1,31 @@
-<p>profil-admina works!</p>
+<div class="container">
+    <h1>Podaci</h1>
+    <form [formGroup]="podaciForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" class="form-control" formControlName="username"> 
+                <div *ngIf="podaciForm.controls.username.invalid">
+                    Unesite username
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" class="form-control" formControlName="password">
+                <div *ngIf="podaciForm.controls.password.invalid">
+                    Unesite password
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <button [disabled]="!podaciForm.valid" class="btn btn-success" type="submit">Sacuvaj</button>
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
+            </div>
+        </div>
+    </form>
+</div>
