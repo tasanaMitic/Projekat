@@ -25,8 +25,8 @@ export class AppComponent {
     //this.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
     //AppComponent.currentUser = new Admin();
     //AppComponent.currentUser = new RegisteredUser('062123456', 'Beograd', 'Tasana', 'Mitic', 'tasana', 'pass', 1234);
-    //AppComponent.currentUser = new User();
-    AppComponent.currentUser = new AvioAdmin('062123456', 'Beograd', 'Tasana', 'Mitic', 'tasana', 'pass');
+    AppComponent.currentUser = new User();
+    //AppComponent.currentUser = new AvioAdmin('062123456', 'Beograd', 'Tasana', 'Mitic', 'tasana', 'pass');
   }
     
   getType(){

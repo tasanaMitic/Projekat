@@ -39,6 +39,14 @@
             </div>
         </div>
     </a>
+    <a routerLink="" >
+        <div class="servis-blok">
+            <img class="servis-image" src="assets/images/pocetna/registered/pozivnica.png">
+            <div class="img-text-container">
+                Pozivnice
+            </div>
+        </div>
+    </a>
     <a routerLink="/avioKompanije" >
         <div class="servis-blok" >
             <img class="servis-image" src="assets/images/pocetna/unregistered/avio-kompanija.jpg" >
@@ -60,7 +68,7 @@
         <!--Prikaz adminima avio kompanija-->
 
 <div *ngIf="getType() === 'AvioAdmin'" class="grid-container">    
-    <a>
+    <a routerLink="/letovi">
         <div class="servis-blok">
             <img class="servis-image" src="assets\images\pocetna\airline-admin/let.jpg">
             <div class="img-text-container">
