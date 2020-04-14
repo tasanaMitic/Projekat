@@ -16,17 +16,20 @@ import { AvioAdmin } from './entities/users/avio-admin/avio-admin';
 })
 export class AppComponent {
   static currentUser: User;
+  static datum: Date;
+  //currentUser: User;
   avioKompanije: Array<AvioKompanija>;
   rente: Array<RentACar>;
 
   title = 'Travel-bois';
 
   ngOnInit() {
-    //this.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
+    //AppComponent.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
+    //this.currentUser = new Admin();
     //AppComponent.currentUser = new Admin();
-    AppComponent.currentUser = new RegisteredUser('062123456', 'Beograd', 'Tasana', 'Mitic', 'tasana', 'pass', 1234);
     //AppComponent.currentUser = new User();
-    //AppComponent.currentUser = new AvioAdmin('062123456', 'Beograd', 'Tasana', 'Mitic', 'tasana', 'pass');
+    AppComponent.currentUser = new RegisteredUser('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password', 111546);
+    AppComponent.datum = new Date();
   }
     
   getType(){

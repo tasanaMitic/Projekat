@@ -5,6 +5,19 @@ body {
     background-color: rgb(227, 241, 236);
 }
 
+.unselectable {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+.selectable {
+    -webkit-user-select: text !important; /* Safari */        
+    -moz-user-select: text !important; /* Firefox */
+    -ms-user-select: text !important; /* IE10+/Edge */
+    user-select: text !important; /* Standard */
+}
+
 /*=================================NAVBAR================================= */
 
 .ikonica {
@@ -304,5 +317,92 @@ body {
 
 .filter-stavka {
     display: inline;
-    
 }
+
+/*==================================KALENDAR============================*/
+
+/* Month header */
+.month {
+    border-radius: 5px;
+    padding: 20px 25px;
+    width: 300px;
+    height: 50px;
+    background: #1abc9c;
+    text-align: center;
+  }
+  
+  /* Month list */
+  .month ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+  
+  /* Previous button inside month header */
+  .month .prev {
+    float: left;
+    padding-top: 10px;
+  }
+  
+  /* Next button */
+  .month .next {
+    float: right;
+    padding-top: 10px;
+  }
+  
+  /* Weekdays (Mon-Sun) */
+  .weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color:#ddd;
+  }
+  
+  .weekdays li {
+    display: inline-block;
+    width: 13.6%;
+    color: #666;
+    text-align: center;
+  }
+  
+  /* Days (1-31) */
+  .days {
+    padding: 10px 0;
+    background: #eee;
+    margin: 0;
+  }
+  
+  .days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13.6%;
+    text-align: center;
+    padding: 8px 0;
+    font-size:16px;
+    font-weight: bold;
+    color: #000;
+  }
+  .days li:hover {
+      background-color: gray;
+  }
+  
+  /* Highlight the "current" day */
+  .days li .active {
+    padding: 8px 15px;
+    background-color: #c894fa;
+  }
+  .days li .selected {
+    padding: 8px 15px;
+    background: #94fab3 !important;
+  }
+
+  /* Highlight occupied days */
+  .days li .occupied{
+      color: red;
+  }

@@ -17,7 +17,7 @@ export class RentACarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.rente.push(new RentACar('Car2Go'));
+    //this.rente.push(new RentACar('Car2Go'));
   }
 
 }

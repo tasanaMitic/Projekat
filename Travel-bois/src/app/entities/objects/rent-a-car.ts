@@ -4,6 +4,7 @@ import { Kola } from './kola';
 
 export class RentACar {
     Naziv: string;
+    Adresa: string;
     Opis: string;
     Filijale: Array<Filijala>;
     Ocene: Array<Ocena>;
@@ -13,8 +14,9 @@ export class RentACar {
     tip: string = 'RentACar';
     klasa: string = 'kompanija-slika'
 
-    constructor(naz:string) {
+    constructor(naz:string, adr: string) {
         this.Naziv = naz;
+        this.Adresa = adr;
         this.Opis = 'Opis rente';
         this.Filijale = new Array<Filijala>();
         this.Ocene = new Array<Ocena>();

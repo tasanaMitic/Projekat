@@ -5,6 +5,8 @@
             <div class="kompanija-container">
                 <div class="kompanija-element">Naziv: {{renta.Naziv}}</div>
                 <hr>
+                <div class="kompanija-element">Adresa: {{renta.Adresa}}</div>
+                <hr>
                 <div class="kompanija-element">Opis: {{renta.Opis}}</div>
                 <hr>
                 <div class="kompanija-element">Ocena: {{renta.ProsecnaOcena()}}</div>
@@ -22,10 +24,14 @@
 
 <div *ngIf="prikaz === 2" style="display: inline;">
     <div style="position: absolute; top: 80px;">
+        <!--Naziv kompanije-->
         <div class="kompanija-container" style="margin: 0 30px;">
             <h1>{{sr.Naziv}}</h1>
         </div>
+        <!-- Podaci o kompaniji i pretraga -->
         <div class="kompanija-container" style="margin: 10px 30px;">
+            <h3>{{sr.Adresa}}</h3>
+            <hr>
             <h3>{{sr.Opis}}</h3>
             <hr>
             <h3>{{sr.ProsecnaOcena()}}</h3>
@@ -72,6 +78,7 @@
 
 <div *ngIf="prikaz === 3">
     <div style="position: absolute; top: 50px; left: 10px;">
+        <!--SLIKA-->
         <div class="kompanija-container">
             <dynamic-image
                 [tip]="tip"
@@ -79,12 +86,19 @@
                 [klasa]="klasaKolaSlika"></dynamic-image>
         </div>
         <hr style="margin: 7px 5px;">
+        <!--MARKA I MODEL-->
         <div class="kompanija-container">
             <h2>{{sc.GetMarka()}}</h2>
             <h3>{{sc.GetModel()}}</h3>
         </div>
+        <hr>
+        <div style="display: inline; padding: 5px;">
+            <button (click)="prikaziRentu('')">Nazad</button>
+            <button style="float: right;">Napravi rezervaciju</button>
+        </div>
     </div>
     <div style="position: absolute; top: 50px; left:380px">
+        <!--DETALJI-->
         <div class="kompanija-container">
             <h3>Broj mesta: {{sc.BrojMesta}}</h3>
             <h3>Tip: {{sc.GetTip()}}</h3>
@@ -94,6 +108,9 @@
             <h3></h3>
             <h3>Ocena: {{sc.ProsecnaOcena()}}</h3>
         </div>
-        <button (click)="prikaziRentu('')">Nazad</button>
+        <!--KALENDAR-->
+        <div *ngIf="GetCurrentUserType() !== 'User'">
+            <kalendar [kola]="sc"></kalendar>
+        </div>
     </div>
 </div>

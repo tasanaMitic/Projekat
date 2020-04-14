@@ -1,0 +1,63 @@
+<hr style="margin: 7px 5px;">
+<div class="kompanija-container unselectable">
+    <!--Mesec-->
+    <div class="month">
+        <ul>
+            <li class="prev" (click)="UmanjiMesec()">&#10094;</li>
+            <li class="next" (click)="UvecajMesec()">&#10095;</li>
+            <li>
+                {{datum.GetMonth()}}
+                <br>
+                <span style="font-size:18px">{{datum.GetYear()}}</span>
+            </li>
+        </ul>
+    </div>
+    <!--Lista dana u nedelji-->
+    <ul class="weekdays">
+        <li>Mo</li>
+        <li>Tu</li>
+        <li>We</li>
+        <li>Th</li>
+        <li>Fr</li>
+        <li>Sa</li>
+        <li>Su</li>
+    </ul>
+    <!--Grid dana-->
+    <ul class="days">
+        <!-- prazna mesta da bi dani poceli od dobrog dana u mesecu -->
+        <li *ngFor="let dan of ' '.repeat(datum.danUNedelji).split(''), let x = index"></li>
+        <!-- nastavak normalnog punjenja grida -->
+        <li *ngFor="let dan of ' '.repeat(datum.danaUMesecu).split(''), let x = index">
+            <span *ngIf="IsAvalable(x + 1, datum.mesec, datum.godina); else unavailable">
+                <span class="selected" 
+                *ngIf="IsSelected(x + 1, datum.mesec, datum.godina); else notSelected"
+                (click)="Select(x + 1, datum.mesec, datum.godina)">
+                    {{x + 1}}
+                </span>
+                <ng-template #notSelected>
+                    <span class="active" 
+                    *ngIf="IsToday(x + 1, datum.mesec, datum.godina); else notActive"
+                    (click)="Select(x + 1, datum.mesec, datum.godina)">
+                        {{x + 1}}
+                    </span>
+                </ng-template>
+                <ng-template #notActive>
+                    <span (click)="Select(x + 1, datum.mesec, datum.godina)">
+                        {{x + 1}}
+                    </span>
+                </ng-template>
+            </span>
+            <ng-template #unavailable>
+                <span class="occupied">
+                    <span class="active" *ngIf="x + 1 === datum.GetDay() && datum.mesec === datum.today.getMonth() && datum.godina === datum.today.getFullYear(); else notActive">
+                        {{x + 1}}
+                    </span>
+                    <ng-template #notActive>
+                        {{x + 1}}
+                    </ng-template>
+                </span>
+            </ng-template>
+        </li>
+    </ul>
+    <div *ngIf="dateUnavailable" style="color: red;">Postoji preklapanje sa vec zauzetim datumima</div>
+</div>

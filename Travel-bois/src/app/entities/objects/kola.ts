@@ -12,7 +12,7 @@ export class Kola {
     Naziv: string;
     Ocene: Array<Ocena>;
     Tip: TipVozila;
-    Zauzet: boolean;
+    //Zauzet: boolean;
     Zauzetost: Array<[Date, Date]>
 
     constructor(brMesta:number, godiste:number, marka:string, model:string, 
@@ -27,8 +27,10 @@ export class Kola {
         //Ne radi kako treba
         //this.ID = IdHandler.GenerateKolaID();
         this.Ocene = new Array<Ocena>();
-        this.Zauzet = false;
+        //this.Zauzet = false;
         this.Zauzetost = new Array<[Date, Date]>();
+        this.Zauzetost.push([new Date(2020, 3, 3), new Date(2020, 3, 9)]);
+        this.Zauzetost.push([new Date(2020, 3, 28), new Date(2020, 4, 5)]);
     }
 
     private NazivParser(){

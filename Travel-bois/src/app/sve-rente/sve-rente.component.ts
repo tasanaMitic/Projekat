@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { RentACar } from '../entities/objects/rent-a-car';
 import { User } from '../entities/users/user/user';
 import { AppComponent } from '../app.component';
-import { RentPrikaz } from '../_enums';
+import { RentPrikaz, Meseci } from '../_enums';
 import { Kola } from '../entities/objects/kola';
+import { Datum } from '../entities/misc/datum';
+import { AnyTxtRecord } from 'dns';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-rent-a-car',
@@ -16,6 +19,11 @@ export class SveRenteComponent implements OnInit {
   sc: Kola;
   currentUser: User;
   prikaz: RentPrikaz;
+  danaUMesecu: number;
+
+  // 
+  static sd1: Date = new Date(1970, 1, 1);
+  static sd2: Date = new Date(1970, 1, 1);
 
   //ZA CSS
   klasa: string = 'kompanija-slika';
@@ -29,10 +37,14 @@ export class SveRenteComponent implements OnInit {
     this.prikaz = RentPrikaz.listaKompanija;
   }
   ngOnInit(): void {
-    this.rente.push(new RentACar('Car2Go'));
-    // this.prikaz = RentPrikaz.kola;
-    // this.sr = this.rente[0];
-    // this.sc = this.rente[0].filtriranaKola[0];
+    this.rente.push(new RentACar('Car2Go', 'Cirpanova 7'));
+
+     this.prikaz = RentPrikaz.kola;
+     this.sr = this.rente[0];
+     this.sc = this.rente[0].filtriranaKola[0];
+  }
+  GetCurrentUserType(){
+    return this.currentUser.constructor.name;
   }
   test(val){
     console.debug(val)
@@ -52,7 +64,7 @@ export class SveRenteComponent implements OnInit {
     this.prikaz = RentPrikaz.kompanija;
   }
   prikaziKola(k: Kola){
-    console.debug(k.Naziv);
+    //console.debug(k.Naziv);
     this.sc = k;
     this.prikaz = RentPrikaz.kola;
   }
