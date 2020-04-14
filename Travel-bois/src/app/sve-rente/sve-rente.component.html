@@ -85,6 +85,11 @@
             <h2>{{sc.GetMarka()}}</h2>
             <h3>{{sc.GetModel()}}</h3>
         </div>
+        <hr>
+        <div style="display: inline; padding: 5px;">
+            <button (click)="prikaziRentu('')">Nazad</button>
+            <button style="float: right;">Napravi rezervaciju</button>
+        </div>
     </div>
     <div style="position: absolute; top: 50px; left:380px">
         <!--DETALJI-->
@@ -99,50 +104,7 @@
         </div>
         <!--KALENDAR-->
         <div *ngIf="GetCurrentUserType() !== 'User'">
-            <hr style="margin: 7px 5px;">
-            <div class="kompanija-container">
-                <div class="month">
-                    <ul>
-                        <li class="prev">&#10094;</li>
-                        <li class="next">&#10095;</li>
-                        <li>
-                            {{datum.GetMonth()}}
-                            <br>
-                            <span style="font-size:18px">{{datum.GetYear()}}</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <ul class="weekdays">
-                    <li>Mo</li>
-                    <li>Tu</li>
-                    <li>We</li>
-                    <li>Th</li>
-                    <li>Fr</li>
-                    <li>Sa</li>
-                    <li>Su</li>
-                </ul>
-                
-                <ul class="days">
-                    <li *ngFor="let dan of ' '.repeat(datum.danaUMesecu).split(''), let x = index">
-                        <span *ngIf="IsCarAvalable(x + 1, datum.mesec, datum.godina)">
-                            <span class="active" *ngIf="x + 1 === datum.GetDay()">
-                                {{x + 1}}
-                            </span>
-                            <span *ngIf="x + 1 !== datum.GetDay()">{{x + 1}}</span>
-                        </span>
-                        <span *ngIf="!IsCarAvalable(x + 1, datum.mesec, datum.godina)">
-                            <span class="occupied">
-                                <span class="active" *ngIf="x + 1 === datum.GetDay()">
-                                    {{x + 1}}
-                                </span>
-                                <span *ngIf="x + 1 !== datum.GetDay()">{{x + 1}}</span>
-                            </span>
-                        </span>
-                    </li>
-                </ul>
-            </div>
+            <kalendar [kola]="sc"></kalendar>
         </div>
-        <button (click)="prikaziRentu('')">Nazad</button>
     </div>
 </div>

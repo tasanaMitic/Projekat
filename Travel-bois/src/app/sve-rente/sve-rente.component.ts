@@ -5,6 +5,8 @@ import { AppComponent } from '../app.component';
 import { RentPrikaz, Meseci } from '../_enums';
 import { Kola } from '../entities/objects/kola';
 import { Datum } from '../entities/misc/datum';
+import { AnyTxtRecord } from 'dns';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-rent-a-car',
@@ -17,8 +19,10 @@ export class SveRenteComponent implements OnInit {
   sc: Kola;
   currentUser: User;
   prikaz: RentPrikaz;
-  datum: Datum;
   danaUMesecu: number;
+
+  // 
+  updateable: boolean = true;
 
   //ZA CSS
   klasa: string = 'kompanija-slika';
@@ -30,7 +34,6 @@ export class SveRenteComponent implements OnInit {
     this.rente = new Array<RentACar>();
     this.currentUser = AppComponent.currentUser;
     this.prikaz = RentPrikaz.listaKompanija;
-    this.datum = new Datum();
   }
   ngOnInit(): void {
     this.rente.push(new RentACar('Car2Go'));
@@ -41,16 +44,6 @@ export class SveRenteComponent implements OnInit {
   }
   GetCurrentUserType(){
     return this.currentUser.constructor.name;
-  }
-  IsCarAvalable(day, month, year){
-    let date = new Date(year, month, day);
-    let ret = true;
-    this.sc.Zauzetost.forEach(element => {
-      if(date >= element[0])
-        if(date <= element[1])
-          ret = false;
-    });
-    return ret;
   }
   test(val){
     console.debug(val)
@@ -73,6 +66,5 @@ export class SveRenteComponent implements OnInit {
     console.debug(k.Naziv);
     this.sc = k;
     this.prikaz = RentPrikaz.kola;
-    this.datum = new Datum();
   }
 }
