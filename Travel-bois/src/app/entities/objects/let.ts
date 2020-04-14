@@ -7,8 +7,8 @@ import { IdHandler } from 'src/app/_id-handler';
 export class Let {
     ID: number;
     cenovnikPrtljaga: Map<TipPrtljaga, number>;
-    datPolaska: Date;
-    datDolaska: Date;
+    datPolaska: number;
+    datDolaska: number;
     mestoPolaska: string;
     mestoDolaska: string;
     presedanja: Array<string>;
@@ -18,7 +18,7 @@ export class Let {
     ocene: Array<Ocena>;
 
     constructor(cenaRucnogPrtljaga, cenaMalogPrtljaga, cenaVelikogPrtljaga,
-        datumPolaska, datumDolaska, mestoPolaska, mestoDolaska, avion, presedanja = []){
+        datumPolaska, datumDolaska, mestoPolaska, mestoDolaska, avion, ){
             //  Ne radi
             //this.ID = IdHandler.GenerateLetID();
             this.cenovnikPrtljaga = new Map<TipPrtljaga, number>();
@@ -29,17 +29,17 @@ export class Let {
             this.datDolaska = datumDolaska;
             this.mestoPolaska = mestoPolaska;
             this.mestoDolaska = mestoDolaska;
-            this.presedanja = presedanja === null ? new Array<string>() : presedanja;
+            //this.presedanja = presedanja === null ? new Array<string>() : presedanja;
             this.avion = avion;
             this.ocene = new Array<Ocena>();
             this.razdaljinaPutovanja = this.getRazdaljinaPutovanja();
-            this.trajanjePutovalja = this.getTrajanjePutovanja();
+            //this.trajanjePutovalja = this.getTrajanjePutovanja();
         }
 
     getRazdaljinaPutovanja(){
         return -1;
     }
     getTrajanjePutovanja(){
-        return Math.round(this.datDolaska.getTime() - this.datPolaska.getTime()) / 6000;
+        //return Math.round(this.datDolaska.getTime() - this.datPolaska.getTime()) / 6000;
     }
 }

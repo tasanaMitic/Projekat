@@ -3,6 +3,7 @@ import { Let } from './let';
 import { Ocena } from '../misc/ocena';
 import { strict } from 'assert';
 import { Klase } from 'src/app/_enums';
+import { Avion } from './avion';
 
 export class AvioKompanija {
     adresa: string;
@@ -26,6 +27,7 @@ export class AvioKompanija {
         this.destinacije = new Array<string>();
         this.moguceDestinacije = new Aerodromi();
         this.ocene = new Array<Ocena>();
+        //this.letovi.push(new Let(20,30,40,40 ,40,'bg', 'rim', new Avion()));
     }
 
     getType(){
