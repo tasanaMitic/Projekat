@@ -1,0 +1,34 @@
+<div class="container">
+    <h1>Prijatelji</h1>
+    <table >
+        <thead >
+            <tr>
+                <th scope="col">IME</th>
+                <th scope="col">PREZIME</th>
+                <th scope="col">USERNAME</th>
+            </tr>
+        </thead>
+        <div [hidden]="prijatelji.length !== 0">
+            <tbody>
+                <tr *ngFor="let prijatelj of prijatelji">
+                    <td>{{prijatelj.ime}}</td>
+                    <td>{{prijatelj.prezime}}</td>
+                    <td>{{prijatelj.username}}</td>
+                </tr>
+            </tbody>
+        </div>
+        <div [hidden]="prijatelji.length === 0">
+            <tbody>
+                <tr>
+                    <td >Trenutno nema prijatelja</td>
+                </tr>
+            </tbody>
+        </div>
+    </table>
+    <div>
+        <button class="btn btn-success" (click)="onFriend()" type="button">Dodaj prijatelja</button>
+    </div>
+    <div>
+        <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
+    </div>
+</div>

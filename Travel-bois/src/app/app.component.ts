@@ -6,6 +6,7 @@ import { AvioKompanijeComponent } from './avio-kompanije/avio-kompanije.componen
 import { AvioKompanija } from './entities/objects/avio-kompanija';
 import { RentACar } from './entities/objects/rent-a-car';
 import { Admin } from './entities/users/admin/admin';
+import { AvioAdmin } from './entities/users/avio-admin/avio-admin';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,6 @@ import { Admin } from './entities/users/admin/admin';
 })
 export class AppComponent {
   static currentUser: User;
-  //currentUser: User;
   avioKompanije: Array<AvioKompanija>;
   rente: Array<RentACar>;
 
@@ -23,9 +23,10 @@ export class AppComponent {
 
   ngOnInit() {
     //this.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
-    //this.currentUser = new Admin();
     //AppComponent.currentUser = new Admin();
-    AppComponent.currentUser = new User();
+    //AppComponent.currentUser = new RegisteredUser('062123456', 'Beograd', 'Tasana', 'Mitic', 'tasana', 'pass', 1234);
+    //AppComponent.currentUser = new User();
+    AppComponent.currentUser = new AvioAdmin('062123456', 'Beograd', 'Tasana', 'Mitic', 'tasana', 'pass');
   }
     
   getType(){

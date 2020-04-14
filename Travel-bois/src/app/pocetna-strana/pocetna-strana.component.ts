@@ -17,7 +17,6 @@ export class PocetnaStranaComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    //this.currentUser = new RegisteredUser('dfd','fsdfs','fsdfs','fsdfs','fsdfs','fdsdfs',123);
     this.currentUser = AppComponent.currentUser;
   }
   getType(){

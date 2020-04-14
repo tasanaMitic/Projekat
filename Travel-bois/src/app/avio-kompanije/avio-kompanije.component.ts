@@ -18,13 +18,13 @@ export class AvioKompanijeComponent implements OnInit {
   tip: string;
 
   constructor(private location:Location) { 
-    this.kompanije = new Array<AvioKompanija>();
-    this.currentUser = AppComponent.currentUser;
+    this.kompanije = new Array<AvioKompanija>();    
     this.klasa = 'kompanija-slika';
     this.tip = 'AvioKompanije';
   }
 
   ngOnInit(): void {
+    this.currentUser = AppComponent.currentUser;
     this.kompanije.push(new AvioKompanija('Bogdana Suputa 5', 'Jat'));
     this.kompanije.push(new AvioKompanija('Petefi Sandora 9', 'WizzAir'));
   }
@@ -32,6 +32,10 @@ export class AvioKompanijeComponent implements OnInit {
   onBack()
   {
     this.location.back();
+  }
+
+  getType(){
+    return this.currentUser.constructor.name;
   }
 
 }
