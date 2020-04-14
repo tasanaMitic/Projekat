@@ -13,7 +13,6 @@ import { LoginComponent } from './login/login.component';
 import { BrzeRezervacijeComponent } from './brze-rezervacije/brze-rezervacije.component';
 import { AvioKompanijeComponent } from './avio-kompanije/avio-kompanije.component';
 import { RentACarComponent } from './rent-a-car/rent-a-car.component';
-import { InfoComponent } from './info/info.component';
 import { ProfilAdminaComponent } from './profil-admina/profil-admina.component';
 import { RegAdminaRenteComponent } from './reg-admina-rente/reg-admina-rente.component';
 import { RegAdminaAvioComponent } from './reg-admina-avio/reg-admina-avio.component';
@@ -22,6 +21,9 @@ import { RegRentaKompanijuComponent } from './reg-renta-kompaniju/reg-renta-komp
 import { DynamicImageComponent } from './dynamic-image/dynamic-image.component';
 import { LetoviComponent } from './letovi/letovi.component';
 import { SveRenteComponent } from './sve-rente/sve-rente.component';
+import { ProfilRegistrovanogComponent } from './profil-registrovanog/profil-registrovanog.component';
+import { ProfilAvioComponent } from './profil-avio/profil-avio.component';
+import { PrijateljiComponent } from './prijatelji/prijatelji.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,6 @@ import { SveRenteComponent } from './sve-rente/sve-rente.component';
     BrzeRezervacijeComponent,
     AvioKompanijeComponent,
     RentACarComponent,
-    InfoComponent,
     ProfilAdminaComponent,
     RegAdminaRenteComponent,
     RegAdminaAvioComponent,
@@ -42,7 +43,10 @@ import { SveRenteComponent } from './sve-rente/sve-rente.component';
     RegRentaKompanijuComponent,
     DynamicImageComponent,
     LetoviComponent,
-    SveRenteComponent
+    SveRenteComponent,
+    ProfilRegistrovanogComponent,
+    ProfilAvioComponent,
+    PrijateljiComponent
   ],
   imports: [
     BrowserModule,

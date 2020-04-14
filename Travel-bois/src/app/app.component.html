@@ -1,9 +1,11 @@
 <!--NAVBAR-->
 <div class="toolbar">
     <h1 style="float:left; padding: 0px 5px; margin: 0; font-size: 40px;"><span style="color: rgb(248, 132, 0); padding-right: 1px;">T</span>ravel<span style="color: rgb(248, 132, 0); padding-left: 1px; margin-left: 1px;">B</span>ois</h1>
-    <ul style="float: left;">
+    <ul>
         <li routerLink="/pocetna"><img class="ikonica" src="assets/images/TB-ikonica.png"></li>
-        <li routerLink="/kontakt">Kontakt</li>
+    </ul>
+    <ul style="float: left;" *ngIf="getType() !=='Admin' && getType() !=='AvioAdmin'">        
+        <li routerLink="/kontakt">O nama</li>
         <li routerLink="/brzeRezervacije">Brze rezervacije</li>
     </ul>
     <!--Treba da prikaze ovo za neregistrovane korisnike
@@ -12,8 +14,14 @@
         <li routerLink="/registration">Registracija</li>
         <li routerLink="/login">Log in</li>
     </ul>
-    <ul *ngIf="getType() !== 'User'" style="float: right;">
-        <li>Profil</li>
+    <ul *ngIf="getType() === 'RegisteredUser'" style="float: right;">
+        <li routerLink="/profilKorisnika">Profil</li>
+    </ul>
+    <ul *ngIf="getType() === 'Admin'" style="float: right;">
+        <li routerLink="/profil">Profil</li>
+    </ul>
+    <ul *ngIf="getType() === 'AvioAdmin'" style="float: right;">
+        <li routerLink="/profilAvio">Profil</li>
     </ul>
 </div> 
 <!--BODY-->

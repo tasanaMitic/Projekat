@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AvioKompanija } from '../entities/objects/avio-kompanija';
 import { User } from '../entities/users/user/user';
 import { AppComponent } from '../app.component';
+import {Location} from '@angular/common'
 
 @Component({
   selector: 'app-avio-kompanije',
@@ -16,16 +17,25 @@ export class AvioKompanijeComponent implements OnInit {
   klasa: string;
   tip: string;
 
-  constructor() { 
-    this.kompanije = new Array<AvioKompanija>();
-    this.currentUser = AppComponent.currentUser;
+  constructor(private location:Location) { 
+    this.kompanije = new Array<AvioKompanija>();    
     this.klasa = 'kompanija-slika';
     this.tip = 'AvioKompanije';
   }
 
   ngOnInit(): void {
+    this.currentUser = AppComponent.currentUser;
     this.kompanije.push(new AvioKompanija('Bogdana Suputa 5', 'Jat'));
     this.kompanije.push(new AvioKompanija('Petefi Sandora 9', 'WizzAir'));
+  }
+
+  onBack()
+  {
+    this.location.back();
+  }
+
+  getType(){
+    return this.currentUser.constructor.name;
   }
 
 }

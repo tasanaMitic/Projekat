@@ -7,7 +7,7 @@ export class User {
     Grad: string;
     Ime: string;
     Prezime: string;
-    private Username: string;
+    Username: string;
     Password: string;
 
     constructor(brTel: string='', grad: string='', ime: string='', 

@@ -17,7 +17,14 @@
             <div>
                 <a routerLink="/letovi"><button class="letovi-btn"> Prikazi letove</button></a>
             </div>
+            <div *ngIf="getType() === 'RegisteredUser'">
+                <a routerLink=""><button class="letovi-btn"> Oceni aviokompaniju</button></a>
+            </div>
         </div>
         <br>
     </li>
 </ul>
+<div>
+    <button class="btn btn-primary" style="margin: 0 580px;" (click)="onBack()" type="button">Nazad</button>
+</div>
+

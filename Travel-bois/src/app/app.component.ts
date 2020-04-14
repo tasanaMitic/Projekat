@@ -6,6 +6,7 @@ import { AvioKompanijeComponent } from './avio-kompanije/avio-kompanije.componen
 import { AvioKompanija } from './entities/objects/avio-kompanija';
 import { RentACar } from './entities/objects/rent-a-car';
 import { Admin } from './entities/users/admin/admin';
+import { AvioAdmin } from './entities/users/avio-admin/avio-admin';
 
 @Component({
   selector: 'app-root',

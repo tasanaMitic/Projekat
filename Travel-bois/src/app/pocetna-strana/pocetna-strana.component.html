@@ -2,7 +2,7 @@
 <!--Contents-->
     <!--Blok u kome se nalaze linkovi na usluge-->
         <!--Prikaz neregistrovanim korisnicima-->
-<div *ngIf="getType() === 'User'" class="grid-container"> 
+<div *ngIf="getType() === 'User' " class="grid-container"> 
     <a routerLink="/avioKompanije" >
         <div class="servis-blok" >
             <img class="servis-image" src="assets/images/pocetna/unregistered/avio-kompanija.jpg" >
@@ -19,31 +19,47 @@
             </div>
         </div>
     </a>
-    <a routerLink="/onama">
-        <div class="servis-blok">
-            <img class="servis-image" src="assets/images/pocetna/unregistered/TB.png">
-            <div class="img-text-container">
-                O nama
-            </div>
-        </div>
-    </a>
-    <a>
-        <div class="servis-blok">
-            <img class="servis-image" src="assets/images/pocetna/unregistered/ocene.jpg">
-            <div class="img-text-container">
-                Ocene
-            </div>
-        </div>
-    </a>
 </div>
-        <!--Prikaz registrovanim korisnicima-->
 
-<div *ngIf="getType() === 'RegisteredUser'" class="grid-container">    
-    <a>
+    <!--Prikaz registrovanim korisnicima-->
+<div *ngIf=" getType() === 'RegisteredUser'" class="grid-container"> 
+    <a routerLink="/" >
         <div class="servis-blok">
-            <img class="servis-image" src="">
+            <img class="servis-image" src="assets/images/pocetna/registered/istorija.jpg">
             <div class="img-text-container">
-                # Naziv linka #
+                Vasa istorija i rezervacije
+            </div>
+        </div>
+    </a>
+    <a routerLink="/prijatelji" >
+        <div class="servis-blok">
+            <img class="servis-image" src="assets/images/pocetna/registered/prijatelji.png">
+            <div class="img-text-container">
+                Lista prijatelja
+            </div>
+        </div>
+    </a>
+    <a routerLink="" >
+        <div class="servis-blok">
+            <img class="servis-image" src="assets/images/pocetna/registered/pozivnica.png">
+            <div class="img-text-container">
+                Pozivnice
+            </div>
+        </div>
+    </a>
+    <a routerLink="/avioKompanije" >
+        <div class="servis-blok" >
+            <img class="servis-image" src="assets/images/pocetna/unregistered/avio-kompanija.jpg" >
+            <div class="img-text-container" >
+                Avio kompanije
+            </div>
+        </div>
+    </a>
+    <a routerLink="/sveRente" >
+        <div class="servis-blok">
+            <img class="servis-image" src="assets/images/pocetna/unregistered/rent-a-car.jpg">
+            <div class="img-text-container">
+                Rent-A-Car
             </div>
         </div>
     </a>
@@ -51,12 +67,28 @@
 
         <!--Prikaz adminima avio kompanija-->
 
-<div *ngIf="getType() === 'AirlineAdmin'" class="grid-container">    
+<div *ngIf="getType() === 'AvioAdmin'" class="grid-container">    
+    <a routerLink="/letovi">
+        <div class="servis-blok">
+            <img class="servis-image" src="assets\images\pocetna\airline-admin/let.jpg">
+            <div class="img-text-container">
+                Lista letova
+            </div>
+        </div>
+    </a>
     <a>
         <div class="servis-blok">
-            <img class="servis-image" src="">
+            <img class="servis-image" src="assets\images\pocetna\airline-admin\izvestaj-prihoda.jpeg">
             <div class="img-text-container">
-                # Naziv linka #
+                Izvestaj o poslovanju
+            </div>
+        </div>
+    </a>
+    <a>
+        <div class="servis-blok">
+            <img class="servis-image" src="assets\images\pocetna\airline-admin\wallet.jpg">
+            <div class="img-text-container">
+                Cenovnik usluga
             </div>
         </div>
     </a>
@@ -103,7 +135,7 @@
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/rent-a-car-admin/izvestaj-prihoda.jpeg">
             <div class="img-text-container">
-                Izvestaj prihoda
+                Izvestaj o poslovanju
             </div>
         </div>
     </a>

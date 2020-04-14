@@ -1,0 +1,107 @@
+<div class="container">
+    <h1>Vasi podaci</h1>
+    <form [formGroup]="avioPodaciForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="ime">Ime:</label>
+                <input type="text" id="ime" class="form-control" formControlName="ime"> 
+                <div *ngIf="avioPodaciForm.controls.ime.invalid">
+                    Unesite ime
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="prezime">Prezime:</label>
+                <input type="text" id="prezime" class="form-control" formControlName="prezime">
+                <div *ngIf="avioPodaciForm.controls.prezime.invalid">
+                    Unesite prezime
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="grad">Grad:</label>
+                <input type="text" id="grad" class="form-control" formControlName="grad">
+                <div *ngIf="avioPodaciForm.controls.grad.invalid">
+                    Unesite grad
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="brojTelefona">Broj telefona:</label>
+                <input type="number" id="brojTelefona" class="form-control" formControlName="brojTelefona">
+                <div *ngIf="avioPodaciForm.controls.brojTelefona.invalid">
+                    Unesite broj telefona
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" class="form-control" formControlName="username">
+                <div *ngIf="avioPodaciForm.controls.username.invalid">
+                    Unesite username
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" class="form-control" formControlName="password">
+                <div *ngIf="avioPodaciForm.controls.password.invalid">
+                    Unesite password
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <button [disabled]="!avioPodaciForm.valid" class="btn btn-success" type="submit">Sacuvaj</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div class="container">
+    <h1>Podaci aviokompanije</h1>
+    <form [formGroup]="avioPodaciForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="naziv">Naziv:</label>
+                <input type="text" id="naziv" class="form-control" formControlName="naziv"> 
+                <div *ngIf="avioPodaciForm.controls.naziv.invalid">
+                    Unesite naziv
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="adresa">Adresa:</label>
+                <input type="text" id="adresa" class="form-control" formControlName="adresa">
+                <div *ngIf="avioPodaciForm.controls.adresa.invalid">
+                    Unesite adresu
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="opis">Opis:</label>
+                <input type="text" id="opis" class="form-control" formControlName="opis">
+                <div *ngIf="avioPodaciForm.controls.opis.invalid">
+                    Unesite opis
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <button [disabled]="!avioPodaciForm.valid" class="btn btn-success" type="submit">Sacuvaj</button>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
+        </div>
+
+    </form>
+</div>
