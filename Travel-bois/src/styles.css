@@ -5,6 +5,19 @@ body {
     background-color: rgb(227, 241, 236);
 }
 
+.unselectable {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+.selectable {
+    -webkit-user-select: text !important; /* Safari */        
+    -moz-user-select: text !important; /* Firefox */
+    -ms-user-select: text !important; /* IE10+/Edge */
+    user-select: text !important; /* Standard */
+}
+
 /*=================================NAVBAR================================= */
 
 .ikonica {
