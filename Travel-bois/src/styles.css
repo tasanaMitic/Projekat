@@ -136,6 +136,9 @@ body {
     padding: 5px;
     background-color: rgb(215, 238, 229);
 }
+.kompanija-container ul {
+    list-style-type: none;
+}
 .kompanija-container hr {
     margin: 0 5px;
 }
@@ -406,3 +409,10 @@ body {
   .days li .occupied{
       color: red;
   }
+
+  /*===================================ISTORIJA==============================*/
+
+ table {
+    border-collapse: collapse;
+    display: inline;
+}

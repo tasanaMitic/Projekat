@@ -2,8 +2,10 @@ import { NgIf } from '@angular/common';
 import { Ocena } from 'src/app/entities/misc/ocena'
 import { TipVozila } from 'src/app/_enums'
 import { IdHandler } from 'src/app/_id-handler'
+import { RentACar } from './rent-a-car';
 
 export class Kola {
+    renta: string;
     BrojMesta: number;
     BrzaRezervacija: boolean;
     Cena: number;
@@ -16,13 +18,14 @@ export class Kola {
     Zauzetost: Array<[Date, Date]>
 
     constructor(brMesta:number, godiste:number, marka:string, model:string, 
-        tip:TipVozila, brzaRezervacija:boolean = false, cena:number = 0){
+        tip:TipVozila, renta: string = null, brzaRezervacija:boolean = false, cena:number = 0){
         this.BrojMesta = brMesta;
         this.Godiste = godiste;
         this.Naziv = marka + '-' + model;
         this.Tip = tip;
         this.BrzaRezervacija = brzaRezervacija;
         this.Cena = cena;
+        this.renta = renta;
         
         //Ne radi kako treba
         //this.ID = IdHandler.GenerateKolaID();

@@ -15,6 +15,8 @@ export class RentACar {
     klasa: string = 'kompanija-slika'
 
     constructor(naz:string, adr: string) {
+        //console.debug('konstruktor rente')
+        //console.trace();
         this.Naziv = naz;
         this.Adresa = adr;
         this.Opis = 'Opis rente';
@@ -22,7 +24,7 @@ export class RentACar {
         this.Ocene = new Array<Ocena>();
         this.filtriranaKola = new Array<Kola>();
 //  Cisto da prikaze nesto
-        this.Filijale.push(new Filijala('Bogdana Garabantina 3', 'Car2Go-Liman', 'Novi Sad'));
+        this.Filijale.push(new Filijala('Bogdana Garabantina 3', 'Car2Go-Liman', 'Novi Sad', this.Naziv));
         this.Filijale.forEach(element => {
             element.ListaKola.forEach(k => {
                 //console.debug(k.Naziv);

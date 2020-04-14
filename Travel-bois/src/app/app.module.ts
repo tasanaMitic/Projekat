@@ -25,6 +25,7 @@ import { ProfilRegistrovanogComponent } from './profil-registrovanog/profil-regi
 import { ProfilAvioComponent } from './profil-avio/profil-avio.component';
 import { PrijateljiComponent } from './prijatelji/prijatelji.component';
 import { KalendarComponent } from './kalendar/kalendar.component';
+import { IstorijaComponent } from './istorija/istorija.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { KalendarComponent } from './kalendar/kalendar.component';
     ProfilRegistrovanogComponent,
     ProfilAvioComponent,
     PrijateljiComponent,
-    KalendarComponent
+    KalendarComponent,
+    IstorijaComponent
   ],
   imports: [
     BrowserModule,

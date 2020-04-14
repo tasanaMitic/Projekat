@@ -3,6 +3,8 @@ import { AvioKompanija } from '../entities/objects/avio-kompanija';
 import { User } from '../entities/users/user/user';
 import { AppComponent } from '../app.component';
 import {Location} from '@angular/common'
+import { Let } from '../entities/objects/let';
+import { Kola } from '../entities/objects/kola';
 
 @Component({
   selector: 'app-avio-kompanije',
@@ -11,6 +13,8 @@ import {Location} from '@angular/common'
 })
 export class AvioKompanijeComponent implements OnInit {
   kompanije: Array<AvioKompanija>;
+  brzeRezervacijeLetova: Array<Let>;
+  brzeRezervacijeKola: Array<Kola>;
   currentUser: User;
 
   //ZA CSS
@@ -18,7 +22,9 @@ export class AvioKompanijeComponent implements OnInit {
   tip: string;
 
   constructor(private location:Location) { 
-    this.kompanije = new Array<AvioKompanija>();    
+    this.kompanije = new Array<AvioKompanija>();   
+    this.brzeRezervacijeKola = new Array<Kola>();
+    this.brzeRezervacijeLetova = new Array<Let>(); 
     this.klasa = 'kompanija-slika';
     this.tip = 'AvioKompanije';
   }

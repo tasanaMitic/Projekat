@@ -1,5 +1,5 @@
 <div class="istorija-container">
-    <h2>Brze rezervacije letova</h2>
+    <h2>Istorija letova</h2>
     <table>
         <th *ngFor="let column of letHeaders">
             {{column}}
@@ -9,14 +9,14 @@
                 {{data}}
             </td>
             <td>
-                <button (click)="RezervisiLet()">Rezervisi</button>
+                <button (click)="OceniLet()">Oceni</button>
             </td>
         </tr>
     </table>
 </div>
 <br>
 <div class="istorija-container">
-    <h2> Brze rezervacije rentiranih kola</h2>
+    <h2> Istorija rentiranih kola</h2>
     <table>
         <th *ngFor="let column of kolaHeaders">
             {{column}}
@@ -26,7 +26,7 @@
                 {{data}}
             </td>
             <td>
-                <button (click)="RezervisiKola()">Rezervisi</button>
+                <button (click)="OceniKola()">Oceni</button>
             </td>
         </tr>
     </table>
