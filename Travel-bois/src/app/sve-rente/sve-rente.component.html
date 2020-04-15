@@ -94,7 +94,7 @@
         <hr>
         <div style="display: inline; padding: 5px;">
             <button (click)="prikaziRentu('')">Nazad</button>
-            <button style="float: right;">Napravi rezervaciju</button>
+            <button *ngIf="GetCurrentUserType() === 'RegisteredUser'" style="float: right;">Napravi rezervaciju</button>
         </div>
     </div>
     <div style="position: absolute; top: 50px; left:380px">
