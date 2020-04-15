@@ -28,10 +28,9 @@ export class AppComponent {
     AppComponent.rente = new Array<RentACar>();
 
     AppComponent.avioKompanije.push(new AvioKompanija('aresa 1', 'Jat'))
-    //console.debug('ubacivanje rente u listu')
     AppComponent.rente.push(new RentACar('Car2Go', 'adresa 3'))
 
-    AppComponent.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
+    //AppComponent.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
     //AppComponent.currentUser = new Admin('sysAdmin', 'password');
     //AppComponent.currentUser = new Admin();
     AppComponent.currentUser = new User();

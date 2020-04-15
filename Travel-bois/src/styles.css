@@ -272,6 +272,16 @@ body {
   color: white;
 }
 
+.btn-rez
+{
+    background-color: darkorange;
+    color: white;
+    cursor: pointer;
+    margin: 3px 0px;
+    opacity: 0.9;
+    border: none;
+}
+
 
 /**********************************dropdown*****************/
 /* Dropdown Button */

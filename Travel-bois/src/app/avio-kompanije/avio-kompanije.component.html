@@ -7,21 +7,24 @@
             <hr>
             <div class="kompanija-element">Opis: {{kompanija.opis}}</div>
             <hr>
-            <div class="kompanija-element">Ocena: {{kompanija.IzracunajProsecnuOcenu()}}</div>            
+            <div class="kompanija-element">Ocena: {{kompanija.IzracunajProsecnuOcenu()}}</div>    
+                   
             <!--Ovako radi i msm da ako se ista pipne da ce opet odici dk-->
             <dynamic-image 
                 [tip]="kompanija.getType()"
                 [naziv]='kompanija.naziv'
                 [klasa]="klasa">
-            </dynamic-image>            
+            </dynamic-image>           
             <div>
                 <a routerLink="/letovi"><button class="letovi-btn"> Prikazi letove</button></a>
             </div>
             <div *ngIf="getType() === 'RegisteredUser'">
                 <a routerLink=""><button class="letovi-btn"> Oceni aviokompaniju</button></a>
+                
             </div>
         </div>
         <br>
+        
     </li>
 </ul>
 <div>
