@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from './entities/users/user/user';
 import { RegisteredUser } from './entities/users/registered-user/registered-user';
 import { RentACarAdmin } from './entities/users/rent-a-car-admin/rent-a-car-admin';
-import { AvioKompanijeComponent } from './avio-kompanije/avio-kompanije.component';
+import { AvioKompanijeComponent } from './Komponente/Avio/avio-kompanije/avio-kompanije.component';
 import { AvioKompanija } from './entities/objects/avio-kompanija';
 import { RentACar } from './entities/objects/rent-a-car';
 import { Admin } from './entities/users/admin/admin';
@@ -30,11 +30,12 @@ export class AppComponent {
     AppComponent.avioKompanije.push(new AvioKompanija('aresa 1', 'Jat'))
     AppComponent.rente.push(new RentACar('Car2Go', 'adresa 3'))
 
+    AppComponent.currentUser = new User();
+    //AppComponent.currentUser = new RegisteredUser('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password', 111546);
     //AppComponent.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
     //AppComponent.currentUser = new Admin('sysAdmin', 'password');
+
     //AppComponent.currentUser = new Admin();
-    AppComponent.currentUser = new User();
-    // AppComponent.currentUser = new RegisteredUser('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password', 111546);
     //AppComponent.currentUser = new AvioAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
     AppComponent.datum = new Date();
     
