@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PocetnaStranaComponent } from './pocetna-strana/pocetna-strana.component';
-import { RegistracijaComponent } from './registracija/registracija.component';
-import { KontaktComponent } from './kontakt/kontakt.component';
-import { LoginComponent } from './login/login.component';
-import { BrzeRezervacijeComponent } from './brze-rezervacije/brze-rezervacije.component';
-import { AvioKompanijeComponent } from './avio-kompanije/avio-kompanije.component';
-import { RentACarComponent } from './rent-a-car/rent-a-car.component';
-import { ProfilAdminaComponent } from './profil-admina/profil-admina.component';
-import { RegAdminaAvioComponent } from './reg-admina-avio/reg-admina-avio.component';
-import { RegAdminaRenteComponent } from './reg-admina-rente/reg-admina-rente.component';
-import { RegAvioKompanijuComponent } from './reg-avio-kompaniju/reg-avio-kompaniju.component';
-import { RegRentaKompanijuComponent } from './reg-renta-kompaniju/reg-renta-kompaniju.component';
-import { LetoviComponent } from './letovi/letovi.component';
-import { SveRenteComponent } from './sve-rente/sve-rente.component';
-import { ProfilRegistrovanogComponent } from './profil-registrovanog/profil-registrovanog.component';
-import { ProfilAvioComponent } from './profil-avio/profil-avio.component';
-import { PrijateljiComponent } from './prijatelji/prijatelji.component';
-import { IstorijaComponent } from './istorija/istorija.component';
+import { PocetnaStranaComponent } from './Komponente/Deljeno-avio-renta/pocetna-strana/pocetna-strana.component';
+import { RegistracijaComponent } from './Komponente/Korisnicki/registracija/registracija.component';
+import { KontaktComponent } from './Komponente/Deljeno-avio-renta/kontakt/kontakt.component';
+import { LoginComponent } from './Komponente/Korisnicki/login/login.component';
+import { BrzeRezervacijeComponent } from './Komponente/Deljeno-avio-renta/brze-rezervacije/brze-rezervacije.component';
+import { AvioKompanijeComponent } from './Komponente/Avio/avio-kompanije/avio-kompanije.component';
+import { RentACarComponent } from './Komponente/Renta/rent-a-car/rent-a-car.component';
+import { ProfilAdminaComponent } from './Komponente/Korisnicki/profil-admina/profil-admina.component';
+import { RegAdminaAvioComponent } from './Komponente/Korisnicki/reg-admina-avio/reg-admina-avio.component';
+import { RegAdminaRenteComponent } from './Komponente/Korisnicki/reg-admina-rente/reg-admina-rente.component';
+import { RegAvioKompanijuComponent } from './Komponente/Korisnicki/reg-avio-kompaniju/reg-avio-kompaniju.component';
+import { RegRentaKompanijuComponent } from './Komponente/Korisnicki/reg-renta-kompaniju/reg-renta-kompaniju.component';
+import { LetoviComponent } from './Komponente/Avio/letovi/letovi.component';
+import { SveRenteComponent } from './Komponente/Renta/sve-rente/sve-rente.component';
+import { ProfilRegistrovanogComponent } from './Komponente/Korisnicki/profil-registrovanog/profil-registrovanog.component';
+import { ProfilAvioComponent } from './Komponente/Avio/profil-avio/profil-avio.component';
+import { PrijateljiComponent } from './Komponente/Korisnicki/prijatelji/prijatelji.component';
+import { IstorijaComponent } from './Komponente/Korisnicki/istorija/istorija.component';
 
 
 const routes: Routes = [

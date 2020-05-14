@@ -1,0 +1,31 @@
+<div class="container">
+    <h1>Log in</h1>
+    <form [formGroup]="logInForm" *ngOnSubmit="onSubmit()">
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="username">Username:</label>
+                <app-form-processor [name]='username'></app-form-processor>
+                <div *ngIf="logInForm.controls.username.invalid">
+                    Unesite username
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Password" class="form-control" formControlName="password">
+                <div *ngIf="logInForm.controls.password.invalid">
+                    Unesite password
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+                <input title="Uloguj se" class="btn btn-success" type="submit"/>
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
+            </div>
+        </div>
+    </form>
+</div>

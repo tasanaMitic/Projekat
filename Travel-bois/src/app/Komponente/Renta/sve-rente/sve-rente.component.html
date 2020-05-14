@@ -1,0 +1,116 @@
+<!--PRIKAZ SVIH RENTI-->
+<div *ngIf="prikaz === 1">
+    <ul class="lista-kompanija">
+        <li *ngFor="let renta of rente">
+            <div class="kompanija-container">
+                <div class="kompanija-element">Naziv: {{renta.Naziv}}</div>
+                <hr>
+                <div class="kompanija-element">Adresa: {{renta.Adresa}}</div>
+                <hr>
+                <div class="kompanija-element">Opis: {{renta.Opis}}</div>
+                <hr>
+                <div class="kompanija-element">Ocena: {{renta.ProsecnaOcena()}}</div>
+                <dynamic-image
+                [tip]="renta.tip"
+                [naziv]="renta.Naziv"
+                [klasa]="renta.klasa"></dynamic-image>
+                <button (click)="prikaziRentu(renta.Naziv)">Otvori</button>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!--PRIKAZ ODABRANE RENTE-->
+
+<div *ngIf="prikaz === 2" style="display: inline;">
+    <div style="position: absolute; top: 80px;">
+        <!--Naziv kompanije-->
+        <div class="kompanija-container" style="margin: 0 30px;">
+            <h1>{{sr.Naziv}}</h1>
+        </div>
+        <!-- Podaci o kompaniji i pretraga -->
+        <div class="kompanija-container" style="margin: 10px 30px;">
+            <h3>{{sr.Adresa}}</h3>
+            <hr>
+            <h3>{{sr.Opis}}</h3>
+            <hr>
+            <h3>{{sr.ProsecnaOcena()}}</h3>
+            <hr>
+            <div style="position: relative; margin: 5px;">
+                <div class="filter-stavka">
+                    <input type="text" placeholder="Marka" id="fMarka">
+                    <input type="checkbox" id="chkMarka">
+                </div>
+                <div class="filter-stavka">
+                    <input type="text" placeholder="Godiste" id="fGodiste">
+                    <input type="checkbox" id="chkGodiste">
+                </div>
+                <div class="filter-stavka">
+                    <input type="text" placeholder="Cena" id="fCena">
+                    <input type="checkbox" id="chkCena">
+                </div>
+                <button style="position: absolute; top: 25px; right: 40px;">Primeni</button>
+            </div>
+        </div>
+    </div>
+    <div style="position: absolute; top: 80px; left: 400px;">
+        <div class="kompanija-container" style="float: left;">
+            <ul class="kola-container">
+                <li *ngFor="let kola of sr.filtriranaKola">
+                    <button class="kola-slika-blok" (click)="prikaziKola(kola)">
+                        <dynamic-image 
+                            [tip]="tip" 
+                            [naziv]="kola.Naziv" 
+                            [klasa]="klasaKolaGrid">
+                        </dynamic-image>
+                            <div class="kola-model-text">
+                                {{kola.GetModel()}}
+                            </div>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <h3><button (click)="prikaziListu()">Nazad</button></h3>
+    </div>
+</div>
+
+<!-- PRIKAZ ZASEBNIH KOLA PO SELEKCIJI -->
+
+<div *ngIf="prikaz === 3">
+    <div style="position: absolute; top: 50px; left: 10px;">
+        <!--SLIKA-->
+        <div class="kompanija-container">
+            <dynamic-image
+                [tip]="tip"
+                [naziv]="sc.Naziv"
+                [klasa]="klasaKolaSlika"></dynamic-image>
+        </div>
+        <hr style="margin: 7px 5px;">
+        <!--MARKA I MODEL-->
+        <div class="kompanija-container">
+            <h2>{{sc.GetMarka()}}</h2>
+            <h3>{{sc.GetModel()}}</h3>
+        </div>
+        <hr>
+        <div style="display: inline; padding: 5px;">
+            <button (click)="prikaziRentu('')">Nazad</button>
+            <button *ngIf="GetCurrentUserType() === 'RegisteredUser'" style="float: right;">Napravi rezervaciju</button>
+        </div>
+    </div>
+    <div style="position: absolute; top: 50px; left:380px">
+        <!--DETALJI-->
+        <div class="kompanija-container">
+            <h3>Broj mesta: {{sc.BrojMesta}}</h3>
+            <h3>Tip: {{sc.GetTip()}}</h3>
+            <h3>Godiste: {{sc.Godiste}}</h3>
+            <h3>Cena po danu: {{sc.Cena}}</h3>
+            <h3></h3>
+            <h3></h3>
+            <h3>Ocena: {{sc.ProsecnaOcena()}}</h3>
+        </div>
+        <!--KALENDAR-->
+        <div *ngIf="GetCurrentUserType() !== 'User'">
+            <kalendar [kola]="sc"></kalendar>
+        </div>
+    </div>
+</div>
