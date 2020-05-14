@@ -16,7 +16,7 @@
                 [klasa]="klasa">
             </dynamic-image>           
             <div>
-                <a routerLink="/letovi"><button class="letovi-btn"> Prikazi letove</button></a>
+                <a routerLink="/letovi/{{kompanija.naziv}}"><button  class="letovi-btn"> Prikazi letove</button></a>
             </div>
             <div *ngIf="getType() === 'RegisteredUser'">
                 <a routerLink=""><button class="letovi-btn"> Oceni aviokompaniju</button></a>

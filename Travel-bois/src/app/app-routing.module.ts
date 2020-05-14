@@ -28,7 +28,7 @@ const routes: Routes = [
   { path:'login', component: LoginComponent},
   { path:'brzeRezervacije', component: BrzeRezervacijeComponent},
   { path:'avioKompanije', component: AvioKompanijeComponent},
-  { path:'letovi', component: LetoviComponent},
+  { path:'letovi/:naziv', component: LetoviComponent},
   { path:'rentAcar', component: RentACarComponent},
   { path:'sveRente', component: SveRenteComponent},
   { path:'profilAdmina', component: ProfilAdminaComponent},

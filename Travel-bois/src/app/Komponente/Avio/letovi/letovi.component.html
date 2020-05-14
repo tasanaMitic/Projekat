@@ -42,17 +42,22 @@
     <br/>
     <h1 class="title">Letovi</h1>
     <table>
-        <th *ngFor="let column of letHeaders">
-            {{column}}
-        </th>
-        <tr *ngFor="let row of letData">
-            <td *ngFor="let data of row">
-                {{data}}
-            </td>
-            <td>
-                <button (click)="RezervisiLet()" class="btn-rez" >Rezervisi</button>
-            </td>
-        </tr>
+        <div [hidden]="empty !== 1">
+            <th *ngFor="let column of letHeaders">
+                {{column}}
+            </th>
+            <tr *ngFor="let row of letData">
+                <td *ngFor="let data of row">
+                    {{data}}
+                </td>
+                <td>
+                    <button (click)="RezervisiLet()" class="btn-rez" >Rezervisi</button>
+                </td>
+            </tr>
+        </div>
+        <div [hidden]="empty === 1">
+            <h2 >Trenutno nema letova!</h2>
+        </div>
     </table>
 </div>
 <div>

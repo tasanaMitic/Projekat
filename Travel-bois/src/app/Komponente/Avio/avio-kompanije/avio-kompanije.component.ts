@@ -44,4 +44,5 @@ export class AvioKompanijeComponent implements OnInit {
     return this.currentUser.constructor.name;
   }
 
+
 }

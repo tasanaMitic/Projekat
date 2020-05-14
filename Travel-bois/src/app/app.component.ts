@@ -37,7 +37,7 @@ export class AppComponent {
 
     //AppComponent.currentUser = new Admin();
     //AppComponent.currentUser = new AvioAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
-    AppComponent.datum = new Date();
+    //AppComponent.datum = new Date();
     
     //console.debug(AppComponent.currentUser.Username)
   }
