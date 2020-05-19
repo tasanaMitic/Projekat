@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Location} from '@angular/common';
+import { NoSpecialChars, NoSpace, ValidateNumber, ValidatePassword, NoFullstop } from 'src/app/Helpers/custom-validators/custom-validators';
 
 @Component({
   selector: 'app-registracija',
@@ -18,19 +19,20 @@ export class RegistracijaComponent implements OnInit {
   private initForm()
   {
     this.registrationForm = new FormGroup({
-      'ime': new FormControl('', [Validators.required, Validators.maxLength(15), Validators.minLength(3)]),
-      'prezime': new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
-      'grad': new FormControl('', [Validators.required, Validators.maxLength(10), Validators.minLength(3)]),
-      'brojTelefona': new FormControl('', Validators.required),
-      'brojPasosa': new FormControl('', Validators.required),
-      'username': new FormControl('', Validators.required),
-      'password': new FormControl('', Validators.required),
+      'ime': new FormControl('', [Validators.required, Validators.maxLength(15), Validators.minLength(3), NoSpecialChars, NoSpace]),
+      'prezime': new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3), NoSpecialChars, NoSpace]),
+      'grad': new FormControl('', [Validators.required, Validators.maxLength(10), Validators.minLength(3), NoSpecialChars]),
+      'brojTelefona': new FormControl('', [Validators.required, ValidateNumber, NoFullstop]),
+      'brojPasosa': new FormControl('', [Validators.required, ValidateNumber, NoFullstop]),
+      'username': new FormControl('', [Validators.required, NoSpecialChars, NoSpace]),
+      'password': new FormControl('', [Validators.required, Validators.minLength(8), ValidatePassword, NoSpecialChars]),
     });
   }
 
   onSubmit(){
     console.log(this.registrationForm.value);
     console.log(this.registrationForm);
+    console.log("register submit");
   }
 
   onBack()

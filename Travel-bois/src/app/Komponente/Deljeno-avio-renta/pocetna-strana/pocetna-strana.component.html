@@ -22,7 +22,7 @@
 </div>
 
     <!--Prikaz registrovanim korisnicima-->
-<div *ngIf=" getType() === 'RegisteredUser'" class="grid-container"> 
+<div *ngIf="getType() === 'RegisteredUser'" class="grid-container"> 
     <a routerLink="/istorija" >
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/registered/istorija.jpg">
@@ -95,9 +95,8 @@
 </div>
 
         <!--Prikaz adminima rent-a-car-a -->
-
-<div *ngIf="getType() === 'RentACarAdmin'" class="grid-container" style='height:600px;'>    
-    <a>
+<div *ngIf="getType() === 'RentACarAdmin'" class="grid-container" style='height:600px;'>
+    <a routerLink="/vozila">
         <div class="servis-blok">
             <img class="servis-image" src="assets/images/pocetna/rent-a-car-admin/kola.jpg">
             <div class="img-text-container">

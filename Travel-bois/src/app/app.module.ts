@@ -26,7 +26,8 @@ import { ProfilAvioComponent } from './Komponente/Avio/profil-avio/profil-avio.c
 import { PrijateljiComponent } from './Komponente/Korisnicki/prijatelji/prijatelji.component';
 import { KalendarComponent } from './Helpers/kalendar/kalendar.component';
 import { IstorijaComponent } from './Komponente/Korisnicki/istorija/istorija.component';
-import { FormProcessorComponent } from './Helpers/form-processor/form-processor.component';
+import { VozilaComponent } from './Komponente/Renta/vozila/vozila.component';
+import { CenovnikComponent } from './Komponente/Renta/cenovnik/cenovnik.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { FormProcessorComponent } from './Helpers/form-processor/form-processor.
     PrijateljiComponent,
     KalendarComponent,
     IstorijaComponent,
-    FormProcessorComponent
+    VozilaComponent
   ],
   imports: [
     BrowserModule,

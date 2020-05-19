@@ -18,6 +18,8 @@ import { ProfilRegistrovanogComponent } from './Komponente/Korisnicki/profil-reg
 import { ProfilAvioComponent } from './Komponente/Avio/profil-avio/profil-avio.component';
 import { PrijateljiComponent } from './Komponente/Korisnicki/prijatelji/prijatelji.component';
 import { IstorijaComponent } from './Komponente/Korisnicki/istorija/istorija.component';
+import { VozilaComponent } from './Komponente/Renta/vozila/vozila.component';
+import { CenovnikComponent } from './Komponente/Renta/cenovnik/cenovnik.component';
 
 
 const routes: Routes = [
@@ -39,7 +41,9 @@ const routes: Routes = [
   { path:'profilKorisnika', component: ProfilRegistrovanogComponent},
   { path:'profilAvio', component: ProfilAvioComponent},
   { path:'prijatelji', component: PrijateljiComponent},
-  { path:'istorija', component: IstorijaComponent}
+  { path:'istorija', component: IstorijaComponent},
+  { path:'vozila', component: VozilaComponent},
+  { path:'cenovnik', component: CenovnikComponent}
 ];
 
 @NgModule({

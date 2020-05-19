@@ -1,31 +1,37 @@
 <div class="container">
     <h1>Log in</h1>
-    <form [formGroup]="logInForm" *ngOnSubmit="onSubmit()">
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="username">Username:</label>
-                <app-form-processor [name]='username'></app-form-processor>
-                <div *ngIf="logInForm.controls.username.invalid">
-                    Unesite username
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" placeholder="Password" class="form-control" formControlName="password">
-                <div *ngIf="logInForm.controls.password.invalid">
-                    Unesite password
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-1">
-                <input title="Uloguj se" class="btn btn-success" type="submit"/>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form">
+                <!--Forma za popunjavanje-->
+                <table>
+                    <tr>
+                        <td>Username</td>
+                        <td><input formControlName="username" id="username" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input formControlName="password" id="password" type="password"></td>
+                    </tr>
+                </table>
+                <!--Poruke o gresci-->
+                <table class="form form-error">
+                    <tr>
+                        <div>
+                            <label *ngIf="loginForm.controls.username.invalid">Invalid username</label>
+                            <label *ngIf="loginForm.controls.username.valid">OK</label>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div>
+                            <label *ngIf="loginForm.controls.password.invalid">Invalid password</label>
+                            <label *ngIf="loginForm.controls.password.valid">OK</label>
+                        </div>
+                    </tr>
+                </table>
             </div>
             <div>
-                <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
+                <input *ngIf="!loginForm.valid" [disabled]="!loginForm.valid" class="btn" type="submit" value="Log in">
+                <input *ngIf="loginForm.valid" class="btn btn-success" type="submit" value="Log in">
             </div>
-        </div>
-    </form>
+        </form>
 </div>

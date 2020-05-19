@@ -11,7 +11,7 @@ export class RentACarAdmin extends User {
             super(brTel, grad, ime, prezime, username, password);
             super.register();
             this.PromenioSifru = false;
-            this.Renta = null;
+            this.Renta = new RentACar("SuperRenta", "Bozidara Djelica 4");
         }
     
     RegistrujRentu(renta: RentACar){

@@ -231,15 +231,44 @@ body {
     padding: 4px 6px;
 }
 
+.katalog-kola
+{
+    margin: 30px 10px;
+}
+.katalog-kola table
+{
+    border-collapse: collapse;
+    border-radius: 5px;
+}
+.katalog-kola td
+{
+    background-color: #99f5a5;
+    border-left: 1px dashed gray;
+    border-right: 1px dashed gray;
+}
+.katalog-kola th
+{
+    background-color: #99f5a5;
+}
+
 /*=================================REGISTRACIJE================================= */
 .container{
     margin-top: 15px;
-    margin-left: 40%;
+    margin-left: 20%;
 }
 
 .container2{
     margin-top: 15px;
     margin-left: 20%;
+}
+
+.form
+{
+    display: inline;
+}
+.form table
+{
+    border-collapse: collapse;
 }
 
 .form-control
@@ -250,11 +279,23 @@ body {
     background: #f1f1f1;
 }
 
+.form div
+{
+    padding: 6.5px 0px;
+}
+.form-error
+{
+    position: absolute;
+    margin: 0px;
+}
+
 .btn
 {    
   padding: 16px 5px;
   margin: 3px 0px;
   border: none;
+  background-color: rgb(138, 138, 138);
+  color: rgb(0, 0, 0);
   cursor: pointer;
   width: 15%;
   opacity: 0.9;
@@ -266,7 +307,7 @@ body {
 
 .btn-success
 {
-  background-color: darkorange;
+  background-color: rgb(236, 149, 67);
   color: white;
   
 }

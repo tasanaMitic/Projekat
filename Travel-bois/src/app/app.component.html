@@ -6,7 +6,7 @@
     </ul>
     <ul style="float: left;" *ngIf="getType() !=='Admin' && getType() !=='AvioAdmin'">        
         <li routerLink="/kontakt">O nama</li>
-        <li routerLink="/brzeRezervacije">Brze rezervacije</li>
+        <li *ngIf="getType() !== 'User'" routerLink="/brzeRezervacije">Brze rezervacije</li>
     </ul>
     <!--Treba da prikaze ovo za neregistrovane korisnike
         Za registrovane treba samo 'Profil'-->
@@ -22,6 +22,9 @@
     </ul>
     <ul *ngIf="getType() === 'AvioAdmin'" style="float: right;">
         <li routerLink="/profilAvio">Profil</li>
+    </ul>
+    <ul *ngIf="getType() === 'RentACarAdmin'" style="float: right;">
+        <li routerLink="/profilRenta">Profil</li>
     </ul>
 </div> 
 <!--BODY-->

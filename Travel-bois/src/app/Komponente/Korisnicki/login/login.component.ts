@@ -8,10 +8,8 @@ import { Location} from '@angular/common';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-@Input() username: string;
-@Input() password: string;
+  loginForm: FormGroup;
 
-  logInForm: FormGroup;
   constructor(private location: Location) { }
 
   ngOnInit(): void {
@@ -20,15 +18,10 @@ export class LoginComponent implements OnInit {
 
   private initForm()
   {
-    this.logInForm = new FormGroup({
-      'username': new FormControl('', Validators.required),
-      'password': new FormControl('', Validators.required),
+    this.loginForm = new FormGroup({
+      'username': new FormControl('', [Validators.required, Validators.maxLength(15), Validators.minLength(3)]),
+      'password': new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3)])
     });
-  }
-
-  onSubmit(){
-    console.log(this.logInForm.value);
-    console.log(this.logInForm);
   }
 
   onBack()
@@ -36,4 +29,7 @@ export class LoginComponent implements OnInit {
     this.location.back();
   }
 
+  onSubmit(){
+    console.debug("submit");
+  }
 }

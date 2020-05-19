@@ -1,0 +1,12 @@
+<div class="katalog-kola">
+    <table>
+    <th>Naziv</th><th>Tip</th><th>Godiste</th><th>Broj mesta</th><th>Cena</th>
+    <tr *ngFor="let car of currentUser.Renta.filtriranaKola">
+        <td>{{car.Naziv}}</td><td>{{car.GetTip()}}</td><td>{{car.Godiste}}</td><td>{{car.BrojMesta}}</td><td>{{car.Cena}}</td>
+    </tr>
+    </table>
+</div>
+
+<div class="button-success">
+    <a routerLink="nova-kola">Dodaj nova kola</a>
+</div>

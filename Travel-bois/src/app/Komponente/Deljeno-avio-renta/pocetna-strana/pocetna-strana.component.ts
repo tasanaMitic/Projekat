@@ -8,7 +8,7 @@ import { AppComponent } from '../../../app.component';
 
 @Component({
   selector: 'app-pocetna-strana',
-  template: '{{user}}',
+  //template: '{{user}}',
   templateUrl: './pocetna-strana.component.html',
   styleUrls: ['./pocetna-strana.component.css']
 })
