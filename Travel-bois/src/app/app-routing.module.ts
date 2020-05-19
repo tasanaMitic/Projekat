@@ -20,6 +20,7 @@ import { PrijateljiComponent } from './Komponente/Korisnicki/prijatelji/prijatel
 import { IstorijaComponent } from './Komponente/Korisnicki/istorija/istorija.component';
 import { VozilaComponent } from './Komponente/Renta/vozila/vozila.component';
 import { CenovnikComponent } from './Komponente/Renta/cenovnik/cenovnik.component';
+import { DodajKolaComponent } from './Komponente/Renta/dodaj-kola/dodaj-kola.component';
 
 
 const routes: Routes = [
@@ -43,7 +44,8 @@ const routes: Routes = [
   { path:'prijatelji', component: PrijateljiComponent},
   { path:'istorija', component: IstorijaComponent},
   { path:'vozila', component: VozilaComponent},
-  { path:'cenovnik', component: CenovnikComponent}
+  { path:'cenovnik', component: CenovnikComponent},
+  { path:'dodaj-kola', component: DodajKolaComponent}
 ];
 
 @NgModule({

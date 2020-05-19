@@ -1,0 +1,32 @@
+<form [formGroup]="carForm">
+    <div class="kompanija-container">
+        <table>
+            <tr>
+                <td>Marka: </td><td><input type="text" id="marka"></td>
+            </tr>
+            <tr>
+                <td>Model: </td><td><input type="text" id="model"></td>
+            </tr>
+            <tr>
+                <td>Broj Mesta: </td><td><input type="text" id="brMesta" formControlName="brojMesta"></td>
+            </tr>
+            <tr>
+                <td>Tip: </td>
+                <td>
+                    <select id="tip" style="width: 175px;">
+                        <option *ngFor="let tip of GetTipovi()">{{tip}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Godiste</td><td><input type="number" id="godiste" formControlName="godiste"></td>
+            </tr>
+            <tr>
+                <td>Cena</td><td><input type="number" id="cena" formControlName="cena"></td>
+            </tr>
+            <tr>
+                <td>Brza rezervacija</td><td><input type="checkbox" id="brzaRez"></td>
+            </tr>
+        </table>
+    </div>
+</form>
