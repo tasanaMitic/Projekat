@@ -177,6 +177,33 @@ body {
 }
 
 /*=================================RENTACAR=====================================*/
+.izvestaj-container
+{
+    border: solid 1px;
+    border-radius: 10px;
+    width: 420px;
+    padding: 5px;
+    margin: 20px;
+    background-color: rgb(215, 238, 229);
+}
+.izvestaj-container ul {
+    padding: 5px;
+    margin: 5px;
+}
+.izvestaj-container li {
+    display: inline;
+}
+#year {
+    width: 45px;
+}
+#month {
+    width: 30px;
+}
+#day {
+    width: 30px;
+}
+
+
 .kompanija-container h3 {
     padding-left: 15px;
 }
@@ -185,6 +212,32 @@ body {
 }
 .kompanija-container h1 {
     padding-left: 5px;
+}
+.form-kola-container {
+    border: solid 1px;
+    border-radius: 10px;
+    width: 420px;
+    padding: 5px;
+    background-color: rgb(215, 238, 229);
+}
+.form-kola-container td {
+    border: 0px;
+    text-align: left;
+}
+.form-kola-container table {
+    margin: 0px;
+}
+.form-kola-container input {
+    width: 300px;
+}
+.form-kola-container select {
+    width: 304px;
+}
+.form-kola-container #image {
+    width: 300px;
+}
+.field {
+    text-align: left !important;
 }
 .kola-container {
     list-style-type: none;

@@ -29,6 +29,8 @@ import { IstorijaComponent } from './Komponente/Korisnicki/istorija/istorija.com
 import { VozilaComponent } from './Komponente/Renta/vozila/vozila.component';
 import { CenovnikComponent } from './Komponente/Renta/cenovnik/cenovnik.component';
 import { DodajKolaComponent } from './Komponente/Renta/dodaj-kola/dodaj-kola.component';
+import { IzvestajOPoslovanjuRentaComponent } from './Komponente/Renta/izvestaj-o-poslovanju-renta/izvestaj-o-poslovanju-renta.component';
+import { RaspolozivostVozilaComponent } from './Komponente/Renta/raspolozivost-vozila/raspolozivost-vozila.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,10 @@ import { DodajKolaComponent } from './Komponente/Renta/dodaj-kola/dodaj-kola.com
     KalendarComponent,
     IstorijaComponent,
     VozilaComponent,
-    DodajKolaComponent
+    DodajKolaComponent,
+    CenovnikComponent,
+    IzvestajOPoslovanjuRentaComponent,
+    RaspolozivostVozilaComponent
   ],
   imports: [
     BrowserModule,

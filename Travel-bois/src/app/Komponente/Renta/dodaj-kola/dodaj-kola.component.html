@@ -1,32 +1,39 @@
-<form [formGroup]="carForm">
-    <div class="kompanija-container">
-        <table>
-            <tr>
-                <td>Marka: </td><td><input type="text" id="marka"></td>
-            </tr>
-            <tr>
-                <td>Model: </td><td><input type="text" id="model"></td>
-            </tr>
-            <tr>
-                <td>Broj Mesta: </td><td><input type="text" id="brMesta" formControlName="brojMesta"></td>
-            </tr>
-            <tr>
-                <td>Tip: </td>
-                <td>
-                    <select id="tip" style="width: 175px;">
-                        <option *ngFor="let tip of GetTipovi()">{{tip}}</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Godiste</td><td><input type="number" id="godiste" formControlName="godiste"></td>
-            </tr>
-            <tr>
-                <td>Cena</td><td><input type="number" id="cena" formControlName="cena"></td>
-            </tr>
-            <tr>
-                <td>Brza rezervacija</td><td><input type="checkbox" id="brzaRez"></td>
-            </tr>
-        </table>
-    </div>
-</form>
+<div style="margin: 20px;">
+    <form [formGroup]="carForm" (onSubmit)="Submit()">
+        <div class="form-kola-container">
+            <table>
+                <tr>
+                    <td>Marka: </td><td><input type="text" class="field" name="marka"></td>
+                </tr>
+                <tr>
+                    <td>Model: </td><td><input type="text" id="field" name="model"></td>
+                </tr>
+                <tr>
+                    <td>Broj Mesta: </td><td><input type="number" id="field" name="brMesta" formControlName="brojMesta"></td>
+                </tr>
+                <tr>
+                    <td>Tip: </td>
+                    <td>
+                        <select id="field" name="tip">
+                            <option *ngFor="let tip of GetTipovi()">{{tip}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Godiste:</td><td><input type="number" name="number" id="field" formControlName="godiste"></td>
+                </tr>
+                <tr>
+                    <td>Cena:</td><td><input type="number" id="field" name="cena" formControlName="cena"></td>
+                </tr>
+                <tr>
+                    <td>Slika:</td><td><input type="file" accept="image/jpeg" id="image" name="slika" value="Izaberi fajl" style="width: 180px;"></td>
+                </tr>
+                <tr>
+                    <td>Brza rezervacija:</td><td><input type="checkbox" class="field" name="brzaRez"></td>
+                </tr>
+            </table>
+        </div>
+        <input type="hidden" name="id">
+        <input type="submit" name="submit" value="Add">
+    </form>
+</div>

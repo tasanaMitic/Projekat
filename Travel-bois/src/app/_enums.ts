@@ -1,3 +1,11 @@
+export function GetStringValues(e) {
+    let len =  Object.keys(e).length / 2;
+    let ret = new Array<string>();
+    for (let i = 0; i < len; i++){
+      ret.push(e[i].toString());
+    }
+    return ret;
+}
 export enum Period {
     dan = 1,
     nedelja,

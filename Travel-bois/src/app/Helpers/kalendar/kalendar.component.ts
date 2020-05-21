@@ -128,4 +128,8 @@ export class KalendarComponent implements OnInit {
       return true;
     return false;
   }
+  Reset(){
+    this.s1 = null;
+    this.s2 = null;
+  }
 }

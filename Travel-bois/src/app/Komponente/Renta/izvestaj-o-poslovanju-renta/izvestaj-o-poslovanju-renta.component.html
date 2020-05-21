@@ -1,0 +1,36 @@
+<div class="izvestaj-container">
+    <ul>
+        <li>Ocena servisa: {{GetOcena()}}</li>
+        <hr>
+        <li>Ocena vozila: 
+            <form [formGroup]="CarSelectForm">
+                <select formControlName="selectedCar" (change)="CarChanged($event)">
+                    <option></option>
+                    <option *ngFor="let car of GetCarNames()">{{car}}</option>
+                </select> 
+                : {{ocenaKola}}
+            </form> 
+        </li>
+        <hr>
+        <li>Rezervacije vozila:<br>
+            <div style="display: inline;">
+                <input type="radio" id="dan" name="rezervacije" checked><label for="dan">Dan</label>
+                <input type="radio" id="mesec" name="rezervacije"><label for="mesec">Mesec</label>
+                <input type="radio" id="god" name="rezervacije"><label for="god">Godina</label>
+            </div>
+        </li>
+        <hr>
+        <li>Prihodi:
+            <form [formGroup]="DateForm" (ngSubmit)="IzracunajPrihode()">
+                Od: <input type="number" name="odDan" formControlName="odDan" id="day">
+                <input type="number" name="odMon" formControlName="odMon" id="month">
+                <input type="number" name="odGod" formControlName="odGod" id="year">
+                Do: <input type="number" name="doDan" formControlName="doDan" id="day">
+                <input type="number" name="doMon" formControlName="doMon" id="month">
+                <input type="number" name="doGod" formControlName="doGod" id="year">
+                |<input type="submit" value="Izracunaj">
+                <div><input disabled name="suma" formControlName="suma" style="width: 80px;">din.</div>
+            </form>
+        </li>
+    </ul>
+</div>

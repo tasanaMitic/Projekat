@@ -17,8 +17,7 @@ export class Kola {
     //Zauzet: boolean;
     Zauzetost: Array<[Date, Date]>
 
-    constructor(brMesta:number, godiste:number, marka:string, model:string, 
-        tip:TipVozila, renta: string = null, brzaRezervacija:boolean = false, cena:number = 0){
+    constructor(brMesta:number, godiste:number, marka:string, model:string, tip:TipVozila, renta: string = null, cena: number = 0, brzaRezervacija:boolean = false){
         this.BrojMesta = brMesta;
         this.Godiste = godiste;
         this.Naziv = marka + '-' + model;

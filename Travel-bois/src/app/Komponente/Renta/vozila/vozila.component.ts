@@ -17,4 +17,6 @@ export class VozilaComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  AddCar(){}
+  EditCar(){}
 }

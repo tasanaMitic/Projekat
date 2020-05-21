@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TipVozila } from 'src/app/_enums';
+import { TipVozila, GetStringValues } from 'src/app/_enums';
+import { Kola } from 'src/app/entities/objects/kola';
 
 @Component({
   selector: 'app-dodaj-kola',
@@ -9,6 +10,8 @@ import { TipVozila } from 'src/app/_enums';
 })
 export class DodajKolaComponent implements OnInit {
   carForm: FormGroup;
+  static kola: Kola;
+
   constructor() {
     let year = new Date();
     this.carForm = new FormGroup({
@@ -20,13 +23,9 @@ export class DodajKolaComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  Submit(){}
   GetTipovi(): Array<string>
   {
-    let len =  Object.keys(TipVozila).length / 2;
-    let ret = new Array<string>();
-    for (let i = 0; i < len; i++){
-      ret.push(TipVozila[i].toString());
-    }
-    return ret;
+    return GetStringValues(TipVozila);
   }
 }

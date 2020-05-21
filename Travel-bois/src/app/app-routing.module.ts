@@ -21,6 +21,8 @@ import { IstorijaComponent } from './Komponente/Korisnicki/istorija/istorija.com
 import { VozilaComponent } from './Komponente/Renta/vozila/vozila.component';
 import { CenovnikComponent } from './Komponente/Renta/cenovnik/cenovnik.component';
 import { DodajKolaComponent } from './Komponente/Renta/dodaj-kola/dodaj-kola.component';
+import { IzvestajOPoslovanjuRentaComponent } from './Komponente/Renta/izvestaj-o-poslovanju-renta/izvestaj-o-poslovanju-renta.component';
+import { RaspolozivostVozilaComponent } from './Komponente/Renta/raspolozivost-vozila/raspolozivost-vozila.component';
 
 
 const routes: Routes = [
@@ -45,7 +47,9 @@ const routes: Routes = [
   { path:'istorija', component: IstorijaComponent},
   { path:'vozila', component: VozilaComponent},
   { path:'cenovnik', component: CenovnikComponent},
-  { path:'dodaj-kola', component: DodajKolaComponent}
+  { path:'dodaj-kola', component: DodajKolaComponent},
+  { path:'izvestaj-renta', component: IzvestajOPoslovanjuRentaComponent},
+  { path:'raspolozivost-vozila', component: RaspolozivostVozilaComponent}
 ];
 
 @NgModule({
