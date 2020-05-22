@@ -9,7 +9,7 @@ import { User } from '../../../entities/users/user/user';
 })
 export class PrijateljiComponent implements OnInit {
   
-  prijatelji: Array<User>;
+  prijatelji: Array<User>;  ///prijatelji.length u html ne radi
   constructor(private location :Location) { }
 
   ngOnInit(): void {

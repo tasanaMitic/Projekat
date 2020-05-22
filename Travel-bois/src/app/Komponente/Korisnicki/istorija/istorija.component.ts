@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common'
 import { User } from '../../../entities/users/user/user';
 import { AppComponent } from '../../../app.component';
 import { RegisteredUser } from '../../../entities/users/registered-user/registered-user';
@@ -19,7 +20,7 @@ export class IstorijaComponent implements OnInit {
   kolaData: Array<Array<string>>;
 
 
-  constructor() { 
+  constructor(private location: Location) { 
     this.currentUser = AppComponent.currentUser as RegisteredUser;
     this.letData = new Array<Array<string>>();
     this.kolaData = new Array<Array<string>>();
@@ -52,6 +53,10 @@ export class IstorijaComponent implements OnInit {
     this.currentUser = AppComponent.currentUser as RegisteredUser;
     //console.debug(this.currentUser.Username)
     //console.debug(this.currentUser.IstorijaLetova[0].avioKompanija.naziv)
+  }
+
+  onBack(){
+    this.location.back();
   }
 
   OceniLet(){}
