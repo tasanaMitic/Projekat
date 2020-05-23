@@ -52,7 +52,4 @@ export class LetoviComponent implements OnInit {
   filterLet()  {}
   filterReset(){}
 
-  
-
-
 }
