@@ -31,6 +31,10 @@ import { CenovnikComponent } from './Komponente/Renta/cenovnik/cenovnik.componen
 import { DodajKolaComponent } from './Komponente/Renta/dodaj-kola/dodaj-kola.component';
 import { IzvestajOPoslovanjuRentaComponent } from './Komponente/Renta/izvestaj-o-poslovanju-renta/izvestaj-o-poslovanju-renta.component';
 import { RaspolozivostVozilaComponent } from './Komponente/Renta/raspolozivost-vozila/raspolozivost-vozila.component';
+import { IzvestajOPoslovanjuAvioComponent } from './Komponente/Avio/izvestaj-o-poslovanju-avio/izvestaj-o-poslovanju-avio.component';
+import { CenovnikAvioComponent } from './Komponente/Avio/cenovnik-avio/cenovnik-avio.component';
+import { ListaLetovaComponent } from './Komponente/Avio/lista-letova/lista-letova.component';
+import { DodajLetComponent } from './Komponente/Avio/dodaj-let/dodaj-let.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +64,11 @@ import { RaspolozivostVozilaComponent } from './Komponente/Renta/raspolozivost-v
     DodajKolaComponent,
     CenovnikComponent,
     IzvestajOPoslovanjuRentaComponent,
-    RaspolozivostVozilaComponent
+    RaspolozivostVozilaComponent,
+    IzvestajOPoslovanjuAvioComponent,
+    CenovnikAvioComponent,
+    ListaLetovaComponent,
+    DodajLetComponent
   ],
   imports: [
     BrowserModule,

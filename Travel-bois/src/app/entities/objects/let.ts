@@ -21,10 +21,10 @@ export class Let {
     avion: Avion;
     ocene: Array<Ocena>;
 
-    constructor(avioKompanija: AvioKompanija, cenaRucnogPrtljaga, cenaMalogPrtljaga, cenaVelikogPrtljaga,
+    constructor(id, avioKompanija: AvioKompanija, cenaRucnogPrtljaga, cenaMalogPrtljaga, cenaVelikogPrtljaga,
         datumPolaska: Date, datumDolaska: Date, mestoPolaska, mestoDolaska, avion, presedanja = []){
             //  Ne radi
-            //this.ID = IdHandler.GenerateLetID();
+            this.ID = id;
             this.avioKompanija = avioKompanija;
             this.cenovnikPrtljaga = new Map<TipPrtljaga, number>();
             this.cenovnikPrtljaga[TipPrtljaga.rucni] = cenaRucnogPrtljaga;

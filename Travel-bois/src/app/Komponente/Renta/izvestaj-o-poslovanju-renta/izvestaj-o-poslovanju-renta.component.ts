@@ -31,6 +31,7 @@ export class IzvestajOPoslovanjuRentaComponent implements OnInit {
       'suma': new FormControl(0, [])
     })
     this.currentUser = AppComponent.currentUser as RentACarAdmin;
+    
   }
 
   IzracunajPrihode(){

@@ -23,6 +23,10 @@ import { CenovnikComponent } from './Komponente/Renta/cenovnik/cenovnik.componen
 import { DodajKolaComponent } from './Komponente/Renta/dodaj-kola/dodaj-kola.component';
 import { IzvestajOPoslovanjuRentaComponent } from './Komponente/Renta/izvestaj-o-poslovanju-renta/izvestaj-o-poslovanju-renta.component';
 import { RaspolozivostVozilaComponent } from './Komponente/Renta/raspolozivost-vozila/raspolozivost-vozila.component';
+import { CenovnikAvioComponent } from './Komponente/Avio/cenovnik-avio/cenovnik-avio.component';
+import { IzvestajOPoslovanjuAvioComponent } from './Komponente/Avio/izvestaj-o-poslovanju-avio/izvestaj-o-poslovanju-avio.component';
+import { ListaLetovaComponent } from './Komponente/Avio/lista-letova/lista-letova.component';
+import { DodajLetComponent } from './Komponente/Avio/dodaj-let/dodaj-let.component';
 
 
 const routes: Routes = [
@@ -49,7 +53,11 @@ const routes: Routes = [
   { path:'cenovnik', component: CenovnikComponent},
   { path:'dodaj-kola', component: DodajKolaComponent},
   { path:'izvestaj-renta', component: IzvestajOPoslovanjuRentaComponent},
-  { path:'raspolozivost-vozila', component: RaspolozivostVozilaComponent}
+  { path:'raspolozivost-vozila', component: RaspolozivostVozilaComponent},
+  { path:'cenovnik-avio', component: CenovnikAvioComponent},
+  { path: 'izvestaj-avio', component: IzvestajOPoslovanjuAvioComponent },
+  { path: 'lista-letova', component: ListaLetovaComponent},
+  { path: 'dodaj-let', component: DodajLetComponent}
 ];
 
 @NgModule({

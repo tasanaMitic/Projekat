@@ -1,7 +1,6 @@
 import { Aerodromi } from './aerodromi';
 import { Let } from './let';
 import { Ocena } from '../misc/ocena';
-import { strict } from 'assert';
 import { Klase } from 'src/app/_enums';
 import { Avion } from './avion';
 
@@ -13,7 +12,7 @@ export class AvioKompanija {
     brzaRezervacijaPopust: number; //u procentima
     destinacije: Array<string>;
     letovi: Array<Let>;
-    ocene: Array<Ocena>
+    Ocene: Array<Ocena>
     rezervacije: Array<Let>;
 
     //Dok ne skontamo kako se salju podaci
@@ -27,22 +26,27 @@ export class AvioKompanija {
         this.letovi = new Array<Let>();
         this.destinacije = new Array<string>();
         this.moguceDestinacije = new Aerodromi();
-        this.ocene = new Array<Ocena>();
+        this.Ocene = new Array<Ocena>();
 
-        this.letovi.push(new Let(this, 0, 5000, 10000, new Date(2020, 1, 2), new Date(2020, 1, 2), 'Beograd', 'Bec', new Avion(10000, 20, 5000, 30, 1000, 50)))
+        this.letovi.push(new Let(1, this, 0, 5000, 10000, new Date(2020, 1, 2), new Date(2020, 1, 2), 'Beograd', 'Bec', new Avion(10000, 20, 5000, 30, 1000, 50)))
     }
 
     getType(){
         return AvioKompanija.name;
     }
-    IzracunajProsecnuOcenu(){
-        let n = 0;
+
+    OceniKompaniju(ocena: Ocena) {
+        this.Ocene.push(ocena);
+    }
+
+    ProsecnaOcena(){
+        let count = 0;
         let sum = 0;
-        this.ocene.forEach(element => {
-            n += 1;
+        this.Ocene.forEach(element => {
             sum += element.O;
+            count += 1;
         });
-        return Math.round(sum / n);
+        return sum / count;
     }
 
     DodajDestinaciju(dest:string){
