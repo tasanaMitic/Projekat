@@ -323,6 +323,9 @@ body {
 {
     border-collapse: collapse;
 }
+.form td {
+    border: 0px;
+}
 
 .form-control
 {
