@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Fax\\WEB2 aka PUSGS\\Projekat\\Projekat\\ServerApp\\ServerApp.csproj": {}
+    "C:\\Users\\Korisnik\\Desktop\\WEB2\\Projekat-master\\Projekat\\ServerApp\\ServerApp.csproj": {}
   },
   "projects": {
-    "D:\\Fax\\WEB2 aka PUSGS\\Projekat\\Projekat\\ServerApp\\ServerApp.csproj": {
+    "C:\\Users\\Korisnik\\Desktop\\WEB2\\Projekat-master\\Projekat\\ServerApp\\ServerApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Fax\\WEB2 aka PUSGS\\Projekat\\Projekat\\ServerApp\\ServerApp.csproj",
+        "projectUniqueName": "C:\\Users\\Korisnik\\Desktop\\WEB2\\Projekat-master\\Projekat\\ServerApp\\ServerApp.csproj",
         "projectName": "ServerApp",
-        "projectPath": "D:\\Fax\\WEB2 aka PUSGS\\Projekat\\Projekat\\ServerApp\\ServerApp.csproj",
-        "packagesPath": "C:\\Users\\Luka\\.nuget\\packages\\",
-        "outputPath": "D:\\Fax\\WEB2 aka PUSGS\\Projekat\\Projekat\\ServerApp\\obj\\",
+        "projectPath": "C:\\Users\\Korisnik\\Desktop\\WEB2\\Projekat-master\\Projekat\\ServerApp\\ServerApp.csproj",
+        "packagesPath": "C:\\Users\\Korisnik\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Korisnik\\Desktop\\WEB2\\Projekat-master\\Projekat\\ServerApp\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Luka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Korisnik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +25,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files\\Microsoft SDKs\\Azure\\.NET SDK\\v2.9\\packages": {},
+          "http://nuget.org/api/v2": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
@@ -83,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

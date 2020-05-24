@@ -14,6 +14,7 @@ export class AvioKompanija {
     letovi: Array<Let>;
     Ocene: Array<Ocena>
     rezervacije: Array<Let>;
+    aerodromi: Array<Aerodromi>;
 
     //Dok ne skontamo kako se salju podaci
     moguceDestinacije: Aerodromi;

@@ -35,6 +35,7 @@ import { IzvestajOPoslovanjuAvioComponent } from './Komponente/Avio/izvestaj-o-p
 import { CenovnikAvioComponent } from './Komponente/Avio/cenovnik-avio/cenovnik-avio.component';
 import { ListaLetovaComponent } from './Komponente/Avio/lista-letova/lista-letova.component';
 import { DodajLetComponent } from './Komponente/Avio/dodaj-let/dodaj-let.component';
+import { DestinacijeAvioComponent } from './Komponente/Avio/destinacije-avio/destinacije-avio.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { DodajLetComponent } from './Komponente/Avio/dodaj-let/dodaj-let.compone
     IzvestajOPoslovanjuAvioComponent,
     CenovnikAvioComponent,
     ListaLetovaComponent,
-    DodajLetComponent
+    DodajLetComponent,
+    DestinacijeAvioComponent
   ],
   imports: [
     BrowserModule,

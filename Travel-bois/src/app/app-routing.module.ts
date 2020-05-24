@@ -27,6 +27,7 @@ import { CenovnikAvioComponent } from './Komponente/Avio/cenovnik-avio/cenovnik-
 import { IzvestajOPoslovanjuAvioComponent } from './Komponente/Avio/izvestaj-o-poslovanju-avio/izvestaj-o-poslovanju-avio.component';
 import { ListaLetovaComponent } from './Komponente/Avio/lista-letova/lista-letova.component';
 import { DodajLetComponent } from './Komponente/Avio/dodaj-let/dodaj-let.component';
+import { DestinacijeAvioComponent } from './Komponente/Avio/destinacije-avio/destinacije-avio.component';
 
 
 const routes: Routes = [
@@ -57,7 +58,8 @@ const routes: Routes = [
   { path:'cenovnik-avio', component: CenovnikAvioComponent},
   { path: 'izvestaj-avio', component: IzvestajOPoslovanjuAvioComponent },
   { path: 'lista-letova', component: ListaLetovaComponent},
-  { path: 'dodaj-let', component: DodajLetComponent}
+  { path: 'dodaj-let', component: DodajLetComponent},
+  { path: 'destinacije-avio', component: DestinacijeAvioComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,12 @@
+<div> 
+    <h1>Destinacije sa kojima poslujete</h1>
+    <table>
+        <div [hidden]="empty !==1">
+            <th>Grad</th>
+            <tr *ngFor="let grad of lokacije">
+                <td>{{grad}}</td>
+            </tr>
+
+        </div>
+    </table>
+</div>
