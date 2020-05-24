@@ -9,7 +9,9 @@ namespace ServerApp.Models
 {
 	public class ApplicationUser : IdentityUser
 	{
-		[Column(TypeName ="nvarchar(150)")]
-		public string FullName { get; set; }
+		[Column(TypeName = "nvarchar(20)")]
+		public string Name { get; set; }
+		[Column(TypeName = "nvarchar(20)")]
+		public string LastName { get; set; }
 	}
 }

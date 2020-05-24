@@ -30,9 +30,7 @@ export class RegistracijaComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.registrationForm.value);
-    console.log(this.registrationForm);
-    console.log("register submit");
+    
   }
 
   onBack()

@@ -22,6 +22,28 @@ namespace ServerApp.Controllers
             _signInManager = signInMngr;
         }
 
-        [HttpGet]
+        [HttpPost]
+        [Route("Register")]
+        //POST: /api.ApplicationUser/Register
+        public async Task<Object> PostApplicationUser(ApplicationUserModel model)
+        {
+            var appuser = new ApplicationUser()
+            {
+                UserName = model.UserName,
+                Email = model.Email,
+                Name = model.Name,
+                LastName = model.Lastname
+            };
+            try
+            {
+                var result = _userManager.CreateAsync(appuser, model.Password);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

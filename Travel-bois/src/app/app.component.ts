@@ -7,6 +7,10 @@ import { AvioKompanija } from './entities/objects/avio-kompanija';
 import { RentACar } from './entities/objects/rent-a-car';
 import { Admin } from './entities/users/admin/admin';
 import { AvioAdmin } from './entities/users/avio-admin/avio-admin';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import {OperatorFunction} from 'rxjs/internal/types';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +19,10 @@ import { AvioAdmin } from './entities/users/avio-admin/avio-admin';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  private apiUrl = 'localhost:50356/applicationuser';
+  //private apiUrl = 'localhost:4200';
+  data: any = {};
+
   static currentUser: User;
   static datum: Date;
   //currentUser: User;
@@ -22,6 +30,21 @@ export class AppComponent {
   static rente: Array<RentACar>;
 
   title = 'Travel-bois';
+
+  constructor(private http: Http){
+    console.log('App started');
+    this.getContacts();
+    this.getData();
+  }
+  getData(){
+    return this.http.get(this.apiUrl).pipe(map((res) => res.json()));
+  }
+  getContacts(){
+    this.getData().subscribe(data => {
+      console.log(data);
+      this.data = data;
+    })
+  }
 
   ngOnInit() {
     AppComponent.avioKompanije = new Array<AvioKompanija>();

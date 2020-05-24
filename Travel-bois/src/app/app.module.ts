@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 import {ReactiveFormsModule} from'@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -74,9 +77,11 @@ import { DodajLetComponent } from './Komponente/Avio/dodaj-let/dodaj-let.compone
     BrowserModule,
     AppRoutingModule,
     FormsModule,    
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule,
+    NgbModule
   ],
-  providers: [],
+  providers: [AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
