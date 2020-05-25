@@ -60,7 +60,7 @@ namespace WebApp
             }
 
             //app.UseCors(builder =>
-            //builder.WithOrigins("https://localhost:44328")
+            //builder.WithOrigins("https://localhost:50356")
             //.AllowAnyHeader()
             //.AllowAnyMethod());
 
