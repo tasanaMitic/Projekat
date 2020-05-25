@@ -23,6 +23,7 @@ export class UserService {
     }, {validator: this.comparePasswords})
   });
 
+
   comparePasswords(fb: FormGroup){
     let confirmPswrdCtrl = fb.get('ConfirmPassword');
     if(confirmPswrdCtrl.errors == null || 'passwordMismatch' in confirmPswrdCtrl.errors){
@@ -40,8 +41,8 @@ export class UserService {
       Name: this.formModel.value.Name,
       Lastname: this.formModel.value.Lastname,
       Grad: this.formModel.value.Grad,
-      BrojTelefona: this.formModel.value.BrojTelefona,
-      BrojPasosa: this.formModel.value.BrojPasosa,
+      BrojTelefona: this.formModel.value.BrojTelefona.ToString(),
+      BrojPasosa: this.formModel.value.BrojPasosa.ToString(),
       Password: this.formModel.value.Passwords.Password
     }
     return this.http.post(this.BaseURI + '/ApplicationUser/Register', body);
