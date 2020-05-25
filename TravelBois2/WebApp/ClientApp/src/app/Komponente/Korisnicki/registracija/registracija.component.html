@@ -4,7 +4,7 @@
         <div class="form">
             <table>
                 <tr>
-                    <td><label class="required">Email:</label></td>
+                    <td><label>Email:</label></td>
                     <td>
                         <input type="text" name="Email" formControlName="Email">
                         
@@ -15,7 +15,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label class="required">Username:</label></td>
+                    <td><label>Username:</label></td>
                     <td>
                         <input type="text" name="UserName" formControlName="UserName"> 
                     </td>
@@ -29,7 +29,7 @@
                         <input type="text" name="Name" formControlName="Name"> 
                     </td>
                     <td>
-                        
+                      <label *ngIf="service.formModel.get('Name').touched && service.formModel.get('Name').errors?.required">Ime je potrebno</label>
                     </td>
                 </tr>
                 <tr>
@@ -38,7 +38,7 @@
                         <input type="text" name="Lastname" formControlName="Lastname"> 
                     </td>
                     <td>
-                        
+                      <label *ngIf="service.formModel.get('Lastname').touched && service.formModel.get('Lastname').errors?.required">Prezime je potrebno</label>
                     </td>
                 </tr>
                 <tr>
@@ -47,7 +47,8 @@
                         <input type="text" name="Grad"  formControlName="Grad"> 
                     </td>
                     <td>
-                        
+                      <label *ngIf="service.formModel.get('Grad').touched && service.formModel.get('Grad').errors?.required">Grad je potreban</label>
+
                     </td>
                 </tr>
                 <tr>
@@ -56,7 +57,8 @@
                         <input name="BrojTelefona" formControlName="BrojTelefona">
                     </td>
                     <td>
-                        
+                      <label *ngIf="service.formModel.get('BrojTelefona').touched && service.formModel.get('BrojTelefona').errors?.required">Broj telefona je potreban</label>
+
                     </td>
                 </tr>
                 <tr>
@@ -65,13 +67,13 @@
                         <input name="BrojPasosa" formControlName="BrojPasosa"> 
                     </td>
                     <td>
-                        
+                      <label *ngIf="service.formModel.get('BrojPasosa').touched && service.formModel.get('BrojPasosa').errors?.required">Broj pasosa je potreban</label>
                     </td>
                 </tr>
                 <div formGroupName="Passwords">
                     <tr>
-                        <td><label class="required">Sifra:</label></td>
-                        <td>
+                        <td><label>Sifra:</label>
+                        <td style="padding-left: 32px">
                             <input type="password" name="password" formControlName="Password"> 
                         </td>
                         <td>
@@ -79,8 +81,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label class="required">Potvrdi sifru:</label></td>
-                        <td>
+                        <td><label>Potvrdi sifru:</label>
+                        <td style="padding-left: 32px">
                             <input type="password" name="ConfirmPassword" formControlName="ConfirmPassword"> 
                         </td>
                         <td>

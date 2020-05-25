@@ -12,11 +12,11 @@ export class UserService {
   formModel = this.fb.group({
     Email :['', [Validators.required, Validators.email]],
     UserName :['', [Validators.required]],
-    Name :['', []],
-    Lastname :['', []],
-    Grad :['', []],
-    BrojTelefona :['', []],
-    BrojPasosa :['', []],
+    Name: ['', [Validators.required]],
+    Lastname: ['', [Validators.required]],
+    Grad: ['', [Validators.required]],
+    BrojTelefona: ['', [Validators.required]],
+    BrojPasosa: ['', [Validators.required]],
     Passwords: this.fb.group({
       Password :['', [Validators.required]],
       ConfirmPassword :['', [Validators.required]]
@@ -46,5 +46,8 @@ export class UserService {
       Password: this.formModel.value.Passwords.Password
     }
     return this.http.post(this.BaseURI + '/ApplicationUser/Register', body);
+  }
+  login(formData){
+    return this.http.post(this.BaseURI + '/ApplicationUser/Login', formData);
   }
 }

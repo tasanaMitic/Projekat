@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { Location} from '@angular/common';
+import { UserService } from 'src/app/shared/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,28 +10,33 @@ import { Location} from '@angular/common';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+  formModel = {
+    UserName: '',
+    Password: ''
+  }
 
-  constructor(private location: Location) { }
+  constructor(private location: Location, private service: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    this.initForm();
   }
 
-  private initForm()
-  {
-    this.loginForm = new FormGroup({
-      'username': new FormControl('', [Validators.required, Validators.maxLength(15), Validators.minLength(3)]),
-      'password': new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3)])
-    });
-  }
 
   onBack()
   {
     this.location.back();
   }
 
-  onSubmit(){
-    console.debug("submit");
+  onSubmit(form:NgForm){
+    this.service.login(form.value).subscribe(
+      (res:any) => {
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['/pocetna'])
+      },
+      (err) =>{
+        if(err.status == 400){
+          //Bad username or passowrd
+        }
+      }
+    )
   }
 }
