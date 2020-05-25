@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Location} from '@angular/common';
 import { NoSpecialChars, NoSpace, ValidateNumber, ValidatePassword, NoFullstop } from 'src/app/Helpers/custom-validators/custom-validators';
+import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-registracija',
@@ -10,24 +11,11 @@ import { NoSpecialChars, NoSpace, ValidateNumber, ValidatePassword, NoFullstop }
 })
 export class RegistracijaComponent implements OnInit {
   registrationForm: FormGroup;
-  constructor(private location: Location) { }
+  constructor(private location: Location, public service: UserService) { }
 
   ngOnInit(): void {
-    this.initForm();
   }
 
-  private initForm()
-  {
-    this.registrationForm = new FormGroup({
-      'ime': new FormControl('', [Validators.required, Validators.maxLength(15), Validators.minLength(3), NoSpecialChars, NoSpace]),
-      'prezime': new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3), NoSpecialChars, NoSpace]),
-      'grad': new FormControl('', [Validators.required, Validators.maxLength(10), Validators.minLength(3), NoSpecialChars]),
-      'brojTelefona': new FormControl('', [Validators.required, ValidateNumber, NoFullstop]),
-      'brojPasosa': new FormControl('', [Validators.required, ValidateNumber, NoFullstop]),
-      'username': new FormControl('', [Validators.required, NoSpecialChars, NoSpace]),
-      'password': new FormControl('', [Validators.required, Validators.minLength(8), ValidatePassword, NoSpecialChars]),
-    });
-  }
 
   onSubmit(){
     

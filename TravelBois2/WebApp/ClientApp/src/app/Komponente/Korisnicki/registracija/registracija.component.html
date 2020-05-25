@@ -1,100 +1,100 @@
 <div class="container">
     <h1>Registracija</h1>
-    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="service.formModel" (ngSubmit)="onSubmit()">
         <div class="form">
             <table>
                 <tr>
+                    <td><label class="required">Email:</label></td>
+                    <td>
+                        <input type="text" name="Email" formControlName="Email">
+                        
+                    </td>
+                    <td>
+                        <label *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">Email nije validan</label>
+                        <label *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.required">Email je potreban</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="required">Username:</label></td>
+                    <td>
+                        <input type="text" name="UserName" formControlName="UserName"> 
+                    </td>
+                    <td>
+                        <label *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.required">Username je potreban</label>
+                    </td>
+                </tr>
+                <tr>
                     <td>Ime:</td>
                     <td>
-                        <input type="text" id="imeInput" formControlName="ime"> 
+                        <input type="text" name="Name" formControlName="Name"> 
+                    </td>
+                    <td>
+                        
                     </td>
                 </tr>
                 <tr>
                     <td>Prezime:</td>
                     <td>
-                        <input type="text" id="prezime" formControlName="prezime"> 
+                        <input type="text" name="Lastname" formControlName="Lastname"> 
+                    </td>
+                    <td>
+                        
                     </td>
                 </tr>
                 <tr>
                     <td>Grad:</td>
                     <td>
-                        <input type="text" id="grad"  formControlName="grad"> 
+                        <input type="text" name="Grad"  formControlName="Grad"> 
+                    </td>
+                    <td>
+                        
                     </td>
                 </tr>
                 <tr>
                     <td>Broj telefona:</td>
                     <td>
-                        <input type="number" id="brTel" formControlName="brojTelefona"> 
+                        <input name="BrojTelefona" formControlName="BrojTelefona">
+                    </td>
+                    <td>
+                        
                     </td>
                 </tr>
                 <tr>
                     <td>Broj pasosa:</td>
                     <td>
-                        <input type="number" id="brPasosa" formControlName="brojPasosa"> 
+                        <input type="number" name="BrojPasosa" formControlName="BrojPasosa"> 
                     </td>
-                </tr>
-                <tr>
-                    <td>Username:</td>
                     <td>
-                        <input type="text" id="username" formControlName="username"> 
+                        
                     </td>
                 </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td>
-                        <input type="password" id="password" formControlName="password"> 
-                    </td>
-                </tr>
-            </table>
-            <table class="form-error">
-                <tr>
-                    <div>
-                        <label *ngIf="registrationForm.controls.ime.invalid">Ime mora biti jedna rec bez specijalnih karaktera</label>
-                        <label *ngIf="registrationForm.controls.ime.valid">OK</label>
-                    </div>
-                </tr>
-                <tr>
-                    <div>
-                        <label *ngIf="registrationForm.controls.prezime.invalid">Prezime mora biti jedna rec bez specijalnih karaktera</label>
-                        <label *ngIf="registrationForm.controls.prezime.valid">OK</label>
-                    </div>
-                </tr>
-                <tr>
-                    <div>
-                        <label *ngIf="registrationForm.controls.grad.invalid">Ime grada ne sme imati specijalne karaktere</label>
-                        <label *ngIf="registrationForm.controls.prezime.valid">OK</label>
-                    </div>
-                </tr>
-                <tr>
-                    <div>
-                        <label *ngIf="registrationForm.controls.brojTelefona.invalid">Telefon ne sme imati '-'</label>
-                        <label *ngIf="registrationForm.controls.brojTelefona.valid">OK</label>
-                    </div>
-                </tr>
-                <tr>
-                    <div>
-                        <label *ngIf="registrationForm.controls.brojPasosa.invalid">Pasos mora biti ceo pozitivan broj</label>
-                        <label *ngIf="registrationForm.controls.brojTelefona.valid">OK</label>
-                    </div>
-                </tr>
-                <tr>
-                    <div>
-                        <label *ngIf="registrationForm.controls.username.invalid">Username mora biti jedna rec bez specijalnih karaktera</label>
-                        <label *ngIf="registrationForm.controls.username.valid">OK</label>
-                    </div>
-                </tr>
-                <tr>
-                    <div>
-                        <label *ngIf="registrationForm.controls.password.invalid">Password mora imati bar jedan broj i slovo i bez specijalnih karaktera</label>
-                        <label *ngIf="registrationForm.controls.password.valid">OK</label>
-                    </div>
-                </tr>
+                <div formGroupName="Passwords">
+                    <tr>
+                        <td><label class="required">Sifra:</label></td>
+                        <td>
+                            <input type="password" name="password" formControlName="Password"> 
+                        </td>
+                        <td>
+                            <label *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">Sifra je potreban</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="required">Potvrdi sifru:</label></td>
+                        <td>
+                            <input type="password" name="ConfirmPassword" formControlName="ConfirmPassword"> 
+                        </td>
+                        <td>
+                            <label *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">Potvrda sifre je potrebna</label>
+                            <label *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Sifre se ne poklapaju </label>
+                        </td>
+                    </tr>
+                </div>
             </table>
         </div>
         <div>
             <div>
-                <button *ngIf="!registrationForm.valid" [disabled]="!registrationForm.valid" class="btn" type="submit">Sacuvaj</button>
-                <button *ngIf="registrationForm.valid" class="btn btn-success" type="submit">Sacuvaj</button>
+                <button [disabled]="service.formModel.invalid" class="btn btn-lg btn-block" type="submit">Sacuvaj</button>
+                
             </div>
             <div>
                 <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>

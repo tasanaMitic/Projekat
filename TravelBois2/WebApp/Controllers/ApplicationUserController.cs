@@ -30,10 +30,13 @@ namespace WebApp.Controllers
         {
             var applicationUser = new ApplicationUser()
             {
-                UserName = model.Username,
+                UserName = model.UserName,
                 Email = model.Email,
                 Name = model.Name,
-                Lastname = model.Lastname
+                Lastname = model.Lastname,
+                Grad = model.Grad,
+                BrojPasosa = model.BrojPasosa,
+                BrojTelefona = model.BrojTelefona
             };
             try
             {

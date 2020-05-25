@@ -305,6 +305,11 @@ body {
 }
 
 /*=================================REGISTRACIJE================================= */
+div.form label.required:first-child:after{
+    content:'*';
+    color: red;
+    padding-left: 5px;
+}
 .container{
     margin-top: 15px;
     margin-left: 20%;
