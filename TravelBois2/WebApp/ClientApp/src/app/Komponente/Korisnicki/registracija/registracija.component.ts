@@ -14,33 +14,11 @@ export class RegistracijaComponent implements OnInit {
   constructor(private location: Location, public service: UserService) { }
 
   ngOnInit(): void {
-    this.service.formModel.reset();
   }
 
 
   onSubmit(){
-    this.service.register().subscribe(
-      (res: any) =>{
-        if(res.succeeded){
-          this.service.formModel.reset();
-        }
-        else{
-          res.errors.forEach(element => {
-            switch(element.code){
-              case 'DuplicateUserName':
-                //username taken
-                break;
-              default:
-                //registration failed
-                break;
-            }
-          });
-        }
-      },
-      err => {
-        console.log(err);
-      }
-    )
+    
   }
 
   onBack()
