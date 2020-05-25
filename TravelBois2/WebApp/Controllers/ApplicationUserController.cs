@@ -28,6 +28,7 @@ namespace WebApp.Controllers
         //POST: /api/ApplicationUser/Register
         public async Task<Object> PostApplicationUser(ApplicationUserModel model)
         {
+            Console.WriteLine("post pozvan");
             var applicationUser = new ApplicationUser()
             {
                 UserName = model.UserName,

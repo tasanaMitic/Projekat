@@ -33,7 +33,8 @@ export class UserService {
     }
   }
 
-  register(){
+  register() {
+    console.debug('callback register')
     var body = {
       Email: this.formModel.value.Email,
       UserName: this.formModel.value.UserName,

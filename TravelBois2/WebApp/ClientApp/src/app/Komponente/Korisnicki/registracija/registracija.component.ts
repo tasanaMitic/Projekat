@@ -18,14 +18,18 @@ export class RegistracijaComponent implements OnInit {
   }
 
 
-  onSubmit(){
+  onSubmit() {
+    console.debug('onSubmit()')
     this.service.register().subscribe(
-      (res: any) =>{
-        if(res.succeeded){
+      (res: any) => {
+        console.debug('usao u register')
+        if (res.succeeded) {
+          console.debug('uspeo')
           this.service.formModel.reset();
           this.router.navigate(['/pocetna'])
         }
-        else{
+        else {
+          console.debug('nije uspeo')
           res.errors.forEach(element => {
             switch(element.code){
               case 'DuplicateUserName':
