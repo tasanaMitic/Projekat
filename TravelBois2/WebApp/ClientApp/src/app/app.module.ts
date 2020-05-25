@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {ReactiveFormsModule} from'@angular/forms';
@@ -81,7 +81,7 @@ import { UserService } from './shared/user.service';
     AppRoutingModule,
     FormsModule,    
     ReactiveFormsModule,
-    HttpClient,
+    HttpModule,
     NgbModule
   ],
   providers: [AppComponent, UserService],

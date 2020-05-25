@@ -1,6 +1,6 @@
 <div class="container">
     <h1>Registracija</h1>
-    <form [formGroup]="service.formModel">
+    <form [formGroup]="service.formModel" (ngSubmit)="onSubmit()">
         <div class="form">
             <table>
                 <tr>
