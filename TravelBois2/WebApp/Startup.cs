@@ -42,7 +42,7 @@ namespace WebApp
                 options.Password.RequireUppercase = false;
             });
 
-            //services.AddCors();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,10 +59,10 @@ namespace WebApp
                 app.UseHsts();
             }
 
-            //app.UseCors(builder =>
-            //builder.WithOrigins("https://localhost:50356")
-            //.AllowAnyHeader()
-            //.AllowAnyMethod());
+            app.UseCors(builder =>
+            builder.WithOrigins("https://localhost:44343")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
 
             app.UseAuthentication();
 

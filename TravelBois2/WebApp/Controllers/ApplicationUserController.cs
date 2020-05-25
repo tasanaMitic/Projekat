@@ -35,8 +35,8 @@ namespace WebApp.Controllers
                 Name = model.Name,
                 Lastname = model.Lastname,
                 Grad = model.Grad,
-                BrojPasosa = model.BrojPasosa,
-                BrojTelefona = model.BrojTelefona
+                BrojPasosa = model.BrojPasosa.ToString(),
+                BrojTelefona = model.BrojTelefona.ToString()
             };
             try
             {

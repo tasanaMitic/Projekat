@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Location} from '@angular/common';
 import { UserService } from 'src/app/shared/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registracija',
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/shared/user.service';
 })
 export class RegistracijaComponent implements OnInit {
   registrationForm: FormGroup;
-  constructor(private location: Location, public service: UserService) { }
+  constructor(private location: Location, public service: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.service.formModel.reset();
@@ -22,6 +23,7 @@ export class RegistracijaComponent implements OnInit {
       (res: any) =>{
         if(res.succeeded){
           this.service.formModel.reset();
+          this.router.navigate(['/pocetna'])
         }
         else{
           res.errors.forEach(element => {
