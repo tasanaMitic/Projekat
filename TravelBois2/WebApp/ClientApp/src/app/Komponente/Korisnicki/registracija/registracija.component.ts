@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Location} from '@angular/common';
-import { NoSpecialChars, NoSpace, ValidateNumber, ValidatePassword, NoFullstop } from 'src/app/Helpers/custom-validators/custom-validators';
+import { UserService } from 'src/app/shared/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registracija',
@@ -10,27 +11,41 @@ import { NoSpecialChars, NoSpace, ValidateNumber, ValidatePassword, NoFullstop }
 })
 export class RegistracijaComponent implements OnInit {
   registrationForm: FormGroup;
-  constructor(private location: Location) { }
+  constructor(private location: Location, public service: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    this.initForm();
+    this.service.formModel.reset();
   }
 
-  private initForm()
-  {
-    this.registrationForm = new FormGroup({
-      'ime': new FormControl('', [Validators.required, Validators.maxLength(15), Validators.minLength(3), NoSpecialChars, NoSpace]),
-      'prezime': new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3), NoSpecialChars, NoSpace]),
-      'grad': new FormControl('', [Validators.required, Validators.maxLength(10), Validators.minLength(3), NoSpecialChars]),
-      'brojTelefona': new FormControl('', [Validators.required, ValidateNumber, NoFullstop]),
-      'brojPasosa': new FormControl('', [Validators.required, ValidateNumber, NoFullstop]),
-      'username': new FormControl('', [Validators.required, NoSpecialChars, NoSpace]),
-      'password': new FormControl('', [Validators.required, Validators.minLength(8), ValidatePassword, NoSpecialChars]),
-    });
-  }
 
-  onSubmit(){
-    
+  onSubmit() {
+    console.debug('onSubmit()')
+    this.service.register().subscribe(
+      (res: any) => {
+        console.debug('usao u register')
+        if (res.succeeded) {
+          console.debug('uspeo')
+          this.service.formModel.reset();
+          this.router.navigate(['/pocetna'])
+        }
+        else {
+          console.debug('nije uspeo')
+          res.errors.forEach(element => {
+            switch(element.code){
+              case 'DuplicateUserName':
+                //username taken
+                break;
+              default:
+                //registration failed
+                break;
+            }
+          });
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
   onBack()

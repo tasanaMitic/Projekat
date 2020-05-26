@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { GoogleMapsModule } from "@angular/google-maps";
+import { HttpClientModule } from '@angular/common/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-import {ReactiveFormsModule} from'@angular/forms';
+import {ReactiveFormsModule, FormsModule} from'@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,6 +42,7 @@ import { ListaLetovaComponent } from './Komponente/Avio/lista-letova/lista-letov
 import { DodajLetComponent } from './Komponente/Avio/dodaj-let/dodaj-let.component';
 import { DestinacijeAvioComponent } from './Komponente/Avio/destinacije-avio/destinacije-avio.component';
 import { MapsComponent } from './Komponente/Deljeno-avio-renta/maps/maps.component';
+import { UserService } from './shared/user.service';
 
 @NgModule({
   declarations: [
@@ -84,11 +85,12 @@ import { MapsComponent } from './Komponente/Deljeno-avio-renta/maps/maps.compone
     AppRoutingModule,
     FormsModule,    
     ReactiveFormsModule,
+    HttpClientModule,
     HttpModule,
     NgbModule,
     GoogleMapsModule
   ],
-  providers: [AppComponent],
+  providers: [AppComponent, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
