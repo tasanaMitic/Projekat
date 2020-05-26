@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { GoogleMapsModule } from "@angular/google-maps";
 
 import {ReactiveFormsModule} from'@angular/forms';
 
@@ -39,6 +41,7 @@ import { CenovnikAvioComponent } from './Komponente/Avio/cenovnik-avio/cenovnik-
 import { ListaLetovaComponent } from './Komponente/Avio/lista-letova/lista-letova.component';
 import { DodajLetComponent } from './Komponente/Avio/dodaj-let/dodaj-let.component';
 import { DestinacijeAvioComponent } from './Komponente/Avio/destinacije-avio/destinacije-avio.component';
+import { MapsComponent } from './Komponente/Deljeno-avio-renta/maps/maps.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +76,8 @@ import { DestinacijeAvioComponent } from './Komponente/Avio/destinacije-avio/des
     CenovnikAvioComponent,
     ListaLetovaComponent,
     DodajLetComponent,
-    DestinacijeAvioComponent
+    DestinacijeAvioComponent,
+    MapsComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +85,8 @@ import { DestinacijeAvioComponent } from './Komponente/Avio/destinacije-avio/des
     FormsModule,    
     ReactiveFormsModule,
     HttpModule,
-    NgbModule
+    NgbModule,
+    GoogleMapsModule
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent]

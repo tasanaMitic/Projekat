@@ -19,9 +19,9 @@ export class DodajLetComponent implements OnInit {
     this.letPodaciForm = new FormGroup({
       'polaznaDestinacija': new FormControl('', Validators.required),
       'odredisnaDestinacija': new FormControl('', Validators.required),
-      'datumPoletanja': new FormControl('', Validators.required),
+      'datumPoletanja': new FormControl(''),
       'vremePoletanja': new FormControl('', Validators.required),
-      'datumSletanja': new FormControl('', Validators.required),
+      'datumSletanja': new FormControl(''),
       'vremeSletanja': new FormControl('', Validators.required),
       'vremePutovanja': new FormControl('', Validators.required),
       'duzinaPutovanja': new FormControl('', Validators.required),

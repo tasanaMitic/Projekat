@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebApp.Data;
 using WebApp.Models;
 
 namespace WebApp
@@ -25,10 +26,12 @@ namespace WebApp
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddDbContext<AuthenticationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
+            services.AddDbContext<AviokompanijaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
 
             services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<AuthenticationContext>();
         }
@@ -74,7 +77,8 @@ namespace WebApp
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    //spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
         }

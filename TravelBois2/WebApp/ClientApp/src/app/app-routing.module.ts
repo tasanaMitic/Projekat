@@ -28,6 +28,7 @@ import { IzvestajOPoslovanjuAvioComponent } from './Komponente/Avio/izvestaj-o-p
 import { ListaLetovaComponent } from './Komponente/Avio/lista-letova/lista-letova.component';
 import { DodajLetComponent } from './Komponente/Avio/dodaj-let/dodaj-let.component';
 import { DestinacijeAvioComponent } from './Komponente/Avio/destinacije-avio/destinacije-avio.component';
+import { MapsComponent } from './Komponente/Deljeno-avio-renta/maps/maps.component';
 
 
 const routes: Routes = [
@@ -59,7 +60,8 @@ const routes: Routes = [
   { path: 'izvestaj-avio', component: IzvestajOPoslovanjuAvioComponent },
   { path: 'lista-letova', component: ListaLetovaComponent},
   { path: 'dodaj-let', component: DodajLetComponent},
-  { path: 'destinacije-avio', component: DestinacijeAvioComponent}
+  { path: 'destinacije-avio', component: DestinacijeAvioComponent },
+  { path: 'maps', component: MapsComponent }
 ];
 
 @NgModule({
