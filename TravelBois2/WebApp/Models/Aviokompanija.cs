@@ -13,7 +13,7 @@ namespace ServerApp.Models
         public string Naziv { get; set; }
         public string Adresa { get; set; }
         public string Opis { get; set; }
-        public ICollection<Ocena> Ocene { get; set; }
+        //public ICollection<Ocena> Ocene { get; set; }
         public ICollection<Let> Letovi { get; set; }
         public ICollection<Aerodrom> Aerodromi { get; set; }
         

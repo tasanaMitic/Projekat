@@ -3,7 +3,7 @@ import { Kola } from 'src/app/entities/objects/kola';
 import { Let } from 'src/app/entities/objects/let'
 import { OnInit } from '@angular/core';
 import { TipVozila } from 'src/app/_enums';
-import { Aerodromi } from '../../objects/aerodromi';
+import { Aerodrom } from '../../objects/aerodrom';
 import { Avion } from '../../objects/avion';
 import { AvioKompanija } from '../../objects/avio-kompanija';
 import { RentACar } from '../../objects/rent-a-car';

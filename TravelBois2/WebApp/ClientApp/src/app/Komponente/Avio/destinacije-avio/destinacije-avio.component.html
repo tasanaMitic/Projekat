@@ -3,10 +3,11 @@
   <table style="border:1px solid black;margin-left:auto;margin-right:auto;">
     <div [hidden]="empty !==1">
       <th>Grad</th>
-      <tr *ngFor="let grad of lokacije">
-        <td>{{grad}}</td>
+      <th>Drzava</th>
+      <tr *ngFor="let row of letData">
+        <td *ngFor="let data of row">{{data}}</td>
         <td>
-          <button class="btn-rez" (click)="ukloniGrad()">Ukloni</button>
+          <button class="btn-rez" (click)="ukloniGrad(data)">Ukloni</button>
         </td>
       </tr>
 
@@ -19,6 +20,8 @@
   <form [formGroup]="destinacijePodaciForm" (ngSubmit)="onSubmit()">
     <label for="grad">Grad:</label>
     <input type="text" id="grad" class="form-control" formControlName="grad" />
+    <label for="drzava">Drzava:</label>
+    <input type="text" id="drzava" class="form-control" formControlName="drzava" />
     <div>
       <button [disabled]="!destinacijePodaciForm.valid" class="btn btn-rez" style="float: left; margin-left: 0.2%;" type="submit">Dodaj</button>
     </div>
