@@ -71,8 +71,8 @@ export class IzvestajOPoslovanjuAvioComponent implements OnInit {
 
 
     //
-    this.Letovi.push(new Let(0, this.currentUser.avioKompanija, 0, 5000, 10000, new Date(2020, 1, 2), new Date(2020, 1, 2), 'Beograd', 'Bec', new Avion(10000, 20, 5000, 30, 1000, 50)));
-    this.Letovi.push(new Let(1, this.currentUser.avioKompanija, 0, 5000, 10000, new Date(2020, 1, 2), new Date(2020, 1, 2), 'Beograd', 'Prag', new Avion(10000, 20, 5000, 30, 1000, 50)));
+    //this.Letovi.push(new Let(0, this.currentUser.avioKompanija, 0, 5000, 10000, new Date(2020, 1, 2), new Date(2020, 1, 2), 'Beograd', 'Bec', new Avion(10000, 20, 5000, 30, 1000, 50)));
+    //this.Letovi.push(new Let(1, this.currentUser.avioKompanija, 0, 5000, 10000, new Date(2020, 1, 2), new Date(2020, 1, 2), 'Beograd', 'Prag', new Avion(10000, 20, 5000, 30, 1000, 50)));
   }
 
   ngOnInit(): void {
@@ -106,20 +106,20 @@ export class IzvestajOPoslovanjuAvioComponent implements OnInit {
   GetLetoviId() {
     //let Letovi = this.currentUser.avioKompanija.letovi;
 
-    let ids = new Array<number>();
-    this.Letovi.forEach(element => {
-      ids.push(element.ID);
-    });
-    return ids;
+    //let ids = new Array<number>();
+    //this.Letovi.forEach(element => {
+    //  ids.push(element.ID);
+    //});
+    //return ids;
   }
 
   GetLetoviById(id): Let {
-    //let letovi = this.currentUser.avioKompanija.letovi;
+    let letovi = this.currentUser.avioKompanija.letovi;
     let ret = null;
     this.Letovi.forEach(element => {
-      if (element.ID == id) {
-        ret = element;
-      }
+      //if (element.ID == id) {
+      //  ret = element;
+      //}
     });
     return ret;
   }
@@ -141,7 +141,7 @@ export class IzvestajOPoslovanjuAvioComponent implements OnInit {
   }
 
   onBack(){
-    this.location.back();
+    window.open('https://localhost:44343/pocetna', "_self");
   }
 
 }

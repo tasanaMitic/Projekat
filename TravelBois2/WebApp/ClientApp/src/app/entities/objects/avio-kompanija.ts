@@ -28,7 +28,7 @@ export class AvioKompanija {
         this.destinacije = new Array<string>();
         this.Ocene = new Array<Ocena>();
 
-        this.letovi.push(new Let(1, this, 0, 5000, 10000, new Date(2020, 1, 2), new Date(2020, 1, 2), 'Beograd', 'Bec', new Avion(10000, 20, 5000, 30, 1000, 50)))
+        //this.letovi.push(new Let(1, this, 0, 5000, 10000, new Date(2020, 1, 2), new Date(2020, 1, 2), 'Beograd', 'Bec', new Avion(10000, 20, 5000, 30, 1000, 50)))
     }
 
     getType(){
@@ -59,13 +59,13 @@ export class AvioKompanija {
     //    return false;
     //}
 
-    IzracunajPopustBrzeRezervacije(letID:number, klasa: Klase) {
-        var cena;
-        this.letovi.forEach(element => {
-            if (element.ID === letID){
-                return element.avion.segmenti[klasa].cena * (100 - this.brzaRezervacijaPopust);
-            }
-        });
-    }
+    //IzracunajPopustBrzeRezervacije(letID:number, klasa: Klase) {
+    //    var cena;
+    //    this.letovi.forEach(element => {
+    //        if (element.ID === letID){
+    //            return element.avion.segmenti[klasa].cena * (100 - this.brzaRezervacijaPopust);
+    //        }
+    //    });
+    //}
     IzracunajPopustBonusPoena(){}
 }

@@ -3,51 +3,83 @@ import { Avion } from './avion';
 import { Ocena } from '../misc/ocena';
 import { TipPrtljaga } from 'src/app/_enums';
 import { AvioKompanija } from './avio-kompanija';
+import { Aerodrom } from './aerodrom';
 
+enum TipLeta {
+  oneWay = 0,
+  multiCity = 1,
+}
+
+enum KlasaLeta {
+  economic = 0,
+  bussines = 1,
+  first = 2,
+}
 export class Let {
-    ID: number;
+
+
     avioKompanija: AvioKompanija;
-    cenovnikPrtljaga: Map<TipPrtljaga, number>;
-    datPolaska: Date;
-    datDolaska: Date;
-    DatumPolaska: string;
-    DatumDolaska: string;
+    //cenovnikPrtljaga: Map<TipPrtljaga, number>;
+    datumPolaska: string;
+    datumDolaska: string;
+    vremePoletanja: string;
+    vremeSletanja: string;
     mestoPolaska: string;
-    mestoDolaska: string;
-    presedanja: Array<string>;
+  mestoDolaska: string;
+  presedanja: Array<Aerodrom>;
     razdaljinaPutovanja: number;
-    trajanjePutovalja: number; //u minutima
+    trajanjePutovanja: number; //u minutima
     avion: Avion;
     ocene: Array<Ocena>;
+  cenaKarte: number;
+  tipLeta: TipLeta;
+  klasaLeta: KlasaLeta;
 
-    constructor(id, avioKompanija: AvioKompanija, cenaRucnogPrtljaga, cenaMalogPrtljaga, cenaVelikogPrtljaga,
-        datumPolaska: Date, datumDolaska: Date, mestoPolaska, mestoDolaska, avion, presedanja = []){
+  constructor(mestoPolaska, mestoDolaska, datumPolaska, vremePoletanja, datumDolaska, vremeSletanja, trajanjePutovanja, razdaljinaPutovanja,klasa, tipLeta, presedanja = [], cena){
             //  Ne radi
-            this.ID = id;
-            this.avioKompanija = avioKompanija;
-            this.cenovnikPrtljaga = new Map<TipPrtljaga, number>();
-            this.cenovnikPrtljaga[TipPrtljaga.rucni] = cenaRucnogPrtljaga;
-            this.cenovnikPrtljaga[TipPrtljaga.mali] = cenaMalogPrtljaga;
-            this.cenovnikPrtljaga[TipPrtljaga.veliki] = cenaVelikogPrtljaga;
-            this.datPolaska = datumPolaska;
-            this.datDolaska = datumDolaska;
-            this.DatumPolaska = datumPolaska.getDate() + '/' + datumPolaska.getMonth() + '/' + datumPolaska.getFullYear() + '\n' + datumPolaska.getHours() + ':' + datumPolaska.getMinutes();
-            this.DatumDolaska = datumDolaska.getDate() + '/' + datumDolaska.getMonth() + '/' + datumDolaska.getFullYear() + '\n' + datumDolaska.getHours() + ':' + datumDolaska.getMinutes();
+            //this.avioKompanija = avioKompanija;
+            //this.cenovnikPrtljaga = new Map<TipPrtljaga, number>();
+            //this.cenovnikPrtljaga[TipPrtljaga.rucni] = cenaRucnogPrtljaga;
+            //this.cenovnikPrtljaga[TipPrtljaga.mali] = cenaMalogPrtljaga;
+            //this.cenovnikPrtljaga[TipPrtljaga.veliki] = cenaVelikogPrtljaga;
+            this.datumPolaska = datumPolaska;
+            this.datumDolaska = datumDolaska;
             this.mestoPolaska = mestoPolaska;
             this.mestoDolaska = mestoDolaska;
-            //this.presedanja = presedanja === null ? new Array<string>() : presedanja;
-            this.avion = avion;
-            this.ocene = new Array<Ocena>();
-            this.razdaljinaPutovanja = this.getRazdaljinaPutovanja();
-            //this.trajanjePutovalja = this.getTrajanjePutovanja();
+            this.vremePoletanja = vremePoletanja;
+            this.vremeSletanja = vremeSletanja;
+            if (presedanja.length == 0) {
+              this.presedanja = null;
+            }
+            else {
+              this.presedanja = presedanja;
+            }
+            this.trajanjePutovanja = trajanjePutovanja;
+            this.razdaljinaPutovanja = razdaljinaPutovanja;
+            if (tipLeta == 'oneWay') {
+              this.tipLeta = TipLeta.oneWay
+            }
+            else {
+              this.tipLeta = TipLeta.multiCity;
+            }
+
+    if (klasa == 'economic') {
+      this.klasaLeta = KlasaLeta.economic;
+    }
+    else if (klasa == 'first') {
+      this.klasaLeta = KlasaLeta.first;
+    }
+    else {
+      this.klasaLeta = KlasaLeta.bussines;
+    }
+            this.cenaKarte = cena;
+            //this.avion = avion;
+            //this.ocene = new Array<Ocena>();
         }
 
-    getRazdaljinaPutovanja(){
-        return -1;
-    }
-    getTrajanjePutovanja(){
-        //return Math.round(this.datDolaska.getTime() - this.datPolaska.getTime()) / 6000;
-    }
+    //getTrajanjePutovanja(){
+    //    //return Math.round(this.datDolaska.getTime() - this.datPolaska.getTime()) / 6000;
+    //}
     ProsecnaOcena(){
         let sum = 0;
         this.ocene.forEach(element => {

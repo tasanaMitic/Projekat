@@ -19,4 +19,8 @@ export class DestinacijeService {
   getAerodromi(): Observable<Aerodrom[]> {
     return this.http.get<Aerodrom[]>(this.BaseURI + '/Aviokompanija/GetAerodromi').pipe();
   }
+
+  deleteAerodrom(grad: string): Observable<any>{
+    return this.http.delete(this.BaseURI + '/Aviokompanija/DeleteAerodrom/'+ grad );
+  }
 }

@@ -25,16 +25,16 @@ export class IstorijaComponent implements OnInit {
     this.letData = new Array<Array<string>>();
     this.kolaData = new Array<Array<string>>();
     
-    this.currentUser.IstorijaLetova.forEach(element => {
-      let temp = new Array<string>();
-      temp.push(element.avioKompanija.naziv);
-      temp.push(element.mestoPolaska)
-      temp.push(element.mestoDolaska)
-      temp.push(element.DatumPolaska)
-      temp.push(element.DatumDolaska)
-      temp.push(element.ProsecnaOcena().toString())
-      this.letData.push(temp)
-    });
+    //this.currentUser.IstorijaLetova.forEach(element => {
+    //  let temp = new Array<string>();
+    //  temp.push(element.avioKompanija.naziv);
+    //  temp.push(element.mestoPolaska)
+    //  temp.push(element.mestoDolaska)
+    //  temp.push(element.DatumPolaska)
+    //  temp.push(element.DatumDolaska)
+    //  temp.push(element.ProsecnaOcena().toString())
+    //  this.letData.push(temp)
+    //});
 
     this.currentUser.IstorijaKola.forEach(element => {
       let temp = new Array<string>();

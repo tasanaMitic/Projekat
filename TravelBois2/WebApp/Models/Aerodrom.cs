@@ -9,7 +9,9 @@ namespace WebApp.Models
     public class Aerodrom
     {
         [Key]
+        [Required]
         public string Grad { get; set; }
+        [Required]
         public string Drzava { get; set; }
     }
 }

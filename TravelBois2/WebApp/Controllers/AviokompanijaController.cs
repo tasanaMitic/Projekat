@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ServerApp.Models;
 using WebApp.Data;
 using WebApp.Models;
 
@@ -29,7 +30,24 @@ namespace WebApp.Controllers
             _context.Aerodromi.Add(aerodrom);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAerodrom", new { grad = aerodrom.Grad}, aerodrom);
+            return CreatedAtAction("GetAerodrom", new { grad = aerodrom.Grad }, aerodrom);
+        }
+
+        [HttpPost]
+        [Route("AddLet")]
+        public async Task<ActionResult<Let>> AddLet(Let let)
+        {
+            _context.Letovi.Add(let);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetLet", new { id = let.Id}, let);
+
+        }
+
+        [HttpGet]
+        [Route("GetLetovi")]
+        public async Task<ActionResult<IEnumerable<Let>>> GetLetovi()
+        {
+            return await _context.Letovi.ToListAsync();
         }
 
         [HttpGet]
@@ -38,6 +56,24 @@ namespace WebApp.Controllers
         {
             return await _context.Aerodromi.ToListAsync();
         }
+
+        [HttpDelete]
+        [Route("DeleteAerodrom/{grad}")]
+        public async Task<ActionResult<Aerodrom>> DeleteAerodrom(string grad)
+        {
+            var aerodrom = await _context.Aerodromi.FindAsync(grad);
+            if (aerodrom == null)
+            {
+                return NotFound();
+            }
+
+            _context.Aerodromi.Remove(aerodrom);
+            await _context.SaveChangesAsync();
+            return aerodrom;
+        }
+
+
+
 
 
 

@@ -1,18 +1,17 @@
-<div>
-  <h1>Destinacije sa kojima poslujete</h1>
-  <table style="border:1px solid black;margin-left:auto;margin-right:auto;">
-    <div [hidden]="empty !==1">
+<h1>Destinacije sa kojima poslujete</h1>
+<div [hidden]="empty !==1">
+  <table  style="border:1px solid black;margin-left:auto;margin-right:auto">
+    <tr>
       <th>Grad</th>
       <th>Drzava</th>
-      <tr *ngFor="let row of letData">
-        <td *ngFor="let data of row">{{data}}</td>
-        <td>
-          <button class="btn-rez" (click)="ukloniGrad(data)">Ukloni</button>
-        </td>
-      </tr>
-
-
-    </div>
+    </tr>
+    <tr *ngFor="let row of letData">
+      <td>{{row[0]}}</td>
+      <td>{{row[1]}}</td>
+      <td>
+        <button class="btn-rez" (click)="ukloniGrad(row[0])">Ukloni</button>
+      </td>
+    </tr>
   </table>
 </div>
 <div>

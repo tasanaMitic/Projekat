@@ -5,7 +5,7 @@
         <div>
           <label for="polaznaDestinacija">Polazna destinacija:</label>
           <input type="text" class="form-control" id="polaznaDestinacija" formControlName="polaznaDestinacija">
-          <div *ngIf="letPodaciForm.controls.polaznaDestinacija.invalid && (letPodaciForm.controls.polaznaDestinacija.dirty || letPodaciForm.controls.polaznaDestinacija.touched)">
+          <div class="alert alert-danger" *ngIf="letPodaciForm.controls.polaznaDestinacija.invalid && (letPodaciForm.controls.polaznaDestinacija.dirty || letPodaciForm.controls.polaznaDestinacija.touched)">
             Unesite destinaciju
           </div>
         </div>
@@ -14,7 +14,7 @@
         <div>
           <label for="odredisnaDestinacija">Odredisna destinacija:</label>
           <input type="text" class="form-control" id="odredisnaDestinacija" formControlName="odredisnaDestinacija">
-          <div *ngIf="letPodaciForm.controls.odredisnaDestinacija.invalid && (letPodaciForm.controls.odredisnaDestinacija.dirty || letPodaciForm.controls.odredisnaDestinacija.touched)">
+          <div class="alert alert-danger" *ngIf="letPodaciForm.controls.odredisnaDestinacija.invalid && (letPodaciForm.controls.odredisnaDestinacija.dirty || letPodaciForm.controls.odredisnaDestinacija.touched)">
             Unesite destinaciju
           </div>
         </div>
@@ -22,8 +22,8 @@
       <div>
         <div>
           <label for="datumPoletanja">Datum poletanja:</label>
-          <input type="date" class="form-control" style="width: 200px;" id="datumPoletanja" name="datumPoletanja" value="2020-07-22" min="2020-01-01" max="2023-01-01">
-          <div *ngIf="letPodaciForm.controls.datumPoletanja.invalid && (letPodaciForm.controls.datumPoletanja.dirty || letPodaciForm.controls.datumPoletanja.touched)">
+          <input type="date" class="form-control" style="width: 200px;" formControlName="datumPoletanja" id="datumPoletanja" name="datumPoletanja" min="2020-01-01" max="2023-01-01">
+          <div class="alert alert-danger" *ngIf="letPodaciForm.controls.datumPoletanja.invalid && (letPodaciForm.controls.datumPoletanja.dirty || letPodaciForm.controls.datumPoletanja.touched)">
             Unesite datum
           </div>
         </div>
@@ -31,8 +31,8 @@
       <div>
         <div>
           <label for="vremePoletanja">Vreme poletanja:</label>
-          <input type="time" class="form-control" style="width: 130px;" id="vremePoletanja" name="vremePoletanja">
-          <div *ngIf="letPodaciForm.controls.vremePoletanja.invalid && (letPodaciForm.controls.vremePoletanja.dirty || letPodaciForm.controls.vremePoletanja.touched)">
+          <input type="time" class="form-control" style="width: 130px;" id="vremePoletanja" name="vremePoletanja" formControlName="vremePoletanja">
+          <div class="alert alert-danger" *ngIf="letPodaciForm.controls.vremePoletanja.invalid && (letPodaciForm.controls.vremePoletanja.dirty || letPodaciForm.controls.vremePoletanja.touched)">
             Unesite vreme
           </div>
         </div>
@@ -40,8 +40,8 @@
       <div>
         <div>
           <label for="datumSletanja">Datum sletanja:</label>
-          <input type="date" class="form-control" style="width: 200px;" id="datumSletanja" name="datumSletanja" value="2020-07-22" min="2020-01-01" max="2023-01-01">
-          <div *ngIf="letPodaciForm.controls.datumSletanja.invalid && (letPodaciForm.controls.datumSletanja.dirty || letPodaciForm.controls.datumSletanja.touched)">
+          <input type="date" class="form-control" style="width: 200px;" id="datumSletanja" formControlName="datumSletanja" name="datumSletanja" min="2020-01-01" max="2023-01-01">
+          <div class="alert alert-danger" *ngIf="letPodaciForm.controls.datumSletanja.invalid && (letPodaciForm.controls.datumSletanja.dirty || letPodaciForm.controls.datumSletanja.touched)">
             Unesite datum
           </div>
         </div>
@@ -49,41 +49,87 @@
       <div>
         <div>
           <label for="vremeSletanja">Vreme sletanja:</label>
-          <input type="time" class="form-control" style="width: 130px;" id="vremeSletanja" name="vremeSletanja">
-          <div *ngIf="letPodaciForm.controls.vremeSletanja.invalid && (letPodaciForm.controls.vremeSletanja.dirty || letPodaciForm.controls.vremeSletanja.touched)">
+          <input type="time" class="form-control" style="width: 130px;" id="vremeSletanja" name="vremeSletanja" formControlName="vremeSletanja">
+          <div class="alert alert-danger" *ngIf="letPodaciForm.controls.vremeSletanja.invalid && (letPodaciForm.controls.vremeSletanja.dirty || letPodaciForm.controls.vremeSletanja.touched)">
             Unesite vreme
           </div>
         </div>
       </div>
       <div>
         <div>
-          <label for="vremePutovanja">Vreme putovanja:</label>
-          <input type="text" class="form-control" id="vremePutovanja" formControlName="vremePutovanja">
-          <div *ngIf="letPodaciForm.controls.vremePutovanja.invalid && (letPodaciForm.controls.vremePutovanja.dirty || letPodaciForm.controls.vremePutovanja.touched)">
+          <label for="vremePutovanja">Vreme putovanja (min):</label>
+          <input type="number" class="form-control" id="vremePutovanja" formControlName="vremePutovanja">
+          <div class="alert alert-danger" *ngIf="letPodaciForm.controls.vremePutovanja.invalid && (letPodaciForm.controls.vremePutovanja.dirty || letPodaciForm.controls.vremePutovanja.touched)">
             Unesite vreme putovanja
           </div>
         </div>
       </div>
       <div>
         <div>
-          <label for="duzinaPutovanja">Duzina putovanja:</label>
-          <input type="text" class="form-control" id="duzinaPutovanja" formControlName="duzinaPutovanja">
-          <div *ngIf="letPodaciForm.controls.duzinaPutovanja.invalid && (letPodaciForm.controls.duzinaPutovanja.dirty || letPodaciForm.controls.duzinaPutovanja.touched)">
+          <label for="duzinaPutovanja">Duzina putovanja(km):</label>
+          <input type="number" class="form-control" id="duzinaPutovanja" formControlName="duzinaPutovanja">
+          <div class="alert alert-danger" *ngIf="letPodaciForm.controls.duzinaPutovanja.invalid && (letPodaciForm.controls.duzinaPutovanja.dirty || letPodaciForm.controls.duzinaPutovanja.touched)">
             Unesite duzinu putovanja
           </div>
         </div>
       </div>
+      <div class="form-group">
+        <label for="klasa">Klasa:</label>
+        <div style="margin-left:80px">
+          <input id="first" type="radio" value="first" name="klasa" formControlName="klasa" />
+          <label for="first">first</label>
+        </div>
+        <div style="margin-left:80px">
+          <input id="economy" type="radio" value="economy" name="klasa" formControlName="klasa" checked="checked" />
+          <label for="economy">economy</label>
+        </div>
+        <div style="margin-left:80px">
+          <input id="business" type="radio" value="business" name="klasa" formControlName="klasa" />
+          <label for="business">business</label>
+        </div>
+        <div class="alert alert-danger" *ngIf="!letPodaciForm.controls.klasa.selected && letPodaciForm.controls.klasa.invalid">
+          Klasa leta je obavezna.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="tipLeta">Tip leta:</label>
+        <div style="margin-left:80px">
+          <input id="oneWay" type="radio" value="oneWay" name="tipLeta" formControlName="tipLeta" (click)="radioButton('oneWay')" />
+          <label for="oneWay">one-way</label>
+        </div>
+        <div style="margin-left:80px">
+          <input id="multiCity" type="radio" value="multiCity" name="tipLeta" formControlName="tipLeta" (click)="radioButton('multiCity')" />
+          <label for="multiCity">multi-city</label>
+        </div>
+        <div *ngIf="!letPodaciForm.controls.tipLeta.selected && letPodaciForm.controls.tipLeta.invalid" class="alert alert-danger">
+          Tip leta je obavezan.
+        </div>
+      </div>
+
+      <div [hidden]="empty == 0">
+        <div>
+          <div>
+            <label for="lokacijePresedanja">Lokacije presedanja(odvojene zarezom ukoliko ih ima vise):</label>
+            <input type="text" class="form-control" id="lokacijePresedanja" formControlName="lokacijePresedanja">
+            <div class="alert alert-danger" *ngIf="letPodaciForm.controls.lokacijePresedanja.invalid && (letPodaciForm.controls.lokacijePresedanja.dirty || letPodaciForm.controls.lokacijePresedanja.touched)">
+              Unesite lokaciju/e presedanja
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div>
         <div>
           <label for="cenaKarte">Cena karte:</label>
-          <input type="text" class="form-control" id="cenaKarte" formControlName="cenaKarte">
-          <div *ngIf="letPodaciForm.controls.cenaKarte.invalid && (letPodaciForm.controls.cenaKarte.dirty || letPodaciForm.controls.cenaKarte.touched)">
+          <input type="number" class="form-control" id="cenaKarte" formControlName="cenaKarte">
+          <div class="alert alert-danger" *ngIf="letPodaciForm.controls.cenaKarte.invalid && (letPodaciForm.controls.cenaKarte.dirty || letPodaciForm.controls.cenaKarte.touched)">
             Unesite cenu karte
           </div>
         </div>
       </div>
       <div>
-        <button  class="btn btn-rez" style="float: left; margin-left: 0.2%;" type="submit">Dodaj</button>
+        <button [disabled]="!letPodaciForm.valid" class="btn btn-rez" style="float: left; margin-left: 0.2%;" type="submit">Dodaj</button>
       </div>
     </form>
 </div>
