@@ -1,4 +1,4 @@
-import { Aerodromi } from './aerodromi';
+import { Aerodrom } from './aerodrom';
 import { Let } from './let';
 import { Ocena } from '../misc/ocena';
 import { Klase } from 'src/app/_enums';
@@ -14,10 +14,10 @@ export class AvioKompanija {
     letovi: Array<Let>;
     Ocene: Array<Ocena>
     rezervacije: Array<Let>;
-    aerodromi: Array<Aerodromi>;
+    aerodromi: Array<Aerodrom>;
 
     //Dok ne skontamo kako se salju podaci
-    moguceDestinacije: Aerodromi;
+    moguceDestinacije: Aerodrom;
 
     constructor(adresa, naziv){
         this.adresa = adresa;
@@ -26,10 +26,9 @@ export class AvioKompanija {
         this.brzaRezervacijaPopust = 0;
         this.letovi = new Array<Let>();
         this.destinacije = new Array<string>();
-        this.moguceDestinacije = new Aerodromi();
         this.Ocene = new Array<Ocena>();
 
-        this.letovi.push(new Let(1, this, 0, 5000, 10000, new Date(2020, 1, 2), new Date(2020, 1, 2), 'Beograd', 'Bec', new Avion(10000, 20, 5000, 30, 1000, 50)))
+        //this.letovi.push(new Let(1, this, 0, 5000, 10000, new Date(2020, 1, 2), new Date(2020, 1, 2), 'Beograd', 'Bec', new Avion(10000, 20, 5000, 30, 1000, 50)))
     }
 
     getType(){
@@ -50,23 +49,23 @@ export class AvioKompanija {
         return sum / count;
     }
 
-    DodajDestinaciju(dest:string){
-        this.moguceDestinacije.lokacije.forEach(element => {
-            if(element === dest) {
-                this.destinacije.push(element);
-                return true;
-            }
-        });
-        return false;
-    }
+    //DodajDestinaciju(dest:string){
+    //    this.moguceDestinacije.lokacije.forEach(element => {
+    //        if(element === dest) {
+    //            this.destinacije.push(element);
+    //            return true;
+    //        }
+    //    });
+    //    return false;
+    //}
 
-    IzracunajPopustBrzeRezervacije(letID:number, klasa: Klase) {
-        var cena;
-        this.letovi.forEach(element => {
-            if (element.ID === letID){
-                return element.avion.segmenti[klasa].cena * (100 - this.brzaRezervacijaPopust);
-            }
-        });
-    }
+    //IzracunajPopustBrzeRezervacije(letID:number, klasa: Klase) {
+    //    var cena;
+    //    this.letovi.forEach(element => {
+    //        if (element.ID === letID){
+    //            return element.avion.segmenti[klasa].cena * (100 - this.brzaRezervacijaPopust);
+    //        }
+    //    });
+    //}
     IzracunajPopustBonusPoena(){}
 }

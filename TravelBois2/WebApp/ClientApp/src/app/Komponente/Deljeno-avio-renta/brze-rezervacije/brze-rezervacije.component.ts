@@ -22,20 +22,20 @@ export class BrzeRezervacijeComponent implements OnInit {
     this.letData = new Array<Array<string>>();
     this.kolaData = new Array<Array<string>>();
     
-    AppComponent.avioKompanije.forEach(element => {
-      element.letovi.forEach(element => {
-        let temp = new Array<string>();
-        temp.push(element.avioKompanija.naziv);
-        temp.push(element.mestoPolaska)
-        temp.push(element.mestoDolaska)
-        temp.push(element.DatumPolaska)
-        temp.push(element.DatumDolaska)
-        temp.push('Business')
-        temp.push('5000')
-        temp.push(element.ProsecnaOcena().toString())
-        this.letData.push(temp)
-      });
-    });
+    //AppComponent.avioKompanije.forEach(element => {
+    //  element.letovi.forEach(element => {
+    //    let temp = new Array<string>();
+    //    temp.push(element.avioKompanija.naziv);
+    //    temp.push(element.mestoPolaska)
+    //    temp.push(element.mestoDolaska)
+    //    temp.push(element.DatumPolaska)
+    //    temp.push(element.DatumDolaska)
+    //    temp.push('Business')
+    //    temp.push('5000')
+    //    temp.push(element.ProsecnaOcena().toString())
+    //    this.letData.push(temp)
+    //  });
+    //});
 
     AppComponent.rente.forEach(element => {
       element.Filijale.forEach(element => {

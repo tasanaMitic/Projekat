@@ -25,23 +25,23 @@ export class LetoviComponent implements OnInit {
   ngOnInit() {
     this.aviokompanija = this.route.snapshot.paramMap.get("naziv");
 
-    AppComponent.avioKompanije.forEach(element => {
-      if (element.naziv == this.aviokompanija)
-      element.letovi.forEach(element => {
-        let temp = new Array<string>();
-        this.empty = 1;
-        temp.push(element.avioKompanija.naziv);
-        temp.push(element.mestoPolaska)
-        temp.push(element.mestoDolaska)
-        temp.push(element.DatumPolaska)
-        temp.push(element.DatumDolaska)
-        temp.push('Business')
-        temp.push('5000')
-        temp.push(element.ProsecnaOcena().toString())
-        this.letData.push(temp)
-      });
+    //AppComponent.avioKompanije.forEach(element => {
+    //  if (element.naziv == this.aviokompanija)
+    //  element.letovi.forEach(element => {
+    //    let temp = new Array<string>();
+    //    this.empty = 1;
+    //    temp.push(element.avioKompanija.naziv);
+    //    temp.push(element.mestoPolaska)
+    //    temp.push(element.mestoDolaska)
+    //    temp.push(element.DatumPolaska)
+    //    temp.push(element.DatumDolaska)
+    //    temp.push('Business')
+    //    temp.push('5000')
+    //    temp.push(element.ProsecnaOcena().toString())
+    //    this.letData.push(temp)
+    //  });
 
-    });
+    //});
   }
 
   onBack(){

@@ -1,12 +1,31 @@
-<div> 
-    <h1>Destinacije sa kojima poslujete</h1>
-    <table>
-        <div [hidden]="empty !==1">
-            <th>Grad</th>
-            <tr *ngFor="let grad of lokacije">
-                <td>{{grad}}</td>
-            </tr>
-
-        </div>
-    </table>
+<h1>Destinacije sa kojima poslujete</h1>
+<div [hidden]="empty !==1">
+  <table  style="border:1px solid black;margin-left:auto;margin-right:auto">
+    <tr>
+      <th>Grad</th>
+      <th>Drzava</th>
+    </tr>
+    <tr *ngFor="let row of letData">
+      <td>{{row[0]}}</td>
+      <td>{{row[1]}}</td>
+      <td>
+        <button class="btn-rez" (click)="ukloniGrad(row[0])">Ukloni</button>
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+  <h5>Dodaj novu destinaciju: </h5>
+  <form [formGroup]="destinacijePodaciForm" (ngSubmit)="onSubmit()">
+    <label for="grad">Grad:</label>
+    <input type="text" id="grad" class="form-control" formControlName="grad" />
+    <label for="drzava">Drzava:</label>
+    <input type="text" id="drzava" class="form-control" formControlName="drzava" />
+    <div>
+      <button [disabled]="!destinacijePodaciForm.valid" class="btn btn-rez" style="float: left; margin-left: 0.2%;" type="submit">Dodaj</button>
+    </div>
+  </form>
+</div>
+<div>
+  <button class="btn btn-primary" style="float: left; margin-left: 0.2%;" (click)="onBack()" type="button">Nazad</button>
 </div>
