@@ -87,13 +87,13 @@ namespace WebApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            ////////////////////////
             app.UseCors(builder =>
             builder.WithOrigins(Configuration["ApplicationSettings:Client_Url"])
             .AllowAnyHeader()
             .AllowAnyMethod());
-
-
+            /////////////////////////
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
@@ -102,6 +102,7 @@ namespace WebApp
             }
 
             app.UseRouting();
+
             app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
