@@ -15,7 +15,7 @@ import { elementAt } from 'rxjs/operators';
   styleUrls: ['./lista-letova.component.css']
 })
 export class ListaLetovaComponent implements OnInit {
-  letHeaders = ['Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Klasa','Tip leta','Vreme poletanja', 'Vreme sletanja','Kilometraza', 'Cena' ];
+  letHeaders = ['ID', 'Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Klasa','Tip leta','Vreme poletanja', 'Vreme sletanja','Kilometraza', 'Cena' ];
   letData : Array<Array<string>>;
   currentUser: AvioAdmin;
   public empty = 0;
@@ -24,9 +24,7 @@ export class ListaLetovaComponent implements OnInit {
   Letovi = new Array<Let>();
 
   constructor(private location: Location, private service: LetoviService) {
-    this.letData = new Array<Array<string>>();
-
-    
+    this.letData = new Array<Array<string>>();    
   }
 
   ngOnInit(): void {
@@ -38,6 +36,7 @@ export class ListaLetovaComponent implements OnInit {
       letovi.forEach(element => {
         let temp = new Array<string>();
         this.empty = 1;
+        temp.push(element.id.toString());
         temp.push(element.mestoPolaska);
         temp.push(element.mestoDolaska);
         temp.push(element.datumPolaska);
@@ -65,6 +64,12 @@ export class ListaLetovaComponent implements OnInit {
         //temp.push(element.ocene.toString());
         this.letData.push(temp);
       }));
+  }
+
+  ukloniLet(data: string) {
+    var number = parseInt(data);
+    this.service.deleteLet(number).subscribe();
+    window.location.reload();
   }
 
   onBack(){

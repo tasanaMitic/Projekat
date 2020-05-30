@@ -6,8 +6,8 @@ import { element } from 'protractor';
 import { Let } from 'src/app/entities/objects/let';
 import { LetoviComponent } from '../letovi/letovi.component';
 import { Avion } from 'src/app/entities/objects/avion';
-import { Location } from '@angular/common';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import { LetoviService } from '../../../shared/letovi.service';
 
 @Component({
   selector: 'app-izvestaj-o-poslovanju-avio',
@@ -30,7 +30,7 @@ export class IzvestajOPoslovanjuAvioComponent implements OnInit {
   Meseci = new Array<string>();
   Godine = new Array<number>();
 
-  constructor(private location: Location, public fb: FormBuilder, calendar: NgbCalendar) {
+  constructor(private service: LetoviService, public fb: FormBuilder, calendar: NgbCalendar) {
     var CurrntMonth: string[] = ["Januar", "Februar", "Mart", "April", "Maj", "Jun", "Jul", "Avgust", "Septembar", "Octobar", "Novembar", "Decembar",];
     this.Godine.push(2019);
 
@@ -104,6 +104,8 @@ export class IzvestajOPoslovanjuAvioComponent implements OnInit {
   }
 
   GetLetoviId() {
+    //this.service
+
     //let Letovi = this.currentUser.avioKompanija.letovi;
 
     //let ids = new Array<number>();

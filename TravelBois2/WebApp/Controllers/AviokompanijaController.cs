@@ -72,6 +72,21 @@ namespace WebApp.Controllers
             return aerodrom;
         }
 
+        [HttpDelete]
+        [Route("DeleteLet/{id}")]
+        public async Task<ActionResult<Let>> DeleteLet(int id)
+        {
+            var let = await _context.Letovi.FindAsync(id);
+            if (let == null)
+            {
+                return NotFound();
+            }
+
+            _context.Letovi.Remove(let);
+            await _context.SaveChangesAsync();
+            return let;
+        }
+
 
 
 

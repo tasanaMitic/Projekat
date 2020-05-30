@@ -19,4 +19,8 @@ export class LetoviService {
   getLetovi(): Observable<Let[]> {
     return this.http.get<Let[]>(this.BaseURI + '/Aviokompanija/GetLetovi').pipe();
   }
+
+  deleteLet(id: number): Observable<any> {
+    return this.http.delete(this.BaseURI + '/Aviokompanija/DeleteLet/' + id);
+  }
 }

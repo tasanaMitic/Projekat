@@ -6,11 +6,19 @@
                 {{column}}
             </th>
             <tr *ngFor="let row of letData">
-                <td *ngFor="let data of row">
-                    {{data}}
-                </td>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <td>{{row[3]}}</td>
+                <td>{{row[4]}}</td>
+                <td>{{row[5]}}</td>
+                <td>{{row[6]}}</td>
+                <td>{{row[7]}}</td>
+                <td>{{row[8]}}</td>
+                <td>{{row[9]}}</td>
+                <td>{{row[10]}}</td>
                 <td>
-                    <button  class="btn-rez" >Izmeni</button>
+                    <button class="btn-rez" (click)="ukloniLet(row[0])">Ukloni</button>
                 </td>
             </tr>
         </div>

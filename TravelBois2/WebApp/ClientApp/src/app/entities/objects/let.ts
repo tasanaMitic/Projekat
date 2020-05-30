@@ -19,7 +19,8 @@ export class Let {
 
 
     avioKompanija: AvioKompanija;
-    //cenovnikPrtljaga: Map<TipPrtljaga, number>;
+  //cenovnikPrtljaga: Map<TipPrtljaga, number>;
+     id: number;
     datumPolaska: string;
     datumDolaska: string;
     vremePoletanja: string;
