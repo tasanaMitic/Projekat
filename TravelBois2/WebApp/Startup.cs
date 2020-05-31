@@ -31,7 +31,8 @@ namespace WebApp
             //Inject AppSettings
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
 
-            services.AddControllersWithViews();
+
+            services.AddControllers();
             // In production, the Angular files will be served from this directory
             services.AddDbContext<AuthenticationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
             services.AddDbContext<AviokompanijaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
