@@ -33,22 +33,22 @@ namespace WebApp.Controllers
         [HttpPost]
         [Route("Register")]
         //POST: /api/ApplicationUser/Register
-        public async Task<Object> PostApplicationUser(ApplicationUserModel model)
+        public async Task<Object> PostApplicationUser(ApplicationUserModel body)
         {
             Console.WriteLine("post pozvan");
             var applicationUser = new ApplicationUser()
             {
-                UserName = model.UserName,
-                Email = model.Email,
-                Name = model.Name,
-                Lastname = model.Lastname,
-                Grad = model.Grad,
-                BrojPasosa = model.BrojPasosa.ToString(),
-                BrojTelefona = model.BrojTelefona.ToString()
+                UserName = body.UserName,
+                Email = body.Email,
+                Name = body.Name,
+                Lastname = body.Lastname,
+                Grad = body.Grad,
+                BrojPasosa = body.BrojPasosa.ToString(),
+                BrojTelefona = body.BrojTelefona.ToString()
             };
             try
             {
-                var result = await _userManager.CreateAsync(applicationUser, model.Password);
+                var result = await _userManager.CreateAsync(applicationUser, body.Password);
                 return Ok(result);
             }
             catch (Exception ex)
