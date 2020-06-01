@@ -50,11 +50,11 @@ export class AppComponent {
     AppComponent.avioKompanije = new Array<AvioKompanija>();
     AppComponent.rente = new Array<RentACar>();
 
-    AppComponent.avioKompanije.push(new AvioKompanija('aresa 1', 'Jat'))
+    AppComponent.avioKompanije.push(new AvioKompanija('Jat', 'adresa1', 'Beograd'))
     AppComponent.rente.push(new RentACar('Car2Go', 'adresa 3'))
 
-    AppComponent.currentUser = new User();
-    //AppComponent.currentUser = new RegisteredUser('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password', 111546);
+    //AppComponent.currentUser = new User();
+    AppComponent.currentUser = new RegisteredUser('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password', 111546);
     //AppComponent.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
     //AppComponent.currentUser = new Admin('sysAdmin', 'password');
 

@@ -20,6 +20,7 @@ export class RegAvioKompanijuComponent implements OnInit {
     this.regAvioForm = new FormGroup({
       'naziv': new FormControl('', Validators.required),
       'adresa': new FormControl('', Validators.required),
+      'grad': new FormControl('', Validators.required),
       'opis': new FormControl('', Validators.required),
     });
   }

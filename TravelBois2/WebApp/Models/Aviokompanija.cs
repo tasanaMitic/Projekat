@@ -15,6 +15,8 @@ namespace ServerApp.Models
         public string Naziv { get; set; }
         [Required]
         public string Adresa { get; set; }
+        [Required]
+        public string Grad { get; set; }
         public string Opis { get; set; }
         //public ICollection<Ocena> Ocene { get; set; }
         [Required]

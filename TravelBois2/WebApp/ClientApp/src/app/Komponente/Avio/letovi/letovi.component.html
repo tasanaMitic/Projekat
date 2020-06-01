@@ -4,38 +4,37 @@
     <div>
         <div >
             <div>
-                <input type="text" class="label"  placeholder="polazni aerodrom" id="destOd" >
-                <input type="text" class="label" placeholder="odredisni aerodrom" id="destDo">                
-                <label for="datPolaska" class="label" >datum polaska:</label>
-                <input type="date" class="label" id="datPolaska" name="datPolaska"value="2020-07-22" min="2020-01-01" max="2021-01-01">
-                <label for="datPovratka" class="label" >datum povratka:</label>
-                <input type="date" class="label" id="datPovratka" name="datPovratka"value="2020-07-22" min="2020-01-01" max="2021-01-01">                
-                <input type="number" class="label" placeholder="broj osoba" id="brojOsoba">
-                <div class="dropdown">
-                    <button class="dropbtn">Klasa</button>
-                    <div class="dropdown-content">
-                      <a href="#">first</a>
-                      <a href="#">economy</a>
-                      <a href="#">business</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn" >Tip puta</button>
-                    <div class="dropdown-content">
-                      <a href="#">one-way</a>
-                      <a href="#">multi-city</a>
-                    </div>
-                </div>
-                
+              <form [formGroup]="FilterForm" (ngSubmit)="onSubmit()">
+                <input type="text" class="label" placeholder="polazni aerodrom" id="destOd" formControlName="destOd">
+                <input type="text" class="label" placeholder="odredisni aerodrom" id="destDo" formControlName="destDo">
+                <label for="datPolaska" class="label" style="width:9%">datum polaska:</label>
+                <input type="date" class="label" id="datPolaska" name="datPolaska"  min="2020-01-01" max="2021-01-01" formControlName="datPolaska">
+                <label for="datDolaska" class="label" style="width:9%">datum dolaska:</label>
+                <input type="date" class="label" id="datDolaska" name="datDolaska"  min="2020-01-01" max="2021-01-01" formControlName="datDolaska">
+                Klasa:
+                <select class="dropbtn" formControlName="klasa" (change)="KlasaChanged($event)">
+                  <option></option>
+                  <option>first</option>
+                  <option>economy</option>
+                  <option>business</option>
+                </select>
+                Tip puta:
+                <select class="dropbtn" formControlName="tipPuta" (change)="TipPuta($event)">
+                  <option></option>
+                  <option>one-way</option>
+                  <option>multi-city</option>
+                </select>
                 <div>
-                    <button type="button" class="btn btn-primary" style="margin-right: 0.2%; float:right"   (click)="filterReset()">Resetuj</button>
-                    <button type="button" class="btn btn-success" style="margin-right: 0.2%; float:right"  (click)="filterLet()">Filtriraj</button>
-                    
+                  <button type="button" class="btn btn-primary" style="margin-right: 0.2%; float:right" (click)="filterReset()">Resetuj</button>
+                  <button type="submit" class="btn btn-success" style="margin-right: 0.2%; float:right">Filtriraj</button>
                 </div>
+              </form>
             </div>            
         </div>     
     </div>        
 </div>
+<br />
+<br />
 
 <div>
     <br/>

@@ -1,40 +1,49 @@
 <div class="container">
     <h1>Registracija aviokompanije</h1>
     <form [formGroup]="regAvioForm" (ngSubmit)="onSubmit()">
+      <div>
         <div>
-            <div>
-                <label for="naziv">Naziv:</label>
-                <input type="text" id="naziv" formControlName="naziv" class="form-control">
-                <div *ngIf="regAvioForm.controls.naziv.invalid">
-                    Unesite naziv
-                </div>
-            </div>
+          <label for="naziv">Naziv:</label>
+          <input type="text" id="naziv" formControlName="naziv" class="form-control">
+          <div *ngIf="regAvioForm.controls.naziv.invalid">
+            Unesite naziv
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <label for="adresa">Adresa:</label>
+          <input type="text" id="adresa" formControlName="adresa" class="form-control">
+          <div *ngIf="regAvioForm.controls.adresa.invalid">
+            Unesite adresu
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <label for="grad">Grad:</label>
+          <input type="text" id="grad" formControlName="grad" class="form-control">
+          <div *ngIf="regAvioForm.controls.grad.invalid">
+            Unesite grad
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <label for="opis">Opis:</label>
+          <input type="text" id="opis" formControlName="opis" class="form-control">
+          <div *ngIf="regAvioForm.controls.opis.invalid">
+            Unesite opis
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <button [disabled]="!regAvioForm.valid" type="submit" class="btn btn-success">Sacuvaj</button>
         </div>
         <div>
-            <div>
-                <label for="adresa">Adresa:</label>
-                <input type="text" id="adresa" formControlName="adresa" class="form-control">
-                <div *ngIf="regAvioForm.controls.adresa.invalid">
-                    Unesite adresu
-                </div>
-            </div>
+          <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
         </div>
-        <div>
-            <div>
-                <label for="opis">Opis:</label>
-                <input type="text" id="opis" formControlName="opis" class="form-control">
-                <div *ngIf="regAvioForm.controls.opis.invalid">
-                    Unesite opis
-                </div>
-            </div>
-        </div>
-        <div>
-            <div>
-                <button [disabled]="!regAvioForm.valid" type="submit" class="btn btn-success">Sacuvaj</button>
-            </div>
-            <div>
-                <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
-            </div>
-        </div>
+      </div>
     </form>
 </div>

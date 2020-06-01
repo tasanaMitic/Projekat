@@ -5,6 +5,7 @@ import { AppComponent } from '../../../app.component';
 import {Location} from '@angular/common'
 import { Let } from '../../../entities/objects/let';
 import { Kola } from '../../../entities/objects/kola';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-avio-kompanije',
@@ -13,31 +14,57 @@ import { Kola } from '../../../entities/objects/kola';
 })
 export class AvioKompanijeComponent implements OnInit {
   kompanije: Array<AvioKompanija>;
-  brzeRezervacijeLetova: Array<Let>;
-  brzeRezervacijeKola: Array<Kola>;
+  SortForm: FormGroup;
   currentUser: User;
 
   //ZA CSS
   klasa: string;
   tip: string;
 
-  constructor(private location:Location) { 
+  constructor(private location: Location, public fb: FormBuilder) { 
     this.kompanije = new Array<AvioKompanija>();   
-    this.brzeRezervacijeKola = new Array<Kola>();
-    this.brzeRezervacijeLetova = new Array<Let>(); 
     this.klasa = 'kompanija-slika';
     this.tip = 'AvioKompanije';
+
+    this.SortForm = this.fb.group({
+      selectedKriterijum: ['']
+    });
+  }
+
+  KriterijumChanged(e) {
+    this.sortiraj(this.SortForm.get('selectedKriterijum').value);
+  }
+
+  sortiraj(kriterijum: string) {
+    console.log(kriterijum);
+    if (kriterijum == 'naziv') {
+      this.kompanije.sort((a, b) => a.naziv.localeCompare(b.naziv));
+    }
+    else if (kriterijum == 'grad') {
+      this.kompanije.sort((a, b) => a.grad.localeCompare(b.grad));
+    }
+    else if (kriterijum == 'prosecna ocena') {
+      //this.kompanije.sort((a, b) => a.ProsecnaOcena() - b.ProsecnaOcena());
+    }
   }
 
   ngOnInit(): void {
     this.currentUser = AppComponent.currentUser;
-    this.kompanije.push(new AvioKompanija('Bogdana Suputa 5', 'Jat'));
-    this.kompanije.push(new AvioKompanija('Petefi Sandora 9', 'WizzAir'));
+    this.kompanije.push(new AvioKompanija('Jat', 'Bogdana Suputa 5', 'Beograd'));
+    this.kompanije.push(new AvioKompanija('WizzAir', 'Petefi Sandora 9','Abu dabi'));
+  }
+
+  oceni(naziv: string) {
+    //console.log("naziv komapnije je: " + naziv);
   }
 
   onBack()
   {
     this.location.back();
+  }
+
+  letoviUrl(url: string) {
+    window.open('https://localhost:44343/letovi/' + url, "_self");
   }
 
   getType(){

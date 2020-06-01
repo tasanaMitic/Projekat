@@ -5,7 +5,8 @@ import { Klase } from 'src/app/_enums';
 import { Avion } from './avion';
 
 export class AvioKompanija {
-    adresa: string;
+  adresa: string;
+  grad: string;
     naziv: string;
     opis: string;
     slikaUrl: string;
@@ -19,9 +20,10 @@ export class AvioKompanija {
     //Dok ne skontamo kako se salju podaci
     moguceDestinacije: Aerodrom;
 
-    constructor(adresa, naziv){
+    constructor(naziv, adresa, grad){
         this.adresa = adresa;
         this.naziv = naziv;
+        this.grad = grad;
         this.opis = 'Opis aviokompanije';
         this.brzaRezervacijaPopust = 0;
         this.letovi = new Array<Let>();

@@ -16,6 +16,7 @@ export class RegisteredUser extends User implements OnInit{
     MojaKola: Array<Kola>;
     MojiLetovi: Array<Let>;
     Prijatelji: Array<RegisteredUser>;
+    Zahtevi: Array<RegisteredUser>;
 
     constructor(brTel: string, grad: string, ime: string, 
         prezime: string, username: string, password: string,
