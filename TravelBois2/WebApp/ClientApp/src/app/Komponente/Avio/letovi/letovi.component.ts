@@ -70,7 +70,7 @@ export class LetoviComponent implements OnInit {
   }
 
   onSubmit() {
-    this.filtriraniLetovi = Array<Let>();
+    //this.filtriraniLetovi = Array<Let>();
     //this.letDataF = new Array<Array<string>>();
     this.destOd = this.FilterForm.get('destOd').value;
     this.destDo = this.FilterForm.get('destDo').value;
@@ -79,7 +79,7 @@ export class LetoviComponent implements OnInit {
       if (this.k == 'economic') {
         this.klasa = '0';
       }
-      else if (this.k == 'bussines') {
+      else if (this.k == 'business') {
         this.klasa = '1';
       }
       else {
@@ -105,7 +105,7 @@ export class LetoviComponent implements OnInit {
     this.datDolaska = this.FilterForm.get('datDolaska').value;
 
    
-    console.log("u filteri: " +this.destOd + ' ' + this.destDo + ' ' + this.klasa + ' ' + this.tipPuta + ' ' + this.datPolaska + ' ' + this.datDolaska);
+    //console.log("filteri: " +this.destOd + ' ' + this.destDo + ' ' + this.klasa + ' ' + this.tipPuta + ' ' + this.datPolaska + ' ' + this.datDolaska);
     //////filtriranje
 
     if (this.destOd != "") {
@@ -114,17 +114,21 @@ export class LetoviComponent implements OnInit {
           if (this.tipPuta != "") {
             if (this.datPolaska != "") {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.mestoDolaska == this.destDo && l.klasaLeta.toString() == this.klasa && l.tipLeta.toString() == this.tipPuta && l.datumPolaska == this.datPolaska && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.mestoDolaska == this.destDo && l.klasaLeta.toString() == this.klasa && l.tipLeta.toString() == this.tipPuta && l.datumPolaska == this.datPolaska);
               }
             }
             else { //nemam datum polaska
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.mestoDolaska == this.destDo && l.klasaLeta.toString() == this.klasa && l.tipLeta.toString() == this.tipPuta && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.mestoDolaska == this.destDo && l.klasaLeta.toString() == this.klasa && l.tipLeta.toString() == this.tipPuta);
               }
             }
@@ -132,17 +136,21 @@ export class LetoviComponent implements OnInit {
           else {  //nemam tip
             if (this.datPolaska != "") {  //nemam tip 
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.mestoDolaska == this.destDo && l.klasaLeta.toString() == this.klasa && l.datumPolaska == this.datPolaska && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.mestoDolaska == this.destDo && l.klasaLeta.toString() == this.klasa && l.datumPolaska == this.datPolaska);
               }
             }
             else {  //nemam tip ni datum polaska
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.mestoDolaska == this.destDo && l.klasaLeta.toString() == this.klasa && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.mestoDolaska == this.destDo && l.klasaLeta.toString() == this.klasa);
               }
             }
@@ -152,18 +160,22 @@ export class LetoviComponent implements OnInit {
           if (this.tipPuta != "") { // nemam klasu al imamtip puta
             if (this.datPolaska != "") {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.mestoDolaska == this.destDo && l.tipLeta.toString() == this.tipPuta && l.datumPolaska == this.datPolaska && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.mestoDolaska == this.destDo && l.tipLeta.toString() == this.tipPuta && l.datumPolaska == this.datPolaska);
               }
 
             }
             else { // nemam ni datum polaska
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.mestoDolaska == this.destDo && l.tipLeta.toString() == this.tipPuta && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.mestoDolaska == this.destDo && l.tipLeta.toString() == this.tipPuta);
               }
             }
@@ -171,17 +183,21 @@ export class LetoviComponent implements OnInit {
           else { //nemam klasu ni tip puta
             if (this.datPolaska != "") {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.mestoDolaska == this.destDo && l.datumPolaska == this.datPolaska && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.mestoDolaska == this.destDo && l.datumPolaska == this.datPolaska);
               }
             }
             else {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.mestoDolaska == this.destDo && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.mestoDolaska == this.destDo);
               }
             }
@@ -193,17 +209,21 @@ export class LetoviComponent implements OnInit {
           if (this.tipPuta != "") {
             if (this.datPolaska != "") {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.klasaLeta.toString() == this.klasa && l.tipLeta.toString() == this.tipPuta && l.datumPolaska == this.datPolaska && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.klasaLeta.toString() == this.klasa && l.tipLeta.toString() == this.tipPuta && l.datumPolaska == this.datPolaska);
               }
             }
             else {//nemam destinaciju dolaska, i nemam datum polaska
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.klasaLeta.toString() == this.klasa && l.tipLeta.toString() == this.tipPuta && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.klasaLeta.toString() == this.klasa && l.tipLeta.toString() == this.tipPuta);
               }
             }
@@ -211,17 +231,21 @@ export class LetoviComponent implements OnInit {
           else {  //nemam dest dolaska, nemam tip
             if (this.datPolaska != "") {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.klasaLeta.toString() == this.klasa &&  l.datumPolaska == this.datPolaska && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.klasaLeta.toString() == this.klasa  && l.datumPolaska == this.datPolaska );
               }
             }
             else {//nemam dest dolaska, tip ni datum polaska
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd  && l.klasaLeta.toString() == this.klasa   && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd  && l.klasaLeta.toString() == this.klasa );
               }
             }
@@ -231,17 +255,21 @@ export class LetoviComponent implements OnInit {
           if (this.tipPuta != "") {
             if (this.datPolaska != "") {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd  && l.tipLeta.toString() == this.tipPuta && l.datumPolaska == this.datPolaska && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd &&  l.tipLeta.toString() == this.tipPuta && l.datumPolaska == this.datPolaska );
               }
             }
             else { //nema des dolazka, ni klasu, ni datum polaska
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd   && l.tipLeta.toString() == this.tipPuta  && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd   && l.tipLeta.toString() == this.tipPuta );
               }
             }
@@ -249,17 +277,21 @@ export class LetoviComponent implements OnInit {
           else { //nemam dest dolazaka, klasu ni tip
             if (this.datPolaska != "") {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd  && l.datumPolaska == this.datPolaska && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd && l.datumPolaska == this.datPolaska );
               }
             }
             else {//nemam dest dolazaka, klasu, tip i datum polazaka
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd   && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoPolaska == this.destOd);
               }
             }
@@ -273,17 +305,21 @@ export class LetoviComponent implements OnInit {
           if (this.tipPuta != "") {
             if (this.datPolaska != "") {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoDolaska == this.destDo && l.klasaLeta.toString() == this.klasa && l.tipLeta.toString() == this.tipPuta && l.datumPolaska == this.datPolaska && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoDolaska == this.destDo && l.klasaLeta.toString() == this.klasa && l.tipLeta.toString() == this.tipPuta && l.datumPolaska == this.datPolaska);
               }
             }
             else {//nemam dest polazaka ni datum polazata
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoDolaska == this.destDo && l.klasaLeta.toString() == this.klasa && l.tipLeta.toString() == this.tipPuta && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoDolaska == this.destDo && l.klasaLeta.toString() == this.klasa && l.tipLeta.toString() == this.tipPuta);
               }
             }
@@ -291,17 +327,21 @@ export class LetoviComponent implements OnInit {
           else {  //nemam dest polazaka ni tip
             if (this.datPolaska != "") {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoDolaska == this.destDo && l.klasaLeta.toString() == this.klasa && l.datumPolaska == this.datPolaska && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoDolaska == this.destDo && l.klasaLeta.toString() == this.klasa && l.datumPolaska == this.datPolaska);
               }
             }
             else {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoDolaska == this.destDo && l.klasaLeta.toString() == this.klasa && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoDolaska == this.destDo && l.klasaLeta.toString() == this.klasa);
               }
             }
@@ -311,17 +351,21 @@ export class LetoviComponent implements OnInit {
           if (this.tipPuta != "") {
             if (this.datPolaska != "") {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoDolaska == this.destDo && l.tipLeta.toString() == this.tipPuta && l.datumPolaska == this.datPolaska && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoDolaska == this.destDo && l.tipLeta.toString() == this.tipPuta && l.datumPolaska == this.datPolaska);
               }
             }
             else { // nemam dest polazaka, klasu ni datum polaska
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoDolaska == this.destDo && l.tipLeta.toString() == this.tipPuta && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoDolaska == this.destDo && l.tipLeta.toString() == this.tipPuta);
               }
             }
@@ -329,17 +373,21 @@ export class LetoviComponent implements OnInit {
           else {//nemam dest polazaka ni klasu ni tip
             if (this.datPolaska != "") {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoDolaska == this.destDo && l.datumPolaska == this.datPolaska && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoDolaska == this.destDo && l.datumPolaska == this.datPolaska);
               }
             }
             else {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoDolaska == this.destDo && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.mestoDolaska == this.destDo);
               }
             }
@@ -351,34 +399,42 @@ export class LetoviComponent implements OnInit {
           if (this.tipPuta != "") {
             if (this.datPolaska != "") {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.klasaLeta.toString() == this.klasa && l.tipLeta.toString() == this.tipPuta && l.datumPolaska == this.datPolaska && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.klasaLeta.toString() == this.klasa && l.tipLeta.toString() == this.tipPuta && l.datumPolaska == this.datPolaska);
               }
             }
             else {//nemam dest polazaka ni dolazaka ni datum polaska
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l =>  l.klasaLeta.toString() == this.klasa && l.tipLeta.toString() == this.tipPuta && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.klasaLeta.toString() == this.klasa && l.tipLeta.toString() == this.tipPuta );}
             }
           }
           else {//nemam dest polazaka ni dolazaka ni puta
             if (this.datPolaska != "") {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.klasaLeta.toString() == this.klasa && l.datumPolaska == this.datPolaska && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.klasaLeta.toString() == this.klasa && l.datumPolaska == this.datPolaska);
               }
             }
             else {//nemam dest polazaka ni dolazaka ni puta ni datum polazaka
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l =>  l.klasaLeta.toString() == this.klasa  &&  l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.klasaLeta.toString() == this.klasa );
               }
             }
@@ -389,17 +445,21 @@ export class LetoviComponent implements OnInit {
             if (this.datPolaska != "") {
               if (this.datDolaska != "")
               {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l =>  l.tipLeta.toString() == this.tipPuta && l.datumPolaska == this.datPolaska && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.tipLeta.toString() == this.tipPuta && l.datumPolaska == this.datPolaska );
               }
             }
             else {//nemam dest polazaka ni dolazaka ni klasu ni datum polazaka
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l =>  l.tipLeta.toString() == this.tipPuta && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.tipLeta.toString() == this.tipPuta );
               }
             }
@@ -407,18 +467,21 @@ export class LetoviComponent implements OnInit {
           else {//nemam dest polazaka ni dolazaka ni klasu ni tip puta
             if (this.datPolaska != "") {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l =>  l.datumPolaska == this.datPolaska && l.datumDolaska == this.datDolaska);
               }
               else {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.datumPolaska == this.datPolaska );
               }
             }
             else {
               if (this.datDolaska != "") {
+                this.filtriraniLetovi = Array<Let>();
                 this.filtriraniLetovi = this.letovi.filter(l => l.datumDolaska == this.datDolaska);
               }
               else {
-                //this.empty = 1;
+                this.filtriraniLetovi = Array<Let>();
               }
             }
           }
@@ -427,12 +490,29 @@ export class LetoviComponent implements OnInit {
     }
 
     if (this.filtriraniLetovi.length != 0) {
-      console.log('duzina:' + this.filtriraniLetovi.length);
+      this.empty = 2;
+    }
+    else {
+      if (this.destDo == "" && this.destOd == "" && this.klasa == "" && this.tipPuta == "" && this.datDolaska == "" && this.datPolaska == "") {
+        this.empty = 1;
+      }
+      else {
+        this.empty = 3;
+      }
+      
+    }
+
+    if (this.empty == 2) {
+      console.log('duzina liste filtriranih:' + this.filtriraniLetovi.length);
+      this.filtriraniLetovi.forEach(element => {
+        console.log("ispis:");
+        console.log(element.mestoPolaska + ' ' + element.mestoDolaska);
+      });
+
 
       this.letDataF = new Array<Array<string>>();
       this.filtriraniLetovi.forEach(element => {
         let temp = new Array<string>();
-        this.empty = 2;
         temp.push(element.mestoPolaska);
         temp.push(element.mestoDolaska);
         temp.push(element.datumPolaska);
@@ -459,16 +539,9 @@ export class LetoviComponent implements OnInit {
         this.letDataF.push(temp);
       });
     }
-    else {
-      if (this.destDo == "" && this.destOd == "" && this.klasa == "" && this.tipPuta == "" && this.datDolaska == "" && this.datPolaska == "") {
-        this.empty = 1;
-      }
-       else { this.empty = 3;}
-      
-    }
 
 
-    console.log(this.empty);
+    console.log('vrednost empty: '+this.empty);
   }
 
   KlasaChanged(e) {
