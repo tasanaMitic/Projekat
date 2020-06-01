@@ -43,6 +43,7 @@ import { DodajLetComponent } from './Komponente/Avio/dodaj-let/dodaj-let.compone
 import { DestinacijeAvioComponent } from './Komponente/Avio/destinacije-avio/destinacije-avio.component';
 import { MapsComponent } from './Komponente/Deljeno-avio-renta/maps/maps.component';
 import { UserService } from './shared/user.service';
+import { OcenjivanjeComponent } from './Komponente/Deljeno-avio-renta/ocenjivanje/ocenjivanje.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { UserService } from './shared/user.service';
     ListaLetovaComponent,
     DodajLetComponent,
     DestinacijeAvioComponent,
-    MapsComponent
+    MapsComponent,
+    OcenjivanjeComponent
   ],
   imports: [
     BrowserModule,

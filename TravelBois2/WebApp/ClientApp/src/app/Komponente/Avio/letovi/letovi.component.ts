@@ -17,7 +17,7 @@ export class LetoviComponent implements OnInit {
   letHeaders = ['Avio kompanija', 'Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Klasa', 'Cena', 'Prosecna ocena', ''];
   letData: Array<Array<string>>; //lista letova
   FilterForm: FormGroup;
-  public empty = 0;
+  empty: number;
   destOd: string;
   destDo: string;
   datPolaska: string;
@@ -28,6 +28,7 @@ export class LetoviComponent implements OnInit {
 
   constructor(private location: Location, private route: ActivatedRoute) {
     this.letData = new Array<Array<string>>();
+    this.empty = 0;
    }
 
   ngOnInit() {
@@ -88,12 +89,12 @@ export class LetoviComponent implements OnInit {
   TipPuta(e) {
 
     this.tipPuta = this.FilterForm.get('tipPuta').value;
-  }
+  } 
 
-  onBack(){
+  RezervisiLet() { }
+
+  onBack() {
     this.location.back();
   }
-
-  RezervisiLet(){}
 
 }

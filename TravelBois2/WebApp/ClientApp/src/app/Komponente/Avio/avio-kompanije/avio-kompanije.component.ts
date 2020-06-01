@@ -55,7 +55,7 @@ export class AvioKompanijeComponent implements OnInit {
   }
 
   oceni(naziv: string) {
-    //console.log("naziv komapnije je: " + naziv);
+    window.open('https://localhost:44343/oceni/' + naziv, "_self");
   }
 
   onBack()

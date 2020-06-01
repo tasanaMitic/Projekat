@@ -549,3 +549,10 @@ td, th, tr{
     padding: 5px;
     text-align: center;
 }
+
+/*===================================OCENE==============================*/
+.star {
+  position: center;
+  color: orange;
+  font-size: 100px;
+}
