@@ -3,27 +3,30 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common'
 
 @Component({
-  selector: 'app-ocenjivanje',
-  templateUrl: './ocenjivanje.component.html',
-  styleUrls: ['./ocenjivanje.component.css']
+  selector: 'app-oceni-let',
+  templateUrl: './oceni-let.component.html',
+  styleUrls: ['./oceni-let.component.css']
 })
-export class OcenjivanjeComponent implements OnInit {
-  kompanija: string;
+export class OceniLetComponent implements OnInit {
+  relacija: string;
   rating = 0;
   ocena: number;
-  empty:number;
+  empty: number;
+  id: number;
 
   constructor(private route: ActivatedRoute, private location: Location) {
     this.empty = 0;
   }
 
   ngOnInit(): void {
-    this.kompanija = this.route.snapshot.paramMap.get("naziv");
-    console.log(this.empty)
+    this.relacija = this.route.snapshot.paramMap.get("relacija");
+    this.id = parseInt(this.route.snapshot.paramMap.get("id"));
   }
+
   onRateChange(rating: number) {
     this.ocena = rating;
     this.empty = 1;
+    console.log(this.id);
 
     //slanje ocene servisu
   }

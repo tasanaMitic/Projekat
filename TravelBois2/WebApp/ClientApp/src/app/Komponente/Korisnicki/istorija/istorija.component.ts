@@ -4,6 +4,9 @@ import { User } from '../../../entities/users/user/user';
 import { AppComponent } from '../../../app.component';
 import { RegisteredUser } from '../../../entities/users/registered-user/registered-user';
 import { TipVozila } from '../../../_enums';
+import { Let } from '../../../entities/objects/let';
+import { Aerodrom } from '../../../entities/objects/aerodrom';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-istorija',
@@ -11,30 +14,21 @@ import { TipVozila } from '../../../_enums';
   styleUrls: ['./istorija.component.css']
 })
 export class IstorijaComponent implements OnInit {
-  currentUser: RegisteredUser;
-
-  letHeaders = ['Avio kompanija', 'Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Prosecna ocena', ''];
+  letHeaders = [ 'Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Prosecna ocena'];
   letData : Array<Array<string>>;
-
   kolaHeaders = ['Rent-A-Car', 'Marka', 'Model', 'Godiste', 'Broj mesta', 'Tip', 'Prosecna ocena'];
   kolaData: Array<Array<string>>;
+  currentUser: RegisteredUser;
+  relacija: string;
+
+
+  IstorijaLetova: Array<Let>;
 
 
   constructor(private location: Location) { 
     this.currentUser = AppComponent.currentUser as RegisteredUser;
     this.letData = new Array<Array<string>>();
     this.kolaData = new Array<Array<string>>();
-    
-    //this.currentUser.IstorijaLetova.forEach(element => {
-    //  let temp = new Array<string>();
-    //  temp.push(element.avioKompanija.naziv);
-    //  temp.push(element.mestoPolaska)
-    //  temp.push(element.mestoDolaska)
-    //  temp.push(element.DatumPolaska)
-    //  temp.push(element.DatumDolaska)
-    //  temp.push(element.ProsecnaOcena().toString())
-    //  this.letData.push(temp)
-    //});
 
     this.currentUser.IstorijaKola.forEach(element => {
       let temp = new Array<string>();
@@ -53,12 +47,52 @@ export class IstorijaComponent implements OnInit {
     this.currentUser = AppComponent.currentUser as RegisteredUser;
     //console.debug(this.currentUser.Username)
     //console.debug(this.currentUser.IstorijaLetova[0].avioKompanija.naziv)
+
+    /////////
+    this.IstorijaLetova = new Array<Let>();
+    this.IstorijaLetova.push(new Let('Beograd', 'London', '05-12-2020', '15:00', '04-12-2020', '18:55', 250, 65, 'first', 'oneWay', new Array < Aerodrom >(), 650));
+    this.IstorijaLetova.push(new Let('Budimpesta', 'Lisabon', '05-12-2020', '15:00', '04-12-2020', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
+    this.IstorijaLetova.push(new Let('Prag', 'Pariz', '05-12-2020', '15:00', '04-12-2020', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
+
+    var i = 0;
+    this.IstorijaLetova.forEach(element => {
+      let temp = new Array<string>();
+
+      //temp.push(element.id.toString())
+      temp.push(i.toString());
+
+      temp.push(element.mestoPolaska)
+      temp.push(element.mestoDolaska)
+      temp.push(element.datumPolaska)
+      temp.push(element.datumDolaska)
+
+      // temp.push(element.ProsecnaOcena().toString())
+      temp.push('0');
+      i += 1;
+
+      this.letData.push(temp)
+    });
   }
 
   onBack(){
     this.location.back();
   }
 
-  OceniLet(){}
+  OceniLet(id: string) {
+    var number = parseInt(id);
+    //this.IstorijaLetova.forEach(element => {        //ovako ce biti kad se letovi budu ucitavali iz baze
+    //  if (element.id == number) {
+    //    this.relacija = element.mestoPolaska + '-' + element.mestoDolaska;
+    //  }
+    //});
+
+    this.letData.forEach(element => {
+      if (parseInt(element[0]) == number) {
+        this.relacija = element[1] + '-' + element[2];
+      }
+    });
+
+    window.open('https://localhost:44343/oceniLet/' + number + '/' + this.relacija, "_self");
+  }
   OceniKola(){}
 }

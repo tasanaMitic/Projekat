@@ -1,17 +1,19 @@
 <div class="istorija-container">
     <h2>Istorija letova</h2>
     <table>
-        <th *ngFor="let column of letHeaders">
-            {{column}}
-        </th>
-        <tr *ngFor="let row of letData">
-            <td *ngFor="let data of row">
-                {{data}}
-            </td>
-            <td>
-                <button (click)="OceniLet()">Oceni</button>
-            </td>
-        </tr>
+      <th *ngFor="let column of letHeaders">
+        {{column}}
+      </th>
+      <tr *ngFor="let row of letData">
+        <td> {{row[1]}}</td>
+        <td> {{row[2]}}</td>
+        <td> {{row[3]}}</td>
+        <td> {{row[4]}}</td>
+        <td> {{row[5]}}</td>
+        <td>
+          <button class="btn-rez" (click)="OceniLet(row[0])">Oceni</button>
+        </td>
+      </tr>
     </table>
 </div>
 <br>
@@ -26,7 +28,7 @@
                 {{data}}
             </td>
             <td>
-                <button (click)="OceniKola()">Oceni</button>
+                <button class="btn-rez" (click)="OceniKola()">Oceni</button>
             </td>
         </tr>
     </table>
