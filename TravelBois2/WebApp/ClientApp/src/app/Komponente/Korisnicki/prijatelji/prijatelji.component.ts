@@ -154,10 +154,14 @@ export class PrijateljiComponent implements OnInit {
     this.mojiPrijatelji.push(new RegisteredUser('063123457', 'Beograd', 'Petar', 'Zmijanjac', 'nikola', 'sifra', 123));
     this.empty = 1;
   }
+
   dodajPrijatelja(username: string) {
     this.empty2 = 2;
     this.poruka = "Zahtev za prijateljstvo poslat!";
+
+    //posalji zahtev servisu
   }
+
   ukloniPrijatelja(username: string) { }
   prihvatiPrijatelja(username: string) { }
   odbijPrijatelja(username: string) {}

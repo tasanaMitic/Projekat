@@ -15,11 +15,11 @@
                 <select class="dropbtn" formControlName="klasa" (change)="KlasaChanged($event)">
                   <option></option>
                   <option>first</option>
-                  <option>economy</option>
+                  <option>economic</option>
                   <option>business</option>
                 </select>
                 Tip puta:
-                <select class="dropbtn" formControlName="tipPuta" (change)="TipPuta($event)">
+                <select class="dropbtn" formControlName="tipPuta" (change)="TipPutaChanged($event)">
                   <option></option>
                   <option>one-way</option>
                   <option>multi-city</option>
@@ -39,11 +39,16 @@
 <div>
   <br />
   <h1 class="title">Letovi</h1>
-  <div [hidden]="empty !== 1">
+
+</div>
+  <!--SVI LETOVI NEFILTRIRANI-->
+  <div [hidden]="empty!=1 ">
     <table>
-      <th *ngFor="let column of letHeaders">
-        {{column}}
-      </th>
+      <tr>
+        <th *ngFor="let column of letHeaders">
+          {{column}}
+        </th>
+      </tr>
       <tr *ngFor="let row of letData">
         <td *ngFor="let data of row">
           {{data}}
@@ -54,8 +59,28 @@
       </tr>
     </table>
   </div>
-  <h2 [hidden]="empty === 1">Trenutno nema letova!</h2>
-</div>
+
+  <!--FILTRIRANI LETOVI-->
+  <div [hidden]="empty !=2 ">
+    <table>
+      <tr>
+        <th *ngFor="let column of letHeaders">
+          {{column}}
+        </th>
+      </tr>
+      <tr *ngFor="let row of letDataF">
+        <td *ngFor="let data of row">
+          {{data}}
+        </td>
+        <td>
+          <button (click)="RezervisiLet()" class="btn-rez">Rezervisi</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <h2 [hidden]="empty!=0">Trenutno nema letova!</h2>
+  <h2 [hidden]="empty!=3">Trenutno nema letova sa tim kriterijumom!</h2>
+
 <div>
     <button class="btn btn-primary" style="float: left; margin-left: 0.2%;" (click)="onBack()" type="button">Nazad</button>
 </div>

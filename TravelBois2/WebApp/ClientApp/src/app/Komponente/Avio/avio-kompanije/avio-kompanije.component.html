@@ -19,6 +19,7 @@
       <div class="kompanija-element">Opis: {{kompanija.opis}}</div>
       <hr>
       <!--<div class="kompanija-element">Ocena: {{kompanija.IzracunajProsecnuOcenu()}}</div>   -->
+
       <!--Ovako radi i msm da ako se ista pipne da ce opet odici dk-->
       <dynamic-image [tip]="kompanija.getType()"
                      [naziv]='kompanija.naziv'
@@ -35,7 +36,7 @@
 
   </li>
 </ul>
-<div>
-  <button class="btn btn-primary" style="margin: 0 580px;" (click)="onBack()" type="button">Nazad</button>
+<div style="margin-left:46%">
+    <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
 </div>
 

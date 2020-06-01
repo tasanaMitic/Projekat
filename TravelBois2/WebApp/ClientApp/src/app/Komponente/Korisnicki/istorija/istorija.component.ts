@@ -14,8 +14,12 @@ import { element } from 'protractor';
   styleUrls: ['./istorija.component.css']
 })
 export class IstorijaComponent implements OnInit {
-  letHeaders = [ 'Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Prosecna ocena'];
-  letData : Array<Array<string>>;
+  letHeaders = ['Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Prosecna ocena'];
+  letHeadersRez = ['Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Tip leta', 'Klasa', 'Cena'];
+  letData: Array<Array<string>>;
+  letDataRez: Array<Array<string>>;
+  emptyIL: number;
+  emptyRL: number;
   kolaHeaders = ['Rent-A-Car', 'Marka', 'Model', 'Godiste', 'Broj mesta', 'Tip', 'Prosecna ocena'];
   kolaData: Array<Array<string>>;
   currentUser: RegisteredUser;
@@ -29,6 +33,8 @@ export class IstorijaComponent implements OnInit {
     this.currentUser = AppComponent.currentUser as RegisteredUser;
     this.letData = new Array<Array<string>>();
     this.kolaData = new Array<Array<string>>();
+    this.emptyIL = 0;
+    this.emptyRL = 0;
 
     this.currentUser.IstorijaKola.forEach(element => {
       let temp = new Array<string>();
@@ -45,14 +51,21 @@ export class IstorijaComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = AppComponent.currentUser as RegisteredUser;
-    //console.debug(this.currentUser.Username)
-    //console.debug(this.currentUser.IstorijaLetova[0].avioKompanija.naziv)
+    this.ucitajIstorijuLetova();
+    this.ucitajRezervisaneLetove();
+    
+  }
 
-    /////////
+  ucitajRezervisaneLetove() {     //ucitati iz baze
+    //this.emptyRL = 1;
+  }
+
+  ucitajIstorijuLetova() {      //ucitati iz baze
     this.IstorijaLetova = new Array<Let>();
-    this.IstorijaLetova.push(new Let('Beograd', 'London', '05-12-2020', '15:00', '04-12-2020', '18:55', 250, 65, 'first', 'oneWay', new Array < Aerodrom >(), 650));
+    this.IstorijaLetova.push(new Let('Beograd', 'London', '05-12-2020', '15:00', '04-12-2020', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
     this.IstorijaLetova.push(new Let('Budimpesta', 'Lisabon', '05-12-2020', '15:00', '04-12-2020', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
     this.IstorijaLetova.push(new Let('Prag', 'Pariz', '05-12-2020', '15:00', '04-12-2020', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
+    this.emptyIL = 1;
 
     var i = 0;
     this.IstorijaLetova.forEach(element => {
@@ -74,9 +87,7 @@ export class IstorijaComponent implements OnInit {
     });
   }
 
-  onBack(){
-    this.location.back();
-  }
+ 
 
   OceniLet(id: string) {
     var number = parseInt(id);
@@ -94,5 +105,14 @@ export class IstorijaComponent implements OnInit {
 
     window.open('https://localhost:44343/oceniLet/' + number + '/' + this.relacija, "_self");
   }
-  OceniKola(){}
+
+  OtkaziLet(id: string) {
+    var number = parseInt(id);
+
+    //povezati se sa servisom
+  }
+  OceniKola() { }
+  onBack() {
+    this.location.back();
+  }  
 }

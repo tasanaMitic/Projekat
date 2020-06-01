@@ -1,9 +1,37 @@
-<div class="istorija-container">
-    <h2>Istorija letova</h2>
-    <table>
-      <th *ngFor="let column of letHeaders">
+<h2>Vase rezervacije letova</h2>
+<div class="istorija-container" [hidden]="emptyRL == 0">  
+  <table>
+    <tr>
+      <th *ngFor="let column of letHeadersRez">
         {{column}}
       </th>
+    </tr>
+    <tr *ngFor="let row of letDataRez">
+      <td> {{row[1]}}</td>
+      <td> {{row[2]}}</td>
+      <td> {{row[3]}}</td>
+      <td> {{row[4]}}</td>
+      <td> {{row[5]}}</td>
+      <td>
+        <button class="btn-rez" (click)="OtkaziLet(row[0])">Otkazi</button>
+      </td>
+    </tr>
+  </table>
+</div>
+<div [hidden]="emptyRL !==0">
+  <h5>Tabela je trenutno prazna!</h5>
+</div>
+<br>
+
+
+<h2>Istorija letova</h2>
+  <div class="istorija-container" [hidden]="emptyIL == 0">
+    <table>
+      <tr>
+        <th *ngFor="let column of letHeaders">
+          {{column}}
+        </th>
+      </tr>
       <tr *ngFor="let row of letData">
         <td> {{row[1]}}</td>
         <td> {{row[2]}}</td>
@@ -15,24 +43,27 @@
         </td>
       </tr>
     </table>
+  </div>
+<div [hidden]="emptyIL !==0">
+  <h5>Tabela je trenutno prazna!</h5>
 </div>
 <br>
 <div class="istorija-container">
-    <h2> Istorija rentiranih kola</h2>
-    <table>
-        <th *ngFor="let column of kolaHeaders">
-            {{column}}
-        </th>
-        <tr *ngFor="let row of kolaData">
-            <td *ngFor="let data of row">
-                {{data}}
-            </td>
-            <td>
-                <button class="btn-rez" (click)="OceniKola()">Oceni</button>
-            </td>
-        </tr>
-    </table>
+  <h2> Istorija rentiranih kola</h2>
+  <table>
+    <th *ngFor="let column of kolaHeaders">
+      {{column}}
+    </th>
+    <tr *ngFor="let row of kolaData">
+      <td *ngFor="let data of row">
+        {{data}}
+      </td>
+      <td>
+        <button class="btn-rez" (click)="OceniKola()">Oceni</button>
+      </td>
+    </tr>
+  </table>
 </div>
 <div>
-    <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
+  <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
 </div>

@@ -1,0 +1,26 @@
+<h1>Spisak Vasih pozivnica</h1>
+<div [hidden]="empty ==0">
+  <table>
+    <tr>
+      <th *ngFor="let column of letHeaders">
+        {{column}}
+      </th>
+    </tr>
+      <tr *ngFor="let row of letData">
+        <td> {{row[1]}}</td>
+        <td> {{row[2]}}</td>
+        <td> {{row[3]}}</td>
+        <td> {{row[4]}}</td>
+        <td> {{row[5]}}</td>
+        <td>
+          <button class="btn-rez" (click)="OtkaziLet(row[0])">Otkazi</button>
+        </td>
+      </tr>
+  </table>
+</div>
+<div [hidden]="empty !=0">
+  <h5>Trenutno nema pozivnica!</h5>
+</div>
+<div>
+  <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
+</div>
