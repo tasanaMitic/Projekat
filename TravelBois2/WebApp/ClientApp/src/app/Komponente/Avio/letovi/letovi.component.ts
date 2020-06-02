@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Aerodrom } from '../../../entities/objects/aerodrom';
 import { Klase } from '../../../_enums';
+import { User } from '../../../entities/users/user/user';
 
 @Component({
   selector: 'app-letovi',
@@ -29,8 +30,10 @@ export class LetoviComponent implements OnInit {
   klasa: string;
   tipPuta: string;
   t: string;
-  public aviokompanija = "";
-  filtriraniLetovi : Array<Let>;
+  aviokompanija: string;
+  filtriraniLetovi: Array<Let>;
+  ctUser: User;
+  currentUser: string;
 
   letovi: Array<Let>;
 
@@ -42,6 +45,8 @@ export class LetoviComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.ctUser = AppComponent.currentUser;
+    this.currentUser = this.ctUser.constructor.name;
     this.aviokompanija = this.route.snapshot.paramMap.get("naziv");
     this.initForm();
     this.ucitajLetove();
@@ -503,16 +508,11 @@ export class LetoviComponent implements OnInit {
     }
 
     if (this.empty == 2) {
-      console.log('duzina liste filtriranih:' + this.filtriraniLetovi.length);
-      this.filtriraniLetovi.forEach(element => {
-        console.log("ispis:");
-        console.log(element.mestoPolaska + ' ' + element.mestoDolaska);
-      });
-
-
       this.letDataF = new Array<Array<string>>();
       this.filtriraniLetovi.forEach(element => {
         let temp = new Array<string>();
+        //temp.push(element.id.toString());
+        temp.push('0');
         temp.push(element.mestoPolaska);
         temp.push(element.mestoDolaska);
         temp.push(element.datumPolaska);
@@ -539,9 +539,6 @@ export class LetoviComponent implements OnInit {
         this.letDataF.push(temp);
       });
     }
-
-
-    console.log('vrednost empty: '+this.empty);
   }
 
   KlasaChanged(e) {
@@ -563,7 +560,9 @@ export class LetoviComponent implements OnInit {
 
     this.letovi.forEach(element => {
         let temp = new Array<string>();
-        this.empty = 1;
+      this.empty = 1;
+      //temp.push(element.id.toString());
+      temp.push('0');
       temp.push(element.mestoPolaska);
       temp.push(element.mestoDolaska);
       temp.push(element.datumPolaska);
@@ -593,7 +592,9 @@ export class LetoviComponent implements OnInit {
     });
   }
 
-  RezervisiLet() { }
+  RezervisiLet(id: string) {
+    window.open('https://localhost:44343/rezervacija/' + this.aviokompanija + '/' + parseInt(id), "_self");
+  }
 
   onBack() {
     this.location.back();

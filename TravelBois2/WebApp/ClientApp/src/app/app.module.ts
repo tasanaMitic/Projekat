@@ -46,6 +46,7 @@ import { UserService } from './shared/user.service';
 import { OcenjivanjeComponent } from './Komponente/Deljeno-avio-renta/ocenjivanje/ocenjivanje.component';
 import { OceniLetComponent } from './Komponente/Avio/oceni-let/oceni-let.component';
 import { PozivniceComponent } from './Komponente/Korisnicki/pozivnice/pozivnice.component';
+import { RezervacijaLetaComponent } from './Komponente/Avio/rezervacija-leta/rezervacija-leta.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { PozivniceComponent } from './Komponente/Korisnicki/pozivnice/pozivnice.
     MapsComponent,
     OcenjivanjeComponent,
     OceniLetComponent,
-    PozivniceComponent
+    PozivniceComponent,
+    RezervacijaLetaComponent
   ],
   imports: [
     BrowserModule,

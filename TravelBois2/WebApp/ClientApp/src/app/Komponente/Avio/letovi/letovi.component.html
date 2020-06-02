@@ -50,7 +50,6 @@
       </th>
     </tr>
     <tr *ngFor="let row of letData">
-      <td>{{row[0]}}</td>
       <td>{{row[1]}}</td>
       <td>{{row[2]}}</td>
       <td>{{row[3]}}</td>
@@ -59,8 +58,9 @@
       <td>{{row[6]}}</td>
       <td>{{row[7]}}</td>
       <td>{{row[8]}}</td>
-      <td>
-        <button (click)="RezervisiLet()" class="btn-rez">Rezervisi</button>
+      <td>{{row[9]}}</td>
+      <td [hidden]="currentUser!= 'RegisteredUser'">
+        <button (click)="RezervisiLet(row[0])" class="btn-rez">Rezervisi</button>
       </td>
     </tr>
   </table>
@@ -78,7 +78,6 @@
     </thead>
     <tbody>
       <tr *ngFor="let row of letDataF">
-        <td>{{row[0]}}</td>
         <td>{{row[1]}}</td>
         <td>{{row[2]}}</td>
         <td>{{row[3]}}</td>
@@ -87,8 +86,9 @@
         <td>{{row[6]}}</td>
         <td>{{row[7]}}</td>
         <td>{{row[8]}}</td>
-        <td>
-          <button (click)="RezervisiLet()" class="btn-rez">Rezervisi</button>
+        <td>{{row[9]}}</td>
+        <td [hidden]="currentUser!= 'RegisteredUser'">
+          <button (click)="RezervisiLet(row[0])" class="btn-rez">Rezervisi</button>
         </td>
       </tr>
     </tbody>
