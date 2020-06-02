@@ -32,6 +32,7 @@ import { MapsComponent } from './Komponente/Deljeno-avio-renta/maps/maps.compone
 import { OcenjivanjeComponent } from './Komponente/Deljeno-avio-renta/ocenjivanje/ocenjivanje.component';
 import { OceniLetComponent } from './Komponente/Avio/oceni-let/oceni-let.component';
 import { PozivniceComponent } from './Komponente/Korisnicki/pozivnice/pozivnice.component';
+import { RezervacijaLetaComponent } from './Komponente/Avio/rezervacija-leta/rezervacija-leta.component';
 
 
 const routes: Routes = [
@@ -67,7 +68,8 @@ const routes: Routes = [
   { path: 'maps', component: MapsComponent },
   { path: 'oceni/:naziv', component: OcenjivanjeComponent },
   { path: 'oceniLet/:id/:relacija', component: OceniLetComponent },
-  { path: 'pozivnice', component: PozivniceComponent }
+  { path: 'pozivnice', component: PozivniceComponent },
+  { path: 'rezervacija/:naziv/:id', component: RezervacijaLetaComponent }
 ];
 
 @NgModule({
