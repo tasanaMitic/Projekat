@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Location} from '@angular/common';
+import { AvioAdminService } from 'src/app/shared/avio-admin.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reg-admina-avio',
@@ -9,29 +11,39 @@ import { Location} from '@angular/common';
 })
 export class RegAdminaAvioComponent implements OnInit {
   regAvioAdminForm: FormGroup;
-  constructor(private location: Location) { }
+  constructor(private location: Location, public service: AvioAdminService, private router: Router) { }
 
   ngOnInit(): void {
-    this.initForm();
-  }
-
-  private initForm()
-  {
-    this.regAvioAdminForm = new FormGroup({
-      'ime': new FormControl('',[Validators.required, Validators.maxLength(15), Validators.minLength(3)]),
-      'prezime': new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
-      'grad': new FormControl('', [Validators.required, Validators.maxLength(10), Validators.minLength(3)]),
-      'avioKompanija': new FormControl('',Validators.required),    //dodati posle da se ucitava jedna od postojecih aviokompanija
-      'brojTelefona': new FormControl('', Validators.required),
-      'brojPasosa': new FormControl('', Validators.required),
-      'username': new FormControl('', Validators.required),
-      'password': new FormControl('', Validators.required),
-    });
+    this.service.formModel.reset();
   }
 
   onSubmit(){
-    console.log(this.regAvioAdminForm.value);
-    console.log(this.regAvioAdminForm);
+    this.service.register().subscribe(
+      (res: any) => {
+        console.debug('usao u register')
+        if (res.succeeded) {
+          console.debug('uspeo')
+          this.service.formModel.reset();
+          this.router.navigate(['/pocetna'])
+        }
+        else {
+          console.debug('nije uspeo')
+          res.errors.forEach(element => {
+            switch(element.code){
+              case 'DuplicateUserName':
+                //username taken
+                break;
+              default:
+                //registration failed
+                break;
+            }
+          });
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
   onBack()

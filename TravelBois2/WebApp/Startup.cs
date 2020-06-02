@@ -37,6 +37,7 @@ namespace WebApp
             services.AddDbContext<AuthenticationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
             services.AddDbContext<AviokompanijaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
             services.AddDbContext<RentaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
+            services.AddDbContext<UserContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
 
             services.AddSpaStaticFiles(configuration =>
             {
@@ -45,6 +46,31 @@ namespace WebApp
 
 
             services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<AuthenticationContext>();
+
+            //services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            //{
+            //    options.User.RequireUniqueEmail = true;
+            //})
+            //    .AddEntityFrameworkStores<UserContext>()
+            //    .AddDefaultTokenProviders();
+            //services.AddIdentity<AvioAdmin, IdentityRole>(options =>
+            //{
+            //    options.User.RequireUniqueEmail = true;
+            //})
+            //    .AddEntityFrameworkStores<UserContext>()
+            //    .AddDefaultTokenProviders();
+            //services.AddIdentity<RentAdmin, IdentityRole>(options =>
+            //{
+            //    options.User.RequireUniqueEmail = true;
+            //})
+            //    .AddEntityFrameworkStores<UserContext>()
+            //    .AddDefaultTokenProviders();
+            //services.AddIdentity<Admin, IdentityRole>(options =>
+            //{
+            //    options.User.RequireUniqueEmail = true;
+            //})
+            //    .AddEntityFrameworkStores<UserContext>()
+            //    .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>
             {

@@ -11,7 +11,7 @@ namespace WebApp.Data
 	{
 		public UserContext(DbContextOptions<UserContext> options) : base(options)
 		{ }
-		public DbSet<User> Users { get; set; }
+		public DbSet<ApplicationUser> AppUsers { get; set; }
 		public DbSet<RentAdmin> RentAdmins { get; set; }
 		public DbSet<AvioAdmin> AvioAdmins { get; set; }
 		public DbSet<Admin> Admins { get; set; }

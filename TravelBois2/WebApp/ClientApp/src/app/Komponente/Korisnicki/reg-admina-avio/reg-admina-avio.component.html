@@ -1,87 +1,116 @@
 <div class="container">
     <h1>Registracija admina aviokompanije</h1>
-    <form [formGroup]="regAvioAdminForm" (ngSubmit)="onSubmit()">
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="ime">Ime:</label>
-                <input type="text" id="ime" class="form-control" formControlName="ime"> 
-                <div *ngIf="regAvioAdminForm.controls.ime.invalid">
-                    Unesite ime
+    <form [formGroup]="service.formModel" (ngSubmit)="onSubmit()">
+        <div class="form">
+            <table>
+                <tr>
+                    <td><label>Email:</label></td>
+                    <td>
+                        <input type="text" name="Email" formControlName="Email">
+                    </td>
+                    <td>
+                        <label *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">Email nije validan</label>
+                        <label *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.required">Email je potreban</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Username:</label></td>
+                    <td>
+                        <input type="text" name="UserName" formControlName="UserName"> 
+                    </td>
+                    <td>
+                        <label *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.required">Username je potreban</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ime:</td>
+                    <td>
+                        <input type="text" name="Name" formControlName="Name"> 
+                    </td>
+                    <td>
+                      <label *ngIf="service.formModel.get('Name').touched && service.formModel.get('Name').errors?.required">Ime je potrebno</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Prezime:</td>
+                    <td>
+                        <input type="text" name="Lastname" formControlName="Lastname"> 
+                    </td>
+                    <td>
+                      <label *ngIf="service.formModel.get('Lastname').touched && service.formModel.get('Lastname').errors?.required">Prezime je potrebno</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Naziv aviokompanije:</td>
+                    <td>
+                        <input type="text" name="AvioKompanijaID"  formControlName="AvioKompanijaID"> 
+                    </td>
+                    <td>
+                      <label *ngIf="service.formModel.get('AvioKompanijaID').touched && service.formModel.get('AvioKompanijaID').errors?.required">Naziv aviokompanije je potreban</label>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Grad:</td>
+                    <td>
+                        <input type="text" name="Grad"  formControlName="Grad"> 
+                    </td>
+                    <td>
+                      <label *ngIf="service.formModel.get('Grad').touched && service.formModel.get('Grad').errors?.required">Grad je potreban</label>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Broj telefona:</td>
+                    <td>
+                        <input name="BrojTelefona" formControlName="BrojTelefona">
+                    </td>
+                    <td>
+                      <label *ngIf="service.formModel.get('BrojTelefona').touched && service.formModel.get('BrojTelefona').errors?.required">Broj telefona je potreban</label>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Broj pasosa:</td>
+                    <td>
+                        <input name="BrojPasosa" formControlName="BrojPasosa"> 
+                    </td>
+                    <td>
+                      <label *ngIf="service.formModel.get('BrojPasosa').touched && service.formModel.get('BrojPasosa').errors?.required">Broj pasosa je potreban</label>
+                    </td>
+                </tr>
+                <div formGroupName="Passwords">
+                    <tr>
+                        <td><label>Sifra:</label>
+                        <td style="padding-left: 32px">
+                            <input type="password" name="password" formControlName="Password"> 
+                        </td>
+                        <td>
+                            <label *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">Sifra je potreban</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Potvrdi sifru:</label>
+                        <td style="padding-left: 32px">
+                            <input type="password" name="ConfirmPassword" formControlName="ConfirmPassword"> 
+                        </td>
+                        <td>
+                            <label *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">Potvrda sifre je potrebna</label>
+                            <label *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Sifre se ne poklapaju </label>
+                        </td>
+                    </tr>
                 </div>
-            </div>
+            </table>
         </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="prezime">Prezime:</label>
-                <input type="text" id="prezime" class="form-control" formControlName="prezime">
-                <div *ngIf="regAvioAdminForm.controls.prezime.invalid">
-                    Unesite prezime
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="grad">Grad:</label>
-                <input type="text" id="grad" class="form-control" formControlName="grad">
-                <div *ngIf="regAvioAdminForm.controls.grad.invalid">
-                    Unesite grad
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="avioKompanija">Aviokompanija:</label>
-                <input type="text" id="avioKompanija" class="form-control" formControlName="avioKompanija">
-                <div *ngIf="regAvioAdminForm.controls.avioKompanija.invalid">
-                    Unesite ime aviokompanije
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="brojTelefona">Broj telefona:</label>
-                <input type="number" id="brojTelefona" class="form-control" formControlName="brojTelefona">
-                <div *ngIf="regAvioAdminForm.controls.brojTelefona.invalid">
-                    Unesite broj telefona
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="brojPasosa">Broj pasosa:</label>
-                <input type="number" id="brojPasosa" class="form-control" formControlName="brojPasosa">
-                <div *ngIf="regAvioAdminForm.controls.brojPasosa.invalid">
-                    Unesite broj pasosa
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" class="form-control" formControlName="username">
-                <div *ngIf="regAvioAdminForm.controls.username.invalid">
-                    Unesite username
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" class="form-control" formControlName="password">
-                <div *ngIf="regAvioAdminForm.controls.password.invalid">
-                    Unesite password
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-1">
-                <button [disabled]="!regAvioAdminForm.valid" class="btn btn-success" type="submit">Sacuvaj</button>
+        <div>
+            <div>
+                <button [disabled]="service.formModel.invalid" class="btn btn-lg btn-block" type="submit">Sacuvaj</button>
+                
             </div>
             <div>
                 <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
             </div>
         </div>
-
     </form>
 </div>
 
