@@ -32,6 +32,7 @@ export class IstorijaComponent implements OnInit {
   constructor(private location: Location) { 
     this.currentUser = AppComponent.currentUser as RegisteredUser;
     this.letData = new Array<Array<string>>();
+    this.letDataRez = new Array<Array<string>>();
     this.kolaData = new Array<Array<string>>();
     this.emptyIL = 0;
     this.emptyRL = 0;
@@ -57,7 +58,27 @@ export class IstorijaComponent implements OnInit {
   }
 
   ucitajRezervisaneLetove() {     //ucitati iz baze
-    //this.emptyRL = 1;
+    this.emptyRL = 1;
+    var i = 0;
+    this.IstorijaLetova.forEach(element => {
+      let temp = new Array<string>();
+
+      //temp.push(element.id.toString())
+      temp.push(i.toString());
+
+      temp.push(element.mestoPolaska);
+      temp.push(element.mestoDolaska);
+      temp.push(element.datumPolaska);
+      temp.push(element.datumDolaska);
+      temp.push('oneWay');
+      temp.push('first');
+
+      // temp.push(element.ProsecnaOcena().toString())
+      temp.push('0');
+      i += 1;
+
+      this.letDataRez.push(temp)
+    });
   }
 
   ucitajIstorijuLetova() {      //ucitati iz baze

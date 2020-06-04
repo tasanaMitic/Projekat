@@ -39,6 +39,10 @@ export class ProfilAvioComponent implements OnInit {
     console.log(this.avioPodaciForm);
   }
 
+  Map() {
+    window.open('https://localhost:44343/maps', "_self");
+  }
+
   onBack()
   {
     this.location.back();

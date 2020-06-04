@@ -72,6 +72,12 @@ export class ListaLetovaComponent implements OnInit {
     window.location.reload();
   }
 
+
+  DodajLet() {
+    window.open('https://localhost:44343/dodaj-let', "_self");
+    
+  }
+
   onBack(){
     window.open('https://localhost:44343/pocetna', "_self");
   }

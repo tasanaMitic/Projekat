@@ -1,21 +1,27 @@
 <h2>Vase rezervacije letova</h2>
 <div class="istorija-container" [hidden]="emptyRL == 0">  
   <table>
-    <tr>
-      <th *ngFor="let column of letHeadersRez">
-        {{column}}
-      </th>
-    </tr>
-    <tr *ngFor="let row of letDataRez">
-      <td> {{row[1]}}</td>
-      <td> {{row[2]}}</td>
-      <td> {{row[3]}}</td>
-      <td> {{row[4]}}</td>
-      <td> {{row[5]}}</td>
-      <td>
-        <button class="btn-rez" (click)="OtkaziLet(row[0])">Otkazi</button>
-      </td>
-    </tr>
+    <thead>
+      <tr>
+        <th *ngFor="let column of letHeadersRez">
+          {{column}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of letDataRez">
+        <td> {{row[1]}}</td>
+        <td> {{row[2]}}</td>
+        <td> {{row[3]}}</td>
+        <td> {{row[4]}}</td>
+        <td> {{row[5]}}</td>
+        <td> {{row[6]}}</td>
+        <td> {{row[7]}}</td>
+        <td>
+          <button class="btn-rez" (click)="OtkaziLet(row[0])">Otkazi</button>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>
 <div [hidden]="emptyRL !==0">
@@ -27,21 +33,25 @@
 <h2>Istorija letova</h2>
   <div class="istorija-container" [hidden]="emptyIL == 0">
     <table>
-      <tr>
-        <th *ngFor="let column of letHeaders">
-          {{column}}
-        </th>
-      </tr>
-      <tr *ngFor="let row of letData">
-        <td> {{row[1]}}</td>
-        <td> {{row[2]}}</td>
-        <td> {{row[3]}}</td>
-        <td> {{row[4]}}</td>
-        <td> {{row[5]}}</td>
-        <td>
-          <button class="btn-rez" (click)="OceniLet(row[0])">Oceni</button>
-        </td>
-      </tr>
+      <thead>
+        <tr>
+          <th *ngFor="let column of letHeaders">
+            {{column}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of letData">
+          <td> {{row[1]}}</td>
+          <td> {{row[2]}}</td>
+          <td> {{row[3]}}</td>
+          <td> {{row[4]}}</td>
+          <td> {{row[5]}}</td>
+          <td>
+            <button class="btn-rez" (click)="OceniLet(row[0])">Oceni</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 <div [hidden]="emptyIL !==0">
@@ -51,17 +61,23 @@
 <div class="istorija-container">
   <h2> Istorija rentiranih kola</h2>
   <table>
-    <th *ngFor="let column of kolaHeaders">
-      {{column}}
-    </th>
-    <tr *ngFor="let row of kolaData">
-      <td *ngFor="let data of row">
-        {{data}}
-      </td>
-      <td>
-        <button class="btn-rez" (click)="OceniKola()">Oceni</button>
-      </td>
-    </tr>
+    <thead>
+      <tr>
+        <th *ngFor="let column of kolaHeaders">
+          {{column}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of kolaData">
+        <td *ngFor="let data of row">
+          {{data}}
+        </td>
+        <td>
+          <button class="btn-rez" (click)="OceniKola()">Oceni</button>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>
 <div>

@@ -14,6 +14,7 @@ import { strict } from 'assert';
 
 })
 export class DestinacijeAvioComponent implements OnInit {
+  letHeaders = ['Grad', 'Drzava'];
   destinacijePodaciForm: FormGroup;
   public empty = 0;
   listaAerodroma: Array<Aerodrom>;
