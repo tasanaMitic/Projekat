@@ -4,7 +4,8 @@ import { HttpModule } from '@angular/http';
 
 import { GoogleMapsModule } from "@angular/google-maps";
 import { HttpClientModule } from '@angular/common/http';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import {ReactiveFormsModule, FormsModule} from'@angular/forms';
 
@@ -96,7 +97,8 @@ import { RezervacijaLetaComponent } from './Komponente/Avio/rezervacija-leta/rez
     HttpClientModule,
     HttpModule,
     NgbModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    TooltipModule.forRoot()
   ],
   providers: [AppComponent, UserService],
   bootstrap: [AppComponent]

@@ -56,7 +56,7 @@ export class AppComponent {
     //AppComponent.currentUser = new User();
     AppComponent.currentUser = new RegisteredUser('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password', 111546);
     //AppComponent.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
-    AppComponent.currentUser = new Admin('sysAdmin', 'password');
+    //AppComponent.currentUser = new Admin('sysAdmin', 'password');
 
     //AppComponent.currentUser = new Admin();
     //AppComponent.currentUser = new AvioAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
