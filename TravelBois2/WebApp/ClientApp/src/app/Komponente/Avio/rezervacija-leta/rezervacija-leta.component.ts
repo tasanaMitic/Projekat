@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { element } from 'protractor';
+import { RegisteredUser } from '../../../entities/users/registered-user/registered-user';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl, ValidatorFn } from '@angular/forms';
+import { Sediste } from '../../../entities/objects/sediste';
+import { count } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rezervacija-leta',
@@ -11,6 +16,18 @@ export class RezervacijaLetaComponent implements OnInit {
   idLeta: number;
   aviokompanija: string;
   cenaSedista: number;
+  listaPrijatelja: Array<RegisteredUser>;
+  prijateljiData: Array<string>;
+  empty = 0;
+  prijateljiForm: FormGroup;
+  podaciForm: FormGroup;
+  numChecked = 0;
+  sediste: Sediste;
+  brojKarata = 1;
+  brojPreostalih = 0;
+  i = 1;
+  max: number;
+
 
   private seatmap = [];
   private seatConfig: any = null;
@@ -29,7 +46,16 @@ export class RezervacijaLetaComponent implements OnInit {
     eventId: 0
   };
 
-  constructor(private route: ActivatedRoute, private location: Location) { }
+  constructor(private route: ActivatedRoute, private location: Location, private formBuilder: FormBuilder) {
+    this.podaciForm = new FormGroup({
+      'ime': new FormControl('', Validators.required),
+      'prezime': new FormControl('', Validators.required),
+      'brPasosa': new FormControl('', Validators.required)
+    });
+
+    this.ucitajListuPrijatelja();
+    
+  } 
 
   ngOnInit(): void {
     this.idLeta = parseInt(this.route.snapshot.paramMap.get("id"));
@@ -131,7 +157,7 @@ export class RezervacijaLetaComponent implements OnInit {
             };
 
             if (item != "_") {
-              seatObj["seatLabel"] = element.seat_label + " " + seatNoCounter;
+              seatObj["seatLabel"] = element.seat_label + " " + totalItemCounter;
               if (seatNoCounter < 10) {
                 seatObj["seatNo"] = "" + seatNoCounter;
               }
@@ -149,7 +175,7 @@ export class RezervacijaLetaComponent implements OnInit {
             mapObj["seats"].push(seatObj);
           });
 
-          console.log(" \n\n\n Seat Objects ", mapObj);
+          //console.log(" \n\n\n Seat Objects ", mapObj);
           this.seatmap.push(mapObj);
         });
 
@@ -158,7 +184,7 @@ export class RezervacijaLetaComponent implements OnInit {
   }
 
   public selectSeat(seatObject: any) {
-    console.log("Seat to block: ", seatObject);
+    //console.log("Seat to block: ", seatObject);
     if (seatObject.status == "available") {
       seatObject.status = "booked";
       this.cart.selectedSeats.push(seatObject.seatLabel);
@@ -188,11 +214,11 @@ export class RezervacijaLetaComponent implements OnInit {
           if (element.seatRowLabel == seatSplitArr[0]) {
             var seatObj = element.seats[parseInt(seatSplitArr[1]) - 1];
             if (seatObj) {
-              console.log("\n\n\nFount Seat to block: ", seatObj);
+              //console.log("\n\n\nFound Seat to block: ", seatObj);
               seatObj["status"] = "unavailable";
               this.seatmap[index2]["seats"][parseInt(seatSplitArr[1]) - 1] = seatObj;
-              console.log("\n\n\nSeat Obj", seatObj);
-              console.log(this.seatmap[index2]["seats"][parseInt(seatSplitArr[1]) - 1]);
+              //console.log("\n\n\nSeat Obj", seatObj);
+              //console.log(this.seatmap[index2]["seats"][parseInt(seatSplitArr[1]) - 1]);
               break;
             }
           }
@@ -201,11 +227,126 @@ export class RezervacijaLetaComponent implements OnInit {
     }
   }
 
-  processBooking() {}
+  processBooking() {    
+    if (this.cart.selectedSeats.length > 1) {
+      this.empty = 2;
+    }
+    else {
+      this.empty = 1;
 
-  ucitajLetInfo() {
+      ////SAMO JEDNO SEDISTE REZERVISANO
+          ///PROSLEDI MOJE PODATKE 
+    }
+  }
+
+  //MojeSediste(seat: string) {
+  //  this.moje = true;
+  //  var sediste = seat.replace(" ", "_");
+  //  this.blockSeats(sediste);
+    
+  //  this.cart.selectedSeats = this.cart.selectedSeats.filter(item => item != seat);
+
+  //  //UPISATI PODATKE U SEDISTE
+  //  this.prijatelj = true;
+  //}
+
+  ucitajLetInfo() {/////////////
 
     this.cenaSedista = 100;
   }
 
+  ucitajListuPrijatelja() {///
+    this.listaPrijatelja = new Array<RegisteredUser>();
+
+    //UCIAJ PRIJATELJE IZ BAZE
+    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Tasana', 'Mitic', 'tasana', 'sifra', 123));
+    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Nikola', 'Jurisic', 'nikola', 'sifra', 123));
+    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Petar', 'Petrovic', 'nikola', 'sifra', 123));
+    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Andjela', 'Pejakovic', 'nikola', 'sifra', 123));
+    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Jovan', 'Tatic', 'nikola', 'sifra', 123));
+    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Petar', 'Zmijanjac', 'nikola', 'sifra', 123));
+
+    this.prijateljiData = new Array<string>();
+    this.listaPrijatelja.forEach(element => {
+      this.prijateljiData.push(element.Ime + " " + element.Prezime);
+    })
+
+    this.prijateljiForm = this.formBuilder.group({
+      prijatelji: new FormArray([])
+    });
+  }  
+
+  onCheckboxChange(e) {
+    const prijatelji: FormArray = this.prijateljiForm.get('prijatelji') as FormArray;
+    if (e.target.checked) {
+      if (!prijatelji.value.includes(e.target.value)) {
+        if (prijatelji.length <= (this.cart.selectedSeats.length - 2)) {
+          prijatelji.push(new FormControl(e.target.value));
+        }
+      }
+      if (this.numChecked <= (this.cart.selectedSeats.length - 2)) {
+        this.numChecked++;
+      } else {        
+        e.target.checked = false;
+      }
+    }
+    else {
+      const index = prijatelji.controls.findIndex(x => x.value === e.target.value);
+      prijatelji.removeAt(index);
+
+      if (this.numChecked > 0)
+      {
+          this.numChecked--;
+      }      
+    }    
+  }
+
+  PrijateljiCheckBox() {
+    var lista = new Array<string>();
+    lista = this.prijateljiForm.get('prijatelji').value;
+
+    if (lista.length == (this.cart.selectedSeats.length - 1)) {
+      this.empty = 1;
+
+      ////REZERVISANO VISE SEDISTA SVE ZA PRIAJTELJENJE
+            ///POSALJI IM MEJL
+    }
+    else {
+      this.empty = 3;
+      this.brojKarata += lista.length;
+      this.brojPreostalih = this.cart.selectedSeats.length - this.brojKarata;
+      this.max = this.brojPreostalih;
+    }   
+  }
+
+  PodaciUneti() {   ////////SACUVATI PODATKE
+
+
+    this.sediste = new Sediste(0, this.podaciForm.get('ime').value, this.podaciForm.get('prezime').value, this.podaciForm.get('brPasosa').value)
+    this.brojPreostalih -= 1;
+    if (this.brojPreostalih > 0) {
+      this.i += 1;
+      this.podaciForm.controls['ime'].setValue('');
+      this.podaciForm.controls['prezime'].setValue('');
+      this.podaciForm.controls['brPasosa'].setValue(0);
+    }
+    else {
+      this.empty = 1;
+    }
+  }
+
+  onBack() {
+    if (this.empty == 0) {
+      this.location.back();
+    }
+    else if (this.empty == 1) {
+      this.location.back();
+    }
+    else if (this.empty == 2) {
+      this.empty = 0;
+    }
+    else if (this.empty == 3) {
+      this.empty = 2;
+    }
+  }
 }

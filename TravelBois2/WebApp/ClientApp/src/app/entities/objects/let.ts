@@ -4,6 +4,7 @@ import { Ocena } from '../misc/ocena';
 import { TipPrtljaga } from 'src/app/_enums';
 import { AvioKompanija } from './avio-kompanija';
 import { Aerodrom } from './aerodrom';
+import { Sediste } from './sediste';
 
 enum TipLeta {
   oneWay = 0,
@@ -35,14 +36,11 @@ export class Let {
   cenaKarte: number;
   tipLeta: TipLeta;
   klasaLeta: KlasaLeta;
+  listaSedista: Array<Sediste>;
 
   constructor(mestoPolaska, mestoDolaska, datumPolaska, vremePoletanja, datumDolaska, vremeSletanja, trajanjePutovanja, razdaljinaPutovanja,klasa, tipLeta, presedanja = [], cena){
             //  Ne radi
             //this.avioKompanija = avioKompanija;
-            //this.cenovnikPrtljaga = new Map<TipPrtljaga, number>();
-            //this.cenovnikPrtljaga[TipPrtljaga.rucni] = cenaRucnogPrtljaga;
-            //this.cenovnikPrtljaga[TipPrtljaga.mali] = cenaMalogPrtljaga;
-            //this.cenovnikPrtljaga[TipPrtljaga.veliki] = cenaVelikogPrtljaga;
             this.datumPolaska = datumPolaska;
             this.datumDolaska = datumDolaska;
             this.mestoPolaska = mestoPolaska;
@@ -64,19 +62,20 @@ export class Let {
               this.tipLeta = TipLeta.multiCity;
             }
 
-    if (klasa == 'economic') {
-      this.klasaLeta = KlasaLeta.economic;
-    }
-    else if (klasa == 'first') {
-      this.klasaLeta = KlasaLeta.first;
-    }
-    else {
-      this.klasaLeta = KlasaLeta.bussines;
-    }
+            if (klasa == 'economic') {
+              this.klasaLeta = KlasaLeta.economic;
+            }
+            else if (klasa == 'first') {
+              this.klasaLeta = KlasaLeta.first;
+            }
+            else {
+              this.klasaLeta = KlasaLeta.bussines;
+            }
             this.cenaKarte = cena;
-            //this.avion = avion;
-            //this.ocene = new Array<Ocena>();
-        }
+                    //this.avion = avion;
+          this.ocene = new Array<Ocena>();
+          this.listaSedista = new Array<Sediste>();
+          }
 
     //getTrajanjePutovanja(){
     //    //return Math.round(this.datDolaska.getTime() - this.datPolaska.getTime()) / 6000;

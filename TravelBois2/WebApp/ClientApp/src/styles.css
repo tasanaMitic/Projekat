@@ -394,6 +394,16 @@ div.form label.required:first-child:after{
     border: none;
 }
 
+.btn-let {
+  background-color: red;
+  color: white;
+  width: 150px;
+  height: 30px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0px
+}
+
 /**********************************dropdown*****************/
 /* Dropdown Button */
 .dropbtn {
@@ -608,8 +618,8 @@ td, th, tr{
     border: 1px solid lightgray;
   }
 .seat-unavailable {
-  color: red;
-  background-color: black;
+  color: black;
+  background-color: red;
   font-weight: bolder;
   border: 1px solid red;
 }
