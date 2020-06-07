@@ -63,17 +63,18 @@ namespace WebApp.Controllers
         //POST: /api/ApplicationUser/Login
         public async Task<IActionResult> Login(LoginModel model)
         {
-            var user = await _userManager.FindByNameAsync(model.Username);
+            var user = await _userManager.FindByNameAsync(model.UserName);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim("UserID", user.Id.ToString())
+                        new Claim("UserID",user.Id.ToString())
+                        //,new Claim("Roles", "admin")
                     }),
-                    Expires = DateTime.UtcNow.AddMinutes(60),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature),
+                    Expires = DateTime.UtcNow.AddDays(1),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var securityToken = tokenHandler.CreateToken(tokenDescriptor);
@@ -81,7 +82,7 @@ namespace WebApp.Controllers
                 return Ok(new { token });
             }
             else
-                return BadRequest(new { message = "Username ili sifra nisu dobri" });
+                return BadRequest(new { message = "Username or password is incorrect." });
         }
     }
 }
