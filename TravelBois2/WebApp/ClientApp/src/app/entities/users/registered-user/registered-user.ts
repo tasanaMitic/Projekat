@@ -4,7 +4,6 @@ import { Let } from 'src/app/entities/objects/let'
 import { OnInit } from '@angular/core';
 import { TipVozila } from 'src/app/_enums';
 import { Aerodrom } from '../../objects/aerodrom';
-import { Avion } from '../../objects/avion';
 import { AvioKompanija } from '../../objects/avio-kompanija';
 import { RentACar } from '../../objects/rent-a-car';
 import { AppComponent } from 'src/app/app.component';
@@ -19,9 +18,9 @@ export class RegisteredUser extends User implements OnInit{
     Zahtevi: Array<RegisteredUser>;
 
     constructor(brTel: string, grad: string, ime: string, 
-        prezime: string, username: string, password: string,
+        prezime: string, username: string, 
         brPasosa:number){
-            super(brTel, grad, ime, prezime, username, password);
+            super(brTel, grad, ime, prezime, username);
             super.register();
             this.BrojPasosa = brPasosa;
             this.IstorijaKola = new Array<Kola>();

@@ -44,11 +44,18 @@ namespace WebApp.Controllers
                 Lastname = body.Lastname,
                 Grad = body.Grad,
                 BrojPasosa = body.BrojPasosa.ToString(),
-                BrojTelefona = body.BrojTelefona.ToString()
+                BrojTelefona = body.BrojTelefona.ToString(),
+                TipKorisnika = "RegularUser"
             };
             try
             {
                 var result = await _userManager.CreateAsync(applicationUser, body.Password);
+                if(result.Errors.Any())
+                {
+                    var test = result.Errors.ToList();
+                    //return BadRequest(new { message = test[0].Description});
+                    return Ok(result);
+                }
                 return Ok(result);
             }
             catch (Exception ex)
@@ -61,7 +68,7 @@ namespace WebApp.Controllers
         [HttpPost]
         [Route("Login")]
         //POST: /api/ApplicationUser/Login
-        public async Task<IActionResult> Login(LoginModel model)
+        public async Task<IActionResult> Login([FromBody]LoginModel model)
         {
             var user = await _userManager.FindByNameAsync(model.UserName);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
@@ -70,10 +77,10 @@ namespace WebApp.Controllers
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim("UserID",user.Id.ToString())
+                        new Claim("UserID", user.Id.ToString())
                         //,new Claim("Roles", "admin")
                     }),
-                    Expires = DateTime.UtcNow.AddDays(1),
+                    Expires = DateTime.UtcNow.AddMinutes(60),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var tokenHandler = new JwtSecurityTokenHandler();

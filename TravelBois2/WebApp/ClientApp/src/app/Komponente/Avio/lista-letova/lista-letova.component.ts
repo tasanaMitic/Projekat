@@ -3,11 +3,11 @@ import {Location} from '@angular/common'
 import { AppComponent } from 'src/app/app.component';
 import { AvioAdmin } from 'src/app/entities/users/avio-admin/avio-admin';
 import { element } from 'protractor';
-import { Avion } from 'src/app/entities/objects/avion';
 import { Let } from 'src/app/entities/objects/let';
 import { AvioKompanija } from 'src/app/entities/objects/avio-kompanija';
 import { LetoviService } from '../../../shared/letovi.service';
 import { elementAt } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-letova',
@@ -23,7 +23,7 @@ export class ListaLetovaComponent implements OnInit {
   //
   Letovi = new Array<Let>();
 
-  constructor(private location: Location, private service: LetoviService) {
+  constructor(private location: Location, private service: LetoviService, private router: Router) {
     this.letData = new Array<Array<string>>();    
   }
 
@@ -74,12 +74,12 @@ export class ListaLetovaComponent implements OnInit {
 
 
   DodajLet() {
-    window.open('https://localhost:44343/dodaj-let', "_self");
+    this.router.navigateByUrl('/dodaj-let');
     
   }
 
-  onBack(){
-    window.open('https://localhost:44343/pocetna', "_self");
+  onBack() {
+    this.router.navigateByUrl('/pocetna');
   }
 
 }

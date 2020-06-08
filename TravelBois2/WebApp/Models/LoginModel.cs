@@ -11,4 +11,5 @@ namespace WebApp.Models
 		public string Password { get; set; }
 		public string IdToken { get; set; }
 	}
+
 }

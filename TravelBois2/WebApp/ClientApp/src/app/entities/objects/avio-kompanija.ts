@@ -2,7 +2,6 @@ import { Aerodrom } from './aerodrom';
 import { Let } from './let';
 import { Ocena } from '../misc/ocena';
 import { Klase } from 'src/app/_enums';
-import { Avion } from './avion';
 
 export class AvioKompanija {
   adresa: string;

@@ -8,6 +8,9 @@
         <li routerLink="/kontakt">O nama</li>
         <li *ngIf="getType() !== 'User'" routerLink="/brzeRezervacije">Brze rezervacije</li>
     </ul>
+  <ul>
+
+  </ul>
     <!--Treba da prikaze ovo za neregistrovane korisnike
         Za registrovane treba samo 'Profil'-->
     <ul *ngIf="getType() === 'User'" style="float: right;">

@@ -55,15 +55,6 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" class="form-control" formControlName="password">
-                <div *ngIf="podaciForm.controls.password.invalid">
-                    Unesite password
-                </div>
-            </div>
-        </div>
         <div>
             <div>
                 <button [disabled]="!podaciForm.valid" class="btn btn-success" type="submit">Sacuvaj</button>

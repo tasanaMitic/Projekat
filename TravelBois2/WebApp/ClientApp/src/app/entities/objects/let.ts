@@ -1,5 +1,4 @@
 import { Prtljag } from './prtljag';
-import { Avion } from './avion';
 import { Ocena } from '../misc/ocena';
 import { TipPrtljaga } from 'src/app/_enums';
 import { AvioKompanija } from './avio-kompanija';
@@ -31,7 +30,6 @@ export class Let {
   presedanja: Array<Aerodrom>;
     razdaljinaPutovanja: number;
     trajanjePutovanja: number; //u minutima
-    avion: Avion;
     ocene: Array<Ocena>;
   cenaKarte: number;
   tipLeta: TipLeta;
