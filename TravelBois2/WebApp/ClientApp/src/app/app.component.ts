@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {OperatorFunction} from 'rxjs/internal/types';
 import { UserService } from './shared/user.service';
+import { Local } from 'protractor/built/driverProviders';
 
 @Component({
   selector: 'app-root',
@@ -69,6 +70,7 @@ export class AppComponent {
     AppComponent.rente.push(new RentACar('Car2Go', 'adresa 3'))
 
     AppComponent.currentUser = new User();
+    localStorage.clear();
     //AppComponent.currentUser = new RegisteredUser('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password', 111546);
     //AppComponent.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
     //AppComponent.currentUser = new Admin('sysAdmin', 'password');
