@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Location} from '@angular/common';
+import { UserService } from 'src/app/shared/user.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reg-avio-kompaniju',
@@ -9,25 +12,41 @@ import { Location} from '@angular/common';
 })
 export class RegAvioKompanijuComponent implements OnInit {
   regAvioForm: FormGroup;
-  constructor(private location: Location) { }
+  constructor(private location: Location, public service: UserService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.initForm();
-  }
-
-  private initForm()
-  {
-    this.regAvioForm = new FormGroup({
-      'naziv': new FormControl('', Validators.required),
-      'adresa': new FormControl('', Validators.required),
-      'grad': new FormControl('', Validators.required),
-      'opis': new FormControl('', Validators.required),
-    });
+    this.service.avioAdminFormModel.reset();
   }
 
   onSubmit(){
-    console.log(this.regAvioForm.value);
-    console.log(this.regAvioForm);
+    console.log('registracija avio admina onSubmit()')
+    this.service.registerAvioAdmin().subscribe(
+      (res: any) => {
+        console.log('usao u register')
+        if (res.succeeded) {
+          console.log('uspeo')
+          this.service.userFormModel.reset();
+          this.toastr.success('Novi korisnik kreiran!', 'Registracija uspesna.');
+          this.router.navigate(['/pocetna'])
+        }
+        else {
+          console.log('nije uspeo')
+          res.errors.forEach(element => {
+            switch(element.code){
+              case 'DuplicateUserName':
+                this.toastr.error('Vec postoji korisnik sa tim imenom!', 'Registracija neuspesna.');
+                break;
+              default:
+                this.toastr.error(element.description, 'Registracija neuspesna.');
+                break;
+            }
+          });
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
   onBack()

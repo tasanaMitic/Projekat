@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Location} from '@angular/common';
+import { UserService } from 'src/app/shared/user.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reg-renta-kompaniju',
@@ -9,7 +12,7 @@ import { Location} from '@angular/common';
 })
 export class RegRentaKompanijuComponent implements OnInit {
   regRentaForm: FormGroup;
-  constructor(private location: Location) { }
+  constructor(private location: Location, public service: UserService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.initForm();

@@ -41,7 +41,7 @@ export class AppComponent {
     this.getContacts();
     this.getData();
     localStorage.clear();
-    
+    //AppComponent.currentUser = new Admin('sysAdmin', 'password');
   }
   getData(){
     return this.http.get(this.apiUrl).pipe(map((res) => res.json()));
@@ -54,6 +54,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    if(true){
     this.service.getUserProfile().subscribe(
       res => {
         if (res != null) {
@@ -69,6 +70,7 @@ export class AppComponent {
         console.log(err);
       },
     );
+    }
     
     AppComponent.avioKompanije = new Array<AvioKompanija>();
     AppComponent.rente = new Array<RentACar>();
@@ -90,6 +92,7 @@ export class AppComponent {
     
   } 
   getType() {
+    //console.debug(AppComponent.currentUser.tipKorisnika)
     return AppComponent.tipKorisnika;
   }
 }

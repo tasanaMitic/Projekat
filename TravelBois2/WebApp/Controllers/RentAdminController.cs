@@ -24,32 +24,40 @@ namespace WebApp.Controllers
             _signInManager = signInManager;
             _appSettings = appSettings.Value;
         }
-
         [HttpPost]
         [Route("Register")]
-        public async Task<object> RegisterAvioAdmin(RentAdmin model)
+        //POST: /api/ApplicationUser/Register
+        public async Task<Object> PostRentAdmin(RentAdminModel body)
         {
-            Console.WriteLine("avio admin register pozvan");
-            var avioAdmin = new RentAdmin()
+            Console.WriteLine("post pozvan");
+            var rentAdmin = new RentAdmin()
             {
-                Email = model.Email,
-                Username = model.Username,
-                Ime = model.Ime,
-                Prezime = model.Prezime,
-                Grad = model.Grad,
-                NazivRente = model.NazivRente,
-                BrojTelefona = model.BrojTelefona,
-                BrojPasosa = model.BrojPasosa,
+                UserName = body.UserName,
+                Email = body.Email,
+                Name = body.Name,
+                Lastname = body.Lastname,
+                Grad = body.Grad,
+                NazivRente = body.NazivRente,
+                BrojPasosa = body.BrojPasosa.ToString(),
+                BrojTelefona = body.BrojTelefona.ToString(),
+                TipKorisnika = body.TipKorisnika,
                 PromenioPassword = false
             };
             try
             {
-                var result = await _userManager.CreateAsync(avioAdmin, model.Password);
+                var result = await _userManager.CreateAsync(rentAdmin, body.Password);
+                if (result.Errors.Any())
+                {
+                    var test = result.Errors.ToList();
+                    //return BadRequest(new { message = test[0].Description});
+                    return Ok(result);
+                }
                 return Ok(result);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+
+                throw ex;
             }
         }
     }

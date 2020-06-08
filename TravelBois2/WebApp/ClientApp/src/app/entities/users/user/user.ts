@@ -9,6 +9,7 @@ export class User {
     Prezime: string;
     Username: string;
     Password: string;
+    TipKorisnika: string;
 
     constructor(brTel: string='', grad: string='', ime: string='', 
         prezime: string='', username: string='', password: string=''){

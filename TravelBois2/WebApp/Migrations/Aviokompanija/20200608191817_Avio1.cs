@@ -2,7 +2,7 @@
 
 namespace WebApp.Migrations.Aviokompanija
 {
-    public partial class Aviokompanija1 : Migration
+    public partial class Avio1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

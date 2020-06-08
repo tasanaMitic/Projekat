@@ -10,8 +10,8 @@ using WebApp.Data;
 namespace WebApp.Migrations.Aviokompanija
 {
     [DbContext(typeof(AviokompanijaContext))]
-    [Migration("20200608143152_Aviokompanija1")]
-    partial class Aviokompanija1
+    [Migration("20200608191817_Avio1")]
+    partial class Avio1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

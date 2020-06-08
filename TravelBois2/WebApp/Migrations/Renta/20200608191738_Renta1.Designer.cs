@@ -10,7 +10,7 @@ using WebApp.Data;
 namespace WebApp.Migrations.Renta
 {
     [DbContext(typeof(RentaContext))]
-    [Migration("20200608143211_Renta1")]
+    [Migration("20200608191738_Renta1")]
     partial class Renta1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

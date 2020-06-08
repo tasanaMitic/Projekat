@@ -45,7 +45,7 @@ namespace WebApp.Controllers
                 Grad = body.Grad,
                 BrojPasosa = body.BrojPasosa.ToString(),
                 BrojTelefona = body.BrojTelefona.ToString(),
-                TipKorisnika = "RegularUser"
+                TipKorisnika = body.TipKorisnika
             };
             try
             {
@@ -64,7 +64,7 @@ namespace WebApp.Controllers
                 throw ex;
             }
         }
-
+        
         [HttpPost]
         [Route("Login")]
         //POST: /api/ApplicationUser/Login
