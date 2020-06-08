@@ -131,27 +131,27 @@ export class PrijateljiComponent implements OnInit {
     this.korisnici = new Array<RegisteredUser>();
 
     //
-    this.korisnici.push(new RegisteredUser('063123457', 'Beograd', 'Ivana', 'Mitic', 'ivana', 123));
-    this.korisnici.push(new RegisteredUser('063123457', 'Beograd', 'Dragana', 'Mitic', 'dragana', 123));
+    this.korisnici.push(new RegisteredUser('063123457', 'Beograd', 'Ivana', 'Mitic', 'ivana', 'sifra', 123));
+    this.korisnici.push(new RegisteredUser('063123457', 'Beograd', 'Dragana', 'Mitic', 'dragana', 'sifra', 123));
   }
   ucitajZahteve() {
     this.zahtevi = new Array<RegisteredUser>();
 
     //////
-    this.zahtevi.push(new RegisteredUser('063123457', 'Beograd', 'Jovana', 'Mitic', 'tasana', 123));
-    this.zahtevi.push(new RegisteredUser('063123457', 'Beograd', 'Luka', 'Mitic', 'nikola', 123));
+    this.zahtevi.push(new RegisteredUser('063123457', 'Beograd', 'Jovana', 'Mitic', 'tasana', 'sifra', 123));
+    this.zahtevi.push(new RegisteredUser('063123457', 'Beograd', 'Luka', 'Mitic', 'nikola', 'sifra', 123));
     this.empty1 = 1;
   }
   ucitajPrijatelje() {//ucitaj prijatelje trenutnog korisnika
     this.mojiPrijatelji = new Array<RegisteredUser>();
 
     ////// nece ici ovako
-    this.mojiPrijatelji.push(new RegisteredUser('063123457', 'Beograd', 'Tasana', 'Mitic', 'tasana',  123));
-    this.mojiPrijatelji.push(new RegisteredUser('063123457', 'Beograd', 'Nikola', 'Jurisic', 'nikola',  123));
-    this.mojiPrijatelji.push(new RegisteredUser('063123457', 'Beograd', 'Petar', 'Petrovic', 'nikola', 123));
-    this.mojiPrijatelji.push(new RegisteredUser('063123457', 'Beograd', 'Andjela', 'Pejakovic', 'nikola', 123));
-    this.mojiPrijatelji.push(new RegisteredUser('063123457', 'Beograd', 'Jovan', 'Tatic', 'nikola',  123));
-    this.mojiPrijatelji.push(new RegisteredUser('063123457', 'Beograd', 'Petar', 'Zmijanjac', 'nikola', 123));
+    this.mojiPrijatelji.push(new RegisteredUser('063123457', 'Beograd', 'Tasana', 'Mitic', 'tasana', 'sifra', 123));
+    this.mojiPrijatelji.push(new RegisteredUser('063123457', 'Beograd', 'Nikola', 'Jurisic', 'nikola', 'sifra', 123));
+    this.mojiPrijatelji.push(new RegisteredUser('063123457', 'Beograd', 'Petar', 'Petrovic', 'nikola', 'sifra', 123));
+    this.mojiPrijatelji.push(new RegisteredUser('063123457', 'Beograd', 'Andjela', 'Pejakovic', 'nikola', 'sifra', 123));
+    this.mojiPrijatelji.push(new RegisteredUser('063123457', 'Beograd', 'Jovan', 'Tatic', 'nikola', 'sifra', 123));
+    this.mojiPrijatelji.push(new RegisteredUser('063123457', 'Beograd', 'Petar', 'Zmijanjac', 'nikola', 'sifra', 123));
     this.empty = 1;
   }
 

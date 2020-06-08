@@ -18,9 +18,9 @@ export class RegisteredUser extends User implements OnInit{
     Zahtevi: Array<RegisteredUser>;
 
     constructor(brTel: string, grad: string, ime: string, 
-        prezime: string, username: string, 
+        prezime: string, username: string, password: string,
         brPasosa:number){
-            super(brTel, grad, ime, prezime, username);
+            super(brTel, grad, ime, prezime, username, password);
             super.register();
             this.BrojPasosa = brPasosa;
             this.IstorijaKola = new Array<Kola>();

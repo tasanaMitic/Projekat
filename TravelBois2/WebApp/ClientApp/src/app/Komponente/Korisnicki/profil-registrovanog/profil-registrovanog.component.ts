@@ -29,6 +29,7 @@ export class ProfilRegistrovanogComponent implements OnInit {
       'brojTelefona': new FormControl(currentUser.BrojTelefona, Validators.required),
       'brojPasosa': new FormControl(this.currentUser.BrojPasosa, Validators.required),
       'username': new FormControl(this.currentUser.Username, Validators.required),
+      'password': new FormControl(this.currentUser.Password, Validators.required),
     });
   }
 
