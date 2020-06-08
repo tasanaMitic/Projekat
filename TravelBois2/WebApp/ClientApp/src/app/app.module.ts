@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { GoogleMapsModule } from "@angular/google-maps";
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
@@ -48,27 +48,6 @@ import { OcenjivanjeComponent } from './Komponente/Deljeno-avio-renta/ocenjivanj
 import { OceniLetComponent } from './Komponente/Avio/oceni-let/oceni-let.component';
 import { PozivniceComponent } from './Komponente/Korisnicki/pozivnice/pozivnice.component';
 import { RezervacijaLetaComponent } from './Komponente/Avio/rezervacija-leta/rezervacija-leta.component';
-import { ToastrModule } from 'ngx-toastr';
-import { CookieService } from 'ngx-cookie-service';
-import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, AuthService } from 'angular-6-social-login';  
-import { TokenInterceptor } from './auth/TokenInterceptor';
-import { AuthInterceptor } from './auth/auth.interceptor';
-
-export function socialConfigs() {  
-  const config = new AuthServiceConfig(  
-    [  
-      {  
-        id: FacebookLoginProvider.PROVIDER_ID,  
-        provider: new FacebookLoginProvider('app -id')  
-      },  
-      {  
-        id: GoogleLoginProvider.PROVIDER_ID,  
-        provider: new GoogleLoginProvider('')  
-      }  
-    ]  
-  );  
-  return config;  
-}  
 
 @NgModule({
   declarations: [
@@ -119,31 +98,9 @@ export function socialConfigs() {
     HttpModule,
     NgbModule,
     GoogleMapsModule,
-    TooltipModule.forRoot(),
-    ToastrModule.forRoot({
-      progressBar: true
-    })
+    TooltipModule.forRoot()
   ],
-  providers: [
-    AppComponent,
-    CookieService,
-    UserService, 
-    {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true,
-      },
-    AuthService,  
-    {  
-      provide: AuthServiceConfig,  
-      useFactory: socialConfigs  
-    }  
-  ],
+  providers: [AppComponent, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
