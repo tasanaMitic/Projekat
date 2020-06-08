@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { GoogleMapsModule } from "@angular/google-maps";
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
@@ -48,9 +48,12 @@ import { OcenjivanjeComponent } from './Komponente/Deljeno-avio-renta/ocenjivanj
 import { OceniLetComponent } from './Komponente/Avio/oceni-let/oceni-let.component';
 import { PozivniceComponent } from './Komponente/Korisnicki/pozivnice/pozivnice.component';
 import { RezervacijaLetaComponent } from './Komponente/Avio/rezervacija-leta/rezervacija-leta.component';
+<<<<<<< HEAD
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor } from './shared/auth.interceptor';
+=======
+>>>>>>> parent of ac13e74f... sve pogresno
 
 @NgModule({
   declarations: [
@@ -101,6 +104,7 @@ import { AuthInterceptor } from './shared/auth.interceptor';
     HttpModule,
     NgbModule,
     GoogleMapsModule,
+<<<<<<< HEAD
     BrowserAnimationsModule,
     TooltipModule.forRoot(),
     ToastrModule.forRoot()
@@ -111,6 +115,11 @@ import { AuthInterceptor } from './shared/auth.interceptor';
       useClass: AuthInterceptor,
       multi: true,
   }],
+=======
+    TooltipModule.forRoot()
+  ],
+  providers: [AppComponent, UserService],
+>>>>>>> parent of ac13e74f... sve pogresno
   bootstrap: [AppComponent]
 })
 export class AppModule { }
