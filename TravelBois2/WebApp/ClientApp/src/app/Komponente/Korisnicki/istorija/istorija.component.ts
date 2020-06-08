@@ -7,6 +7,7 @@ import { TipVozila } from '../../../_enums';
 import { Let } from '../../../entities/objects/let';
 import { Aerodrom } from '../../../entities/objects/aerodrom';
 import { element } from 'protractor';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-istorija',
@@ -29,7 +30,7 @@ export class IstorijaComponent implements OnInit {
   IstorijaLetova: Array<Let>;
 
 
-  constructor(private location: Location) { 
+  constructor(private router: Router) { 
     this.currentUser = AppComponent.currentUser as RegisteredUser;
     this.letData = new Array<Array<string>>();
     this.letDataRez = new Array<Array<string>>();
@@ -134,6 +135,6 @@ export class IstorijaComponent implements OnInit {
   }
   OceniKola() { }
   onBack() {
-    this.location.back();
+    this.router.navigateByUrl('/pocetna');
   }  
 }

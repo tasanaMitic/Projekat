@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApp.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Authentication : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,7 +41,12 @@ namespace WebApp.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(20)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    Lastname = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    Grad = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    BrojPasosa = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    BrojTelefona = table.Column<string>(type: "nvarchar(15)", nullable: true),
+                    TipKorisnika = table.Column<string>(type: "nvarchar(15)", nullable: true)
                 },
                 constraints: table =>
                 {

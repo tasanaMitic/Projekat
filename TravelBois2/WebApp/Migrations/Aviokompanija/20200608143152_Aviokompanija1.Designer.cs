@@ -10,8 +10,8 @@ using WebApp.Data;
 namespace WebApp.Migrations.Aviokompanija
 {
     [DbContext(typeof(AviokompanijaContext))]
-    [Migration("20200526184638_upadteAerodromTable")]
-    partial class upadteAerodromTable
+    [Migration("20200608143152_Aviokompanija1")]
+    partial class Aviokompanija1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,6 +27,11 @@ namespace WebApp.Migrations.Aviokompanija
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Adresa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Grad")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Opis")
@@ -44,30 +49,51 @@ namespace WebApp.Migrations.Aviokompanija
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AviokompanijaNaziv")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CenaKarte")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("DatumDolaska")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("DatumDolaska")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DatumPolaska")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("DatumPolaska")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("KlasaLeta")
+                        .HasColumnType("int");
 
                     b.Property<string>("MestoDolaska")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MestoPolaska")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RazdaljinaPutovanja")
                         .HasColumnType("int");
 
+                    b.Property<int>("TipLeta")
+                        .HasColumnType("int");
+
                     b.Property<int>("TrajanjePutovanja")
                         .HasColumnType("int");
 
+                    b.Property<string>("VremePoletanja")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VremeSletanja")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("aviokompanijaNaziv")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AviokompanijaNaziv");
+                    b.HasIndex("aviokompanijaNaziv");
 
                     b.ToTable("Letovi");
                 });
@@ -81,20 +107,26 @@ namespace WebApp.Migrations.Aviokompanija
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Drzava")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("LetId")
+                        .HasColumnType("int");
 
                     b.HasKey("Grad");
 
                     b.HasIndex("AviokompanijaNaziv");
+
+                    b.HasIndex("LetId");
 
                     b.ToTable("Aerodromi");
                 });
 
             modelBuilder.Entity("ServerApp.Models.Let", b =>
                 {
-                    b.HasOne("ServerApp.Models.Aviokompanija", null)
+                    b.HasOne("ServerApp.Models.Aviokompanija", "aviokompanija")
                         .WithMany("Letovi")
-                        .HasForeignKey("AviokompanijaNaziv");
+                        .HasForeignKey("aviokompanijaNaziv");
                 });
 
             modelBuilder.Entity("WebApp.Models.Aerodrom", b =>
@@ -102,6 +134,10 @@ namespace WebApp.Migrations.Aviokompanija
                     b.HasOne("ServerApp.Models.Aviokompanija", null)
                         .WithMany("Aerodromi")
                         .HasForeignKey("AviokompanijaNaziv");
+
+                    b.HasOne("ServerApp.Models.Let", null)
+                        .WithMany("Presedanja")
+                        .HasForeignKey("LetId");
                 });
 #pragma warning restore 612, 618
         }

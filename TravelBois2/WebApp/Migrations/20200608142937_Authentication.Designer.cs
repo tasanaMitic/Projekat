@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApp.Models;
+using WebApp.Data;
 
 namespace WebApp.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    [Migration("20200524182021_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200608142937_Authentication")]
+    partial class Authentication
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -231,8 +231,23 @@ namespace WebApp.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("BrojPasosa")
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("BrojTelefona")
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("Grad")
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Lastname")
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("TipKorisnika")
+                        .HasColumnType("nvarchar(15)");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });

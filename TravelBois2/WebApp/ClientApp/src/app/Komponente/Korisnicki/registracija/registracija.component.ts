@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Location} from '@angular/common';
 import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registracija',
@@ -11,7 +12,8 @@ import { Router } from '@angular/router';
 })
 export class RegistracijaComponent implements OnInit {
   registrationForm: FormGroup;
-  constructor(private location: Location, public service: UserService, private router: Router) { }
+  constructor(private location: Location, public service: UserService, private router: Router, private toastr: ToastrService) {
+  }
 
   ngOnInit(): void {
     this.service.formModel.reset();
@@ -19,24 +21,25 @@ export class RegistracijaComponent implements OnInit {
 
 
   onSubmit() {
-    console.debug('onSubmit()')
+    console.log('onSubmit()')
     this.service.register().subscribe(
       (res: any) => {
-        console.debug('usao u register')
+        console.log('usao u register')
         if (res.succeeded) {
-          console.debug('uspeo')
+          console.log('uspeo')
           this.service.formModel.reset();
+          this.toastr.success('Novi korisnik kreiran!', 'Registracija uspesna.');
           this.router.navigate(['/pocetna'])
         }
         else {
-          console.debug('nije uspeo')
+          console.log('nije uspeo')
           res.errors.forEach(element => {
             switch(element.code){
               case 'DuplicateUserName':
-                //username taken
+                this.toastr.error('Vec postoji korisnik sa tim imenom!', 'Registracija neuspesna.');
                 break;
               default:
-                //registration failed
+                this.toastr.error(element.description, 'Registracija neuspesna.');
                 break;
             }
           });

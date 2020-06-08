@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AvioKompanija } from '../../../entities/objects/avio-kompanija';
 import { User } from '../../../entities/users/user/user';
 import { AppComponent } from '../../../app.component';
-import {Location} from '@angular/common'
 import { Let } from '../../../entities/objects/let';
 import { Kola } from '../../../entities/objects/kola';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-avio-kompanije',
@@ -21,7 +21,7 @@ export class AvioKompanijeComponent implements OnInit {
   klasa: string;
   tip: string;
 
-  constructor(private location: Location, public fb: FormBuilder) { 
+  constructor(private router: Router, public fb: FormBuilder) { 
     this.kompanije = new Array<AvioKompanija>();   
     this.klasa = 'kompanija-slika';
     this.tip = 'AvioKompanije';
@@ -55,20 +55,20 @@ export class AvioKompanijeComponent implements OnInit {
   }
 
   oceni(naziv: string) {
-    window.open('https://localhost:44343/oceni/' + naziv, "_self");
-  }
-
-  onBack()
-  {
-    this.location.back();
-  }
+    this.router.navigateByUrl('/oceni/' + naziv);
+    //window.open('https://localhost:44343/oceni/' + naziv, "_self");
+  }  
 
   letoviUrl(url: string) {
-    window.open('https://localhost:44343/letovi/' + url, "_self");
+    this.router.navigateByUrl('/letovi/' + url);
   }
 
   getType(){
     return this.currentUser.constructor.name;
+  }
+
+  onBack() {
+    this.router.navigateByUrl('/pocetna');
   }
 
 
