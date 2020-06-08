@@ -26,25 +26,37 @@ namespace WebApp.Controllers
 
 
         [HttpGet]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize]
         [Route("GetUserProfile")]
         //GET: api/GetUserProfile
         public async Task<Object> GetUserProfile()
         {
-            string userId = User.Claims.First(c => c.Type == "UserID").Value;
 
-            var user = await _userManager.FindByIdAsync(userId);
-            return new
+            var claims = User.Claims;            
+            var ListClaims = claims.ToList();
+            if(ListClaims.Count != 0) { 
+            var prvi = ListClaims.First();
+
+            //string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            string userId = prvi.Value;            
+                var user = await _userManager.FindByIdAsync(userId);
+                return new
+                {
+                    user.UserName,
+                    user.Email,
+                    user.Name,
+                    user.Lastname,
+                    user.Grad,
+                    user.BrojTelefona,
+                    user.BrojPasosa,
+                    user.TipKorisnika
+                };
+            }
+            else
             {
-                user.UserName,
-                user.Email,
-                user.Name,
-                user.Lastname,
-                user.Grad,
-                user.BrojTelefona,
-                user.BrojPasosa,
-                user.TipKorisnika
-            };
+                return "";
+            }
         }
 
         

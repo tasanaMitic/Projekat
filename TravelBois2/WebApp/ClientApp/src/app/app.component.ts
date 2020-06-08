@@ -39,6 +39,8 @@ export class AppComponent {
     console.log('App started');
     this.getContacts();
     this.getData();
+    //localStorage.clear();
+    
   }
   getData(){
     return this.http.get(this.apiUrl).pipe(map((res) => res.json()));
@@ -51,16 +53,8 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    //this.service.getUserProfile().subscribe(
-    //  res => {
-    //    this.userDetails = res;
-    //    AppComponent.currentUser = new User();
-    //  },
-    //  err => {
-    //    AppComponent.currentUser = new User();
-    //    console.log(err);
-    //  },
-    //);
+
+    this.provera();
 
 
     AppComponent.avioKompanije = new Array<AvioKompanija>();
@@ -69,8 +63,8 @@ export class AppComponent {
     AppComponent.avioKompanije.push(new AvioKompanija('Jat', 'adresa1', 'Beograd'))
     AppComponent.rente.push(new RentACar('Car2Go', 'adresa 3'))
 
-    AppComponent.currentUser = new User();
-    localStorage.clear();
+    //AppComponent.currentUser = new User();
+    
     //AppComponent.currentUser = new RegisteredUser('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password', 111546);
     //AppComponent.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
     //AppComponent.currentUser = new Admin('sysAdmin', 'password');
@@ -80,9 +74,29 @@ export class AppComponent {
     //AppComponent.datum = new Date();
     
     //console.debug(AppComponent.currentUser)
+    
   }
     
   getType(){
     return AppComponent.currentUser.constructor.name;
+  }
+
+  provera() {
+    this.service.getUserProfile().subscribe(
+      res => {
+        if (res != null) {
+          this.userDetails = res;
+          //AppComponent.currentUser = new User();
+          AppComponent.currentUser = new RegisteredUser('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password', 111546);
+        }
+        else {
+          AppComponent.currentUser = new User();
+        }
+      },
+      err => {
+
+        console.log(err);
+      },
+    );
   }
 }

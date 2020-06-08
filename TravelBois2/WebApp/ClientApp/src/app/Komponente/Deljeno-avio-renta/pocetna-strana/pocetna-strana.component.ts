@@ -27,16 +27,7 @@ export class PocetnaStranaComponent implements OnInit {
     return this.currentUser.constructor.name;
   }
 
-  onGet() {
-    this.service.getUserProfile().subscribe(
-      res => {
-        this.userDetails = res;
-      },
-      err => {
-        console.log(err);
-      },
-    );
-  }
+  
 
 }
 
