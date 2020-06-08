@@ -26,7 +26,8 @@ export class AppComponent {
   data: any = {};
 
   userDetails;
-
+  static tipKorisnika: string;
+  static reset = false;
   static currentUser;
   static datum: Date;
   //currentUser: User;
@@ -54,8 +55,6 @@ export class AppComponent {
 
   ngOnInit() {
 
-    this.provera();
-
 
     AppComponent.avioKompanije = new Array<AvioKompanija>();
     AppComponent.rente = new Array<RentACar>();
@@ -75,22 +74,19 @@ export class AppComponent {
     
     //console.debug(AppComponent.currentUser)
     
-  }
-    
-  getType(){
-    return AppComponent.currentUser.constructor.name;
-  }
+  } 
 
   provera() {
     this.service.getUserProfile().subscribe(
       res => {
         if (res != null) {
           this.userDetails = res;
-          //AppComponent.currentUser = new User();
           AppComponent.currentUser = new RegisteredUser('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password', 111546);
+          AppComponent.tipKorisnika = "RegisteredUser";
         }
         else {
           AppComponent.currentUser = new User();
+          AppComponent.tipKorisnika = "User";
         }
       },
       err => {
@@ -98,5 +94,8 @@ export class AppComponent {
         console.log(err);
       },
     );
+  }
+  getType() {
+    return AppComponent.tipKorisnika;
   }
 }

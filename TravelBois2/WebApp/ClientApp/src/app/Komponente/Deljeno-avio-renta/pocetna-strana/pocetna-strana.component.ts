@@ -23,8 +23,8 @@ export class PocetnaStranaComponent implements OnInit {
     this.currentUser = AppComponent.currentUser;
     
   }
-  getType(){
-    return this.currentUser.constructor.name;
+  getType() {
+    return AppComponent.tipKorisnika;
   }
 
   
