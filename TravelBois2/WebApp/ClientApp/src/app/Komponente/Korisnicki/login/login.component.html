@@ -1,28 +1,31 @@
 <div class="container">
-    <h1>Log in</h1>
-        <form #form="ngForm" (submit)="onSubmit(form)">
-            <div class="form">
-                <table>
-                    <tr>
-                        <td>
-                            <label>Username:</label>
-                        </td>
-                        <td>
-                            <input #UserName="ngModel" name="UserName" [(ngModel)]="formModel.Username" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Password:</label>
-                        </td>
-                        <td>
-                            <input #Password="ngModel" type="password" name="Password" [(ngModel)]="formModel.Password" required>
-                        </td>
-                    </tr>
-                    <div>
-                        <button type="submit" [disabled]="form.invalid" class="btn btn-lg btn-block">Login</button>
-                    </div>
-                </table>
-            </div>
-        </form>
+  <h1>Log in</h1>
+  <form #form="ngForm" (submit)="onSubmit(form)">
+    <div class="form">
+      <table>
+        <tr>
+          <td>
+            <label>Username:</label>
+          </td>
+          <td>
+            <input #UserName="ngModel" name="UserName" [(ngModel)]="formModel.Username" required>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Password:</label>
+          </td>
+          <td>
+            <input #Password="ngModel" type="password" name="Password" [(ngModel)]="formModel.Password" required>
+          </td>
+        </tr>
+        <div>
+          <button type="submit" [disabled]="form.invalid" class="btn btn-lg btn-block">Login</button>
+        </div>
+      </table>
+    </div>
+  </form>
+  <div>
+    <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
+  </div>
 </div>

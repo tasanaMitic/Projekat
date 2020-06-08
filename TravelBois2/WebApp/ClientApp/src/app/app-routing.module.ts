@@ -33,6 +33,7 @@ import { OcenjivanjeComponent } from './Komponente/Deljeno-avio-renta/ocenjivanj
 import { OceniLetComponent } from './Komponente/Avio/oceni-let/oceni-let.component';
 import { PozivniceComponent } from './Komponente/Korisnicki/pozivnice/pozivnice.component';
 import { RezervacijaLetaComponent } from './Komponente/Avio/rezervacija-leta/rezervacija-leta.component';
+import { AuthGuard } from './shared/auth.guard';
 
 
 const routes: Routes = [
@@ -51,7 +52,7 @@ const routes: Routes = [
   { path: 'regAdminaRente', component: RegAdminaRenteComponent },
   { path: 'regAvioKomp', component: RegAvioKompanijuComponent },
   { path: 'regRentaKomp', component: RegRentaKompanijuComponent },
-  { path: 'profilKorisnika', component: ProfilRegistrovanogComponent },
+  { path: 'profilKorisnika', component: ProfilRegistrovanogComponent, canActivate:[AuthGuard]},
   { path: 'profilAvio', component: ProfilAvioComponent },
   { path: 'prijatelji', component: PrijateljiComponent },
   { path: 'istorija', component: IstorijaComponent },

@@ -19,6 +19,8 @@ namespace WebApp.Models
 		public string BrojPasosa { get; set; }
 		[Column(TypeName = "nvarchar(15)")]
 		public string BrojTelefona { get; set; }
+		[Column(TypeName = "nvarchar(15)")]
+		public string TipKorisnika { get; set; }
 
 	}
 }

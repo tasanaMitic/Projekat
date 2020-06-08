@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -15,16 +18,21 @@ namespace WebApp.Controllers
     public class UserProfileController : ControllerBase
     {
         private UserManager<ApplicationUser> _userManager;
+
         public UserProfileController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
+
+
         [HttpGet]
-        [Authorize]
-        //GET: api/UserProfile
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("GetUserProfile")]
+        //GET: api/GetUserProfile
         public async Task<Object> GetUserProfile()
         {
-            string userId = User.Claims.First(c => c.Type == "UserId").Value;
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+
             var user = await _userManager.FindByIdAsync(userId);
             return new
             {
@@ -34,8 +42,11 @@ namespace WebApp.Controllers
                 user.Lastname,
                 user.Grad,
                 user.BrojTelefona,
-                user.BrojPasosa
+                user.BrojPasosa,
+                user.TipKorisnika
             };
         }
+
+        
     }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common'
 import { element } from 'protractor';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { RegisteredUser } from '../../../entities/users/registered-user/registered-user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-prijatelji',
@@ -24,7 +24,7 @@ export class PrijateljiComponent implements OnInit {
   prezime: string;
   poruka: string;
 
-  constructor(private location: Location, public fb: FormBuilder) {
+  constructor(private router: Router, public fb: FormBuilder) {
     this.empty = 0;
     this.empty1 = 0;
     this.empty2 = 0;
@@ -168,7 +168,7 @@ export class PrijateljiComponent implements OnInit {
 
   onBack()
   {
-    this.location.back();
+    this.router.navigateByUrl('/pocetna');
   } 
 
 }

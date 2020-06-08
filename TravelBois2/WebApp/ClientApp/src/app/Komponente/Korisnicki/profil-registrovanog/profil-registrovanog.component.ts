@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Location} from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AppComponent } from '../../../app.component';
 import { User } from '../../../entities/users/user/user';
 import { RegisteredUser } from '../../../entities/users/registered-user/registered-user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profil-registrovanog',
@@ -13,7 +13,7 @@ import { RegisteredUser } from '../../../entities/users/registered-user/register
 export class ProfilRegistrovanogComponent implements OnInit {
   podaciForm: FormGroup;
   currentUser: RegisteredUser;
-  constructor(private location: Location) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.currentUser = AppComponent.currentUser as RegisteredUser ;
@@ -40,7 +40,7 @@ export class ProfilRegistrovanogComponent implements OnInit {
 
   onBack()
   {
-    this.location.back();
+    this.router.navigateByUrl('/pocetna');
   }
 
   

@@ -11,6 +11,7 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {OperatorFunction} from 'rxjs/internal/types';
+import { UserService } from './shared/user.service';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,9 @@ export class AppComponent {
   //private apiUrl = 'localhost:4200';
   data: any = {};
 
-  static currentUser: User;
+  userDetails;
+
+  static currentUser;
   static datum: Date;
   //currentUser: User;
   static avioKompanije: Array<AvioKompanija>;
@@ -31,7 +34,7 @@ export class AppComponent {
 
   title = 'Travel-bois';
 
-  constructor(private http: Http){
+  constructor(private http: Http, private service: UserService){
     console.log('App started');
     this.getContacts();
     this.getData();
@@ -47,19 +50,33 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    //this.service.getUserProfile().subscribe(
+    //  res => {
+    //    this.userDetails = res;
+    //    AppComponent.currentUser = new User();
+    //  },
+    //  err => {
+    //    AppComponent.currentUser = new User();
+    //    console.log(err);
+    //  },
+    //);
+
+
     AppComponent.avioKompanije = new Array<AvioKompanija>();
     AppComponent.rente = new Array<RentACar>();
 
     AppComponent.avioKompanije.push(new AvioKompanija('Jat', 'adresa1', 'Beograd'))
     AppComponent.rente.push(new RentACar('Car2Go', 'adresa 3'))
 
-    //AppComponent.currentUser = new User();
+    AppComponent.currentUser = new User();
+    localStorage.clear();
+    //
     //AppComponent.currentUser = new RegisteredUser('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password', 111546);
     //AppComponent.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
     //AppComponent.currentUser = new Admin('sysAdmin', 'password');
 
     //AppComponent.currentUser = new Admin();
-    AppComponent.currentUser = new AvioAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
+    //AppComponent.currentUser = new AvioAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
     //AppComponent.datum = new Date();
     
     //console.debug(AppComponent.currentUser)

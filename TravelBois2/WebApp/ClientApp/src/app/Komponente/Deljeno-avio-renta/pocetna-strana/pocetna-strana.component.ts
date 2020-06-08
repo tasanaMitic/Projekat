@@ -5,6 +5,7 @@ import { RentACarAdmin } from '../../../entities/users/rent-a-car-admin/rent-a-c
 import { Admin } from '../../../entities/users/admin/admin'
 import { Router } from '@angular/router';
 import { AppComponent } from '../../../app.component';
+import { UserService } from '../../../shared/user.service';
 
 @Component({
   selector: 'app-pocetna-strana',
@@ -14,12 +15,28 @@ import { AppComponent } from '../../../app.component';
 })
 export class PocetnaStranaComponent implements OnInit {
   currentUser: User;
-  constructor() { }
+  userDetails;
+  constructor(private service: UserService) { }
 
   ngOnInit(): void {
+    
     this.currentUser = AppComponent.currentUser;
+    
   }
   getType(){
     return this.currentUser.constructor.name;
   }
+
+  onGet() {
+    this.service.getUserProfile().subscribe(
+      res => {
+        this.userDetails = res;
+      },
+      err => {
+        console.log(err);
+      },
+    );
+  }
+
 }
+
