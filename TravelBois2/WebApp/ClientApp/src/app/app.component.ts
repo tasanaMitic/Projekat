@@ -54,8 +54,8 @@ export class AppComponent {
   }
 
   ngOnInit() {
-
-
+    this.provera();
+    
     AppComponent.avioKompanije = new Array<AvioKompanija>();
     AppComponent.rente = new Array<RentACar>();
 
