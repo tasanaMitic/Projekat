@@ -6,7 +6,6 @@ import { DestinacijeService } from '../../../shared/destinacije.service';
 import { Aerodrom } from '../../../entities/objects/aerodrom';
 import { element } from 'protractor';
 import { strict } from 'assert';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-destinacije-avio',
@@ -26,7 +25,7 @@ export class DestinacijeAvioComponent implements OnInit {
   g: string;
   d: string;
 
-  constructor(private location: Location, private service: DestinacijeService, private router: Router) {
+  constructor(private location: Location, private service: DestinacijeService) {
     this.letData = new Array<Array<string>>();
     this.listaAerodroma = new Array <Aerodrom>();
 
@@ -75,7 +74,7 @@ export class DestinacijeAvioComponent implements OnInit {
   }
 
   onBack(){
-    this.router.navigateByUrl('/pocetna');
+    window.open('https://localhost:44343/pocetna', "_self");
   }
 
 }

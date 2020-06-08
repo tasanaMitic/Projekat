@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location} from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +11,7 @@ import { Router } from '@angular/router';
 export class ProfilAvioComponent implements OnInit {
   avioPodaciForm: FormGroup;
 
-  constructor(private location: Location, private router: Router) { 
+  constructor(private location: Location) { 
   }
 
   ngOnInit(): void {
@@ -46,7 +45,7 @@ export class ProfilAvioComponent implements OnInit {
 
   onBack()
   {
-    this.router.navigateByUrl('/pocetna');
+    this.location.back();
   }
 
 }

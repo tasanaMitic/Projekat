@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Let } from '../../../entities/objects/let';
-import { Location } from '@angular/common';
+import {Location} from '@angular/common'
+import { Avion } from '../../../entities/objects/avion';
 import { AppComponent } from '../../../app.component';
 import { element } from 'protractor';
 import { AvioKompanija } from '../../../entities/objects/avio-kompanija';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Aerodrom } from '../../../entities/objects/aerodrom';
 import { Klase } from '../../../_enums';
@@ -36,7 +37,7 @@ export class LetoviComponent implements OnInit {
 
   letovi: Array<Let>;
 
-  constructor(private location: Location, private route: ActivatedRoute, private router: Router) {
+  constructor(private location: Location, private route: ActivatedRoute) {
     this.letData = new Array<Array<string>>();
     this.empty = 0;
 
@@ -592,7 +593,7 @@ export class LetoviComponent implements OnInit {
   }
 
   RezervisiLet(id: string) {
-    this.router.navigateByUrl('/rezervacija/' + this.aviokompanija + '/' + parseInt(id));
+    window.open('https://localhost:44343/rezervacija/' + this.aviokompanija + '/' + parseInt(id), "_self");
   }
 
   onBack() {

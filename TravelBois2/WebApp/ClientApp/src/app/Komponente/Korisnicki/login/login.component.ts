@@ -3,8 +3,9 @@ import { UserService } from './../../../shared/user.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AppComponent } from '../../../app.component';
-import { RegisteredUser } from '../../../entities/users/registered-user/registered-user';
+import { AuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angular-6-social-login';
+import { DOCUMENT } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -17,32 +18,46 @@ export class LoginComponent implements OnInit {
     Password: ''
   }
   socialProvider = "google";
+  constructor(private service: UserService, private router: Router, private toastr: ToastrService,
+    public OAuth: AuthService,
+    private cookieService: CookieService, @Inject(DOCUMENT) private document: Document) { }
 
-  userDetails;
-
-  constructor( private service: UserService, private router: Router, private toastr: ToastrService) { }
-
-  ngOnInit(): void {
-    if (localStorage.getItem('token') != null) {
-      this.router.navigateByUrl('/pocetna');
-    }
+  ngOnInit() {
+    if (localStorage.getItem('token') != null)
+      this.router.navigateByUrl('/home');
   }
-  
+
+  LoginWithGoogle(){
+    let socialPlatformProvider;  
+    if (this.socialProvider === 'facebook') {  
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;  
+    } else if (this.socialProvider === 'google') {  
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;  
+    }  
+    this.OAuth.signIn(socialPlatformProvider).then(socialusers => {  
+      console.log(socialusers);   
+
+      this.service.externalLogin(socialusers).subscribe((res:any)=>{
+        localStorage.setItem('token', res.token);
+        this.router.navigateByUrl('/home');
+      });
+   
+      console.log(socialusers);  
+    });  
+
+  }
 
   onSubmit(form: NgForm) {
     this.service.login(form.value).subscribe(
       (res: any) => {
         localStorage.setItem('token', res.token);
-        this.toastr.success("Uspesno ste se ulogovali!", "Logovanje uspesno.");
-        this.router.navigate(['/pocetna'])
+        this.router.navigateByUrl('/home');
       },
-      (err) =>{
-        if (err.status == 400) {
-          this.toastr.error("Username ili password nisu ispravni!", "Logovanje neuspesno.");
-        }
-        else {
+      err => {
+        if (err.status == 400)
+          this.toastr.error('Incorrect username or password.', 'Authentication failed.');
+        else
           console.log(err);
-        }
       }
     );
   }

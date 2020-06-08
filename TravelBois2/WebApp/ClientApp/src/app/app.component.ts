@@ -11,8 +11,6 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {OperatorFunction} from 'rxjs/internal/types';
-import { UserService } from './shared/user.service';
-import { Local } from 'protractor/built/driverProviders';
 
 @Component({
   selector: 'app-root',
@@ -25,10 +23,7 @@ export class AppComponent {
   //private apiUrl = 'localhost:4200';
   data: any = {};
 
-  userDetails;
-  static tipKorisnika: string;
-  static reset = false;
-  static currentUser;
+  static currentUser: User;
   static datum: Date;
   //currentUser: User;
   static avioKompanije: Array<AvioKompanija>;
@@ -36,12 +31,10 @@ export class AppComponent {
 
   title = 'Travel-bois';
 
-  constructor(private http: Http, private service: UserService){
+  constructor(private http: Http){
     console.log('App started');
     this.getContacts();
     this.getData();
-    localStorage.clear();
-    
   }
   getData(){
     return this.http.get(this.apiUrl).pipe(map((res) => res.json()));
@@ -54,30 +47,13 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.service.getUserProfile().subscribe(
-      res => {
-        if (res != null) {
-          this.userDetails = res;
-        }
-        else {
-          AppComponent.currentUser = new User();
-          AppComponent.tipKorisnika = "User";
-        }
-      },
-      err => {
-
-        console.log(err);
-      },
-    );
-    
     AppComponent.avioKompanije = new Array<AvioKompanija>();
     AppComponent.rente = new Array<RentACar>();
 
     AppComponent.avioKompanije.push(new AvioKompanija('Jat', 'adresa1', 'Beograd'))
     AppComponent.rente.push(new RentACar('Car2Go', 'adresa 3'))
 
-    //AppComponent.currentUser = new User();
-    
+    AppComponent.currentUser = new User();
     //AppComponent.currentUser = new RegisteredUser('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password', 111546);
     //AppComponent.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
     //AppComponent.currentUser = new Admin('sysAdmin', 'password');
@@ -87,9 +63,9 @@ export class AppComponent {
     //AppComponent.datum = new Date();
     
     //console.debug(AppComponent.currentUser)
+  }
     
-  } 
-  getType() {
-    return AppComponent.tipKorisnika;
+  getType(){
+    return AppComponent.currentUser.constructor.name;
   }
 }

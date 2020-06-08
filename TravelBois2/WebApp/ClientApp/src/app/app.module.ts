@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { GoogleMapsModule } from "@angular/google-maps";
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
@@ -48,9 +48,6 @@ import { OcenjivanjeComponent } from './Komponente/Deljeno-avio-renta/ocenjivanj
 import { OceniLetComponent } from './Komponente/Avio/oceni-let/oceni-let.component';
 import { PozivniceComponent } from './Komponente/Korisnicki/pozivnice/pozivnice.component';
 import { RezervacijaLetaComponent } from './Komponente/Avio/rezervacija-leta/rezervacija-leta.component';
-import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthInterceptor } from './shared/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -95,22 +92,15 @@ import { AuthInterceptor } from './shared/auth.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    FormsModule,    
     ReactiveFormsModule,
     HttpClientModule,
     HttpModule,
     NgbModule,
     GoogleMapsModule,
-    BrowserAnimationsModule,
-    TooltipModule.forRoot(),
-    ToastrModule.forRoot()
+    TooltipModule.forRoot()
   ],
-  providers: [AppComponent, UserService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-  }],
+  providers: [AppComponent, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

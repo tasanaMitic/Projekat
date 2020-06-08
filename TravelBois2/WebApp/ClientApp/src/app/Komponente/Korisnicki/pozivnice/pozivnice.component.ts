@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-pozivnice',
@@ -11,7 +11,7 @@ export class PozivniceComponent implements OnInit {
   letHeaders = ['Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Tip leta', 'Klasa', 'Cena'];
   letData: Array<Array<string>>;
 
-  constructor(private router: Router) {
+  constructor(private location: Location) {
     this.empty = 0;
   }
 
@@ -25,6 +25,6 @@ export class PozivniceComponent implements OnInit {
   }
 
   onBack() {
-    this.router.navigateByUrl('/pocetna');
+    this.location.back();
   }
 }

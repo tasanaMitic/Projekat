@@ -259,12 +259,12 @@ export class RezervacijaLetaComponent implements OnInit {
     this.listaPrijatelja = new Array<RegisteredUser>();
 
     //UCIAJ PRIJATELJE IZ BAZE
-    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Tasana', 'Mitic', 'tasana', 123));
-    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Nikola', 'Jurisic', 'nikola',  123));
-    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Petar', 'Petrovic', 'nikola',  123));
-    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Andjela', 'Pejakovic', 'nikola',  123));
-    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Jovan', 'Tatic', 'nikola', 123));
-    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Petar', 'Zmijanjac', 'nikola',  123));
+    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Tasana', 'Mitic', 'tasana', 'sifra', 123));
+    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Nikola', 'Jurisic', 'nikola', 'sifra', 123));
+    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Petar', 'Petrovic', 'nikola', 'sifra', 123));
+    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Andjela', 'Pejakovic', 'nikola', 'sifra', 123));
+    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Jovan', 'Tatic', 'nikola', 'sifra', 123));
+    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Petar', 'Zmijanjac', 'nikola', 'sifra', 123));
 
     this.prijateljiData = new Array<string>();
     this.listaPrijatelja.forEach(element => {

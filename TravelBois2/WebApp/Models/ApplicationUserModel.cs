@@ -15,6 +15,5 @@ namespace ServerApp.Models
 		public string Grad { get; set; }
 		public string BrojPasosa { get; set; }
 		public string BrojTelefona { get; set; }
-        public string TipKorisnika { get; set; }
 	}
 }

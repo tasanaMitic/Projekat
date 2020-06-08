@@ -84,7 +84,7 @@ namespace WebApp
             services.AddCors();
 
             //JWT Authentication
-            var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWT_Secret"].ToString());
+            var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWT_Secret"]);
 
             services.AddAuthentication(x =>
             {
@@ -100,7 +100,6 @@ namespace WebApp
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
-                    ValidateLifetime = true,
                     ValidateAudience = false,
                     ClockSkew = TimeSpan.Zero
                 };
@@ -110,15 +109,6 @@ namespace WebApp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //app.Use(async (ctx, next) =>
-            //{
-            //    await next();
-            //    if (ctx.Response.StatusCode == 204)
-            //    {
-            //        ctx.Response.ContentLength = 0;
-            //    }
-            //});
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -131,7 +121,7 @@ namespace WebApp
             }
             ////////////////////////
             app.UseCors(builder =>
-            builder.WithOrigins(Configuration["ApplicationSettings:Client_Url"].ToString())
+            builder.WithOrigins(Configuration["ApplicationSettings:Client_Url"])
             .AllowAnyHeader()
             .AllowAnyMethod());
             /////////////////////////
@@ -145,9 +135,7 @@ namespace WebApp
 
             app.UseRouting();
 
-
             app.UseAuthentication();
-            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -169,7 +157,6 @@ namespace WebApp
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
-            //app.UseMvc();
         }
     }
 }
