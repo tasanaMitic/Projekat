@@ -1,86 +1,115 @@
 <div class="container">
-    <h1>Registracija admina rent-a-car kompanije</h1>
-    <form [formGroup]="regRenteAdminForm" (ngSubmit)="onSubmit()">
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="ime">Ime:</label>
-                <input type="text" id="ime" class="form-control" formControlName="ime"> 
-                <div *ngIf="regRenteAdminForm.controls.ime.invalid">
-                    Unesite ime
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="prezime">Prezime:</label>
-                <input type="text" id="prezime" class="form-control" formControlName="prezime">
-                <div *ngIf="regRenteAdminForm.controls.prezime.invalid">
-                    Unesite prezime
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="grad">Grad:</label>
-                <input type="text" id="grad" class="form-control" formControlName="grad">
-                <div *ngIf="regRenteAdminForm.controls.grad.invalid">
-                    Unesite grad
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="rentaKompanija">Rent-a-car kompanija:</label>
-                <input type="text" id="rentaKompanija" class="form-control" formControlName="rentaKompanija">
-                <div *ngIf="regRenteAdminForm.controls.rentaKompanija.invalid">
-                    Unesite ime rent-a-car kompanije
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="brojTelefona">Broj telefona:</label>
-                <input type="number" id="brojTelefona" class="form-control" formControlName="brojTelefona">
-                <div *ngIf="regRenteAdminForm.controls.brojTelefona.invalid">
-                    Unesite broj telefona
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="brojPasosa">Broj pasosa:</label>
-                <input type="number" id="brojPasosa" class="form-control" formControlName="brojPasosa">
-                <div *ngIf="regRenteAdminForm.controls.brojPasosa.invalid">
-                    Unesite broj pasosa
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" class="form-control" formControlName="username">
-                <div *ngIf="regRenteAdminForm.controls.username.invalid">
-                    Unesite username
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" class="form-control" formControlName="password">
-                <div *ngIf="regRenteAdminForm.controls.password.invalid">
-                    Unesite password
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-1">
-                <button [disabled]="!regRenteAdminForm.valid" class="btn btn-success" type="submit">Sacuvaj</button>
-            </div>
-            <div>
-                <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
-            </div>
-        </div>
+    <h1>Registracija aviokompanije</h1>
+    <form [formGroup]="service.rentAdminFormModel" (ngSubmit)="onSubmit()">
+      <div class="form">
+        <table>
+            <tr>
+                <td><label>Email:</label></td>
+                <td>
+                    <input type="text" name="Email" formControlName="Email">
+                    
+                </td>
+                <td>
+                    <label *ngIf="service.rentAdminFormModel.get('Email').touched && service.rentAdminFormModel.get('Email').errors?.email">Email nije validan</label>
+                    <label *ngIf="service.rentAdminFormModel.get('Email').touched && service.rentAdminFormModel.get('Email').errors?.required">Email je potreban</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Username:</label></td>
+                <td>
+                    <input type="text" name="UserName" formControlName="UserName"> 
+                </td>
+                <td>
+                    <label *ngIf="service.rentAdminFormModel.get('UserName').touched && service.rentAdminFormModel.get('UserName').errors?.required">Username je potreban</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Ime:</td>
+                <td>
+                    <input type="text" name="Name" formControlName="Name"> 
+                </td>
+                <td>
+                  <label *ngIf="service.rentAdminFormModel.get('Name').touched && service.rentAdminFormModel.get('Name').errors?.required">Ime je potrebno</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Prezime:</td>
+                <td>
+                    <input type="text" name="Lastname" formControlName="Lastname"> 
+                </td>
+                <td>
+                  <label *ngIf="service.rentAdminFormModel.get('Lastname').touched && service.rentAdminFormModel.get('Lastname').errors?.required">Prezime je potrebno</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Grad:</td>
+                <td>
+                    <input type="text" name="Grad"  formControlName="Grad"> 
+                </td>
+                <td>
+                  <label *ngIf="service.rentAdminFormModel.get('Grad').touched && service.rentAdminFormModel.get('Grad').errors?.required">Grad je potreban</label>
 
+                </td>
+            </tr>
+            <tr>
+              <td>Naziv rent kompanije:</td>
+              <td>
+                  <input type="text" name="NazivKompanije" formControlName="NazivKompanije"> 
+              </td>
+              <td>
+                <label *ngIf="service.rentAdminFormModel.get('NazivKompanije').touched && service.rentAdminFormModel.get('NazivKompanije').errors?.required">Naziva viokompanije je potreban</label>
+              </td>
+            </tr>
+            <tr>
+                <td>Broj telefona:</td>
+                <td>
+                    <input name="BrojTelefona" formControlName="BrojTelefona">
+                </td>
+                <td>
+                  <label *ngIf="service.rentAdminFormModel.get('BrojTelefona').touched && service.rentAdminFormModel.get('BrojTelefona').errors?.required">Broj telefona je potreban</label>
+
+                </td>
+            </tr>
+            <tr>
+                <td>Broj pasosa:</td>
+                <td>
+                    <input name="BrojPasosa" formControlName="BrojPasosa"> 
+                </td>
+                <td>
+                  <label *ngIf="service.rentAdminFormModel.get('BrojPasosa').touched && service.rentAdminFormModel.get('BrojPasosa').errors?.required">Broj pasosa je potreban</label>
+                </td>
+            </tr>
+            <div formGroupName="Passwords">
+                <tr>
+                    <td><label>Sifra:</label>
+                    <td style="padding-left: 32px">
+                        <input type="password" name="password" formControlName="Password"> 
+                    </td>
+                    <td>
+                        <label *ngIf="service.rentAdminFormModel.get('Passwords.Password').touched && service.rentAdminFormModel.get('Passwords.Password').errors?.required">Sifra je potreban</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Potvrdi sifru:</label>
+                    <td style="padding-left: 32px">
+                        <input type="password" name="ConfirmPassword" formControlName="ConfirmPassword"> 
+                    </td>
+                    <td>
+                        <label *ngIf="service.rentAdminFormModel.get('Passwords.ConfirmPassword').touched && service.rentAdminFormModel.get('Passwords.ConfirmPassword').errors?.required">Potvrda sifre je potrebna</label>
+                        <label *ngIf="service.rentAdminFormModel.get('Passwords.ConfirmPassword').touched && service.rentAdminFormModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Sifre se ne poklapaju </label>
+                    </td>
+                </tr>
+            </div>
+        </table>
+      </div>
+      <div>
+          <div>
+              <button [disabled]="service.rentAdminFormModel.invalid" class="btn btn-lg btn-block" type="submit">Sacuvaj</button>
+              
+          </div>
+          <div>
+              <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
+          </div>
+      </div>
     </form>
 </div>

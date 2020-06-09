@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Location} from '@angular/common';
-import { AvioAdminService } from 'src/app/shared/avio-admin.service';
+import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reg-admina-avio',
@@ -10,31 +11,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./reg-admina-avio.component.css']
 })
 export class RegAdminaAvioComponent implements OnInit {
-  regAvioAdminForm: FormGroup;
-  constructor(private location: Location, public service: AvioAdminService, private router: Router) { }
+  regAvioForm: FormGroup;
+  constructor(private location: Location, public service: UserService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.service.formModel.reset();
+    this.service.avioAdminFormModel.reset();
   }
 
   onSubmit(){
-    this.service.register().subscribe(
+    console.log('registracija avio admina onSubmit()')
+    this.service.registerAvioAdmin().subscribe(
       (res: any) => {
-        console.debug('usao u register')
+        console.log('usao u register')
         if (res.succeeded) {
-          console.debug('uspeo')
-          this.service.formModel.reset();
+          console.log('uspeo')
+          this.service.userFormModel.reset();
+          this.toastr.success('Novi avio admin kreiran!', 'Registracija uspesna.');
           this.router.navigate(['/pocetna'])
         }
         else {
-          console.debug('nije uspeo')
+          console.log('nije uspeo')
           res.errors.forEach(element => {
             switch(element.code){
               case 'DuplicateUserName':
-                //username taken
+                this.toastr.error('Vec postoji korisnik sa tim imenom!', 'Registracija neuspesna.');
                 break;
               default:
-                //registration failed
+                this.toastr.error(element.description, 'Registracija neuspesna.');
                 break;
             }
           });
@@ -50,4 +53,5 @@ export class RegAdminaAvioComponent implements OnInit {
   {
     this.location.back();
   }
+
 }
