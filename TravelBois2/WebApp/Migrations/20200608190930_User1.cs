@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApp.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class User1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,7 +41,32 @@ namespace WebApp.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(20)", nullable: true)
+                    Password = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    TipKorisnika = table.Column<string>(type: "nvarchar(15)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    Lastname = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    Grad = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    BrojPasosa = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    BrojTelefona = table.Column<string>(type: "nvarchar(15)", nullable: true),
+                    ApplicationUser_TipKorisnika = table.Column<string>(type: "nvarchar(15)", nullable: true),
+                    AvioAdmin_Name = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    AvioAdmin_Lastname = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    AvioAdmin_Grad = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    NazivAviokompanije = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    AvioAdmin_BrojTelefona = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    AvioAdmin_BrojPasosa = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    AvioAdmin_Password = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    PromenioPassword = table.Column<bool>(type: "bit", nullable: true),
+                    AvioAdmin_TipKorisnika = table.Column<string>(type: "nvarchar(15)", nullable: true),
+                    RentAdmin_Name = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    RentAdmin_Lastname = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    RentAdmin_Grad = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    NazivRente = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    RentAdmin_BrojTelefona = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    RentAdmin_BrojPasosa = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    RentAdmin_Password = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    RentAdmin_PromenioPassword = table.Column<bool>(type: "bit", nullable: true),
+                    RentAdmin_TipKorisnika = table.Column<string>(type: "nvarchar(15)", nullable: true)
                 },
                 constraints: table =>
                 {

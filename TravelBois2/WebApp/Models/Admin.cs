@@ -10,15 +10,9 @@ namespace WebApp.Models
 {
 	public class Admin : IdentityUser
 	{
-		[Key]
-		[Required]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public int ID { get; set; }
-		[Column(TypeName = "nvarchar(40)")]
-		public string Email { get; set; }
-		[Column(TypeName = "nvarchar(40)")]
-		public string UserName { get; set; }
 		[Column(TypeName = "nvarchar(40)")]
 		public string Password { get; set; }
+		[Column(TypeName = "nvarchar(15)")]
+		public string TipKorisnika { get; set; }
 	}
 }

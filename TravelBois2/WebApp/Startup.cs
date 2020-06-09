@@ -34,7 +34,7 @@ namespace WebApp
 
             services.AddControllers();
             // In production, the Angular files will be served from this directory
-            services.AddDbContext<AuthenticationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
+            
             services.AddDbContext<AviokompanijaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
             services.AddDbContext<RentaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
             services.AddDbContext<UserContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
@@ -45,7 +45,7 @@ namespace WebApp
             });
 
 
-            services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<AuthenticationContext>();
+            services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<UserContext>();
 
             //services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             //{

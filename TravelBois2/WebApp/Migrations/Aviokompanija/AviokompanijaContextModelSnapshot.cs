@@ -28,6 +28,10 @@ namespace WebApp.Migrations.Aviokompanija
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Grad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Opis")
                         .HasColumnType("nvarchar(max)");
 

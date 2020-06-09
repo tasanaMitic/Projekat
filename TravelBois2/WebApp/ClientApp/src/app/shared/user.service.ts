@@ -9,12 +9,40 @@ export class UserService {
   readonly BaseURI = 'https://localhost:44343/api';
   constructor(private fb:FormBuilder, private http: HttpClient) { }
 
-  formModel = this.fb.group({
+  userFormModel = this.fb.group({
     Email :['', [Validators.required, Validators.email]],
     UserName :['', [Validators.required]],
     Name: ['', [Validators.required]],
     Lastname: ['', [Validators.required]],
     Grad: ['', [Validators.required]],
+    BrojTelefona: ['', [Validators.required]],
+    BrojPasosa: ['', [Validators.required]],
+    Passwords: this.fb.group({
+      Password :['', [Validators.required]],
+      ConfirmPassword :['', [Validators.required]]
+    }, {validator: this.comparePasswords})
+  });
+  rentAdminFormModel = this.fb.group({
+    Email :['', [Validators.required, Validators.email]],
+    UserName :['', [Validators.required]],
+    Name: ['', [Validators.required]],
+    Lastname: ['', [Validators.required]],
+    Grad: ['', [Validators.required]],
+    NazivKompanije: ['', [Validators.required]],
+    BrojTelefona: ['', [Validators.required]],
+    BrojPasosa: ['', [Validators.required]],
+    Passwords: this.fb.group({
+      Password :['', [Validators.required]],
+      ConfirmPassword :['', [Validators.required]]
+    }, {validator: this.comparePasswords})
+  });
+  avioAdminFormModel = this.fb.group({
+    Email :['', [Validators.required, Validators.email]],
+    UserName :['', [Validators.required]],
+    Name: ['', [Validators.required]],
+    Lastname: ['', [Validators.required]],
+    Grad: ['', [Validators.required]],
+    NazivAviokompanije: ['', [Validators.required]],
     BrojTelefona: ['', [Validators.required]],
     BrojPasosa: ['', [Validators.required]],
     Passwords: this.fb.group({
@@ -33,19 +61,52 @@ export class UserService {
     }
   }
 
-  register() {
-    console.debug('callback register')
+  registerUser() {
+    console.debug('callback register rent admin')
     var body = {
-      Email: this.formModel.value.Email,
-      UserName: this.formModel.value.UserName,
-      Name: this.formModel.value.Name,
-      Lastname: this.formModel.value.Lastname,
-      Grad: this.formModel.value.Grad,
-      BrojTelefona: this.formModel.value.BrojTelefona,
-      BrojPasosa: this.formModel.value.BrojPasosa,
-      Password: this.formModel.value.Passwords.Password
+      Email: this.userFormModel.value.Email,
+      UserName: this.userFormModel.value.UserName,
+      Name: this.userFormModel.value.Name,
+      Lastname: this.userFormModel.value.Lastname,
+      Grad: this.userFormModel.value.Grad,
+      BrojTelefona: this.userFormModel.value.BrojTelefona,
+      BrojPasosa: this.userFormModel.value.BrojPasosa,
+      Password: this.userFormModel.value.Passwords.Password,
+      TipKorisnika: 'RegularUser'
     }
     return this.http.post(this.BaseURI + '/ApplicationUser/Register', body);
+  }
+  registerRentAdmin() {
+    console.debug('callback register')
+    var body = {
+      Email: this.rentAdminFormModel.value.Email,
+      UserName: this.rentAdminFormModel.value.UserName,
+      Name: this.rentAdminFormModel.value.Name,
+      Lastname: this.rentAdminFormModel.value.Lastname,
+      Grad: this.rentAdminFormModel.value.Grad,
+      NazivKompanije: this.rentAdminFormModel.value.NazivKompanije,
+      BrojTelefona: this.rentAdminFormModel.value.BrojTelefona,
+      BrojPasosa: this.rentAdminFormModel.value.BrojPasosa,
+      Password: this.rentAdminFormModel.value.Passwords.Password,
+      TipKorisnika: 'RentAdmin'
+    }
+    return this.http.post(this.BaseURI + '/RentAdmin/Register', body);
+  }
+  registerAvioAdmin() {
+    console.debug('callback register')
+    var body = {
+      Email: this.avioAdminFormModel.value.Email,
+      UserName: this.avioAdminFormModel.value.UserName,
+      Name: this.avioAdminFormModel.value.Name,
+      Lastname: this.avioAdminFormModel.value.Lastname,
+      Grad: this.avioAdminFormModel.value.Grad,
+      NazivAviokompanije: this.avioAdminFormModel.value.NazivAviokompanije,
+      BrojTelefona: this.avioAdminFormModel.value.BrojTelefona,
+      BrojPasosa: this.avioAdminFormModel.value.BrojPasosa,
+      Password: this.avioAdminFormModel.value.Passwords.Password,
+      TipKorisnika: 'AvioAdmin'
+    }
+    return this.http.post(this.BaseURI + '/AvioAdmin/Register', body);
   }
   externalLogin(formData){
     return this.http.post(this.BaseURI + '/ApplicationUser/SocialLogin',formData);

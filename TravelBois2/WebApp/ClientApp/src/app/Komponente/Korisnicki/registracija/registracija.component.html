@@ -1,6 +1,6 @@
 <div class="container">
     <h1>Registracija</h1>
-    <form [formGroup]="service.formModel" (submit)="onSubmit()">
+    <form [formGroup]="service.userFormModel" (submit)="onSubmit()">
         <div class="form">
             <table>
                 <tr>
@@ -10,8 +10,8 @@
                         
                     </td>
                     <td>
-                        <label *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">Email nije validan</label>
-                        <label *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.required">Email je potreban</label>
+                        <label *ngIf="service.userFormModel.get('Email').touched && service.userFormModel.get('Email').errors?.email">Email nije validan</label>
+                        <label *ngIf="service.userFormModel.get('Email').touched && service.userFormModel.get('Email').errors?.required">Email je potreban</label>
                     </td>
                 </tr>
                 <tr>
@@ -20,7 +20,7 @@
                         <input type="text" name="UserName" formControlName="UserName"> 
                     </td>
                     <td>
-                        <label *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.required">Username je potreban</label>
+                        <label *ngIf="service.userFormModel.get('UserName').touched && service.userFormModel.get('UserName').errors?.required">Username je potreban</label>
                     </td>
                 </tr>
                 <tr>
@@ -29,7 +29,7 @@
                         <input type="text" name="Name" formControlName="Name"> 
                     </td>
                     <td>
-                      <label *ngIf="service.formModel.get('Name').touched && service.formModel.get('Name').errors?.required">Ime je potrebno</label>
+                      <label *ngIf="service.userFormModel.get('Name').touched && service.userFormModel.get('Name').errors?.required">Ime je potrebno</label>
                     </td>
                 </tr>
                 <tr>
@@ -38,7 +38,7 @@
                         <input type="text" name="Lastname" formControlName="Lastname"> 
                     </td>
                     <td>
-                      <label *ngIf="service.formModel.get('Lastname').touched && service.formModel.get('Lastname').errors?.required">Prezime je potrebno</label>
+                      <label *ngIf="service.userFormModel.get('Lastname').touched && service.userFormModel.get('Lastname').errors?.required">Prezime je potrebno</label>
                     </td>
                 </tr>
                 <tr>
@@ -47,7 +47,7 @@
                         <input type="text" name="Grad"  formControlName="Grad"> 
                     </td>
                     <td>
-                      <label *ngIf="service.formModel.get('Grad').touched && service.formModel.get('Grad').errors?.required">Grad je potreban</label>
+                      <label *ngIf="service.userFormModel.get('Grad').touched && service.userFormModel.get('Grad').errors?.required">Grad je potreban</label>
 
                     </td>
                 </tr>
@@ -57,7 +57,7 @@
                         <input name="BrojTelefona" formControlName="BrojTelefona">
                     </td>
                     <td>
-                      <label *ngIf="service.formModel.get('BrojTelefona').touched && service.formModel.get('BrojTelefona').errors?.required">Broj telefona je potreban</label>
+                      <label *ngIf="service.userFormModel.get('BrojTelefona').touched && service.userFormModel.get('BrojTelefona').errors?.required">Broj telefona je potreban</label>
 
                     </td>
                 </tr>
@@ -67,7 +67,7 @@
                         <input name="BrojPasosa" formControlName="BrojPasosa"> 
                     </td>
                     <td>
-                      <label *ngIf="service.formModel.get('BrojPasosa').touched && service.formModel.get('BrojPasosa').errors?.required">Broj pasosa je potreban</label>
+                      <label *ngIf="service.userFormModel.get('BrojPasosa').touched && service.userFormModel.get('BrojPasosa').errors?.required">Broj pasosa je potreban</label>
                     </td>
                 </tr>
                 <div formGroupName="Passwords">
@@ -77,7 +77,7 @@
                             <input type="password" name="password" formControlName="Password"> 
                         </td>
                         <td>
-                            <label *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">Sifra je potreban</label>
+                            <label *ngIf="service.userFormModel.get('Passwords.Password').touched && service.userFormModel.get('Passwords.Password').errors?.required">Sifra je potreban</label>
                         </td>
                     </tr>
                     <tr>
@@ -86,8 +86,8 @@
                             <input type="password" name="ConfirmPassword" formControlName="ConfirmPassword"> 
                         </td>
                         <td>
-                            <label *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">Potvrda sifre je potrebna</label>
-                            <label *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Sifre se ne poklapaju </label>
+                            <label *ngIf="service.userFormModel.get('Passwords.ConfirmPassword').touched && service.userFormModel.get('Passwords.ConfirmPassword').errors?.required">Potvrda sifre je potrebna</label>
+                            <label *ngIf="service.userFormModel.get('Passwords.ConfirmPassword').touched && service.userFormModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Sifre se ne poklapaju </label>
                         </td>
                     </tr>
                 </div>
@@ -95,7 +95,7 @@
         </div>
         <div>
             <div>
-                <button [disabled]="service.formModel.invalid" class="btn btn-lg btn-block" type="submit">Sacuvaj</button>
+                <button [disabled]="service.userFormModel.invalid" class="btn btn-lg btn-block" type="submit">Sacuvaj</button>
                 
             </div>
             <div>

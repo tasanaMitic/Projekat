@@ -1,7 +1,7 @@
 <div class="container"> 
     <h1>Registracija rent-a-car kompanije</h1>
-    <form [formGroup]="regRentaForm" (ngSubmit)="onSubmit()">
-        <div>
+    <form [formGroup]="service.rentAdminFormModel" (ngSubmit)="onSubmit()">
+        <div class="form">
             <div>
                 <label for="naziv">Naziv:</label>
                 <input type="text" id="naziv" formControlName="naziv" class="form-control">

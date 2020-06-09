@@ -27,29 +27,38 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [Route("Register")]
-        public async Task<object> PostAvioAdmin(AvioAdminModel body)
+        //POST: /api/ApplicationUser/Register
+        public async Task<Object> PostAvioAdmin(AvioAdminModel body)
         {
-            Console.WriteLine("avio admin register pozvan");
+            Console.WriteLine("post pozvan");
             var avioAdmin = new AvioAdmin()
             {
-                Email = body.Email,
                 UserName = body.UserName,
+                Email = body.Email,
                 Name = body.Name,
                 Lastname = body.Lastname,
                 Grad = body.Grad,
-                AvioKompanijaID = body.AvioKompanijaID,
-                BrojTelefona = body.BrojTelefona,
-                BrojPasosa = body.BrojPasosa,
-                PromenioPassword = false
+                NazivAviokompanije = body.NazivAviokompanije,
+                BrojPasosa = body.BrojPasosa.ToString(),
+                BrojTelefona = body.BrojTelefona.ToString(),
+                PromenioPassword = false,
+                TipKorisnika = body.TipKorisnika
             };
             try
             {
                 var result = await _userManager.CreateAsync(avioAdmin, body.Password);
+                if (result.Errors.Any())
+                {
+                    var test = result.Errors.ToList();
+                    //return BadRequest(new { message = test[0].Description});
+                    return Ok(result);
+                }
                 return Ok(result);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+
+                throw ex;
             }
         }
     }

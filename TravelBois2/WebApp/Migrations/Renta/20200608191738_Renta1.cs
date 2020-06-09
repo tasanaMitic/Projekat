@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApp.Migrations.Renta
 {
-    public partial class Renta3 : Migration
+    public partial class Renta1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

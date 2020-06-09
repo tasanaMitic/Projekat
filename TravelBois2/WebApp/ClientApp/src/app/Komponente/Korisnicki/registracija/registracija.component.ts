@@ -11,23 +11,23 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./registracija.component.css']
 })
 export class RegistracijaComponent implements OnInit {
-  registrationForm: FormGroup;
+  
   constructor(private location: Location, public service: UserService, private router: Router, private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
-    this.service.formModel.reset();
+    this.service.userFormModel.reset();
   }
 
 
   onSubmit() {
-    console.log('onSubmit()')
-    this.service.register().subscribe(
+    console.log('registracija onSubmit()')
+    this.service.registerUser().subscribe(
       (res: any) => {
         console.log('usao u register')
         if (res.succeeded) {
           console.log('uspeo')
-          this.service.formModel.reset();
+          this.service.userFormModel.reset();
           this.toastr.success('Novi korisnik kreiran!', 'Registracija uspesna.');
           this.router.navigate(['/pocetna'])
         }

@@ -8,30 +8,10 @@ using System.Threading.Tasks;
 
 namespace WebApp.Models
 {
-	public class AvioAdmin : IdentityUser
+	public class AvioAdmin : ApplicationUser
 	{
-		[Key]
-		[Required]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public int ID { get; set; }
 		[Column(TypeName = "nvarchar(40)")]
-		public string Email { get; set; }
-		[Column(TypeName = "nvarchar(40)")]
-		public string UserName { get; set; }
-		[Column(TypeName = "nvarchar(40)")]
-		public string Name { get; set; }
-		[Column(TypeName = "nvarchar(40)")]
-		public string Lastname { get; set; }
-		[Column(TypeName = "nvarchar(40)")]
-		public string Grad { get; set; }
-		[Column(TypeName = "nvarchar(40)")]
-		public string AvioKompanijaID { get; set; }
-		[Column(TypeName = "nvarchar(40)")]
-		public string BrojTelefona { get; set; }
-		[Column(TypeName = "nvarchar(40)")]
-		public string BrojPasosa { get; set; }
-		[Column(TypeName = "nvarchar(40)")]
-		public string Password { get; set; }
+		public string NazivAviokompanije { get; set; }
 		[Column(TypeName = "bit")]
 		public bool PromenioPassword { get; set; }
 	}

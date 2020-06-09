@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApp.Models;
+using WebApp.Data;
 
 namespace WebApp.Migrations
 {
-    [DbContext(typeof(AuthenticationContext))]
-    partial class AuthenticationContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(UserContext))]
+    [Migration("20200608190930_User1")]
+    partial class User1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -225,6 +227,19 @@ namespace WebApp.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("WebApp.Models.Admin", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("TipKorisnika")
+                        .HasColumnType("nvarchar(15)");
+
+                    b.HasDiscriminator().HasValue("Admin");
+                });
+
             modelBuilder.Entity("WebApp.Models.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
@@ -245,9 +260,93 @@ namespace WebApp.Migrations
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("TipKorisnika")
+                        .HasColumnName("ApplicationUser_TipKorisnika")
                         .HasColumnType("nvarchar(15)");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("WebApp.Models.AvioAdmin", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("BrojPasosa")
+                        .HasColumnName("AvioAdmin_BrojPasosa")
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("BrojTelefona")
+                        .HasColumnName("AvioAdmin_BrojTelefona")
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("Grad")
+                        .HasColumnName("AvioAdmin_Grad")
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("Lastname")
+                        .HasColumnName("AvioAdmin_Lastname")
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("AvioAdmin_Name")
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("NazivAviokompanije")
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("Password")
+                        .HasColumnName("AvioAdmin_Password")
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<bool>("PromenioPassword")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("TipKorisnika")
+                        .HasColumnName("AvioAdmin_TipKorisnika")
+                        .HasColumnType("nvarchar(15)");
+
+                    b.HasDiscriminator().HasValue("AvioAdmin");
+                });
+
+            modelBuilder.Entity("WebApp.Models.RentAdmin", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("BrojPasosa")
+                        .HasColumnName("RentAdmin_BrojPasosa")
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("BrojTelefona")
+                        .HasColumnName("RentAdmin_BrojTelefona")
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("Grad")
+                        .HasColumnName("RentAdmin_Grad")
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("Lastname")
+                        .HasColumnName("RentAdmin_Lastname")
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("RentAdmin_Name")
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("NazivRente")
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("Password")
+                        .HasColumnName("RentAdmin_Password")
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<bool>("PromenioPassword")
+                        .HasColumnName("RentAdmin_PromenioPassword")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("TipKorisnika")
+                        .HasColumnName("RentAdmin_TipKorisnika")
+                        .HasColumnType("nvarchar(15)");
+
+                    b.HasDiscriminator().HasValue("RentAdmin");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
