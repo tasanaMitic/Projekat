@@ -65,6 +65,7 @@ export class UserService {
     }
   }
 
+//#region  Registracija
   registerUser() {
     console.debug('callback register rent admin')
     var body = {
@@ -78,9 +79,8 @@ export class UserService {
       Password: this.userFormModel.value.Passwords.Password,
       TipKorisnika: 'RegularUser'
     }
-    return this.http.post(this.BaseURI + '/ApplicationUser/Register', body);
-  }  
-
+    return this.http.post(this.BaseURI + '/ApplicationUser/RegisterUser', body);
+  }
   registerRentAdmin() {
     console.debug('callback register')
     var body = {
@@ -95,7 +95,7 @@ export class UserService {
       Password: this.rentAdminFormModel.value.Passwords.Password,
       TipKorisnika: 'RentAdmin'
     }
-    return this.http.post(this.BaseURI + '/RentAdmin/Register', body);
+    return this.http.post(this.BaseURI + '/ApplicationUser/RegisterRentAdmin', body);
   }
 
   registerAvioAdmin() {
@@ -112,9 +112,9 @@ export class UserService {
       Password: this.avioAdminFormModel.value.Passwords.Password,
       TipKorisnika: 'AvioAdmin'
     }
-    return this.http.post(this.BaseURI + '/AvioAdmin/Register', body);
+    return this.http.post(this.BaseURI + '/ApplicationUser/RegisterAvioAdmin', body);
   }
-
+  //#endregion
   externalLogin(formData){
     return this.http.post(this.BaseURI + '/ApplicationUser/SocialLogin',formData);
   }

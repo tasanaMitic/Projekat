@@ -44,6 +44,7 @@ namespace WebApp
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            
 
             services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<UserContext>();
 
@@ -52,24 +53,28 @@ namespace WebApp
             //    options.User.RequireUniqueEmail = true;
             //})
             //    .AddEntityFrameworkStores<UserContext>()
+            //    .AddRoleManager<UserManager<ApplicationUser>>()
             //    .AddDefaultTokenProviders();
             //services.AddIdentity<AvioAdmin, IdentityRole>(options =>
             //{
             //    options.User.RequireUniqueEmail = true;
             //})
             //    .AddEntityFrameworkStores<UserContext>()
+            //    //.AddRoleManager<UserManager<AvioAdmin>>()
             //    .AddDefaultTokenProviders();
             //services.AddIdentity<RentAdmin, IdentityRole>(options =>
             //{
             //    options.User.RequireUniqueEmail = true;
             //})
             //    .AddEntityFrameworkStores<UserContext>()
+            //    .AddRoleManager<UserManager<RentAdmin>>()
             //    .AddDefaultTokenProviders();
             //services.AddIdentity<Admin, IdentityRole>(options =>
             //{
             //    options.User.RequireUniqueEmail = true;
             //})
             //    .AddEntityFrameworkStores<UserContext>()
+            //    .AddRoleManager<UserManager<Admin>>()
             //    .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>

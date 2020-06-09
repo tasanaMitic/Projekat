@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using WebApp.Data;
 using WebApp.Models;
 
 namespace WebApp.Controllers
@@ -17,12 +18,14 @@ namespace WebApp.Controllers
         private UserManager<RentAdmin> _userManager;
         private SignInManager<RentAdmin> _signInManager;
         private readonly ApplicationSettings _appSettings;
+        private readonly UserContext _context;
 
-        public RentAdminController(UserManager<RentAdmin> userManager, SignInManager<RentAdmin> signInManager, IOptions<ApplicationSettings> appSettings)
+        public RentAdminController(UserManager<RentAdmin> userManager, SignInManager<RentAdmin> signInManager, IOptions<ApplicationSettings> appSettings, UserContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _appSettings = appSettings.Value;
+            _context = context;
         }
         [HttpPost]
         [Route("Register")]

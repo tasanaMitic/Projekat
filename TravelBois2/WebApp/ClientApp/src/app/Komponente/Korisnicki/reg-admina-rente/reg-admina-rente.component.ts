@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+import { UserService } from 'src/app/shared/user.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reg-admina-rente',
@@ -9,29 +12,42 @@ import { Location } from '@angular/common';
 })
 export class RegAdminaRenteComponent implements OnInit {
   regRenteAdminForm: FormGroup;
-  constructor(private location: Location) { }
+  constructor(private location: Location, public service: UserService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.initForm();
+    this.service.rentAdminFormModel.reset();
   }
 
-  private initForm()
-  {
-    this.regRenteAdminForm = new FormGroup({
-      'ime': new FormControl('',[Validators.required,Validators.maxLength(15), Validators.minLength(3)]),
-      'prezime': new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
-      'grad': new FormControl('', [Validators.required, Validators.maxLength(10), Validators.minLength(3)]),
-      'rentaKompanija': new FormControl('',Validators.required),    //dodati posle da se ucitava jedna od postojecih aviokompanija
-      'brojTelefona': new FormControl('', Validators.required),
-      'brojPasosa': new FormControl('', Validators.required),
-      'username': new FormControl('', Validators.required),
-      'password': new FormControl('', Validators.required),
-    });
-  }
 
   onSubmit(){
-    console.log(this.regRenteAdminForm.value);
-    console.log(this.regRenteAdminForm);
+    console.log('registracija rent admina onSubmit()')
+    this.service.registerRentAdmin().subscribe(
+      (res: any) => {
+        console.log('usao u register')
+        if (res.succeeded) {
+          console.log('uspeo')
+          this.service.userFormModel.reset();
+          this.toastr.success('Novi rent admin kreiran!', 'Registracija uspesna.');
+          this.router.navigate(['/pocetna'])
+        }
+        else {
+          console.log('nije uspeo')
+          res.errors.forEach(element => {
+            switch(element.code){
+              case 'DuplicateUserName':
+                this.toastr.error('Vec postoji korisnik sa tim imenom!', 'Registracija neuspesna.');
+                break;
+              default:
+                this.toastr.error(element.description, 'Registracija neuspesna.');
+                break;
+            }
+          });
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
   onBack()

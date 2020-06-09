@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using WebApp.Data;
 using WebApp.Models;
 
 namespace WebApp.Controllers
@@ -17,17 +18,19 @@ namespace WebApp.Controllers
         private UserManager<AvioAdmin> _userManager;
         private SignInManager<AvioAdmin> _signInManager;
         private readonly ApplicationSettings _appSettings;
+        private readonly UserContext _context;
 
-        public AvioAdminController(UserManager<AvioAdmin> userManager, SignInManager<AvioAdmin> signInManager, IOptions<ApplicationSettings> appSettings)
+        public AvioAdminController(UserManager<AvioAdmin> userManager, SignInManager<AvioAdmin> signInManager, IOptions<ApplicationSettings> appSettings, UserContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _appSettings = appSettings.Value;
+            _context = context;
         }
 
         [HttpPost]
         [Route("Register")]
-        //POST: /api/ApplicationUser/Register
+        //POST: /api/AvioAdmin/Register
         public async Task<Object> PostAvioAdmin(AvioAdminModel body)
         {
             Console.WriteLine("post pozvan");
