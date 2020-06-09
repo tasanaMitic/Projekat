@@ -17,5 +17,6 @@ namespace WebApp.Data
 		public DbSet<AvioAdmin> AvioAdmins { get; set; }
 		public DbSet<Admin> Admins { get; set; }
 		public DbSet<Prijatelj> Zahtevi { get; set; }
+		public DbSet<PrihvacenPrijatelj> Prijatelji { get; set; }
 	}
 }

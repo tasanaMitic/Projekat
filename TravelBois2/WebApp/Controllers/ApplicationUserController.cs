@@ -177,6 +177,39 @@ namespace WebApp.Controllers
             return zahtev;
         }
 
+        [HttpPost]
+        [Route("AddPrijatelj")]
+        public async Task<ActionResult<PrihvacenPrijatelj>> AddPrijatelj(PrihvacenPrijatelj prijatelj)
+        {
+
+            _context.Prijatelji.Add(prijatelj);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetPrijatelj", new { id = prijatelj.Id }, prijatelj);
+        }
+
+        [HttpGet]
+        [Route("GetPrijatelji")]
+        public async Task<ActionResult<IEnumerable<PrihvacenPrijatelj>>> GetPrijatelji()
+        {
+            return await _context.Prijatelji.ToListAsync();
+        }
+
+        [HttpDelete]
+        [Route("DeletePrijatelj/{id}")]
+        public async Task<ActionResult<PrihvacenPrijatelj>> DeletePrijatelj(int id)
+        {
+            var prijatelj = await _context.Prijatelji.FindAsync(id);
+            if (prijatelj == null)
+            {
+                return NotFound();
+            }
+
+            _context.Prijatelji.Remove(prijatelj);
+            await _context.SaveChangesAsync();
+            return prijatelj;
+        }
+
 
         private bool UserExists(string username)
         {

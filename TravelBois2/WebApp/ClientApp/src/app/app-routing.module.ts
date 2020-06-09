@@ -54,7 +54,7 @@ const routes: Routes = [
   { path: 'regRentaKomp', component: RegRentaKompanijuComponent },
   { path: 'profilKorisnika', component: ProfilRegistrovanogComponent, canActivate: [AuthGuard] },
   { path: 'profilAvio', component: ProfilAvioComponent },
-  { path: 'prijatelji', component: PrijateljiComponent },
+  { path: 'prijatelji', component: PrijateljiComponent, canActivate: [AuthGuard]},
   { path: 'istorija', component: IstorijaComponent },
   { path: 'vozila', component: VozilaComponent },
   { path: 'cenovnik', component: CenovnikComponent },

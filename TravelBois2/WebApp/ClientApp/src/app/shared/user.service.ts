@@ -5,6 +5,7 @@ import { RegisteredUser } from '../entities/users/registered-user/registered-use
 import { Observable } from 'rxjs';
 import { User } from '../entities/users/user/user';
 import { Prijatelj } from '../entities/objects/prijatelj';
+import { PrihvacenPrijatelj } from '../entities/objects/prihvacen-prijatelj';
 
 @Injectable({
   providedIn: 'root'
@@ -145,6 +146,18 @@ export class UserService {
 
   deleteZahtev(id: number): Observable<any> {
     return this.http.delete(this.BaseURI + '/ApplicationUser/DeleteZahtev/' + id);
+  }
+
+  addPrijatelj(prijatelj: PrihvacenPrijatelj): Observable<PrihvacenPrijatelj> {
+    return this.http.post<PrihvacenPrijatelj>(this.BaseURI + '/ApplicationUser/AddPrijatelj', prijatelj);
+  }
+
+  getPrijatelji(): Observable<PrihvacenPrijatelj[]> {
+    return this.http.get<PrihvacenPrijatelj[]>(this.BaseURI + '/ApplicationUser/GetPrijatelji');
+  }
+
+  deletePrijatelj(id: number): Observable<any> {
+    return this.http.delete(this.BaseURI + '/ApplicationUser/DeletePrijatelj/' + id);
   }
   
 
