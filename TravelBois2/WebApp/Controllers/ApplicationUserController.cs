@@ -35,7 +35,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        [Route("Register")]
+        [Route("RegisterUser")]
         //POST: /api/ApplicationUser/Register
         public async Task<Object> PostApplicationUser(ApplicationUserModel body)
         {
@@ -68,7 +68,79 @@ namespace WebApp.Controllers
                 throw ex;
             }
         }
-        
+        [HttpPost]
+        [Route("RegisterAvioAdmin")]
+        //POST: /api/AvioAdmin/Register
+        public async Task<Object> PostAvioAdmin(AvioAdminModel body)
+        {
+            Console.WriteLine("post pozvan");
+            var avioAdmin = new AvioAdmin()
+            {
+                UserName = body.UserName,
+                Email = body.Email,
+                Name = body.Name,
+                Lastname = body.Lastname,
+                Grad = body.Grad,
+                NazivAviokompanije = body.NazivAviokompanije,
+                BrojPasosa = body.BrojPasosa.ToString(),
+                BrojTelefona = body.BrojTelefona.ToString(),
+                PromenioPassword = false,
+                TipKorisnika = body.TipKorisnika
+            };
+            try
+            {
+                var result = await _userManager.CreateAsync(avioAdmin, body.Password);
+                if (result.Errors.Any())
+                {
+                    var test = result.Errors.ToList();
+                    //return BadRequest(new { message = test[0].Description});
+                    return Ok(result);
+                }
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        [HttpPost]
+        [Route("RegisterRentAdmin")]
+        //POST: /api/AvioAdmin/Register
+        public async Task<Object> PostRentAdmin(RentAdminModel body)
+        {
+            Console.WriteLine("post pozvan");
+            var rentAdmin = new RentAdmin()
+            {
+                UserName = body.UserName,
+                Email = body.Email,
+                Name = body.Name,
+                Lastname = body.Lastname,
+                Grad = body.Grad,
+                NazivRente = body.NazivRente,
+                BrojPasosa = body.BrojPasosa.ToString(),
+                BrojTelefona = body.BrojTelefona.ToString(),
+                PromenioPassword = false,
+                TipKorisnika = body.TipKorisnika
+            };
+            try
+            {
+                var result = await _userManager.CreateAsync(rentAdmin, body.Password);
+                if (result.Errors.Any())
+                {
+                    var test = result.Errors.ToList();
+                    //return BadRequest(new { message = test[0].Description});
+                    return Ok(result);
+                }
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         [HttpPost]
         [Route("Login")]
         //POST: /api/ApplicationUser/Login

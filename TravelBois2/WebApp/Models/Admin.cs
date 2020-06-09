@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 
 namespace WebApp.Models
 {
-	public class Admin : IdentityUser
+	public class Admin : ApplicationUser
 	{
-		[Column(TypeName = "nvarchar(40)")]
-		public string Password { get; set; }
-		[Column(TypeName = "nvarchar(15)")]
-		public string TipKorisnika { get; set; }
+
 	}
 }
