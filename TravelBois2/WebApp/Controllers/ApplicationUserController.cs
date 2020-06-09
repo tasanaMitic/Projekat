@@ -50,6 +50,7 @@ namespace WebApp.Controllers
                 BrojPasosa = body.BrojPasosa.ToString(),
                 BrojTelefona = body.BrojTelefona.ToString(),
                 TipKorisnika = body.TipKorisnika
+               
             };
             try
             {
@@ -135,6 +136,47 @@ namespace WebApp.Controllers
 
             return NoContent();
         }
+
+        [HttpGet]
+        [Route("GetUsers")]
+        public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetUsers()
+        {
+            return await _context.AppUsers.ToListAsync();
+        }
+
+        [HttpPost]
+        [Route("AddZahtev")]
+        public async Task<ActionResult<Prijatelj>> AddZahtev(Prijatelj prijatelj) 
+        {
+
+            _context.Zahtevi.Add(prijatelj);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetZahtev", new { id = prijatelj.Id }, prijatelj);
+        }
+
+        [HttpGet]
+        [Route("GetZahtevi")]
+        public async Task<ActionResult<IEnumerable<Prijatelj>>> GetZahtevi()
+        {
+            return await _context.Zahtevi.ToListAsync();
+        }
+
+        [HttpDelete]
+        [Route("DeleteZahtev/{id}")]
+        public async Task<ActionResult<Prijatelj>> DeleteZahtev(int id)
+        {
+            var zahtev = await _context.Zahtevi.FindAsync(id);
+            if (zahtev == null)
+            {
+                return NotFound();
+            }
+
+            _context.Zahtevi.Remove(zahtev);
+            await _context.SaveChangesAsync();
+            return zahtev;
+        }
+
 
         private bool UserExists(string username)
         {

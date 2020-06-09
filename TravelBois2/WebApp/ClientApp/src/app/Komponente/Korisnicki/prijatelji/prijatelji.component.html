@@ -1,15 +1,15 @@
-<div class="container2" >
+<div class="container2">
   <h1>Prijatelji</h1>
   <br />
   <div [hidden]="empty == 0">
-      Sortiraj prijatelje po:
-      <form [formGroup]="SortForm" style="display: inline-block">
-        <select class="dropbtn" formControlName="selectedKriterijum" (change)="KriterijumChanged($event)">
-          <option></option>
-          <option>ime</option>
-          <option>prezime</option>
-        </select>
-      </form>
+    Sortiraj prijatelje po:
+    <form [formGroup]="SortForm" style="display: inline-block">
+      <select class="dropbtn" formControlName="selectedKriterijum" (change)="KriterijumChanged($event)">
+        <option></option>
+        <option>ime</option>
+        <option>prezime</option>
+      </select>
+    </form>
     <br />
     <table>
       <thead>
@@ -37,6 +37,9 @@
   </div>
   <br />
 
+  <div [hidden]="empty1 != 0">
+  <button class="btn btn-primary" (click)="prikaziZahteve()" type="button">Prikazi zahteve</button>
+</div>
   <div [hidden]="empty1 == 0">
     <h3>Zahtevi za prijateljstvo:</h3>
     <table>
@@ -49,15 +52,15 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let prijatelj of zahtevi">
+        <tr *ngFor="let prijatelj of zahteviZaPrijatelja">
           <td>{{prijatelj.Ime}}</td>
           <td>{{prijatelj.Prezime}}</td>
           <td>{{prijatelj.Username}}</td>
           <td>
-            <button class="btn-rez" (click)="prihvatiPrijatelja(prijatelj.username)">Prihvati</button>
+            <button class="btn-rez" (click)="prihvatiPrijatelja(prijatelj.Username)">Prihvati</button>
           </td>
           <td>
-            <button class="btn-rez" (click)="odbijPrijatelja(prijatelj.username)">Odbij</button>
+            <button class="btn-rez" (click)="odbijPrijatelja(prijatelj.Username)">Odbij</button>
           </td>
         </tr>
       </tbody>
@@ -87,11 +90,11 @@
 
       <tbody>
         <tr *ngFor="let prijatelj of prijatelji">
-          <td>{{prijatelj.Ime}}</td>
-          <td>{{prijatelj.Prezime}}</td>
-          <td>{{prijatelj.Username}}</td>
+          <td>{{prijatelj.name}}</td>
+          <td>{{prijatelj.lastname}}</td>
+          <td>{{prijatelj.userName}}</td>
           <td>
-            <button class="btn-rez" (click)="dodajPrijatelja(prijatelj.username)">Dodaj</button>
+            <button class="btn-rez" (click)="dodajPrijatelja(prijatelj.userName)">Dodaj</button>
           </td>
         </tr>
       </tbody>
