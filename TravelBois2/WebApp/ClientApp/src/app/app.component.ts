@@ -13,6 +13,8 @@ import { map } from 'rxjs/operators';
 import {OperatorFunction} from 'rxjs/internal/types';
 import { UserService } from './shared/user.service';
 import { Local } from 'protractor/built/driverProviders';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -36,7 +38,7 @@ export class AppComponent {
 
   title = 'Travel-bois';
 
-  constructor(private http: Http, private service: UserService){
+  constructor(private http: Http, private service: UserService, private router: Router) {
     console.log('App started');
     this.getContacts();
     this.getData();
@@ -77,22 +79,17 @@ export class AppComponent {
 
     AppComponent.avioKompanije.push(new AvioKompanija('Jat', 'adresa1', 'Beograd'))
     AppComponent.rente.push(new RentACar('Car2Go', 'adresa 3'))
-
-    //AppComponent.currentUser = new User();
-    
-    //AppComponent.currentUser = new RegisteredUser('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password', 111546);
-    //AppComponent.currentUser = new RentACarAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
-    //AppComponent.currentUser = new Admin('sysAdmin', 'password');
-
-    //AppComponent.currentUser = new Admin();
-    //AppComponent.currentUser = new AvioAdmin('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password');
-    //AppComponent.datum = new Date();
-    
-    //console.debug(AppComponent.currentUser)
     
   } 
   getType() {
-    //console.debug(AppComponent.currentUser.tipKorisnika)
     return AppComponent.tipKorisnika;
+  }
+
+  onLogOut() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/pocetna']);
+    if (this.router.url == '/pocetna') {
+      window.location.reload();
+    }
   }
 }
