@@ -48,7 +48,6 @@ export class PocetnaStranaComponent implements OnInit {
           this.brojTelefona = this.userDetails.brojTelefona;
           this.tipKorisnika = this.userDetails.tipKorisnika;
           this.grad = this.userDetails.grad;
-          //AppComponent.currentUser = new RegisteredUser('060123456', 'Novi Sad', 'Pera', 'Zdera', 'prozdera', 'password', 111546);
           if (this.tipKorisnika == 'RegularUser') {
             AppComponent.tipKorisnika = "RegisteredUser";
             AppComponent.currentUser = new RegisteredUser(this.brojTelefona, this.grad, this.name, this.lastname, this.userName, parseInt(this.brojPasosa));

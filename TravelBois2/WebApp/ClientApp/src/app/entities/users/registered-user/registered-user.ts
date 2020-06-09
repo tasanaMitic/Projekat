@@ -12,10 +12,10 @@ export class RegisteredUser extends User implements OnInit{
     BrojPasosa: number;
     IstorijaKola: Array<Kola>;
     IstorijaLetova: Array<Let>;
+    RezervacijaLetova: Array<Let>;
     MojaKola: Array<Kola>;
-    MojiLetovi: Array<Let>;
     Prijatelji: Array<RegisteredUser>;
-    Zahtevi: Array<RegisteredUser>;
+    ZahteviZaPrijateljstvo: Array<RegisteredUser>;
 
     constructor(brTel: string, grad: string, ime: string, 
         prezime: string, username: string, 
@@ -26,33 +26,14 @@ export class RegisteredUser extends User implements OnInit{
             this.IstorijaKola = new Array<Kola>();
             this.MojaKola = new Array<Kola>();
             this.IstorijaLetova = new Array<Let>();
-            this.MojiLetovi = new Array<Let>();
+            this.RezervacijaLetova = new Array<Let>();
+            this.Prijatelji = new Array<RegisteredUser>();
+            this.ZahteviZaPrijateljstvo = new Array<RegisteredUser>();
             
             this.IstorijaKola.push(new Kola(5, 2000, 'Toyota', 'Yaris', TipVozila.Hecbek, 'Car2Go'));
             this.IstorijaKola.push(new Kola(5, 2000, 'Renault', 'Clio', TipVozila.Hecbek, 'Car2Go'));
-            //this.IstorijaLetova.push(new Let(2, new AvioKompanija('Bogdana suputa 9', 'Jat'), 0, 5000, 10000, new Date(2020, 1, 2), new Date(2020, 1, 2), 'Beograd', 'Bec', new Avion(10000, 20, 5000, 30, 1000, 50)));
         }
     ngOnInit(): void {
     }
     
-    checkCredentials(password: string){
-        if (password === this.Password)
-            return true;
-        else
-            return false;
-    }
-
-    ArurirajPodatke(){}
-    DodajPrijatelja(username:string){}
-    ObrisiPrijatelja(username:string){}
-    PrihvatiZahtev(){}
-    OdbijZahtev(){}
-    PozoviPrijatelja(username:string){}
-    PrikaziIstorijuLetova(){}
-    PrikaziIstorijuKola(){}
-    PrikaziPrijatelje(){}
-    Profil(){}
-    ProveriZavrsenost(){}
-    RezervisiKola(odKad:Date, doKad:Date){}
-    RezervisiMesto(odKad:Date, doKad:Date){}
 }
