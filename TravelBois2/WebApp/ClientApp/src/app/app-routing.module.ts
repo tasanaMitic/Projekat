@@ -52,7 +52,7 @@ const routes: Routes = [
   { path: 'regAdminaRente', component: RegAdminaRenteComponent },
   { path: 'regAvioKomp', component: RegAvioKompanijuComponent },
   { path: 'regRentaKomp', component: RegRentaKompanijuComponent },
-  { path: 'profilKorisnika', component: ProfilRegistrovanogComponent, canActivate:[AuthGuard]},
+  { path: 'profilKorisnika', component: ProfilRegistrovanogComponent, canActivate: [AuthGuard] },
   { path: 'profilAvio', component: ProfilAvioComponent },
   { path: 'prijatelji', component: PrijateljiComponent },
   { path: 'istorija', component: IstorijaComponent },

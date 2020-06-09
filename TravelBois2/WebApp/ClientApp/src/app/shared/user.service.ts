@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RegisteredUser } from '../entities/users/registered-user/registered-user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -76,6 +78,11 @@ export class UserService {
     }
     return this.http.post(this.BaseURI + '/ApplicationUser/Register', body);
   }
+
+  updateRegisteredUser(body) {
+    return this.http.post(this.BaseURI + '/ApplicationUser/UpdateRegisteredUser', body);
+  }
+
   registerRentAdmin() {
     console.debug('callback register')
     var body = {
@@ -117,4 +124,7 @@ export class UserService {
   getUserProfile() {
     return this.http.get(this.BaseURI + '/UserProfile/GetUserProfile');
   }
+
+  
+
 }

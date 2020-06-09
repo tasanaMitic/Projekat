@@ -9,7 +9,7 @@ import { RentACar } from '../../objects/rent-a-car';
 import { AppComponent } from 'src/app/app.component';
 
 export class RegisteredUser extends User implements OnInit{
-    BrojPasosa: number;
+    BrojPasosa: string;
     IstorijaKola: Array<Kola>;
     IstorijaLetova: Array<Let>;
     RezervacijaLetova: Array<Let>;
@@ -18,8 +18,8 @@ export class RegisteredUser extends User implements OnInit{
     ZahteviZaPrijateljstvo: Array<RegisteredUser>;
 
     constructor(brTel: string, grad: string, ime: string, 
-        prezime: string, username: string, 
-        brPasosa:number){
+      prezime: string, username: string,
+      brPasosa: string) {
             super(brTel, grad, ime, prezime, username);
             super.register();
             this.BrojPasosa = brPasosa;

@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using ServerApp.Models;
+using WebApp.Data;
 using WebApp.Models;
 
 namespace WebApp.Controllers
@@ -22,12 +24,14 @@ namespace WebApp.Controllers
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationSettings _appSettings;
+        private readonly UserContext _context;
 
-        public ApplicationUserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<ApplicationSettings> appSettings)
+        public ApplicationUserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<ApplicationSettings> appSettings, UserContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _appSettings = appSettings.Value;
+            _context = context;
         }
 
         [HttpPost]
@@ -90,6 +94,51 @@ namespace WebApp.Controllers
             }
             else
                 return BadRequest(new { message = "Username or password is incorrect." });
+        }
+
+
+        [HttpPost]
+        [Route("UpdateRegisteredUser")]
+        public async Task<IActionResult> UpdateRegisteredUser(ApplicationUserModel body)
+        {
+            if (!UserExists(body.UserName))
+            {
+                return NotFound();
+            }
+
+            var user = await _userManager.FindByNameAsync(body.UserName);
+            _context.AppUsers.Remove(user);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            user.BrojPasosa = body.BrojPasosa;
+            user.BrojTelefona = body.BrojTelefona;
+            user.Grad = body.Grad;
+            user.Name = body.Name;
+            user.Lastname = body.Lastname;
+            _context.AppUsers.Add(user);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return NoContent();
+        }
+
+        private bool UserExists(string username)
+        {
+            return _context.AppUsers.Any(e => e.UserName == username);
         }
     }
 }

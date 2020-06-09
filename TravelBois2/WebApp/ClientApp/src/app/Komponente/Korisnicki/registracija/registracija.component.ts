@@ -28,7 +28,7 @@ export class RegistracijaComponent implements OnInit {
         if (res.succeeded) {
           console.log('uspeo')
           this.service.userFormModel.reset();
-          this.toastr.success('Novi korisnik kreiran!', 'Registracija uspesna.');
+          this.toastr.success('Uspesno ste kreirali nalog!', 'Registracija uspesna.');
           this.router.navigate(['/pocetna'])
         }
         else {
@@ -46,6 +46,7 @@ export class RegistracijaComponent implements OnInit {
         }
       },
       err => {
+        this.toastr.error('Registracija neuspesna.');
         console.log(err);
       }
     )

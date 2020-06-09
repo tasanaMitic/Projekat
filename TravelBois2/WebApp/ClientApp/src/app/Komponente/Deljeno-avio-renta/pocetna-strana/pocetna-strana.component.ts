@@ -50,7 +50,7 @@ export class PocetnaStranaComponent implements OnInit {
           this.grad = this.userDetails.grad;
           if (this.tipKorisnika == 'RegularUser') {
             AppComponent.tipKorisnika = "RegisteredUser";
-            AppComponent.currentUser = new RegisteredUser(this.brojTelefona, this.grad, this.name, this.lastname, this.userName, parseInt(this.brojPasosa));
+            AppComponent.currentUser = new RegisteredUser(this.brojTelefona, this.grad, this.name, this.lastname, this.userName, this.brojPasosa);
           }
           else if (this.tipKorisnika == 'AvioAdmin') {
             AppComponent.tipKorisnika = "AvioAdmin";
