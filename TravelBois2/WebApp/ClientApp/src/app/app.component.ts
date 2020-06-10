@@ -15,6 +15,7 @@ import { UserService } from './shared/user.service';
 import { Local } from 'protractor/built/driverProviders';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Ocena } from './entities/misc/ocena';
 
 @Component({
   selector: 'app-root',
@@ -34,6 +35,7 @@ export class AppComponent {
   static datum: Date;
   static avioKompanija: AvioKompanija;
   static rente: Array<RentACar>;
+  static OceneAviokompanije: Array<Ocena>;
 
   title = 'Travel-bois';
 
@@ -41,7 +43,7 @@ export class AppComponent {
     console.log('App started');
     this.getContacts();
     this.getData();
-    //localStorage.clear();
+    localStorage.clear();
     //AppComponent.currentUser = new Admin('sysAdmin', 'password');
   }
   getData(){

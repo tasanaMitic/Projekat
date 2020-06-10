@@ -18,7 +18,7 @@
       <hr>
       <div class="kompanija-element">Opis: {{kompanija.opis}}</div>
       <hr>
-      <!--<div class="kompanija-element">Ocena: {{kompanija.IzracunajProsecnuOcenu()}}</div>   -->
+      <div class="kompanija-element">Ocena: {{IzracunajProsecnuOcenu(kompanija.naziv)}}</div>   
 
       <!--Ovako radi i msm da ako se ista pipne da ce opet odici dk-->
       <dynamic-image [tip]="kompanija.getType()"

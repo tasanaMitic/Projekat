@@ -48,7 +48,7 @@ export class BrzeRezervacijeComponent implements OnInit {
           temp.push(element.BrojMesta.toString())
           temp.push(TipVozila[element.Tip])
           temp.push('1500')
-          temp.push(element.ProsecnaOcena().toString())
+          //temp.push(element.ProsecnaOcena().toString())
           this.kolaData.push(temp)
         });
       });

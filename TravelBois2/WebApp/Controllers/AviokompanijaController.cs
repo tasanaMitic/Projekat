@@ -74,6 +74,7 @@ namespace WebApp.Controllers
         public async Task<ActionResult<IEnumerable<Aviokompanija>>> GetAvioKompanije()
         {
             return await _context.Aviokompanije.ToListAsync();
+            
         }
 
 

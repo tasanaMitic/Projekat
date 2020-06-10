@@ -8,6 +8,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AvioAdminService } from '../../../shared/avio-admin.service';
 import { element } from 'protractor';
+import { OcenaService } from '../../../shared/ocena.service';
+import { Ocena } from '../../../entities/misc/ocena';
 
 @Component({
   selector: 'app-avio-kompanije',
@@ -18,13 +20,21 @@ export class AvioKompanijeComponent implements OnInit {
   kompanije: Array<AvioKompanija>;
   SortForm: FormGroup;
   currentUser: User;
+  ocene: Array<Ocena>;
+  listaOcena: number;
+  broj: number;
+  OceneAviokompanije: Array<Ocena>
+  aviokompanija: AvioKompanija;
+
 
   //ZA CSS
   klasa: string;
   tip: string;
 
-  constructor(private router: Router, public fb: FormBuilder, private service: AvioAdminService) {
+  constructor(private router: Router, public fb: FormBuilder, private service: AvioAdminService, private serviceO: OcenaService) {
     this.currentUser = AppComponent.currentUser;
+    this.ocene = new Array<Ocena>();
+
     this.klasa = 'kompanija-slika';
     this.tip = 'AvioKompanije';
 
@@ -35,10 +45,22 @@ export class AvioKompanijeComponent implements OnInit {
 
   ngOnInit(): void {
     this.kompanije = new Array<AvioKompanija>();
+    this.OceneAviokompanije = new Array<Ocena>();
+
+    
+
     this.service.getAviokompanije().subscribe(aviokompanije =>
       aviokompanije.forEach(element => {
-        this.kompanije.push(new AvioKompanija(element.naziv, element.adresa, element.grad, element.opis));
+        this.aviokompanija = new AvioKompanija(element.naziv, element.adresa, element.grad, element.opis);        
+
+        AppComponent.OceneAviokompanije.forEach(k => {
+          if (k.kompanija == element.naziv) {
+            this.aviokompanija.OceneAviokompanije.push(new Ocena(k.value, k.userID, k.kompanija));
+          }
+        })
+        this.kompanije.push(this.aviokompanija);
       }));
+    
   }
 
   KriterijumChanged(e) {
@@ -72,6 +94,14 @@ export class AvioKompanijeComponent implements OnInit {
 
   onBack() {
     this.router.navigateByUrl('/pocetna');
+  }
+
+  IzracunajProsecnuOcenu(kompanija: string) {
+    this.kompanije.forEach(element => {
+      if (element.naziv == kompanija) {
+        return element.ProsecnaOcena();
+      }
+    })
   }
 
 

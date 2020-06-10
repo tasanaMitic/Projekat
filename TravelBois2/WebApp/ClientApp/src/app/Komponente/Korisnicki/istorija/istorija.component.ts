@@ -46,7 +46,7 @@ export class IstorijaComponent implements OnInit {
       temp.push(element.Godiste.toString())
       temp.push(element.BrojMesta.toString())
       temp.push(TipVozila[element.Tip])
-      temp.push(element.ProsecnaOcena().toString())
+      //temp.push(element.ProsecnaOcena().toString())
       this.kolaData.push(temp)
     });
   }

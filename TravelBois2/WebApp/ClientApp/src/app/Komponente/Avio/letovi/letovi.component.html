@@ -15,8 +15,8 @@
           <select class="dropbtn" formControlName="klasa" (change)="KlasaChanged($event)">
             <option></option>
             <option>first</option>
-            <option>economic</option>
-            <option>business</option>
+            <option>economy</option>
+            <option>bussiness</option>
           </select>
           Tip puta:
           <select class="dropbtn" formControlName="tipPuta" (change)="TipPutaChanged($event)">
@@ -44,25 +44,32 @@
 <!--SVI LETOVI NEFILTRIRANI-->
 <div [hidden]="empty!=1 ">
   <table>
-    <tr>
-      <th *ngFor="let column of letHeaders">
-        {{column}}
-      </th>
-    </tr>
-    <tr *ngFor="let row of letData">
-      <td>{{row[1]}}</td>
-      <td>{{row[2]}}</td>
-      <td>{{row[3]}}</td>
-      <td>{{row[4]}}</td>
-      <td>{{row[5]}}</td>
-      <td>{{row[6]}}</td>
-      <td>{{row[7]}}</td>
-      <td>{{row[8]}}</td>
-      <td>{{row[9]}}</td>
-      <td [hidden]="currentUser!= 'RegisteredUser'">
-        <button (click)="RezervisiLet(row[0])" class="btn-rez">Rezervisi</button>
-      </td>
-    </tr>
+    <thead>
+      <tr>
+        <th *ngFor="let column of letHeaders">
+          {{column}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let letic of letovi; let i = index">
+        <td>{{letic.mestoPolaska}}</td>
+        <td>{{letic.mestoDolaska}}</td>
+        <td>{{letic.datumPolaska}}</td>
+        <td>{{letic.datumDolaska}}</td>
+        <td>{{letic.vremePoletanja}}</td>
+        <td>{{letic.vremeSletanja}}</td>
+        <td *ngIf="letic.klasaLeta == 0">first</td>
+        <td *ngIf="letic.klasaLeta == 1">economy</td>
+        <td *ngIf="letic.klasaLeta == 2">bussiness</td>
+        <td *ngIf="letic.tipLeta == 0">one-way</td>
+        <td *ngIf="letic.tipLeta == 1">multi-city</td>
+        <td>{{letic.cenaKarte}}</td>
+        <td [hidden]="currentUser!= 'RegisteredUser'">
+          <button (click)="RezervisiLet(i)" class="btn-rez">Rezervisi</button>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>
 
@@ -77,16 +84,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of letDataF">
-        <td>{{row[1]}}</td>
-        <td>{{row[2]}}</td>
-        <td>{{row[3]}}</td>
-        <td>{{row[4]}}</td>
-        <td>{{row[5]}}</td>
-        <td>{{row[6]}}</td>
-        <td>{{row[7]}}</td>
-        <td>{{row[8]}}</td>
-        <td>{{row[9]}}</td>
+      <tr *ngFor="let letic of filtriraniLetovi">
+        <td>{{letic.mestoPolaska}}</td>
+        <td>{{letic.mestoDolaska}}</td>
+        <td>{{letic.datumPolaska}}</td>
+        <td>{{letic.datumDolaska}}</td>
+        <td>{{letic.vremePoletanja}}</td>
+        <td>{{letic.vremeSletanja}}</td>
+        <td *ngIf="letic.klasaLeta == 0">first</td>
+        <td *ngIf="letic.klasaLeta == 1">economy</td>
+        <td *ngIf="letic.klasaLeta == 2">bussiness</td>
+        <td *ngIf="letic.tipLeta == 0">one-way</td>
+        <td *ngIf="letic.tipLeta == 1">multi-city</td>
+        <td>{{letic.cenaKarte}}</td>
         <td [hidden]="currentUser!= 'RegisteredUser'">
           <button (click)="RezervisiLet(row[0])" class="btn-rez">Rezervisi</button>
         </td>

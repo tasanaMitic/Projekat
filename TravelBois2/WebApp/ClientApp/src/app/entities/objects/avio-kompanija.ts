@@ -1,22 +1,24 @@
 import { Aerodrom } from './aerodrom';
 import { Let } from './let';
 import { Ocena } from '../misc/ocena';
+import { OcenaService } from '../../shared/ocena.service';
 
 export class AvioKompanija {
   adresa: string;
   grad: string;
     naziv: string;
     opis: string;
-    slikaUrl: string;
+  slikaUrl: string;
   OceneAviokompanije: Array<Ocena>
 
-    constructor(naziv, adresa, grad, opis){
+  constructor(naziv, adresa, grad, opis) {
         this.adresa = adresa;
         this.naziv = naziv;
         this.grad = grad;
         this.opis = opis;
         //this.brzaRezervacijaPopust = 0;
-        this.OceneAviokompanije = new Array<Ocena>();
+      this.OceneAviokompanije = new Array<Ocena>();
+      
 
     }
 
@@ -25,15 +27,15 @@ export class AvioKompanija {
     }
 
 
-    //ProsecnaOcena(){
-    //    let count = 0;
-    //    let sum = 0;
-    //    this.Ocene.forEach(element => {
-    //        sum += element.O;
-    //        count += 1;
-    //    });
-    //    return sum / count;
-    //}
+  ProsecnaOcena() {
+        let count = 0;
+        let sum = 0;
+    this.OceneAviokompanije.forEach(element => {
+      sum += element.value;
+            count += 1;
+        });
+        return sum / count;
+    }
 
     //DodajDestinaciju(dest:string){
     //    this.moguceDestinacije.lokacije.forEach(element => {
@@ -53,5 +55,4 @@ export class AvioKompanija {
     //        }
     //    });
     //}
-    IzracunajPopustBonusPoena(){}
 }

@@ -9,6 +9,8 @@ import { UserService } from '../../../shared/user.service';
 import { AvioAdmin } from '../../../entities/users/avio-admin/avio-admin';
 import { AvioAdminService } from '../../../shared/avio-admin.service';
 import { AvioKompanija } from '../../../entities/objects/avio-kompanija';
+import { OcenaService } from '../../../shared/ocena.service';
+import { Ocena } from '../../../entities/misc/ocena';
 
 @Component({
   selector: 'app-pocetna-strana',
@@ -33,13 +35,14 @@ export class PocetnaStranaComponent implements OnInit {
   opisAvio: string;
 
 
-  constructor(private service: UserService, private serviceAvio: AvioAdminService) { }
+  constructor(private service: UserService, private serviceAvio: AvioAdminService, private serviceO: OcenaService) { }
 
   ngOnInit(): void {
 
     this.currentUser = AppComponent.currentUser;
     this.provera();
     this.ucitajAviokompaniju();
+    this.ucitajOcene();
   }
   getType() {
     return AppComponent.tipKorisnika;
@@ -100,6 +103,10 @@ export class PocetnaStranaComponent implements OnInit {
         }
       })
     });   
+  }
+  ucitajOcene() {
+    AppComponent.OceneAviokompanije = new Array<Ocena>();
+    this.serviceO.getOceneAvio().subscribe(ocene => { AppComponent.OceneAviokompanije = ocene });
   }
 
 

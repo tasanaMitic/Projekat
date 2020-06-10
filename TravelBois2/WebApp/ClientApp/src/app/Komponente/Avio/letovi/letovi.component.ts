@@ -9,6 +9,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Aerodrom } from '../../../entities/objects/aerodrom';
 import { Klase } from '../../../_enums';
 import { User } from '../../../entities/users/user/user';
+import { LetoviService } from '../../../shared/letovi.service';
 
 @Component({
   selector: 'app-letovi',
@@ -16,8 +17,7 @@ import { User } from '../../../entities/users/user/user';
   styleUrls: ['./letovi.component.css']
 })
 export class LetoviComponent implements OnInit {
-  letHeaders = ['Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Vreme polaska', 'Vreme dolaska',  'Klasa', 'Tip puta', 'Cena'];
-  letData: Array<Array<string>>; //lista letova
+  letHeaders = ['Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Vreme poletanja', 'Vreme sletanja',  'Klasa', 'Tip puta', 'Cena'];
   letDataF: Array<Array<string>>; //lista filtriranih letova
   FilterForm: FormGroup;
   empty: number;
@@ -35,16 +35,15 @@ export class LetoviComponent implements OnInit {
   currentUser: string;
 
   letovi: Array<Let>;
+  idLetova: Array<number>;
 
-  constructor(private location: Location, private route: ActivatedRoute, private router: Router) {
-    this.letData = new Array<Array<string>>();
+  constructor(private location: Location, private route: ActivatedRoute, private router: Router, private service: LetoviService) {
     this.empty = 0;
 
-    this.letovi = new Array<Let>();
+    this.ctUser = AppComponent.currentUser;
    }
 
   ngOnInit() {
-    this.ctUser = AppComponent.currentUser;
     this.currentUser = this.ctUser.constructor.name;
     this.aviokompanija = this.route.snapshot.paramMap.get("naziv");
     this.initForm();
@@ -80,10 +79,10 @@ export class LetoviComponent implements OnInit {
     this.destDo = this.FilterForm.get('destDo').value;
     this.k = this.FilterForm.get('klasa').value;
     if (this.k != "") {
-      if (this.k == 'economic') {
+      if (this.k == 'first') {
         this.klasa = '0';
       }
-      else if (this.k == 'business') {
+      else if (this.k == 'economy') {
         this.klasa = '1';
       }
       else {
@@ -506,38 +505,38 @@ export class LetoviComponent implements OnInit {
       
     }
 
-    if (this.empty == 2) {
-      this.letDataF = new Array<Array<string>>();
-      this.filtriraniLetovi.forEach(element => {
-        let temp = new Array<string>();
-        //temp.push(element.id.toString());
-        temp.push('0');
-        temp.push(element.mestoPolaska);
-        temp.push(element.mestoDolaska);
-        temp.push(element.datumPolaska);
-        temp.push(element.datumDolaska);
-        temp.push(element.vremePoletanja);
-        temp.push(element.vremeSletanja);
-        if (element.klasaLeta.toString() == '0') {
-          temp.push('economic');
-        }
-        else if (element.klasaLeta.toString() == '1') {
-          temp.push('bussines');
-        }
-        else {
-          temp.push('first');
-        }
+    //if (this.empty == 2) {
+    //  this.letDataF = new Array<Array<string>>();
+    //  this.filtriraniLetovi.forEach(element => {
+    //    let temp = new Array<string>();
+    //    //temp.push(element.id.toString());
+    //    temp.push('0');
+    //    temp.push(element.mestoPolaska);
+    //    temp.push(element.mestoDolaska);
+    //    temp.push(element.datumPolaska);
+    //    temp.push(element.datumDolaska);
+    //    temp.push(element.vremePoletanja);
+    //    temp.push(element.vremeSletanja);
+    //    if (element.klasaLeta.toString() == '0') {
+    //      temp.push('first');
+    //    }
+    //    else if (element.klasaLeta.toString() == '1') {
+    //      temp.push('economy');
+    //    }
+    //    else {
+    //      temp.push('bussiness');
+    //    }
 
-        if (element.tipLeta.toString() == '0') {
-          temp.push('one-way');
-        }
-        else {
-          temp.push('multi-city');
-        }
-        temp.push(element.cenaKarte.toString());
-        this.letDataF.push(temp);
-      });
-    }
+    //    if (element.tipLeta.toString() == '0') {
+    //      temp.push('one-way');
+    //    }
+    //    else {
+    //      temp.push('multi-city');
+    //    }
+    //    temp.push(element.cenaKarte.toString());
+    //    this.letDataF.push(temp);
+    //  });
+    //}
   }
 
   KlasaChanged(e) {
@@ -551,44 +550,21 @@ export class LetoviComponent implements OnInit {
 
   //////////
   ucitajLetove() {
-    //this.letovi.push(new Let('Beograd', 'London', '2020-06-06', '15:00', '2020-04-04', '18:55', 250, 65, 'economic', 'oneWay', new Array<Aerodrom>(), 650));
-    //this.letovi.push(new Let('Budimpesta', 'Lisabon', '2020-05-05', '15:00', '2020-04-04', '18:55', 250, 65, 'bussines', 'oneWay', new Array<Aerodrom>(), 650));
-    //this.letovi.push(new Let('Prag', 'Pariz', '2020-05-05', '15:00', '2020-04-04', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
-    //this.letovi.push(new Let('Prag', 'Lisabon', '2020-05-05', '15:00', '2020-04-04', '18:55', 250, 65, 'bussines', 'oneWay', new Array<Aerodrom>(), 650));
-    //this.letovi.push(new Let('Beograd', 'Pariz', '2020-05-05', '15:00', '2020-04-04', '18:55', 250, 65, 'economic', 'oneWay', new Array<Aerodrom>(), 650));
-
-    this.letovi.forEach(element => {
-        let temp = new Array<string>();
-      this.empty = 1;
-      //temp.push(element.id.toString());
-      temp.push('0');
-      temp.push(element.mestoPolaska);
-      temp.push(element.mestoDolaska);
-      temp.push(element.datumPolaska);
-      temp.push(element.datumDolaska);
-      temp.push(element.vremePoletanja);
-      temp.push(element.vremeSletanja);
-      if (element.klasaLeta.toString() == '0') {
-        temp.push('economic');
-      }
-      else if (element.klasaLeta.toString() == '1') {
-        temp.push('bussines');
-      }
-      else {
-        temp.push('first');
-      }
-
-      if (element.tipLeta.toString() == '0') {
-        temp.push('one-way');
-      }
-      else {
-        temp.push('multi-city');
-      }
-      temp.push(element.cenaKarte.toString());
-      this.letData.push(temp);
-      
-
+    this.letovi = new Array<Let>();
+    this.idLetova = new Array<number>();
+    this.service.getLetovi().subscribe(letovi => {
+      letovi.forEach(element => {
+        if (element.aviokompanija == this.aviokompanija) {
+          this.empty = 1;
+          this.letovi.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+            element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta,
+            element.presedanja, element.cenaKarte));
+          this.idLetova.push(element.id);
+        }
+      })
     });
+
+
   }
 
   RezervisiLet(id: string) {

@@ -94,7 +94,7 @@ export class IzvestajOPoslovanjuRentaComponent implements OnInit {
   ngOnInit(): void {
   }
   GetOcena(){
-    return this.currentUser.Renta.ProsecnaOcena();
+    //return this.currentUser.Renta.ProsecnaOcena();
   }
   GetCarNames(){
     let kola = this.GetCars();
@@ -115,7 +115,7 @@ export class IzvestajOPoslovanjuRentaComponent implements OnInit {
     return kola;
   }
   CarChanged(e){
-    this.ocenaKola = this.GetCarByName(this.CarSelectForm.get('selectedCar').value).ProsecnaOcena();
+    //this.ocenaKola = this.GetCarByName(this.CarSelectForm.get('selectedCar').value).ProsecnaOcena();
   }
   GetCarByName(name): Kola{
     let kola = this.GetCars();
