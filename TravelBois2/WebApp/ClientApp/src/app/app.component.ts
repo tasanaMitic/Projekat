@@ -41,7 +41,7 @@ export class AppComponent {
     console.log('App started');
     this.getContacts();
     this.getData();
-    localStorage.clear();
+    //localStorage.clear();
     //AppComponent.currentUser = new Admin('sysAdmin', 'password');
   }
   getData(){

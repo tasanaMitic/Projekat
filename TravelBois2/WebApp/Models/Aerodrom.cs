@@ -13,5 +13,7 @@ namespace WebApp.Models
         public string Grad { get; set; }
         [Required]
         public string Drzava { get; set; }
+        [Required]
+        public string Aviokompanija { get; set; }
     }
 }

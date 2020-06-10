@@ -7,6 +7,7 @@ import { Aerodrom } from '../../../entities/objects/aerodrom';
 import { element } from 'protractor';
 import { strict } from 'assert';
 import { Router } from '@angular/router';
+import { AppComponent } from '../../../app.component';
 
 @Component({
   selector: 'app-destinacije-avio',
@@ -17,19 +18,18 @@ import { Router } from '@angular/router';
 export class DestinacijeAvioComponent implements OnInit {
   letHeaders = ['Grad', 'Drzava'];
   destinacijePodaciForm: FormGroup;
-  public empty = 0;
+  empty: number;
   listaAerodroma: Array<Aerodrom>;
-  letData: Array<Array<string>>;
   grad: string;
   drzava: string;
   aerodrom: Aerodrom;
   g: string;
   d: string;
+  postoji: boolean;
 
-  constructor(private location: Location, private service: DestinacijeService, private router: Router) {
-    this.letData = new Array<Array<string>>();
-    this.listaAerodroma = new Array <Aerodrom>();
-
+  constructor(private service: DestinacijeService, private router: Router) {
+    this.empty = 0;
+    this.postoji = false;
   }
 
   ngOnInit(): void {
@@ -49,29 +49,42 @@ export class DestinacijeAvioComponent implements OnInit {
   onSubmit() {
     this.grad = this.destinacijePodaciForm.get('grad').value;
     this.drzava = this.destinacijePodaciForm.get('drzava').value;
-    this.aerodrom = new Aerodrom(this.grad, this.drzava);
+    this.aerodrom = new Aerodrom(this.grad, this.drzava, AppComponent.avioKompanija.naziv);
     this.service.addDestinacija(this.aerodrom).subscribe();
-    
-    window.location.reload();
+
+    this.listaAerodroma.forEach(element => {
+      if (element.grad == this.aerodrom.grad) {
+        this.postoji = true;
+      }
+    })
+
+    if (!this.postoji) {
+      this.listaAerodroma.push(this.aerodrom);
+    }    
+
+    this.initForm();
   }
 
   
 
   getDestinacije(): void{
+    this.listaAerodroma = new Array<Aerodrom>();
     this.service.getAerodromi().subscribe(aerodromi =>
       aerodromi.forEach(element => {
-        let temp = new Array<string>();
+        if (element.aviokompanija == AppComponent.avioKompanija.naziv) {
           this.empty = 1;
-          temp.push(element.grad);
-          temp.push(element.drzava);
-        this.letData.push(temp);
+          this.listaAerodroma.push(new Aerodrom(element.grad, element.drzava, element.aviokompanija))
+        }
       })
     );    
   }
 
-  ukloniGrad(data: string) {
-    this.service.deleteAerodrom(data).subscribe();
-    window.location.reload();
+  ukloniGrad(grad: string) {
+    this.service.deleteAerodrom(grad).subscribe();
+    this.listaAerodroma = this.listaAerodroma.filter(f => f.grad != grad);
+    if (this.listaAerodroma.length == 0) {
+      this.empty = 0;
+    }
   }
 
   onBack(){

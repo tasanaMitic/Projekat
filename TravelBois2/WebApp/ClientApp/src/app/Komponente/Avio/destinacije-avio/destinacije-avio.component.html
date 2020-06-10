@@ -1,5 +1,5 @@
 <h1>Destinacije sa kojima poslujete</h1>
-<div [hidden]="empty !==1">
+<div [hidden]="empty !==1" class="container">
   <table  style="margin-left:auto;margin-right:auto">
     <thead>
       <tr>
@@ -9,11 +9,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of letData">
-        <td>{{row[0]}}</td>
-        <td>{{row[1]}}</td>
+      <tr *ngFor="let aer of listaAerodroma">
+        <td>{{aer.grad}}</td>
+        <td>{{aer.drzava}}</td>
         <td>
-          <button class="btn-rez" (click)="ukloniGrad(row[0])">Ukloni</button>
+          <button class="btn-rez" (click)="ukloniGrad(aer.grad)">Ukloni</button>
         </td>
       </tr>
     </tbody>
