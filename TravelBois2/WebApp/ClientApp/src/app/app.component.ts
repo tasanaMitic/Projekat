@@ -74,10 +74,8 @@ export class AppComponent {
     );
     }
     
-    AppComponent.avioKompanije = new Array<AvioKompanija>();
     AppComponent.rente = new Array<RentACar>();
 
-    AppComponent.avioKompanije.push(new AvioKompanija('Jat', 'adresa1', 'Beograd'))
     AppComponent.rente.push(new RentACar('Car2Go', 'adresa 3'))
     
   } 

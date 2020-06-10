@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { AvioKompanija } from '../entities/objects/avio-kompanija';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +50,9 @@ export class AvioAdminService {
     }
     console.debug('body popunjen')
     return this.http.post(this.BaseURI + '/AvioAdmin/Register', body);
+  }
+
+  addAvioKompanija(aviokompanija: AvioKompanija): Observable<AvioKompanija> {
+    return this.http.post<AvioKompanija>(this.BaseURI + '/Aviokompanija/AddAvioKompanija', aviokompanija);
   }
 }

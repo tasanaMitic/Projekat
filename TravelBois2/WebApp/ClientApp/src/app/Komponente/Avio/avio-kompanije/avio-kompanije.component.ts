@@ -50,13 +50,12 @@ export class AvioKompanijeComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = AppComponent.currentUser;
-    this.kompanije.push(new AvioKompanija('Jat', 'Bogdana Suputa 5', 'Beograd'));
-    this.kompanije.push(new AvioKompanija('WizzAir', 'Petefi Sandora 9','Abu dabi'));
+    //this.kompanije.push(new AvioKompanija('Jat', 'Bogdana Suputa 5', 'Beograd'));
+    //this.kompanije.push(new AvioKompanija('WizzAir', 'Petefi Sandora 9','Abu dabi'));
   }
 
   oceni(naziv: string) {
     this.router.navigateByUrl('/oceni/' + naziv);
-    //window.open('https://localhost:44343/oceni/' + naziv, "_self");
   }  
 
   letoviUrl(url: string) {

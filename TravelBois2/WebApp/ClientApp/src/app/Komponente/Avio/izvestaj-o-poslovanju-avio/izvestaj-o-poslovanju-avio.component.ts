@@ -115,20 +115,21 @@ export class IzvestajOPoslovanjuAvioComponent implements OnInit {
     //return ids;
   }
 
-  GetLetoviById(id): Let {
-    let letovi = this.currentUser.avioKompanija.letovi;
-    let ret = null;
-    this.Letovi.forEach(element => {
-      //if (element.ID == id) {
-      //  ret = element;
-      //}
-    });
-    return ret;
+ // GetLetoviById(id): Let {
+  GetLetoviById(id){
+    //let letovi = this.currentUser.avioKompanija.letovi;
+    //let ret = null;
+    //this.Letovi.forEach(element => {
+    //  //if (element.ID == id) {
+    //  //  ret = element;
+    //  //}
+    //});
+    //return ret;
   }
 
-  LetChanged(e) {
-    this.ocenaLeta = this.GetLetoviById(this.LetSelectForm.get('selectedLet').value).ProsecnaOcena();
-  }
+  //LetChanged(e) {
+  //  this.ocenaLeta = this.GetLetoviById(this.LetSelectForm.get('selectedLet').value).ProsecnaOcena();
+  //}
 
   NedeljaChanged(e) {
     //this.prihodNedelje =   ///IZRACUNATI PRIHOD U OVOJ NEDELJI

@@ -1,69 +1,4 @@
 <div class="container">
-  <!--<h1>Vasi podaci</h1>
-      <form [formGroup]="avioPodaciForm" (ngSubmit)="onSubmit()">
-          <div class="row">
-              <div class="col-sm-6 form-group">
-                  <label for="ime">Ime:</label>
-                  <input type="text" id="ime" class="form-control" formControlName="ime">
-                  <div *ngIf="avioPodaciForm.controls.ime.invalid && (avioPodaciForm.controls.ime.dirty || avioPodaciForm.controls.ime.touched)">
-                      Unesite ime
-                  </div>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-sm-6 form-group">
-                  <label for="prezime">Prezime:</label>
-                  <input type="text" id="prezime" class="form-control" formControlName="prezime">
-                  <div *ngIf="avioPodaciForm.controls.prezime.invalid && (avioPodaciForm.controls.prezime.dirty || avioPodaciForm.controls.prezime.touched)">
-                      Unesite prezime
-                  </div>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-sm-6 form-group">
-                  <label for="grad">Grad:</label>
-                  <input type="text" id="grad" class="form-control" formControlName="grad">
-                  <div *ngIf="avioPodaciForm.controls.grad.invalid && (avioPodaciForm.controls.grad.dirty || avioPodaciForm.controls.grad.touched)">
-                      Unesite grad
-                  </div>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-sm-6 form-group">
-                  <label for="brojTelefona">Broj telefona:</label>
-                  <input type="number" id="brojTelefona" class="form-control" formControlName="brojTelefona">
-                  <div *ngIf="avioPodaciForm.controls.brojTelefona.invalid && (avioPodaciForm.controls.brojTelefona.dirty || avioPodaciForm.controls.brojTelefona.touched)">
-                      Unesite broj telefona
-                  </div>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-sm-6 form-group">
-                  <label for="username">Username:</label>
-                  <input type="text" id="username" class="form-control" formControlName="username">
-                  <div *ngIf="avioPodaciForm.controls.username.invalid && (avioPodaciForm.controls.username.dirty || avioPodaciForm.controls.username.touched)">
-                      Unesite username
-                  </div>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-sm-6 form-group">
-                  <label for="password">Password:</label>
-                  <input type="password" id="password" class="form-control" formControlName="password">
-                  <div *ngIf="avioPodaciForm.controls.password.invalid && (avioPodaciForm.controls.password.dirty || avioPodaciForm.controls.password.touched)">
-                      Unesite password
-                  </div>
-              </div>
-          </div>
-          <div>
-              <div>
-                  <button [disabled]="!avioPodaciForm.valid" class="btn btn-success" type="submit">Sacuvaj</button>
-              </div>
-          </div>
-
-      </form>
-  </div> -->
-
   <div class="container">
     <h1>Podaci aviokompanije</h1>
     <form [formGroup]="avioPodaciForm" (ngSubmit)="onSubmit()">
@@ -82,6 +17,15 @@
           <input type="text" id="adresa" class="form-control" formControlName="adresa">
           <div class="alert alert-danger" *ngIf="avioPodaciForm.controls.adresa.invalid && (avioPodaciForm.controls.adresa.dirty || avioPodaciForm.controls.adresa.touched)">
             Unesite adresu
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <label for="grad">Grad:</label>
+          <input type="text" id="grad" class="form-control" formControlName="grad">
+          <div class="alert alert-danger" *ngIf="avioPodaciForm.controls.grad.invalid && (avioPodaciForm.controls.grad.dirty || avioPodaciForm.controls.grad.touched)">
+            Unesite grad
           </div>
         </div>
       </div>

@@ -18,11 +18,11 @@ namespace ServerApp.Models
         [Required]
         public string Grad { get; set; }
         public string Opis { get; set; }
-        //public ICollection<Ocena> Ocene { get; set; }
-        [Required]
-        public ICollection<Let> Letovi { get; set; }
-        [Required]
-        public ICollection<Aerodrom> Aerodromi { get; set; }
+        ////public ICollection<Ocena> Ocene { get; set; }
+        //[Required]
+        //public ICollection<Let> Letovi { get; set; }
+        //[Required]
+        //public ICollection<Aerodrom> Aerodromi { get; set; }
         
     }
 }

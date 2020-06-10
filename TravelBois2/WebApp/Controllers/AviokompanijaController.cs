@@ -22,6 +22,16 @@ namespace WebApp.Controllers
             _context = context;
         }
 
+        [HttpPost]
+        [Route("AddAvioKompanija")]
+        public async Task<ActionResult<Aerodrom>> AddAvioKompanija(Aviokompanija aviokompanija)
+        {
+            _context.Aviokompanije.Add(aviokompanija);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetAvioKompanija", new { naziv = aviokompanija.Naziv }, aviokompanija);
+        }
+
 
         [HttpPost]
         [Route("AddAerodrom")]

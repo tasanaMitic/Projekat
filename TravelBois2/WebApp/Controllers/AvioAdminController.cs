@@ -65,31 +65,5 @@ namespace WebApp.Controllers
             }
         }
 
-        //[HttpGet]
-        ////[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        ////[Authorize]
-        //[Route("GetAvioAdminProfile")]
-        ////GET: api/GetUserProfile
-        //public async Task<Object> GetAvioAdminProfile()
-        //{
-        //    var claims = User.Claims;
-        //    var ListClaims = claims.ToList();
-        //    if (ListClaims.Count != 0)
-        //    {
-        //        var prvi = ListClaims.First();
-
-        //        //string userId = User.Claims.First(c => c.Type == "UserID").Value;
-        //        string userId = prvi.Value;
-        //        var user = await _userManager.FindByIdAsync(userId);
-        //        return new
-        //        {
-        //            user.NazivAviokompanije
-        //        };
-        //    }
-        //    else
-        //    {
-        //        return "";
-        //    }
-        //}
     }
 }
