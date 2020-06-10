@@ -2,6 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Location} from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AvioAdmin } from '../../../entities/users/avio-admin/avio-admin';
+import { AppComponent } from '../../../app.component';
+import { AvioAdminService } from '../../../shared/avio-admin.service';
+import { element } from 'protractor';
+import { AvioKompanija } from '../../../entities/objects/avio-kompanija';
+import { elementAt } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -11,32 +18,40 @@ import { Router } from '@angular/router';
 })
 export class ProfilAvioComponent implements OnInit {
   avioPodaciForm: FormGroup;
+  currentUser: AvioAdmin;
+  aviokompanija: AvioKompanija;
 
-  constructor(private location: Location, private router: Router) { 
+  constructor(private router: Router, private service: AvioAdminService, private toastr: ToastrService) {
+    this.currentUser = AppComponent.currentUser;
   }
 
   ngOnInit(): void {
-    
     this.initForm();
   }
 
   initForm(){
     this.avioPodaciForm = new FormGroup({
-      'naziv' : new FormControl('', Validators.required),
-      'grad' : new FormControl('', Validators.required),
-      'adresa' : new FormControl('', Validators.required),
-      'opis' : new FormControl('', Validators.required),
+      'naziv': new FormControl(AppComponent.avioKompanija.naziv, Validators.required),
+      'grad': new FormControl(AppComponent.avioKompanija.grad, Validators.required),
+      'adresa': new FormControl(AppComponent.avioKompanija.adresa, Validators.required),
+      'opis': new FormControl(AppComponent.avioKompanija.opis, Validators.required),
 
     });
   }
 
-  onSubmit(){
-    console.log(this.avioPodaciForm.value);
-    console.log(this.avioPodaciForm);
+  onSubmit() {
+    if ((this.avioPodaciForm.get('grad').value != AppComponent.avioKompanija.grad) || (this.avioPodaciForm.get('adresa').value != AppComponent.avioKompanija.adresa)
+      || (this.avioPodaciForm.get('opis').value != AppComponent.avioKompanija.opis))
+    {
+      this.aviokompanija = new AvioKompanija(AppComponent.avioKompanija.naziv, this.avioPodaciForm.get('adresa').value, this.avioPodaciForm.get('grad').value, this.avioPodaciForm.get('opis').value);
+      this.service.updateAviokompanija(this.aviokompanija, AppComponent.avioKompanija.naziv).subscribe();
+      this.toastr.success('Uspesno ste izmenili podatke!');
+    }
   }
 
   Map() {
-    window.open('https://localhost:44343/maps', "_self");
+    //window.open('https://localhost:44343/maps', "_self");
+    this.router.navigateByUrl('/maps');
   }
 
   onBack()

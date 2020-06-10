@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { AppComponent } from '../../../app.component';
 import { UserService } from '../../../shared/user.service';
 import { AvioAdmin } from '../../../entities/users/avio-admin/avio-admin';
+import { AvioAdminService } from '../../../shared/avio-admin.service';
+import { AvioKompanija } from '../../../entities/objects/avio-kompanija';
 
 @Component({
   selector: 'app-pocetna-strana',
@@ -25,14 +27,19 @@ export class PocetnaStranaComponent implements OnInit {
   brojPasosa: string;
   tipKorisnika: string;
   aviokompanija: string;
+  nazivAvio: string;
+  adresaAvio: string;
+  gradAvio: string;
+  opisAvio: string;
 
 
-  constructor(private service: UserService) { }
+  constructor(private service: UserService, private serviceAvio: AvioAdminService) { }
 
   ngOnInit(): void {
-    
+
     this.currentUser = AppComponent.currentUser;
     this.provera();
+    this.ucitajAviokompaniju();
   }
   getType() {
     return AppComponent.tipKorisnika;
@@ -52,12 +59,13 @@ export class PocetnaStranaComponent implements OnInit {
           this.grad = this.userDetails.grad;
           if (this.tipKorisnika == 'RegularUser') {
             AppComponent.tipKorisnika = "RegisteredUser";
-            AppComponent.currentUser = new RegisteredUser(this.brojTelefona, this.grad, this.name, this.lastname, this.userName, this.brojPasosa);
+            AppComponent.currentUser = new RegisteredUser(this.brojTelefona, this.grad, this.name, this.lastname, this.userName, this.brojPasosa);            
           }
           else if (this.tipKorisnika == 'AvioAdmin') {
             AppComponent.tipKorisnika = "AvioAdmin";
             this.aviokompanija = this.userDetails.nazivAviokompanije;
             AppComponent.currentUser = new AvioAdmin(this.brojTelefona, this.grad, this.name, this.lastname, this.userName, this.aviokompanija);
+            this.ucitajAviokompaniju();
           }
           else if (this.tipKorisnika == 'RentaAdmin') {
             AppComponent.tipKorisnika = "RentACarAdmin";
@@ -65,7 +73,7 @@ export class PocetnaStranaComponent implements OnInit {
           else {
             AppComponent.tipKorisnika = "Admin";
           }
-          
+
         }
         else {
           AppComponent.currentUser = new User();
@@ -78,6 +86,22 @@ export class PocetnaStranaComponent implements OnInit {
       },
     );
   }
+
+
+  ucitajAviokompaniju() {
+    this.serviceAvio.getAviokompanije().subscribe(aviokompanije => {
+      aviokompanije.forEach(element => {
+        if (element.naziv == this.aviokompanija) {
+          this.nazivAvio = element.naziv;
+          this.adresaAvio = element.adresa;
+          this.opisAvio = element.opis;
+          this.gradAvio = element.grad;
+          AppComponent.avioKompanija = new AvioKompanija(this.nazivAvio, this.adresaAvio, this.gradAvio, this.opisAvio);
+        }
+      })
+    });   
+  }
+
 
   
 

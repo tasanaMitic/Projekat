@@ -32,8 +32,7 @@ export class AppComponent {
   static reset = false;
   static currentUser;
   static datum: Date;
-  //currentUser: User;
-  static avioKompanije: Array<AvioKompanija>;
+  static avioKompanija: AvioKompanija;
   static rente: Array<RentACar>;
 
   title = 'Travel-bois';

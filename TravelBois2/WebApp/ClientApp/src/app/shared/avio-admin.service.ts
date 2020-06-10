@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AvioKompanija } from '../entities/objects/avio-kompanija';
 import { Observable } from 'rxjs';
+import { AvioAdmin } from '../entities/users/avio-admin/avio-admin';
 
 @Injectable({
   providedIn: 'root'
@@ -54,5 +55,13 @@ export class AvioAdminService {
 
   addAvioKompanija(aviokompanija: AvioKompanija): Observable<AvioKompanija> {
     return this.http.post<AvioKompanija>(this.BaseURI + '/Aviokompanija/AddAvioKompanija', aviokompanija);
+  }
+
+  getAviokompanije(): Observable<AvioKompanija[]> {
+    return this.http.get<AvioKompanija[]>(this.BaseURI + '/Aviokompanija/GetAvioKompanije');
+  }
+
+  updateAviokompanija(aviokompanija: AvioKompanija, naziv) {
+    return this.http.put(this.BaseURI + '/Aviokompanija/UpdateAviokompanijaProfil/' + naziv, aviokompanija);
   }
 }

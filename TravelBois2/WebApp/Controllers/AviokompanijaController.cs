@@ -22,14 +22,50 @@ namespace WebApp.Controllers
             _context = context;
         }
 
+        [HttpPut("{naziv}")]
+        [Route("UpdateAviokompanijaProfil/{naziv}")]
+        public async Task<IActionResult> UpdateAviokompanijaProfil(string naziv,Aviokompanija aviokompanija)
+        {
+             if(naziv != aviokompanija.Naziv)
+             {
+                return BadRequest();
+             }
+
+            _context.Entry(aviokompanija).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch(DbUpdateConcurrencyException)
+            {
+                if(!AviokompanijaExists(naziv))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
+
         [HttpPost]
         [Route("AddAvioKompanija")]
-        public async Task<ActionResult<Aerodrom>> AddAvioKompanija(Aviokompanija aviokompanija)
+        public async Task<ActionResult<Aviokompanija>> AddAvioKompanija(Aviokompanija aviokompanija)
         {
             _context.Aviokompanije.Add(aviokompanija);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetAvioKompanija", new { naziv = aviokompanija.Naziv }, aviokompanija);
+        }
+
+        [HttpGet]
+        [Route("GetAvioKompanije")]
+        public async Task<ActionResult<IEnumerable<Aviokompanija>>> GetAvioKompanije()
+        {
+            return await _context.Aviokompanije.ToListAsync();
         }
 
 
@@ -98,7 +134,10 @@ namespace WebApp.Controllers
         }
 
 
-
+        private bool AviokompanijaExists(string naziv)
+        {
+            return _context.Aviokompanije.Any(e => e.Naziv == naziv);
+        }
 
 
 
