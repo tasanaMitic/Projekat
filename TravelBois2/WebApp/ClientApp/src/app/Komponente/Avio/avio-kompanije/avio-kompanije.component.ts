@@ -6,6 +6,8 @@ import { Let } from '../../../entities/objects/let';
 import { Kola } from '../../../entities/objects/kola';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AvioAdminService } from '../../../shared/avio-admin.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-avio-kompanije',
@@ -21,14 +23,22 @@ export class AvioKompanijeComponent implements OnInit {
   klasa: string;
   tip: string;
 
-  constructor(private router: Router, public fb: FormBuilder) { 
-    this.kompanije = new Array<AvioKompanija>();   
+  constructor(private router: Router, public fb: FormBuilder, private service: AvioAdminService) {
+    this.currentUser = AppComponent.currentUser;
     this.klasa = 'kompanija-slika';
     this.tip = 'AvioKompanije';
 
     this.SortForm = this.fb.group({
       selectedKriterijum: ['']
     });
+  }
+
+  ngOnInit(): void {
+    this.kompanije = new Array<AvioKompanija>();
+    this.service.getAviokompanije().subscribe(aviokompanije =>
+      aviokompanije.forEach(element => {
+        this.kompanije.push(new AvioKompanija(element.naziv, element.adresa, element.grad, element.opis));
+      }));
   }
 
   KriterijumChanged(e) {
@@ -46,12 +56,6 @@ export class AvioKompanijeComponent implements OnInit {
     else if (kriterijum == 'prosecna ocena') {
       //this.kompanije.sort((a, b) => a.ProsecnaOcena() - b.ProsecnaOcena());
     }
-  }
-
-  ngOnInit(): void {
-    this.currentUser = AppComponent.currentUser;
-    //this.kompanije.push(new AvioKompanija('Jat', 'Bogdana Suputa 5', 'Beograd'));
-    //this.kompanije.push(new AvioKompanija('WizzAir', 'Petefi Sandora 9','Abu dabi'));
   }
 
   oceni(naziv: string) {

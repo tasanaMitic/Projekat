@@ -8,7 +8,7 @@ export class AvioKompanija {
     naziv: string;
     opis: string;
     slikaUrl: string;
-    Ocene: Array<Ocena>
+  OceneAviokompanije: Array<Ocena>
 
     constructor(naziv, adresa, grad, opis){
         this.adresa = adresa;
@@ -16,7 +16,7 @@ export class AvioKompanija {
         this.grad = grad;
         this.opis = opis;
         //this.brzaRezervacijaPopust = 0;
-        //this.Ocene = new Array<Ocena>();
+        this.OceneAviokompanije = new Array<Ocena>();
 
     }
 
@@ -24,19 +24,16 @@ export class AvioKompanija {
         return AvioKompanija.name;
     }
 
-    OceniKompaniju(ocena: Ocena) {
-        this.Ocene.push(ocena);
-    }
 
-    ProsecnaOcena(){
-        let count = 0;
-        let sum = 0;
-        this.Ocene.forEach(element => {
-            sum += element.O;
-            count += 1;
-        });
-        return sum / count;
-    }
+    //ProsecnaOcena(){
+    //    let count = 0;
+    //    let sum = 0;
+    //    this.Ocene.forEach(element => {
+    //        sum += element.O;
+    //        count += 1;
+    //    });
+    //    return sum / count;
+    //}
 
     //DodajDestinaciju(dest:string){
     //    this.moguceDestinacije.lokacije.forEach(element => {

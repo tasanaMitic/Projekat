@@ -36,15 +36,15 @@ export class RentACar {
         return RentACar.name;
     }
 
-    ProsecnaOcena(){
-        let count = 0;
-        let sum = 0;
-        this.Ocene.forEach(element => {
-            sum += element.O;
-            count += 1;
-        });
-        return sum / count;
-    }
+    //ProsecnaOcena(){
+    //    let count = 0;
+    //    let sum = 0;
+    //    this.Ocene.forEach(element => {
+    //        sum += element.O;
+    //        count += 1;
+    //    });
+    //    return sum / count;
+    //}
 
     OceniKompaniju(ocena: Ocena) {
         this.Ocene.push(ocena);

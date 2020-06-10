@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common'
+import { OcenaService } from '../../../shared/ocena.service';
+import { RegisteredUser } from '../../../entities/users/registered-user/registered-user';
+import { AppComponent } from '../../../app.component';
+import { Ocena } from '../../../entities/misc/ocena';
+import { AvioAdminService } from '../../../shared/avio-admin.service';
+import { element } from 'protractor';
+import { AvioKompanija } from '../../../entities/objects/avio-kompanija';
 
 @Component({
   selector: 'app-ocenjivanje',
@@ -9,23 +16,34 @@ import { Location } from '@angular/common'
 })
 export class OcenjivanjeComponent implements OnInit {
   kompanija: string;
+  value: number;
   rating = 0;
-  ocena: number;
-  empty:number;
+  empty = 0;
+  currentUser: RegisteredUser;
+  ocena: Ocena;
+  aviokompanija: AvioKompanija;
 
-  constructor(private route: ActivatedRoute, private location: Location) {
-    this.empty = 0;
+  constructor(private route: ActivatedRoute, private location: Location, private service: OcenaService, private serviceA: AvioAdminService) {
+    this.currentUser = AppComponent.currentUser;
   }
 
   ngOnInit(): void {
     this.kompanija = this.route.snapshot.paramMap.get("naziv");
-    console.log(this.empty)
+    this.service.getOceneAvio().subscribe(ocene => {
+      ocene.forEach(element => {
+        if (element.userID == this.currentUser.Username && element.kompanija == this.kompanija) {
+          this.empty = 1;
+        }
+      })
+    });
   }
   onRateChange(rating: number) {
-    this.ocena = rating;
+    this.value = rating;
     this.empty = 1;
 
-    //slanje ocene servisu
+    this.ocena = new Ocena(this.value, this.currentUser.Username, this.kompanija);
+    this.service.oceniAviokompaniju(this.ocena).subscribe();
+    
   }
 
   onBack() {

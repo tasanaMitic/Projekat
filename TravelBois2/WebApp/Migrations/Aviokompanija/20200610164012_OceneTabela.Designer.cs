@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Data;
 
 namespace WebApp.Migrations.Aviokompanija
 {
     [DbContext(typeof(AviokompanijaContext))]
-    partial class AviokompanijaContextModelSnapshot : ModelSnapshot
+    [Migration("20200610164012_OceneTabela")]
+    partial class OceneTabela
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,10 +124,7 @@ namespace WebApp.Migrations.Aviokompanija
                 {
                     b.Property<string>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AviokompanijaNaziv")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("UserID")
                         .HasColumnType("nvarchar(40)");
@@ -133,12 +132,12 @@ namespace WebApp.Migrations.Aviokompanija
                     b.Property<byte>("Value")
                         .HasColumnType("tinyint");
 
-                    b.Property<string>("kompanija")
-                        .HasColumnType("nvarchar(40)");
+                    b.Property<string>("aviokompanijaNaziv")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("AviokompanijaNaziv");
+                    b.HasIndex("aviokompanijaNaziv");
 
                     b.ToTable("OceneAviokompanije");
                 });
@@ -152,9 +151,9 @@ namespace WebApp.Migrations.Aviokompanija
 
             modelBuilder.Entity("WebApp.Models.Misc.Ocena", b =>
                 {
-                    b.HasOne("ServerApp.Models.Aviokompanija", null)
+                    b.HasOne("ServerApp.Models.Aviokompanija", "aviokompanija")
                         .WithMany("OceneAviokompanije")
-                        .HasForeignKey("AviokompanijaNaziv");
+                        .HasForeignKey("aviokompanijaNaziv");
                 });
 #pragma warning restore 612, 618
         }

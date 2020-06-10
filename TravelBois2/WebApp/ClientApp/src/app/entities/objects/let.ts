@@ -88,11 +88,11 @@ export class Let {
     //getTrajanjePutovanja(){
     //    //return Math.round(this.datDolaska.getTime() - this.datPolaska.getTime()) / 6000;
     //}
-    ProsecnaOcena(){
-        let sum = 0;
-        this.ocene.forEach(element => {
-            sum += element.O;
-        });
-        return Math.round(sum / this.ocene.length);
-    }
+    //ProsecnaOcena(){
+    //    let sum = 0;
+    //    this.ocene.forEach(element => {
+    //        sum += element.O;
+    //    });
+    //    return Math.round(sum / this.ocene.length);
+    //}
 }

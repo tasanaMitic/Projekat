@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Data;
 
 namespace WebApp.Migrations.Aviokompanija
 {
     [DbContext(typeof(AviokompanijaContext))]
-    partial class AviokompanijaContextModelSnapshot : ModelSnapshot
+    [Migration("20200610172410_OceneTabela2")]
+    partial class OceneTabela2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,7 +124,10 @@ namespace WebApp.Migrations.Aviokompanija
                 {
                     b.Property<string>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("Aviokompanija")
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("AviokompanijaNaziv")
                         .HasColumnType("nvarchar(450)");
@@ -132,9 +137,6 @@ namespace WebApp.Migrations.Aviokompanija
 
                     b.Property<byte>("Value")
                         .HasColumnType("tinyint");
-
-                    b.Property<string>("kompanija")
-                        .HasColumnType("nvarchar(40)");
 
                     b.HasKey("ID");
 

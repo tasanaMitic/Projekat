@@ -98,7 +98,7 @@ export class DodajLetComponent implements OnInit {
         let a = element.split("/");
         this.grad = a[0];
         this.drzava = a[1];
-        this.aerodrom = new Aerodrom(this.grad, this.drzava);
+        this.aerodrom = new Aerodrom(this.grad, this.drzava, AppComponent.avioKompanija.naziv);
         this.listaAerodroma.push(this.aerodrom);
       })
     }

@@ -9,7 +9,6 @@ import { Let } from '../entities/objects/let';
 export class LetoviService {
   readonly BaseURI = 'https://localhost:44343/api';
 
-
   constructor(private http: HttpClient) { }
 
   addLet(letic: Let): Observable<Let> {
@@ -17,7 +16,7 @@ export class LetoviService {
   }
 
   getLetovi(): Observable<Let[]> {
-    return this.http.get<Let[]>(this.BaseURI + '/Aviokompanija/GetLetovi').pipe();
+    return this.http.get<Let[]>(this.BaseURI + '/Aviokompanija/GetLetovi');
   }
 
   deleteLet(id: number): Observable<any> {

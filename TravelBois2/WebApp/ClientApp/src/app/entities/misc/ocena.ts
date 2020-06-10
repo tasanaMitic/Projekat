@@ -1,9 +1,13 @@
-export class Ocena {
-    O: number;
-    Username: string;
+import { AvioKompanija } from "../objects/avio-kompanija";
 
-    constructor(ocena: number, username:string){
-        this.O = ocena;
-        this.Username = username;
+export class Ocena {
+  userID: string;
+  value: number;
+  kompanija: string;
+
+  constructor(value: number, userID: string, avio: string) {
+    this.userID = userID;
+    this.value = value;
+    this.kompanija = avio;
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Models;
+using WebApp.Models.Misc;
 
 namespace WebApp.Data
 {
@@ -16,5 +17,6 @@ namespace WebApp.Data
         public DbSet<Aviokompanija> Aviokompanije { get; set; }
         public DbSet<Let> Letovi { get; set; }
         public DbSet<Aerodrom> Aerodromi { get; set; }
+        public DbSet<Ocena> OceneAviokompanije { get; set; }
     }
 }

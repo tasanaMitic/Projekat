@@ -52,11 +52,11 @@ export class Kola {
     GetTip(){
         return TipVozila[this.Tip];
     }
-    ProsecnaOcena(){
-        let sum = 0;
-        this.Ocene.forEach(element => {
-            sum += element.O;
-        });
-        return Math.round(sum / this.Ocene.length)
-    }
+    //ProsecnaOcena(){
+    //    let sum = 0;
+    //    this.Ocene.forEach(element => {
+    //        sum += element.O;
+    //    });
+    //    return Math.round(sum / this.Ocene.length)
+    //}
 }
