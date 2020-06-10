@@ -39,6 +39,7 @@ namespace ServerApp.Models
         //public ICollection<Ocena> Ocene { get; set; }
         [Required]
         public int CenaKarte { get; set; }
-        public Aviokompanija aviokompanija { get; set; }
+        [Required]
+        public string Aviokompanija { get; set; }
     }
 }

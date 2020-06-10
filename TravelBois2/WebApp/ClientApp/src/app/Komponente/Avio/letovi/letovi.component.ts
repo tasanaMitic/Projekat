@@ -551,11 +551,11 @@ export class LetoviComponent implements OnInit {
 
   //////////
   ucitajLetove() {
-    this.letovi.push(new Let('Beograd', 'London', '2020-06-06', '15:00', '2020-04-04', '18:55', 250, 65, 'economic', 'oneWay', new Array<Aerodrom>(), 650));
-    this.letovi.push(new Let('Budimpesta', 'Lisabon', '2020-05-05', '15:00', '2020-04-04', '18:55', 250, 65, 'bussines', 'oneWay', new Array<Aerodrom>(), 650));
-    this.letovi.push(new Let('Prag', 'Pariz', '2020-05-05', '15:00', '2020-04-04', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
-    this.letovi.push(new Let('Prag', 'Lisabon', '2020-05-05', '15:00', '2020-04-04', '18:55', 250, 65, 'bussines', 'oneWay', new Array<Aerodrom>(), 650));
-    this.letovi.push(new Let('Beograd', 'Pariz', '2020-05-05', '15:00', '2020-04-04', '18:55', 250, 65, 'economic', 'oneWay', new Array<Aerodrom>(), 650));
+    //this.letovi.push(new Let('Beograd', 'London', '2020-06-06', '15:00', '2020-04-04', '18:55', 250, 65, 'economic', 'oneWay', new Array<Aerodrom>(), 650));
+    //this.letovi.push(new Let('Budimpesta', 'Lisabon', '2020-05-05', '15:00', '2020-04-04', '18:55', 250, 65, 'bussines', 'oneWay', new Array<Aerodrom>(), 650));
+    //this.letovi.push(new Let('Prag', 'Pariz', '2020-05-05', '15:00', '2020-04-04', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
+    //this.letovi.push(new Let('Prag', 'Lisabon', '2020-05-05', '15:00', '2020-04-04', '18:55', 250, 65, 'bussines', 'oneWay', new Array<Aerodrom>(), 650));
+    //this.letovi.push(new Let('Beograd', 'Pariz', '2020-05-05', '15:00', '2020-04-04', '18:55', 250, 65, 'economic', 'oneWay', new Array<Aerodrom>(), 650));
 
     this.letovi.forEach(element => {
         let temp = new Array<string>();

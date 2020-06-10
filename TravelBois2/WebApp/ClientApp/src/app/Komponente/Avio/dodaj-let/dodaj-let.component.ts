@@ -5,6 +5,8 @@ import { Let } from '../../../entities/objects/let';
 import { LetoviService } from '../../../shared/letovi.service';
 import { element } from 'protractor';
 import { Aerodrom } from '../../../entities/objects/aerodrom';
+import { AppComponent } from '../../../app.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dodaj-let',
@@ -16,6 +18,7 @@ export class DodajLetComponent implements OnInit {
   tip: String;
   empty: number;
   let: Let;
+  dugme: boolean;
   polaznaDestinacija: string;
   odredisnaDestinacija: string;
   datumPoletanja: string;
@@ -34,9 +37,9 @@ export class DodajLetComponent implements OnInit {
   drzava: string;
   aerodrom: Aerodrom;
 
-  constructor(private location: Location, private service: LetoviService) {
+  constructor(private location: Location, private service: LetoviService, private toastr: ToastrService) {
     this.empty = 0;
-    
+    this.dugme = false;
   }
 
   ngOnInit(): void {
@@ -103,10 +106,11 @@ export class DodajLetComponent implements OnInit {
 
     console.log(this.lokacijePresedanja);
 
-    this.let = new Let(this.polaznaDestinacija, this.odredisnaDestinacija, this.datumPoletanja, this.vremePoletanja, this.datumSletanja, this.vremeSletanja, this.vremePutovanja, this.duzinaPutovanja, this.klasa, this.tipLeta, this.listaAerodroma, this.cenaKarte);
+    this.let = new Let(AppComponent.avioKompanija.naziv, this.polaznaDestinacija, this.odredisnaDestinacija, this.datumPoletanja, this.vremePoletanja, this.datumSletanja, this.vremeSletanja, this.vremePutovanja, this.duzinaPutovanja, this.klasa, this.tipLeta, this.listaAerodroma, this.cenaKarte);
     this.service.addLet(this.let).subscribe();
-    window.location.reload();
-    this.location.back();
+    this.toastr.success('Uspesno ste dodali let!');
+    this.dugme = true;
+    //this.location.back();
   }
 
   onBack(){

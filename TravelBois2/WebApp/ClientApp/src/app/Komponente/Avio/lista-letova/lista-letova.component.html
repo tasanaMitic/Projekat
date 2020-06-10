@@ -9,20 +9,22 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of letData">
-        <td>{{row[0]}}</td>
-        <td>{{row[1]}}</td>
-        <td>{{row[2]}}</td>
-        <td>{{row[3]}}</td>
-        <td>{{row[4]}}</td>
-        <td>{{row[5]}}</td>
-        <td>{{row[6]}}</td>
-        <td>{{row[7]}}</td>
-        <td>{{row[8]}}</td>
-        <td>{{row[9]}}</td>
-        <td>{{row[10]}}</td>
+      <tr *ngFor="let letic of listaLetova;let i = index">
+        <td>{{letic.mestoPolaska}}</td>
+        <td>{{letic.mestoDolaska}}</td>
+        <td>{{letic.datumPolaska}}</td>
+        <td>{{letic.datumDolaska}}</td>
+        <td *ngIf="letic.klasaLeta == 0">first</td>
+        <td *ngIf="letic.klasaLeta == 1">economy</td>
+        <td *ngIf="letic.klasaLeta == 2">bussiness</td>
+        <td *ngIf="letic.tipLeta == 0">one-way</td>
+        <td *ngIf="letic.tipLeta == 1">multi-city</td>
+        <td>{{letic.vremePoletanja}}</td>
+        <td>{{letic.vremeSletanja}}</td>
+        <td>{{letic.razdaljinaPutovanja}}</td>
+        <td>{{letic.cenaKarte}}</td>
         <td>
-          <button class="btn-rez" (click)="ukloniLet(row[0])">Ukloni</button>
+          <button class="btn-rez" (click)="ukloniLet(i)">Ukloni</button>
         </td>
       </tr>
     </tbody>

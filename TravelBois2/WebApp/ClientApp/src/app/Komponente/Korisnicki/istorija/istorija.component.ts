@@ -84,9 +84,9 @@ export class IstorijaComponent implements OnInit {
 
   ucitajIstorijuLetova() {      //ucitati iz baze
     this.IstorijaLetova = new Array<Let>();
-    this.IstorijaLetova.push(new Let('Beograd', 'London', '05-12-2020', '15:00', '04-12-2020', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
-    this.IstorijaLetova.push(new Let('Budimpesta', 'Lisabon', '05-12-2020', '15:00', '04-12-2020', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
-    this.IstorijaLetova.push(new Let('Prag', 'Pariz', '05-12-2020', '15:00', '04-12-2020', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
+    //this.IstorijaLetova.push(new Let('Beograd', 'London', '05-12-2020', '15:00', '04-12-2020', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
+    //this.IstorijaLetova.push(new Let('Budimpesta', 'Lisabon', '05-12-2020', '15:00', '04-12-2020', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
+    //this.IstorijaLetova.push(new Let('Prag', 'Pariz', '05-12-2020', '15:00', '04-12-2020', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
     this.emptyIL = 1;
 
     var i = 0;

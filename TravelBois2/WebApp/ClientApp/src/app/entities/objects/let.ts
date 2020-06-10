@@ -11,69 +11,79 @@ enum TipLeta {
 }
 
 enum KlasaLeta {
-  economic = 0,
-  bussines = 1,
-  first = 2,
+  first = 0,
+  economy = 1,
+  bussiness = 2,
 }
 export class Let {
-
-
-    avioKompanija: AvioKompanija;
-  //cenovnikPrtljaga: Map<TipPrtljaga, number>;
-     id: number;
-    datumPolaska: string;
-    datumDolaska: string;
-    vremePoletanja: string;
-    vremeSletanja: string;
-    mestoPolaska: string;
+  //cenovnikPrtljaga: Map<TipPrtljaga, number>
+  id: number;
+  datumPolaska: string;
+  datumDolaska: string;
+  vremePoletanja: string;
+  vremeSletanja: string;
+  mestoPolaska: string;
   mestoDolaska: string;
   presedanja: Array<Aerodrom>;
-    razdaljinaPutovanja: number;
-    trajanjePutovanja: number; //u minutima
-    ocene: Array<Ocena>;
+  razdaljinaPutovanja: number;
+  trajanjePutovanja: number; //u minutima
+  ocene: Array<Ocena>;
   cenaKarte: number;
   tipLeta: TipLeta;
   klasaLeta: KlasaLeta;
-  listaSedista: Array<Sediste>;
+  aviokompanija: string;
 
-  constructor(mestoPolaska, mestoDolaska, datumPolaska, vremePoletanja, datumDolaska, vremeSletanja, trajanjePutovanja, razdaljinaPutovanja,klasa, tipLeta, presedanja = [], cena){
-            //  Ne radi
-            //this.avioKompanija = avioKompanija;
-            this.datumPolaska = datumPolaska;
-            this.datumDolaska = datumDolaska;
-            this.mestoPolaska = mestoPolaska;
-            this.mestoDolaska = mestoDolaska;
-            this.vremePoletanja = vremePoletanja;
-            this.vremeSletanja = vremeSletanja;
-            if (presedanja.length == 0) {
-              this.presedanja = null;
-            }
-            else {
-              this.presedanja = presedanja;
-            }
-            this.trajanjePutovanja = trajanjePutovanja;
-            this.razdaljinaPutovanja = razdaljinaPutovanja;
-            if (tipLeta == 'oneWay') {
-              this.tipLeta = TipLeta.oneWay
-            }
-            else {
-              this.tipLeta = TipLeta.multiCity;
-            }
+  constructor(aviokompanija,mestoPolaska, mestoDolaska, datumPolaska, vremePoletanja, datumDolaska, vremeSletanja, trajanjePutovanja, razdaljinaPutovanja,klasa, tipLeta, presedanja = [], cena){
+  this.aviokompanija = aviokompanija;
+  this.datumPolaska = datumPolaska;
+  this.datumDolaska = datumDolaska;
+  this.mestoPolaska = mestoPolaska;
+  this.mestoDolaska = mestoDolaska;
+  this.vremePoletanja = vremePoletanja;
+  this.vremeSletanja = vremeSletanja;
+    if (presedanja == null) {
+      this.presedanja = new Array<Aerodrom>();
+    }
+    else {
+      this.presedanja = presedanja;
+    }
+  this.trajanjePutovanja = trajanjePutovanja;
+  this.razdaljinaPutovanja = razdaljinaPutovanja;
+    if (tipLeta == 0) {
+      this.tipLeta = TipLeta.oneWay
+    }
+    else if (tipLeta == 1) {
+      this.tipLeta = TipLeta.multiCity;
+    }
+    else if (tipLeta == 'oneWay') {
+      this.tipLeta = TipLeta.oneWay;
+    }
+    else {
+      this.tipLeta = TipLeta.multiCity
+    }
 
-            if (klasa == 'economic') {
-              this.klasaLeta = KlasaLeta.economic;
-            }
-            else if (klasa == 'first') {
-              this.klasaLeta = KlasaLeta.first;
-            }
-            else {
-              this.klasaLeta = KlasaLeta.bussines;
-            }
-            this.cenaKarte = cena;
-                    //this.avion = avion;
-          this.ocene = new Array<Ocena>();
-          this.listaSedista = new Array<Sediste>();
-          }
+    if (klasa == 1) {
+      this.klasaLeta = KlasaLeta.economy;
+    }
+    else if (klasa == 0) {
+      this.klasaLeta = KlasaLeta.first;
+    }
+    else if (klasa == 2) {
+      this.klasaLeta = KlasaLeta.bussiness;
+    }
+    else if (klasa == 'first') {
+      this.klasaLeta = KlasaLeta.first;
+    }
+    else if (klasa == 'economy') {
+      this.klasaLeta = KlasaLeta.economy;
+    }
+    else {
+      this.klasaLeta = KlasaLeta.bussiness;
+    }
+
+  this.cenaKarte = cena;
+  this.ocene = new Array<Ocena>();
+  }
 
     //getTrajanjePutovanja(){
     //    //return Math.round(this.datDolaska.getTime() - this.datPolaska.getTime()) / 6000;

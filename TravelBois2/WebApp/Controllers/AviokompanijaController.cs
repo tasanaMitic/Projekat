@@ -55,10 +55,17 @@ namespace WebApp.Controllers
         [Route("AddAvioKompanija")]
         public async Task<ActionResult<Aviokompanija>> AddAvioKompanija(Aviokompanija aviokompanija)
         {
-            _context.Aviokompanije.Add(aviokompanija);
-            await _context.SaveChangesAsync();
+            if(!AviokompanijaExists(aviokompanija.Naziv))
+            {
+                _context.Aviokompanije.Add(aviokompanija);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAvioKompanija", new { naziv = aviokompanija.Naziv }, aviokompanija);
+                return CreatedAtAction("GetAvioKompanija", new { naziv = aviokompanija.Naziv }, aviokompanija);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet]
@@ -137,6 +144,11 @@ namespace WebApp.Controllers
         private bool AviokompanijaExists(string naziv)
         {
             return _context.Aviokompanije.Any(e => e.Naziv == naziv);
+        }
+
+        private bool LetExists(int id)
+        {
+            return _context.Letovi.Any(e => e.Id == id);
         }
 
 

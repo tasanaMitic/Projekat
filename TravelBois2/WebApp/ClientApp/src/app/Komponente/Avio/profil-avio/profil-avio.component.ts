@@ -41,11 +41,13 @@ export class ProfilAvioComponent implements OnInit {
 
   onSubmit() {
     if ((this.avioPodaciForm.get('grad').value != AppComponent.avioKompanija.grad) || (this.avioPodaciForm.get('adresa').value != AppComponent.avioKompanija.adresa)
-      || (this.avioPodaciForm.get('opis').value != AppComponent.avioKompanija.opis))
-    {
+      || (this.avioPodaciForm.get('opis').value != AppComponent.avioKompanija.opis)) {
       this.aviokompanija = new AvioKompanija(AppComponent.avioKompanija.naziv, this.avioPodaciForm.get('adresa').value, this.avioPodaciForm.get('grad').value, this.avioPodaciForm.get('opis').value);
       this.service.updateAviokompanija(this.aviokompanija, AppComponent.avioKompanija.naziv).subscribe();
       this.toastr.success('Uspesno ste izmenili podatke!');
+    }
+    else {
+      this.toastr.error('Morate izmeniti podatke!');
     }
   }
 

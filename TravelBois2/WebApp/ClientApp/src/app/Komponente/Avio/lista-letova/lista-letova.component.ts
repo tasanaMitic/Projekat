@@ -6,8 +6,9 @@ import { element } from 'protractor';
 import { Let } from 'src/app/entities/objects/let';
 import { AvioKompanija } from 'src/app/entities/objects/avio-kompanija';
 import { LetoviService } from '../../../shared/letovi.service';
-import { elementAt } from 'rxjs/operators';
+import { elementAt, find} from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-lista-letova',
@@ -15,16 +16,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./lista-letova.component.css']
 })
 export class ListaLetovaComponent implements OnInit {
-  letHeaders = ['ID', 'Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Klasa','Tip leta','Vreme poletanja', 'Vreme sletanja','Kilometraza', 'Cena' ];
-  letData : Array<Array<string>>;
+  letHeaders = ['Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Klasa','Tip leta','Vreme poletanja', 'Vreme sletanja','Kilometraza', 'Cena' ];
   currentUser: AvioAdmin;
+  listaLetova: Array<Let>;
+  idLetova: Array<number>;
   public empty = 0;
-  public aviokompanija= "";
-  //
-  Letovi = new Array<Let>();
+  aviokompanija: string;
 
-  constructor(private location: Location, private service: LetoviService, private router: Router) {
-    this.letData = new Array<Array<string>>();    
+  constructor(private toastr: ToastrService, private service: LetoviService, private router: Router){    
+    this.aviokompanija = AppComponent.avioKompanija.naziv;    
   }
 
   ngOnInit(): void {
@@ -32,44 +32,29 @@ export class ListaLetovaComponent implements OnInit {
   }
 
   getLetovi(): void {
+    this.listaLetova = new Array<Let>();
+    this.idLetova = new Array<number>();
     this.service.getLetovi().subscribe(letovi =>
       letovi.forEach(element => {
-        let temp = new Array<string>();
-        this.empty = 1;
-        temp.push(element.id.toString());
-        temp.push(element.mestoPolaska);
-        temp.push(element.mestoDolaska);
-        temp.push(element.datumPolaska);
-        temp.push(element.datumDolaska);
-        if (element.klasaLeta.toString() == '0') {
-          temp.push('economic');
+        if (element.aviokompanija == this.aviokompanija) {
+          this.empty = 1;
+          this.listaLetova.push(new Let(this.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska,
+            element.vremePoletanja, element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta,
+            element.tipLeta, element.presedanja, element.cenaKarte));
+          this.idLetova.push(element.id);
         }
-        else if (element.klasaLeta.toString() == '1') {
-          temp.push('bussines');
-        }
-        else {
-          temp.push('first');
-        }
-
-        if (element.tipLeta.toString() == '0') {
-          temp.push('one-way');
-        }
-        else {
-          temp.push('multi-city');
-        }
-        temp.push(element.vremePoletanja);
-        temp.push(element.vremeSletanja);
-        temp.push(element.razdaljinaPutovanja.toString());
-        temp.push(element.cenaKarte.toString());
-        //temp.push(element.ocene.toString());
-        this.letData.push(temp);
       }));
   }
 
-  ukloniLet(data: string) {
-    var number = parseInt(data);
-    this.service.deleteLet(number).subscribe();
-    window.location.reload();
+  ukloniLet(i: number) {
+    var id = this.idLetova[i];
+    this.service.deleteLet(id).subscribe();
+    this.listaLetova.splice(i, 1);
+    this.idLetova.splice(i,1);
+    this.toastr.success('Uspesno ste obrisali let!');
+    if (this.listaLetova.length == 0) {
+      this.empty = 0;
+    }
   }
 
 
