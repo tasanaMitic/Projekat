@@ -6,6 +6,7 @@ import { Admin } from '../../../entities/users/admin/admin'
 import { Router } from '@angular/router';
 import { AppComponent } from '../../../app.component';
 import { UserService } from '../../../shared/user.service';
+import { AvioAdmin } from '../../../entities/users/avio-admin/avio-admin';
 
 @Component({
   selector: 'app-pocetna-strana',
@@ -23,6 +24,7 @@ export class PocetnaStranaComponent implements OnInit {
   brojTelefona: string;
   brojPasosa: string;
   tipKorisnika: string;
+  aviokompanija: string;
 
 
   constructor(private service: UserService) { }
@@ -54,6 +56,8 @@ export class PocetnaStranaComponent implements OnInit {
           }
           else if (this.tipKorisnika == 'AvioAdmin') {
             AppComponent.tipKorisnika = "AvioAdmin";
+            this.aviokompanija = this.userDetails.nazivAviokompanije;
+            AppComponent.currentUser = new AvioAdmin(this.brojTelefona, this.grad, this.name, this.lastname, this.userName, this.aviokompanija);
           }
           else if (this.tipKorisnika == 'RentaAdmin') {
             AppComponent.tipKorisnika = "RentACarAdmin";

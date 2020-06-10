@@ -60,7 +60,7 @@ namespace WebApp
             //    options.User.RequireUniqueEmail = true;
             //})
             //    .AddEntityFrameworkStores<UserContext>()
-            //    //.AddRoleManager<UserManager<AvioAdmin>>()
+            //    .AddRoleManager<UserManager<AvioAdmin>>()
             //    .AddDefaultTokenProviders();
             //services.AddIdentity<RentAdmin, IdentityRole>(options =>
             //{

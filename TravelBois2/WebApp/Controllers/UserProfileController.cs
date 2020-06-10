@@ -32,7 +32,6 @@ namespace WebApp.Controllers
         //GET: api/GetUserProfile
         public async Task<Object> GetUserProfile()
         {
-
             var claims = User.Claims;            
             var ListClaims = claims.ToList();
             if(ListClaims.Count != 0) { 
@@ -41,17 +40,37 @@ namespace WebApp.Controllers
             //string userId = User.Claims.First(c => c.Type == "UserID").Value;
             string userId = prvi.Value;            
                 var user = await _userManager.FindByIdAsync(userId);
-                return new
+                if(user.TipKorisnika == "AvioAdmin")
                 {
-                    user.UserName,
-                    user.Email,
-                    user.Name,
-                    user.Lastname,
-                    user.Grad,
-                    user.BrojTelefona,
-                    user.BrojPasosa,
-                    user.TipKorisnika
-                };
+                    AvioAdmin admin = user as AvioAdmin;
+                    return new
+                    {
+                        user.UserName,
+                        user.Email,
+                        user.Name,
+                        user.Lastname,
+                        user.Grad,
+                        user.BrojTelefona,
+                        user.BrojPasosa,
+                        user.TipKorisnika,
+                        admin.NazivAviokompanije
+                    };
+                }
+                else
+                {
+                    return new
+                    {
+                        user.UserName,
+                        user.Email,
+                        user.Name,
+                        user.Lastname,
+                        user.Grad,
+                        user.BrojTelefona,
+                        user.BrojPasosa,
+                        user.TipKorisnika
+                    };
+                }
+                
             }
             else
             {
@@ -59,6 +78,5 @@ namespace WebApp.Controllers
             }
         }
 
-        
     }
 }

@@ -127,6 +127,9 @@ export class UserService {
   getUserProfile() {
     return this.http.get(this.BaseURI + '/UserProfile/GetUserProfile');
   }
+  getAdminProfile() {
+    return this.http.get(this.BaseURI + '/AvioAdmin/GetAvioAdminProfile');
+  }
 
   updateRegisteredUser(body) {
     return this.http.post(this.BaseURI + '/ApplicationUser/UpdateRegisteredUser', body);
