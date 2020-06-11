@@ -72,8 +72,6 @@ export class LetoviComponent implements OnInit {
   }
 
   onSubmit() {
-    //this.filtriraniLetovi = Array<Let>();
-    //this.letDataF = new Array<Array<string>>();
     this.destOd = this.FilterForm.get('destOd').value;
     this.destDo = this.FilterForm.get('destDo').value;
     this.k = this.FilterForm.get('klasa').value;
@@ -107,7 +105,6 @@ export class LetoviComponent implements OnInit {
     this.datDolaska = this.FilterForm.get('datDolaska').value;
 
    
-    //console.log("filteri: " +this.destOd + ' ' + this.destDo + ' ' + this.klasa + ' ' + this.tipPuta + ' ' + this.datPolaska + ' ' + this.datDolaska);
     //////filtriranje
 
     if (this.destOd != "") {
@@ -522,11 +519,35 @@ export class LetoviComponent implements OnInit {
     this.service.getLetovi().subscribe(letovi => {
       letovi.forEach(element => {
         if (element.aviokompanija == this.aviokompanija) {
-          this.empty = 1;
-          this.letovi.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
-            element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta,
-            element.presedanja, element.cenaKarte));
-          this.idLetova.push(element.id);
+          var datum = element.datumPolaska.split("-");
+          var danasnji = new Date().toString();
+          var danasnjiDatum = danasnji.split(" ");
+          var trenutnaGod = new Date().getFullYear();
+          var trenutniMes = new Date().getMonth();
+          var trenutniDan = danasnjiDatum[2];
+          //var vreme = danasnjiDatum[4].split(":");
+          //console.log(vreme);
+
+          if (parseInt(datum[0]) >= trenutnaGod) {
+            if (parseInt(datum[1]) >= (trenutniMes + 1)) {
+              if (parseInt(datum[1]) == (trenutniMes + 1)) {  //bas trenutni mesec
+                if (parseInt(datum[2]) > parseInt(trenutniDan)) { //nema mogucnost prikaza letova koji polecu na danasnji dan
+                  this.empty = 1;
+                  this.letovi.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+                    element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta,
+                    element.presedanja, element.cenaKarte));
+                  this.idLetova.push(element.id);
+                }               
+              }
+              else {
+                this.empty = 1;
+                this.letovi.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+                  element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta,
+                  element.presedanja, element.cenaKarte));
+                this.idLetova.push(element.id);
+              }      
+            }            
+          }                   
         }
       })
     });

@@ -79,7 +79,7 @@
 </div>
 
 <div [hidden]="empty != 3">
-  <h3>Unesite podatke saputnika ({{i}} od {{brojPreostalih}}):</h3>
+  <h3>Unesite podatke saputnika ({{i}} od {{max}}):</h3>
     <form [formGroup]="podaciForm" (ngSubmit)="PodaciUneti()">
       <div>
         <div>
@@ -105,7 +105,7 @@
     </form>
   </div>
 
-<br /><br /><br /><br />
+<br /><br /><br />
 <h2 [hidden]="empty != 1">Uspesno ste rezervisali sediste/a!</h2>
 <div>
   <button class="btn btn-primary" style=" margin-left: 0.2%;" (click)="onBack()" type="button">Nazad</button>

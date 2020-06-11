@@ -32,6 +32,7 @@ export class RezervacijaLetaComponent implements OnInit {
   sediste: Sediste;
   brojPreostalih = 0;
   i = 1;
+  max: number;
 
 
   private seatmap = [];
@@ -391,6 +392,7 @@ export class RezervacijaLetaComponent implements OnInit {
 
       this.empty = 3;
       this.brojPreostalih = this.cart.selectedSeats.length;
+      this.max = this.brojPreostalih;
     }   
   }
 
