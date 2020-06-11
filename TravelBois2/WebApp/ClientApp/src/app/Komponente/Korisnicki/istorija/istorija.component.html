@@ -3,22 +3,28 @@
   <table>
     <thead>
       <tr>
-        <th *ngFor="let column of letHeadersRez">
+        <th *ngFor="let column of letHeadersRezervacija">
           {{column}}
         </th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of letDataRez">
-        <td> {{row[1]}}</td>
-        <td> {{row[2]}}</td>
-        <td> {{row[3]}}</td>
-        <td> {{row[4]}}</td>
-        <td> {{row[5]}}</td>
-        <td> {{row[6]}}</td>
-        <td> {{row[7]}}</td>
+      <tr *ngFor="let letic of avioRezervacije; let i = index">
+        <td> {{letic.aviokompanija}}</td>
+        <td> {{letic.mestoPolaska}}</td>
+        <td> {{letic.mestoDolaska}}</td>
+        <td> {{letic.datumPolaska}}</td>
+        <td> {{letic.datumDolaska}}</td>
+        <td> {{letic.vremePoletanja}}</td>
+        <td> {{letic.vremeSletanja}}</td>
+        <td *ngIf="letic.klasaLeta == 0">first</td>
+        <td *ngIf="letic.klasaLeta == 1">economy</td>
+        <td *ngIf="letic.klasaLeta == 2">bussiness</td>
+        <td *ngIf="letic.tipLeta == 0">one-way</td>
+        <td *ngIf="letic.tipLeta == 1">multi-city</td>
+        <td>{{letic.cenaKarte}}</td>
         <td>
-          <button class="btn-rez" (click)="OtkaziLet(row[0])">Otkazi</button>
+          <button class="btn-rez" (click)="OtkaziLet(i)">Otkazi</button>
         </td>
       </tr>
     </tbody>
@@ -35,20 +41,20 @@
     <table>
       <thead>
         <tr>
-          <th *ngFor="let column of letHeaders">
+          <th *ngFor="let column of letHeadersIstorija">
             {{column}}
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of letData">
-          <td> {{row[1]}}</td>
-          <td> {{row[2]}}</td>
-          <td> {{row[3]}}</td>
-          <td> {{row[4]}}</td>
-          <td> {{row[5]}}</td>
+        <tr *ngFor="let letic of avioIstorija; let i = index">
+          <td> {{letic.aviokompanija}}</td>
+          <td> {{letic.mestoPolaska}}</td>
+          <td> {{letic.mestoDolaska}}</td>
+          <td> {{letic.datumPolaska}}</td>
+          <td> {{letic.datumDolaska}}</td>
           <td>
-            <button class="btn-rez" (click)="OceniLet(row[0])">Oceni</button>
+            <button class="btn-rez" (click)="OceniLet(i)">Oceni</button>
           </td>
         </tr>
       </tbody>
@@ -58,7 +64,7 @@
   <h5>Tabela je trenutno prazna!</h5>
 </div>
 <br>
-<div class="istorija-container">
+<!--<div class="istorija-container">
   <h2> Istorija rentiranih kola</h2>
   <table>
     <thead>
@@ -79,7 +85,7 @@
       </tr>
     </tbody>
   </table>
-</div>
-<div>
+</div>-->
+<div style="margin-left:15px">
   <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>
 </div>

@@ -8,6 +8,7 @@ import { Let } from '../../../entities/objects/let';
 import { Aerodrom } from '../../../entities/objects/aerodrom';
 import { element } from 'protractor';
 import { Router } from '@angular/router';
+import { LetoviService } from '../../../shared/letovi.service';
 
 @Component({
   selector: 'app-istorija',
@@ -15,8 +16,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./istorija.component.css']
 })
 export class IstorijaComponent implements OnInit {
-  letHeaders = ['Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Prosecna ocena'];
-  letHeadersRez = ['Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Tip leta', 'Klasa', 'Cena'];
+  letHeadersIstorija = ['Aviokompanija','Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska'];
+  letHeadersRezervacija = ['Aviokompanija','Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Vreme poletanja', 'Vreme sletanja', 'Klasa', 'Tip puta', 'Cena'];
   letData: Array<Array<string>>;
   letDataRez: Array<Array<string>>;
   emptyIL: number;
@@ -27,10 +28,11 @@ export class IstorijaComponent implements OnInit {
   relacija: string;
 
 
-  IstorijaLetova: Array<Let>;
+  avioRezervacije: Array<Let>;
+  avioIstorija: Array<Let>;
 
 
-  constructor(private router: Router) { 
+  constructor(private router: Router, private service: LetoviService) { 
     this.currentUser = AppComponent.currentUser as RegisteredUser;
     this.letData = new Array<Array<string>>();
     this.letDataRez = new Array<Array<string>>();
@@ -38,77 +40,62 @@ export class IstorijaComponent implements OnInit {
     this.emptyIL = 0;
     this.emptyRL = 0;
 
-    this.currentUser.IstorijaKola.forEach(element => {
-      let temp = new Array<string>();
-      temp.push(element.renta);
-      temp.push(element.GetMarka())
-      temp.push(element.GetModel())
-      temp.push(element.Godiste.toString())
-      temp.push(element.BrojMesta.toString())
-      temp.push(TipVozila[element.Tip])
-      //temp.push(element.ProsecnaOcena().toString())
-      this.kolaData.push(temp)
-    });
-  }
+    this.avioIstorija = new Array<Let>();
+    this.avioRezervacije = new Array<Let>();
 
-  ngOnInit(): void {
-    this.currentUser = AppComponent.currentUser as RegisteredUser;
-    this.ucitajIstorijuLetova();
-    this.ucitajRezervisaneLetove();
+    //UCITAVANJE LETOVA
+    this.service.getLetovi().subscribe(letovi => {
+      letovi.forEach(element => {
+        var datum = element.datumPolaska.split("-");
+        var danasnji = new Date().toString();
+        var danasnjiDatum = danasnji.split(" ");
+        var trenutnaGod = new Date().getFullYear();
+        var trenutniMes = new Date().getMonth();
+        var trenutniDan = danasnjiDatum[2];
+
+        if (parseInt(datum[0]) >= trenutnaGod) {
+          if (parseInt(datum[1]) >= (trenutniMes + 1)) {
+            if (parseInt(datum[1]) == (trenutniMes + 1)) {  //bas trenutni mesec
+              if (parseInt(datum[2]) >= parseInt(trenutniDan)) {
+                ///jos resiti za vreme
+
+                this.emptyRL = 1;
+
+
+                this.avioRezervacije.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+                  element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
+              }
+              else { //od juce pa nadalje
+                this.emptyIL = 1;
+                this.avioIstorija.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+                  element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
+              }
+            }
+            else {
+              this.emptyRL = 1;
+              this.avioRezervacije.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+                element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
+            }            
+          }
+          else {  //proslog meseca i nadalje
+            this.emptyIL = 1;
+            this.avioIstorija.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+              element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
+          }
+        }
+        else {  //prosle godine i nadalje
+          this.emptyIL = 1;
+          this.avioIstorija.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+            element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
+        }
+      })
+    });
     
   }
 
-  ucitajRezervisaneLetove() {     //ucitati iz baze
-    this.emptyRL = 1;
-    var i = 0;
-    this.IstorijaLetova.forEach(element => {
-      let temp = new Array<string>();
-
-      //temp.push(element.id.toString())
-      temp.push(i.toString());
-
-      temp.push(element.mestoPolaska);
-      temp.push(element.mestoDolaska);
-      temp.push(element.datumPolaska);
-      temp.push(element.datumDolaska);
-      temp.push('oneWay');
-      temp.push('first');
-
-      // temp.push(element.ProsecnaOcena().toString())
-      temp.push('0');
-      i += 1;
-
-      this.letDataRez.push(temp)
-    });
+  ngOnInit(): void {
+    
   }
-
-  ucitajIstorijuLetova() {      //ucitati iz baze
-    this.IstorijaLetova = new Array<Let>();
-    //this.IstorijaLetova.push(new Let('Beograd', 'London', '05-12-2020', '15:00', '04-12-2020', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
-    //this.IstorijaLetova.push(new Let('Budimpesta', 'Lisabon', '05-12-2020', '15:00', '04-12-2020', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
-    //this.IstorijaLetova.push(new Let('Prag', 'Pariz', '05-12-2020', '15:00', '04-12-2020', '18:55', 250, 65, 'first', 'oneWay', new Array<Aerodrom>(), 650));
-    this.emptyIL = 1;
-
-    var i = 0;
-    this.IstorijaLetova.forEach(element => {
-      let temp = new Array<string>();
-
-      //temp.push(element.id.toString())
-      temp.push(i.toString());
-
-      temp.push(element.mestoPolaska)
-      temp.push(element.mestoDolaska)
-      temp.push(element.datumPolaska)
-      temp.push(element.datumDolaska)
-
-      // temp.push(element.ProsecnaOcena().toString())
-      temp.push('0');
-      i += 1;
-
-      this.letData.push(temp)
-    });
-  }
-
  
 
   OceniLet(id: string) {
@@ -125,11 +112,10 @@ export class IstorijaComponent implements OnInit {
       }
     });
 
-    window.open('https://localhost:44343/oceniLet/' + number + '/' + this.relacija, "_self");
+    this.router.navigateByUrl('/oceniLet/' + number + '/' + this.relacija);
   }
 
-  OtkaziLet(id: string) {
-    var number = parseInt(id);
+  OtkaziLet(i: number) {
 
     //povezati se sa servisom
   }
