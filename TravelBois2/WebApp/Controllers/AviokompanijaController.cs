@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ServerApp.Models;
 using WebApp.Data;
 using WebApp.Models;
+using WebApp.Models.Misc;
 
 namespace WebApp.Controllers
 {
@@ -41,6 +42,23 @@ namespace WebApp.Controllers
             await _context.SaveChangesAsync();
             return CreatedAtAction("GetLet", new { id = let.Id}, let);
 
+        }
+
+        [HttpPost]
+        [Route("AddOcenaAviokompanije")]
+        public async Task<ActionResult<OcenaAviokompanije>> AddOcenaAviokompanije(OcenaAviokompanije ocena)
+        {
+            _context.OceneAviokompanije.Add(ocena);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetOcena", new { id = ocena.ID }, ocena);
+        }
+
+        [HttpGet]
+        [Route("GetOceneAvio")]
+        public async Task<ActionResult<IEnumerable<OcenaAviokompanije>>> GetOceneAvio()
+        {
+            return await _context.OceneAviokompanije.ToListAsync();
         }
 
         [HttpGet]

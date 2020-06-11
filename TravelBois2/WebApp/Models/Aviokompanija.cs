@@ -20,9 +20,13 @@ namespace ServerApp.Models
         public string Opis { get; set; }
         //public ICollection<Ocena> Ocene { get; set; }
         [Required]
+<<<<<<< Updated upstream
         public ICollection<Let> Letovi { get; set; }
         [Required]
         public ICollection<Aerodrom> Aerodromi { get; set; }
+=======
+        public ICollection<OcenaKola> OceneAviokompanije { get; set; }
+>>>>>>> Stashed changes
         
     }
 }

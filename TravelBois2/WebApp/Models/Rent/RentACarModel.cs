@@ -7,7 +7,9 @@ namespace WebApp.Models
 {
 	public class RentACarModel
 	{
+		public string Naziv { get; set; }
 		public string AdminID { get; set; }
-		public List<string> KolaID { get; set; }
+		public float ProsecnaOcena { get; set; }
+		public int BrojOcena { get; set; }
 	}
 }
