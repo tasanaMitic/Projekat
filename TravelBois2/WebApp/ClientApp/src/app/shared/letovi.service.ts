@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Let } from '../entities/objects/let';
+import { Sediste } from '../entities/objects/sediste';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,13 @@ export class LetoviService {
 
   deleteLet(id: number): Observable<any> {
     return this.http.delete(this.BaseURI + '/Aviokompanija/DeleteLet/' + id);
+  }
+
+  rezervisiSediste(sediste: Sediste): Observable<Sediste> {
+    return this.http.post<Sediste>(this.BaseURI + '/Aviokompanija/AddSediste', sediste);
+  }
+
+  getSediste(): Observable<Sediste[]> {
+    return this.http.get<Sediste[]>(this.BaseURI + '/Aviokompanija/GetSedista');
   }
 }

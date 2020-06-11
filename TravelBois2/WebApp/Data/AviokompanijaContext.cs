@@ -18,5 +18,6 @@ namespace WebApp.Data
         public DbSet<Let> Letovi { get; set; }
         public DbSet<Aerodrom> Aerodromi { get; set; }
         public DbSet<Ocena> OceneAviokompanije { get; set; }
+        public DbSet<Sediste> SedistaLeta { get; set; }
     }
 }

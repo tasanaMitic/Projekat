@@ -6,6 +6,10 @@ import { RegisteredUser } from '../../../entities/users/registered-user/register
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, ValidatorFn } from '@angular/forms';
 import { Sediste } from '../../../entities/objects/sediste';
 import { count } from 'rxjs/operators';
+import { AppComponent } from '../../../app.component';
+import { LetoviService } from '../../../shared/letovi.service';
+import { UserService } from '../../../shared/user.service';
+import { User } from '../../../entities/users/user/user';
 
 @Component({
   selector: 'app-rezervacija-leta',
@@ -14,19 +18,20 @@ import { count } from 'rxjs/operators';
 })
 export class RezervacijaLetaComponent implements OnInit {
   idLeta: number;
+  idSedista: string;
+  currentUser: RegisteredUser;
   aviokompanija: string;
   cenaSedista: number;
-  listaPrijatelja: Array<RegisteredUser>;
+  listaPrijatelja: Array<any>;
+  prijateljiUSername: Array<string>;
   prijateljiData: Array<string>;
   empty = 0;
   prijateljiForm: FormGroup;
   podaciForm: FormGroup;
   numChecked = 0;
   sediste: Sediste;
-  brojKarata = 1;
   brojPreostalih = 0;
   i = 1;
-  max: number;
 
 
   private seatmap = [];
@@ -46,7 +51,8 @@ export class RezervacijaLetaComponent implements OnInit {
     eventId: 0
   };
 
-  constructor(private route: ActivatedRoute, private location: Location, private formBuilder: FormBuilder) {
+  constructor(private route: ActivatedRoute, private location: Location, private formBuilder: FormBuilder, private service: LetoviService, private serviceP: UserService) {
+    this.currentUser = AppComponent.currentUser;
     this.podaciForm = new FormGroup({
       'ime': new FormControl('', Validators.required),
       'prezime': new FormControl('', Validators.required),
@@ -54,69 +60,74 @@ export class RezervacijaLetaComponent implements OnInit {
     });
 
     this.ucitajListuPrijatelja();
+    this.ucitajLetInfo();
+    this.ucitajSedista();
     
   } 
 
   ngOnInit(): void {
     this.idLeta = parseInt(this.route.snapshot.paramMap.get("id"));
     this.aviokompanija = this.route.snapshot.paramMap.get("naziv");
-    this.ucitajLetInfo();
+    
+  
 
-    this.seatConfig = [
-      {
-        "seat_price": this.cenaSedista,
-        "seat_map": [
-          {
-            "seat_label": "A",
-            "layout": "ggg__ggg"
-          },
-          {
-            "seat_label": "B",
-            "layout": "ggg__ggg"
-          },
-          {
-            "seat_label": "C",
-            "layout": "ggg__ggg"
-          },
-          {
-            "seat_label": "D",
-            "layout": "ggg__ggg"
-          },
-          {
-            "seat_label": "E",
-            "layout": "ggg__ggg"
-          },
-          {
-            "seat_label": "F",
-            "layout": "ggg__ggg"
-          },
-          {
-            "seat_label": "G",
-            "layout": "ggg__ggg"
-          },
-          {
-            "seat_label": "H",
-            "layout": "ggg__ggg"
-          },
-          {
-            "seat_label": "I",
-            "layout": "ggg__ggg"
-          },
-          {
-            "seat_label": "J",
-            "layout": "ggg__ggg"
-          },
-          {
-            "seat_label": "K",
-            "layout": "ggg__ggg"
-          },
-          {
-            "seat_label": "L",
-            "layout": "ggg__ggg"
-          }
-        ]
-      }
-    ]
+      this.seatConfig = [
+        {
+          "seat_price": this.cenaSedista,
+          "seat_map": [
+            {
+              "seat_label": "A",
+              "layout": "ggg__ggg"
+            },
+            {
+              "seat_label": "B",
+              "layout": "ggg__ggg"
+            },
+            {
+              "seat_label": "C",
+              "layout": "ggg__ggg"
+            },
+            {
+              "seat_label": "D",
+              "layout": "ggg__ggg"
+            },
+            {
+              "seat_label": "E",
+              "layout": "ggg__ggg"
+            },
+            {
+              "seat_label": "F",
+              "layout": "ggg__ggg"
+            },
+            {
+              "seat_label": "G",
+              "layout": "ggg__ggg"
+            },
+            {
+              "seat_label": "H",
+              "layout": "ggg__ggg"
+            },
+            {
+              "seat_label": "I",
+              "layout": "ggg__ggg"
+            },
+            {
+              "seat_label": "J",
+              "layout": "ggg__ggg"
+            },
+            {
+              "seat_label": "K",
+              "layout": "ggg__ggg"
+            },
+            {
+              "seat_label": "L",
+              "layout": "ggg__ggg"
+            }
+          ]
+        }
+      ]
+    
+    
     this.processSeatChat(this.seatConfig);
   }
 
@@ -189,7 +200,7 @@ export class RezervacijaLetaComponent implements OnInit {
       seatObject.status = "booked";
       this.cart.selectedSeats.push(seatObject.seatLabel);
       this.cart.seatstoStore.push(seatObject.key);
-      this.cart.totalamount += seatObject.price;
+      this.cart.totalamount += this.cenaSedista;
     }
     else if (seatObject.status = "booked") {
       seatObject.status = "available";
@@ -197,7 +208,7 @@ export class RezervacijaLetaComponent implements OnInit {
       if (seatIndex > -1) {
         this.cart.selectedSeats.splice(seatIndex, 1);
         this.cart.seatstoStore.splice(seatIndex, 1);
-        this.cart.totalamount -= seatObject.price;
+        this.cart.totalamount -= this.cenaSedista;
       }
     }
   }
@@ -208,7 +219,7 @@ export class RezervacijaLetaComponent implements OnInit {
       for (let index = 0; index < seatsToBlockArr.length; index++) {
         var seat = seatsToBlockArr[index] + "";
         var seatSplitArr = seat.split("_");
-        console.log("Split seat: ", seatSplitArr);
+        //console.log("Split seat: ", seatSplitArr);
         for (let index2 = 0; index2 < this.seatmap.length; index2++) {
           const element = this.seatmap[index2];
           if (element.seatRowLabel == seatSplitArr[0]) {
@@ -234,9 +245,22 @@ export class RezervacijaLetaComponent implements OnInit {
     else {
       this.empty = 1;
 
-      ////SAMO JEDNO SEDISTE REZERVISANO
-          ///PROSLEDI MOJE PODATKE 
+      this.idSedista = this.cart.selectedSeats[0].toString();
+      var sediste = new Sediste(this.idLeta, this.idSedista, this.currentUser.Ime, this.currentUser.Prezime, this.currentUser.BrojPasosa, true, this.cenaSedista);
+      this.service.rezervisiSediste(sediste).subscribe();
     }
+  }
+
+  ucitajSedista() {
+    this.service.getSediste().subscribe(sedista => {
+      sedista.forEach(element => {
+        if (element.idLeta == this.idLeta) {
+          var sediste = element.idSedista.replace(" ", "_");
+          this.blockSeats(sediste);
+        }        
+        //this.cart.selectedSeats = this.cart.selectedSeats.filter(item => item != seat);
+      })
+    });
   }
 
   //MojeSediste(seat: string) {
@@ -250,26 +274,47 @@ export class RezervacijaLetaComponent implements OnInit {
   //  this.prijatelj = true;
   //}
 
-  ucitajLetInfo() {/////////////
-
-    this.cenaSedista = 100;
+  ucitajLetInfo() {
+    this.service.getLetovi().subscribe(letovi => {
+      letovi.forEach(element => {
+        if (element.id == this.idLeta) {
+          this.cenaSedista = element.cenaKarte;
+        }
+      })
+    });
   }
 
   ucitajListuPrijatelja() {///
-    this.listaPrijatelja = new Array<RegisteredUser>();
+    this.listaPrijatelja = new Array<any>();
+    this.prijateljiUSername = new Array<string>();
 
-    //UCIAJ PRIJATELJE IZ BAZE
-    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Tasana', 'Mitic', 'tasana', '123'));
-    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Nikola', 'Jurisic', 'nikola',  '123'));
-    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Petar', 'Petrovic', 'nikola',  '123'));
-    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Andjela', 'Pejakovic', 'nikola',  '123'));
-    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Jovan', 'Tatic', 'nikola', '123'));
-    this.listaPrijatelja.push(new RegisteredUser('063123457', 'Beograd', 'Petar', 'Zmijanjac', 'nikola',  '123'));
+    this.serviceP.getPrijatelji().subscribe(prijatelji => {
+      prijatelji.forEach(element => {
+        if (element.username1 == this.currentUser.Username) {
+          this.prijateljiUSername.push(element.username2);
+        }
+        else if (element.username2 == this.currentUser.Username) {
+          this.prijateljiUSername.push(element.username1);
+        }
+      })
+    });
 
     this.prijateljiData = new Array<string>();
-    this.listaPrijatelja.forEach(element => {
-      this.prijateljiData.push(element.Ime + " " + element.Prezime);
-    })
+
+    this.serviceP.getUsers().subscribe(korisnici => {
+      this.listaPrijatelja = korisnici;
+
+      this.listaPrijatelja.forEach(element => {
+        this.prijateljiUSername.forEach(p => {
+          if (p == element.userName) {
+            this.prijateljiData.push(element.name + " " + element.lastname + " " + element.userName);
+          }
+        })
+      })
+    });
+
+    
+    
 
     this.prijateljiForm = this.formBuilder.group({
       prijatelji: new FormArray([])
@@ -302,28 +347,60 @@ export class RezervacijaLetaComponent implements OnInit {
   }
 
   PrijateljiCheckBox() {
+    this.idSedista = this.cart.selectedSeats[0].toString(); ///moje sediste
+    
+    var sediste = new Sediste(this.idLeta, this.idSedista, this.currentUser.Ime, this.currentUser.Prezime, this.currentUser.BrojPasosa, true, this.cenaSedista);
+    this.service.rezervisiSediste(sediste).subscribe();
+
     var lista = new Array<string>();
     lista = this.prijateljiForm.get('prijatelji').value;
 
     if (lista.length == (this.cart.selectedSeats.length - 1)) {
+      this.cart.selectedSeats.splice(0, 1);
+       ////REZERVISANO VISE SEDISTA SVE ZA PRIAJTELJENJE
+            ///POSALJI IM MEJL
+
+      lista.forEach(element => {
+        var username = element.split(" ");
+        this.listaPrijatelja.forEach(p => {
+          if (p.userName == username[2]) {
+            this.idSedista = this.cart.selectedSeats[0].toString(); 
+            this.cart.selectedSeats.splice(0, 1);
+            this.sediste = new Sediste(this.idLeta, this.idSedista, p.name, p.lastname, p.brojPasosa, true, this.cenaSedista);
+            this.service.rezervisiSediste(this.sediste).subscribe();
+          }
+        })
+      })
+     
       this.empty = 1;
 
-      ////REZERVISANO VISE SEDISTA SVE ZA PRIAJTELJENJE
-            ///POSALJI IM MEJL
     }
-    else {
+    else {        //REGISTROVANI I NEREGISTROVANI PRIAJTELJI
+      this.cart.selectedSeats.splice(0, 1);
+      lista.forEach(element => {
+        var username = element.split(" ");
+        this.listaPrijatelja.forEach(p => {
+          if (p.userName == username[2]) {
+            this.idSedista = this.cart.selectedSeats[0].toString(); 
+            this.cart.selectedSeats.splice(0, 1);
+            this.sediste = new Sediste(this.idLeta, this.idSedista, p.name, p.lastname, p.brojPasosa, true, this.cenaSedista);
+            this.service.rezervisiSediste(this.sediste).subscribe();
+          }
+        })
+      })
+
       this.empty = 3;
-      this.brojKarata += lista.length;
-      this.brojPreostalih = this.cart.selectedSeats.length - this.brojKarata;
-      this.max = this.brojPreostalih;
+      this.brojPreostalih = this.cart.selectedSeats.length;
     }   
   }
 
-  PodaciUneti() {   ////////SACUVATI PODATKE
+  PodaciUneti() {   ////////NEREGISTROVANI PRIJATELJI
+    this.idSedista = this.cart.selectedSeats[0].toString(); 
+    this.cart.selectedSeats.splice(0, 1);
+    this.sediste = new Sediste(this.idLeta, this.idSedista, this.podaciForm.get('ime').value, this.podaciForm.get('prezime').value, this.podaciForm.get('brPasosa').value.toString(), true, this.cenaSedista);
+    this.service.rezervisiSediste(this.sediste).subscribe();
+    this.brojPreostalih = this.cart.selectedSeats.length;
 
-
-    this.sediste = new Sediste(0, this.podaciForm.get('ime').value, this.podaciForm.get('prezime').value, this.podaciForm.get('brPasosa').value)
-    this.brojPreostalih -= 1;
     if (this.brojPreostalih > 0) {
       this.i += 1;
       this.podaciForm.controls['ime'].setValue('');

@@ -53,7 +53,6 @@ export class PrijateljiComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = AppComponent.currentUser as RegisteredUser;
     this.zahteviZaPrijatelja = new Array<RegisteredUser>();
-    this.mojiPrijatelji = new Array<RegisteredUser>();
     this.idZahteva = new Array<{ id: number, username: string}>();
     this.idPrijatelja = new Array<{ id: number, username: string}>();
     this.initForm();
@@ -105,20 +104,22 @@ export class PrijateljiComponent implements OnInit {
     ///////////////////////////////////////////////
     if (this.ime !== "" && this.prezime !== "") {
       this.korisnici.forEach(element => {
-        if (element.name == this.ime) {
-          if (element.lastname == this.prezime) {
-            if (element.userName != this.currentUser.Username) {
-              if (this.zahtevi.some(x => x === element.userName)) {
-                this.empty3 = 1;                
-              }
-              else if (this.listaPrijatelja.some(x => x === element.userName)) {
-                this.empty3 = 2;
-              }
-              else {
-                this.prijatelji.push(element);
-                this.empty2 = 1;
-              }
-            }            
+        if (element.tipKorisnika == "RegularUser") {        
+          if (element.name == this.ime) {
+            if (element.lastname == this.prezime) {
+              if (element.userName != this.currentUser.Username) {
+                if (this.zahtevi.some(x => x === element.userName)) {
+                  this.empty3 = 1;                
+                }
+                else if (this.listaPrijatelja.some(x => x === element.userName)) {
+                  this.empty3 = 2;
+                }
+                else {
+                  this.prijatelji.push(element);
+                  this.empty2 = 1;
+                }
+              }            
+            }
           }
         }
       });
@@ -132,18 +133,20 @@ export class PrijateljiComponent implements OnInit {
     }
     else if (this.ime !== "" && this.prezime == "") {
       this.korisnici.forEach(element => {
-        if (element.name == this.ime) {
-          if (element.userName != this.currentUser.Username) {
-            if (this.zahtevi.some(x => x === element.userName)) {
-              this.empty3 = 1;
+        if (element.tipKorisnika == "RegularUser") {
+          if (element.name == this.ime) {
+            if (element.userName != this.currentUser.Username) {
+              if (this.zahtevi.some(x => x === element.userName)) {
+                this.empty3 = 1;
+              }
+              else if (this.listaPrijatelja.some(x => x === element.userName)) {
+                this.empty3 = 2;
+              }
+              else {
+                this.prijatelji.push(element);
+                this.empty2 = 1;
+              }
             }
-            else if (this.listaPrijatelja.some(x => x === element.userName)) {
-              this.empty3 = 2;
-            }
-            else {
-              this.prijatelji.push(element);
-              this.empty2 = 1;
-            }            
           }
         }
       });
@@ -156,19 +159,19 @@ export class PrijateljiComponent implements OnInit {
     }
     else if (this.ime == "" && this.prezime !== "") {
       this.korisnici.forEach(element => {
-        if (element.lastname == this.prezime) {
-          if (element.userName != this.currentUser.Username) {
-            if (this.zahtevi.some(x => x === element.userName)) {
-              this.empty3 = 1;
-            }
-            else if (this.listaPrijatelja.some(x=>x === element.userName))
-            {
-              this.empty3 = 2;
-            }
-            else
-            {
-              this.prijatelji.push(element);
-              this.empty2 = 1;
+        if (element.tipKorisnika == "RegularUser") {
+          if (element.lastname == this.prezime) {
+            if (element.userName != this.currentUser.Username) {
+              if (this.zahtevi.some(x => x === element.userName)) {
+                this.empty3 = 1;
+              }
+              else if (this.listaPrijatelja.some(x => x === element.userName)) {
+                this.empty3 = 2;
+              }
+              else {
+                this.prijatelji.push(element);
+                this.empty2 = 1;
+              }
             }
           }
         }
@@ -238,6 +241,7 @@ export class PrijateljiComponent implements OnInit {
   }
 
   prikaziPrijatelje() {
+    this.mojiPrijatelji = new Array<RegisteredUser>();
     this.listaPrijatelja.forEach(element => {
       this.korisniciP.forEach(k => {
         if (k.userName == element) {
@@ -285,6 +289,7 @@ export class PrijateljiComponent implements OnInit {
       if (element.username == username) {
         this.service.deleteZahtev(element.id).subscribe();
         this.zahteviZaPrijatelja = this.zahteviZaPrijatelja.filter(f => f.Username != username);
+        this.empty = 0
         if (this.zahteviZaPrijatelja.length == 0) {
           this.empty1 = 0;
         }
@@ -295,8 +300,8 @@ export class PrijateljiComponent implements OnInit {
     this.prihvacenPrijatelj = new PrihvacenPrijatelj(this.currentUser.Username, username);
     this.service.addPrijatelj(this.prihvacenPrijatelj).subscribe();
     this.ucitajZahteve();
-    //this.ucitajPrijatelje();
-    //this.prikaziPrijatelje();
+    this.ucitajPrijatelje();
+    this.prikaziPrijatelje();
   }
 
   odbijPrijatelja(username: string) {

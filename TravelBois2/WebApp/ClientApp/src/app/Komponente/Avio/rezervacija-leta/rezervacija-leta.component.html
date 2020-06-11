@@ -11,11 +11,11 @@
         </div>
         <div *ngFor="let seatobj of seatrow.seats">
           <div class="seat-item seat-space" style="color:white;" *ngIf="seatobj.seatLabel == ''">  &nbsp; </div>
-          <div tooltip="Sediste : {{seatobj.seatLabel}} | Cena : {{seatobj.price}}Rs" placement="top"
+          <div tooltip="Sediste : {{seatobj.seatLabel}} | Cena : {{cenaSedista}}Rs" placement="top"
                [ngClass]="{ 'seat-item' : true , 'seat-available' : seatobj.status == 'available' ,'seat-booked' : seatobj.status == 'booked' ,'seat-unavailable' : seatobj.status == 'unavailable' }"
                (click)="selectSeat(seatobj)" *ngIf="(seatobj.status == 'available' || seatobj.status == 'booked' )&& seatobj.seatLabel != ''">{{seatobj.seatNo}}</div>
 
-          <div tooltip="Seat not available" placement="top"
+          <div tooltip="Sediste nije dostupno" placement="top"
                [ngClass]="{ 'seat-item' : true , 'seat-unavailable' : true }"
                *ngIf="seatobj.status == 'unavailable' && seatobj.seatLabel != ''">{{seatobj.seatNo}}</div>
         </div>
@@ -79,7 +79,7 @@
 </div>
 
 <div [hidden]="empty != 3">
-    <h3>Unesite podatke saputnika ({{i}} od {{max}}):</h3>
+  <h3>Unesite podatke saputnika ({{i}} od {{brojPreostalih}}):</h3>
     <form [formGroup]="podaciForm" (ngSubmit)="PodaciUneti()">
       <div>
         <div>

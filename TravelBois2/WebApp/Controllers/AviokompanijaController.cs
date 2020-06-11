@@ -99,6 +99,16 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
+        [Route("AddSediste")]
+        public async Task<ActionResult<Sediste>> AddSediste(Sediste sediste)
+        {
+            _context.SedistaLeta.Add(sediste);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetSediste", new { id = sediste.Id }, sediste);
+
+        }
+
+        [HttpPost]
         [Route("AddOcenaAviokompanije")]
         public async Task<ActionResult<Ocena>> AddOcenaAviokompanije(Ocena ocena)
         {
@@ -120,6 +130,13 @@ namespace WebApp.Controllers
         public async Task<ActionResult<IEnumerable<Let>>> GetLetovi()
         {
             return await _context.Letovi.ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("GetSedista")]
+        public async Task<ActionResult<IEnumerable<Sediste>>> GetSedista()
+        {
+            return await _context.SedistaLeta.ToListAsync();
         }
 
         [HttpGet]

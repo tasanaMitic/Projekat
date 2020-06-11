@@ -18,7 +18,6 @@ import { LetoviService } from '../../../shared/letovi.service';
 })
 export class LetoviComponent implements OnInit {
   letHeaders = ['Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Vreme poletanja', 'Vreme sletanja',  'Klasa', 'Tip puta', 'Cena'];
-  letDataF: Array<Array<string>>; //lista filtriranih letova
   FilterForm: FormGroup;
   empty: number;
   destOd: string;
@@ -505,38 +504,7 @@ export class LetoviComponent implements OnInit {
       
     }
 
-    //if (this.empty == 2) {
-    //  this.letDataF = new Array<Array<string>>();
-    //  this.filtriraniLetovi.forEach(element => {
-    //    let temp = new Array<string>();
-    //    //temp.push(element.id.toString());
-    //    temp.push('0');
-    //    temp.push(element.mestoPolaska);
-    //    temp.push(element.mestoDolaska);
-    //    temp.push(element.datumPolaska);
-    //    temp.push(element.datumDolaska);
-    //    temp.push(element.vremePoletanja);
-    //    temp.push(element.vremeSletanja);
-    //    if (element.klasaLeta.toString() == '0') {
-    //      temp.push('first');
-    //    }
-    //    else if (element.klasaLeta.toString() == '1') {
-    //      temp.push('economy');
-    //    }
-    //    else {
-    //      temp.push('bussiness');
-    //    }
-
-    //    if (element.tipLeta.toString() == '0') {
-    //      temp.push('one-way');
-    //    }
-    //    else {
-    //      temp.push('multi-city');
-    //    }
-    //    temp.push(element.cenaKarte.toString());
-    //    this.letDataF.push(temp);
-    //  });
-    //}
+    
   }
 
   KlasaChanged(e) {
@@ -548,7 +516,6 @@ export class LetoviComponent implements OnInit {
     //this.t = this.FilterForm.get('tipPuta').value;
   }
 
-  //////////
   ucitajLetove() {
     this.letovi = new Array<Let>();
     this.idLetova = new Array<number>();
@@ -567,8 +534,9 @@ export class LetoviComponent implements OnInit {
 
   }
 
-  RezervisiLet(id: string) {
-    this.router.navigateByUrl('/rezervacija/' + this.aviokompanija + '/' + parseInt(id));
+  RezervisiLet(i: number) {
+    var id = this.idLetova[i];
+    this.router.navigateByUrl('/rezervacija/' + this.aviokompanija + '/' + id);
   }
 
   onBack() {

@@ -84,7 +84,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let letic of filtriraniLetovi">
+      <tr *ngFor="let letic of filtriraniLetovi; let i = index">
         <td>{{letic.mestoPolaska}}</td>
         <td>{{letic.mestoDolaska}}</td>
         <td>{{letic.datumPolaska}}</td>
@@ -98,7 +98,7 @@
         <td *ngIf="letic.tipLeta == 1">multi-city</td>
         <td>{{letic.cenaKarte}}</td>
         <td [hidden]="currentUser!= 'RegisteredUser'">
-          <button (click)="RezervisiLet(row[0])" class="btn-rez">Rezervisi</button>
+          <button (click)="RezervisiLet(i)" class="btn-rez">Rezervisi</button>
         </td>
       </tr>
     </tbody>

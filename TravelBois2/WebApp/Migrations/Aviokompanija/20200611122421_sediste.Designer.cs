@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Data;
 
 namespace WebApp.Migrations.Aviokompanija
 {
     [DbContext(typeof(AviokompanijaContext))]
-    partial class AviokompanijaContextModelSnapshot : ModelSnapshot
+    [Migration("20200611122421_sediste")]
+    partial class sediste
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,10 +161,6 @@ namespace WebApp.Migrations.Aviokompanija
 
                     b.Property<int>("IdLeta")
                         .HasColumnType("int");
-
-                    b.Property<string>("IdSedista")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Ime")
                         .IsRequired()
