@@ -30,6 +30,8 @@ export class IstorijaComponent implements OnInit {
 
   avioRezervacije: Array<Let>;
   avioIstorija: Array<Let>;
+  idLetLista: Array<number>;
+  avioSediste: Array<number>;
 
 
   constructor(private router: Router, private service: LetoviService) { 
@@ -38,81 +40,88 @@ export class IstorijaComponent implements OnInit {
     this.letDataRez = new Array<Array<string>>();
     this.kolaData = new Array<Array<string>>();
     this.emptyIL = 0;
-    this.emptyRL = 0;
-
-    this.avioIstorija = new Array<Let>();
-    this.avioRezervacije = new Array<Let>();
-
-    //UCITAVANJE LETOVA
-    this.service.getLetovi().subscribe(letovi => {
-      letovi.forEach(element => {
-        var datum = element.datumPolaska.split("-");
-        var danasnji = new Date().toString();
-        var danasnjiDatum = danasnji.split(" ");
-        var trenutnaGod = new Date().getFullYear();
-        var trenutniMes = new Date().getMonth();
-        var trenutniDan = danasnjiDatum[2];
-
-        if (parseInt(datum[0]) >= trenutnaGod) {
-          if (parseInt(datum[1]) >= (trenutniMes + 1)) {
-            if (parseInt(datum[1]) == (trenutniMes + 1)) {  //bas trenutni mesec
-              if (parseInt(datum[2]) >= parseInt(trenutniDan)) {
-                ///jos resiti za vreme
-
-                this.emptyRL = 1;
-
-
-                this.avioRezervacije.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
-                  element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
-              }
-              else { //od juce pa nadalje
-                this.emptyIL = 1;
-                this.avioIstorija.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
-                  element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
-              }
-            }
-            else {
-              this.emptyRL = 1;
-              this.avioRezervacije.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
-                element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
-            }            
-          }
-          else {  //proslog meseca i nadalje
-            this.emptyIL = 1;
-            this.avioIstorija.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
-              element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
-          }
-        }
-        else {  //prosle godine i nadalje
-          this.emptyIL = 1;
-          this.avioIstorija.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
-            element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
-        }
-      })
-    });
+    this.emptyRL = 0; 
     
   }
 
   ngOnInit(): void {
-    
+    this.avioSediste = new Array<number>();
+    this.service.getSediste().subscribe(sedista => {
+      sedista.forEach(element => {
+        if (element.brojPasosa == this.currentUser.BrojPasosa) {
+          this.avioSediste.push(element.idLeta);
+        }
+      })
+    });
+
+
+    this.avioIstorija = new Array<Let>();
+    this.avioRezervacije = new Array<Let>();
+    this.idLetLista = new Array<number>();
+
+    //UCITAVANJE LETOVA
+    this.service.getLetovi().subscribe(letovi => {
+      letovi.forEach(element => {
+        this.avioSediste.forEach(s => {
+          if (s == element.id) {
+            var datum = element.datumPolaska.split("-");
+            var danasnji = new Date().toString();
+            var danasnjiDatum = danasnji.split(" ");
+            var trenutnaGod = new Date().getFullYear();
+            var trenutniMes = new Date().getMonth();
+            var trenutniDan = danasnjiDatum[2];
+
+            if (parseInt(datum[0]) >= trenutnaGod) {
+              if (parseInt(datum[1]) >= (trenutniMes + 1)) {
+                if (parseInt(datum[1]) == (trenutniMes + 1)) {  //bas trenutni mesec
+                  if (parseInt(datum[2]) >= parseInt(trenutniDan)) {
+                    ///jos resiti za vreme
+
+                    this.emptyRL = 1;
+
+
+                    this.avioRezervacije.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+                      element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
+                    this.idLetLista.push(element.id);
+                  }
+                  else { //od juce pa nadalje
+                    this.emptyIL = 1;
+                    this.avioIstorija.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+                      element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
+                    this.idLetLista.push(element.id);
+                  }
+                }
+                else {
+                  this.emptyRL = 1;
+                  this.avioRezervacije.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+                    element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
+                  this.idLetLista.push(element.id);
+                }
+              }
+              else {  //proslog meseca i nadalje
+                this.emptyIL = 1;
+                this.avioIstorija.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+                  element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
+                this.idLetLista.push(element.id);
+              }
+            }
+            else {  //prosle godine i nadalje
+              this.emptyIL = 1;
+              this.avioIstorija.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+                element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
+              this.idLetLista.push(element.id);
+            }
+          }
+        })        
+      })
+    });
   }
  
 
-  OceniLet(id: string) {
-    var number = parseInt(id);
-    //this.IstorijaLetova.forEach(element => {        //ovako ce biti kad se letovi budu ucitavali iz baze
-    //  if (element.id == number) {
-    //    this.relacija = element.mestoPolaska + '-' + element.mestoDolaska;
-    //  }
-    //});
-
-    this.letData.forEach(element => {
-      if (parseInt(element[0]) == number) {
-        this.relacija = element[1] + '-' + element[2];
-      }
-    });
-
-    this.router.navigateByUrl('/oceniLet/' + number + '/' + this.relacija);
+  OceniLet(i: number) {
+    this.relacija = this.avioIstorija[i].mestoPolaska + '-' + this.avioIstorija[i].mestoDolaska;
+    var id = this.idLetLista[i];
+    this.router.navigateByUrl('/oceniLet/' + id + '/' + this.relacija);
   }
 
   OtkaziLet(i: number) {
