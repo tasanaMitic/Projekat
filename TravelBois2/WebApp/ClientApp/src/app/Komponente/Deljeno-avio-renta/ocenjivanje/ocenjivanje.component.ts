@@ -34,7 +34,7 @@ export class OcenjivanjeComponent implements OnInit {
       ocene.forEach(element => {
         if (element.userID == this.currentUser.Username && element.kompanija == this.kompanija) {
           this.empty = 1;
-          this.poruka = "Vec ste ocenili let!";
+          this.poruka = "Vec ste ocenili aviokompaniju!";
         }
       })
     });

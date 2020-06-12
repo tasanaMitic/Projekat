@@ -40,4 +40,16 @@ export class LetoviService {
   getPozivnice(): Observable<Pozivnica[]> {
     return this.http.get<Pozivnica[]>(this.BaseURI + '/Aviokompanija/GetPozivnice');
   }
+
+  deletePozivnicu(id: number): Observable<any> {
+    return this.http.delete(this.BaseURI + '/Aviokompanija/DeletePozivnica/' + id);
+  }
+
+  deleteSediste(idLeta: number, idSedista: string): Observable<any> {
+    return this.http.delete(this.BaseURI + '/Aviokompanija/DeleteSediste/' + idLeta + '/' + idSedista);
+  }
+
+  izmeniSediste(idLeta: number, idSedista: string): Observable<any> {
+    return this.http.delete(this.BaseURI + '/Aviokompanija/IzmeniSediste/' + idLeta + '/' + idSedista);
+  }
 }

@@ -196,6 +196,47 @@ namespace WebApp.Controllers
         }
 
         [HttpDelete]
+        [Route("DeletePozivnica/{id}")]
+        public async Task<ActionResult<Pozivnica>> DeletePozivnica(int id)
+        {
+            var pozivnica = await _context.Pozivnice.FindAsync(id);
+            if (pozivnica == null)
+            {
+                return NotFound();
+            }
+
+            _context.Pozivnice.Remove(pozivnica);
+            await _context.SaveChangesAsync();
+            return pozivnica;
+        }
+
+        [HttpDelete]
+        [Route("DeleteSediste/{idLeta}/{idSedista}")]
+        public async Task<ActionResult<Sediste>> DeleteSediste(int idLeta, string idSedista)
+        {
+            Sediste sediste = new Sediste();
+            string idS = idSedista.Replace("-", " ");
+            List<Sediste> sedista = _context.SedistaLeta.ToList();
+            foreach(Sediste s in sedista)
+            {
+                if (s.IdSedista == idS && s.IdLeta == idLeta)
+                {
+                    sediste = s;
+                }
+            }
+
+            if (sediste == null)
+            {
+                return NotFound();
+            }
+
+            _context.SedistaLeta.Remove(sediste);
+            await _context.SaveChangesAsync();
+            return sediste;
+        }
+
+
+        [HttpDelete]
         [Route("DeleteLet/{id}")]
         public async Task<ActionResult<Let>> DeleteLet(int id)
         {

@@ -7,6 +7,7 @@ export class Pozivnica {
   cenaSedista: number;
   idSedista: string;
   pozvaoUsername: string;
+  id: number;
 
   constructor(idLeta: number, idSedista: string, ime: string, prezime: string, brojPasosa: string, rezervisano: boolean, cenaSedista: number, pozvaoUsername: string) {
     this.idLeta = idLeta;
