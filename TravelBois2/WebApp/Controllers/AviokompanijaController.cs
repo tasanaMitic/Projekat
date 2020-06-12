@@ -118,11 +118,28 @@ namespace WebApp.Controllers
             return CreatedAtAction("GetOcena", new { id = ocena.ID }, ocena);
         }
 
+        [HttpPost]
+        [Route("AddOcenaLeta")]
+        public async Task<ActionResult<OcenaLeta>> AddOcenaLeta(OcenaLeta ocena)
+        {
+            _context.OceneLeta.Add(ocena);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetOcenaLeta", new { id = ocena.ID }, ocena);
+        }
+
         [HttpGet]
         [Route("GetOceneAvio")]
         public async Task<ActionResult<IEnumerable<Ocena>>> GetOceneAvio()
         {
             return await _context.OceneAviokompanije.ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("GetOceneLeta")]
+        public async Task<ActionResult<IEnumerable<OcenaLeta>>> GetOceneLeta()
+        {
+            return await _context.OceneLeta.ToListAsync();
         }
 
         [HttpGet]

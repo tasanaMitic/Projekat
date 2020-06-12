@@ -22,6 +22,7 @@ export class OcenjivanjeComponent implements OnInit {
   currentUser: RegisteredUser;
   ocena: Ocena;
   aviokompanija: AvioKompanija;
+  poruka: string;
 
   constructor(private route: ActivatedRoute, private location: Location, private service: OcenaService, private serviceA: AvioAdminService) {
     this.currentUser = AppComponent.currentUser;
@@ -33,6 +34,7 @@ export class OcenjivanjeComponent implements OnInit {
       ocene.forEach(element => {
         if (element.userID == this.currentUser.Username && element.kompanija == this.kompanija) {
           this.empty = 1;
+          this.poruka = "Vec ste ocenili let!";
         }
       })
     });
@@ -40,6 +42,7 @@ export class OcenjivanjeComponent implements OnInit {
   onRateChange(rating: number) {
     this.value = rating;
     this.empty = 1;
+    this.poruka = "Hvala na oceni!";
 
     this.ocena = new Ocena(this.value, this.currentUser.Username, this.kompanija);
     this.service.oceniAviokompaniju(this.ocena).subscribe();
