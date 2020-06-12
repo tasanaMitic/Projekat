@@ -1,5 +1,4 @@
 ﻿using ServerApp.Models;
-﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,14 +8,18 @@ using System.Threading.Tasks;
 
 namespace WebApp.Models.Misc
 {
-	public abstract class Ocena : DbContext
+	public class OcenaAviokompanije
 	{
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public string ID { get; set; }
-		[Column(TypeName = "decimal(1,1)")]
-		public float Value { get; set; }
-		[Column(TypeName = "int")]
-		public int BrojOcena { get; set; }
+		[Column(TypeName = "nvarchar(40)")]
+		public string UserID { get; set; }
+		[Column(TypeName = "tinyint")]
+		public int Value { get; set; }
+		[Column(TypeName = "nvarchar(40)")]
+		public string kompanija { get; set; }
+		
+
 	}
 }

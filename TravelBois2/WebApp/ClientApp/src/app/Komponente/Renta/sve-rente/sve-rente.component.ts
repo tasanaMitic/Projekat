@@ -7,6 +7,10 @@ import { Kola } from '../../../entities/objects/kola';
 import { Datum } from '../../../entities/misc/datum';
 import { AnyTxtRecord } from 'dns';
 import { NavigationEnd, Router } from '@angular/router';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Ocena } from 'src/app/entities/misc/ocena';
+import { AvioAdminService } from 'src/app/shared/avio-admin.service';
+import { OcenaService } from 'src/app/shared/ocena.service';
 
 @Component({
   selector: 'app-rent-a-car',
@@ -21,6 +25,10 @@ export class SveRenteComponent implements OnInit {
   prikaz: RentPrikaz;
   danaUMesecu: number;
 
+  SortForm: FormGroup;
+  ocene: Array<Ocena>;
+  OceneRente: Array<Ocena>;
+
   // 
   static sd1: Date = new Date(1970, 1, 1);
   static sd2: Date = new Date(1970, 1, 1);
@@ -31,10 +39,11 @@ export class SveRenteComponent implements OnInit {
   klasaKolaSlika: string = 'kola-slika';
   tip: string = 'RentACar/Kola'
 
-  constructor() { 
+  constructor(private router: Router, public fb: FormBuilder, private service: AvioAdminService, private serviceO: OcenaService) { 
     this.rente = new Array<RentACar>();
     this.currentUser = AppComponent.currentUser;
     this.prikaz = RentPrikaz.listaKompanija;
+    this.ocene = new Array<Ocena>();
   }
   ngOnInit(): void {
     this.rente.push(new RentACar('Car2Go', 'Cirpanova 7'));

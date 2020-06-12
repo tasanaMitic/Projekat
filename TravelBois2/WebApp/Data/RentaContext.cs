@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Models;
 using WebApp.Models.Misc;
-using Ocena = WebApp.Models.Misc.Ocena;
 
 namespace WebApp.Data
 {
@@ -17,7 +16,8 @@ namespace WebApp.Data
 		}
 		public DbSet<Kola> Kolas { get; set; }
 		public DbSet<RentACar> Rente { get; set; }
-		public DbSet<Ocena> Ocene { get; set; }
+		public DbSet<OcenaKola> OceneKola { get; set; }
+		public DbSet<OcenaRente> OceneRente { get; set; }
 		public DbSet<Zauzetost> Zauzetosts { get; set; }
 	}
 }

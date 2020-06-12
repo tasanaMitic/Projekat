@@ -14,7 +14,7 @@ namespace WebApp.Models
 		public string Naziv { get; set; }
 		public int BrojMesta { get; set; }
 		public int Godiste { get; set; }
-		public List<Ocena> Ocene { get; set; }
+		public List<OcenaKola> Ocene { get; set; }
 		public Enums.TipKola TipVozila { get; set; }
 		public List<Tuple<DateTime, DateTime>> Zauzetost { get; set; }
 	}
