@@ -76,7 +76,6 @@ export class PozivniceComponent implements OnInit {
       if (element.idPozivnice == idPozivnice) {
         var idSedista = element.idSedista.replace(" ", "-");
         this.service.deleteSediste(idLeta, idSedista).subscribe(sediste => {
-          //this.sediste = new Sediste(sediste.idLeta, sediste.idSedista, sediste.ime, sediste.prezime, sediste.brojPasosa, true, sediste.cenaSedista);
           this.service.rezervisiSediste(new Sediste(sediste.idLeta, sediste.idSedista, sediste.ime, sediste.prezime, sediste.brojPasosa, true, sediste.cenaSedista)).subscribe();
         }); 
         
