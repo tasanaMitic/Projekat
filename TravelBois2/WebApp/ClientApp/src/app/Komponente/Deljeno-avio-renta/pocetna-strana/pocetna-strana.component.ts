@@ -72,6 +72,7 @@ export class PocetnaStranaComponent implements OnInit {
           }
           else if (this.tipKorisnika == 'RentaAdmin') {
             AppComponent.tipKorisnika = "RentACarAdmin";
+
           }
           else {
             AppComponent.tipKorisnika = "Admin";

@@ -8,6 +8,7 @@ import { Ocena } from '../../../entities/misc/ocena';
 import { AvioAdminService } from '../../../shared/avio-admin.service';
 import { element } from 'protractor';
 import { AvioKompanija } from '../../../entities/objects/avio-kompanija';
+import { OcenaAviokompanije } from '../../../entities/misc/ocena-aviokompanije';
 
 @Component({
   selector: 'app-ocenjivanje',
@@ -20,7 +21,7 @@ export class OcenjivanjeComponent implements OnInit {
   rating = 0;
   empty = 0;
   currentUser: RegisteredUser;
-  ocena: Ocena;
+  ocena: OcenaAviokompanije;
   aviokompanija: AvioKompanija;
   poruka: string;
 
@@ -44,7 +45,7 @@ export class OcenjivanjeComponent implements OnInit {
     this.empty = 1;
     this.poruka = "Hvala na oceni!";
 
-    this.ocena = new Ocena(this.value, this.currentUser.Username, this.kompanija);
+    this.ocena = new OcenaAviokompanije(this.value, this.currentUser.Username, this.kompanija);
     this.service.oceniAviokompaniju(this.ocena).subscribe();
     
   }

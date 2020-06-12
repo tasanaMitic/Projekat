@@ -20,7 +20,7 @@ namespace ServerApp.Models
         public string Grad { get; set; }
         public string Opis { get; set; }
         [Required]
-        public ICollection<Ocena> OceneAviokompanije { get; set; }
+        public ICollection<OcenaAviokompanije> OceneAviokompanije { get; set; }
         public ICollection<Let> Letovi { get; set; }
         [Required]
         public ICollection<Aerodrom> Aerodromi { get; set; }

@@ -120,7 +120,7 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [Route("AddOcenaAviokompanije")]
-        public async Task<ActionResult<Ocena>> AddOcenaAviokompanije(Ocena ocena)
+        public async Task<ActionResult<OcenaAviokompanije>> AddOcenaAviokompanije(OcenaAviokompanije ocena)
         {
             _context.OceneAviokompanije.Add(ocena);
             await _context.SaveChangesAsync();
@@ -140,7 +140,7 @@ namespace WebApp.Controllers
 
         [HttpGet]
         [Route("GetOceneAvio")]
-        public async Task<ActionResult<IEnumerable<Ocena>>> GetOceneAvio()
+        public async Task<ActionResult<IEnumerable<OcenaAviokompanije>>> GetOceneAvio()
         {
             return await _context.OceneAviokompanije.ToListAsync();
         }

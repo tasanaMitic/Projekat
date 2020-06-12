@@ -10,6 +10,7 @@ import { AvioAdminService } from '../../../shared/avio-admin.service';
 import { element } from 'protractor';
 import { OcenaService } from '../../../shared/ocena.service';
 import { Ocena } from '../../../entities/misc/ocena';
+import { OcenaAviokompanije } from '../../../entities/misc/ocena-aviokompanije';
 
 @Component({
   selector: 'app-avio-kompanije',
@@ -20,10 +21,10 @@ export class AvioKompanijeComponent implements OnInit {
   kompanije: Array<AvioKompanija>;
   SortForm: FormGroup;
   currentUser: User;
-  ocene: Array<Ocena>;
+  ocene: Array<OcenaAviokompanije>;
   listaOcena: number;
   broj: number;
-  OceneAviokompanije: Array<Ocena>
+  OceneAviokompanije: Array<OcenaAviokompanije>
   aviokompanija: AvioKompanija;
 
 
@@ -33,7 +34,7 @@ export class AvioKompanijeComponent implements OnInit {
 
   constructor(private router: Router, public fb: FormBuilder, private service: AvioAdminService, private serviceO: OcenaService) {
     this.currentUser = AppComponent.currentUser;
-    this.ocene = new Array<Ocena>();
+    this.ocene = new Array<OcenaAviokompanije>();
 
     this.klasa = 'kompanija-slika';
     this.tip = 'AvioKompanije';
@@ -45,7 +46,7 @@ export class AvioKompanijeComponent implements OnInit {
 
   ngOnInit(): void {
     this.kompanije = new Array<AvioKompanija>();
-    this.OceneAviokompanije = new Array<Ocena>();
+    this.OceneAviokompanije = new Array<OcenaAviokompanije>();
 
     
 
@@ -55,7 +56,7 @@ export class AvioKompanijeComponent implements OnInit {
 
         AppComponent.OceneAviokompanije.forEach(k => {
           if (k.kompanija == element.naziv) {
-            this.aviokompanija.OceneAviokompanije.push(new Ocena(k.value, k.userID, k.kompanija));
+            this.aviokompanija.OceneAviokompanije.push(new OcenaAviokompanije(k.value, k.userID, k.kompanija));
           }
         })
         this.kompanije.push(this.aviokompanija);

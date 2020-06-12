@@ -14,6 +14,6 @@ export class RentService {
   }
   GetRent(naziv: string, adminID: string){
     let params = {naziv, adminID}
-    return this.http.get(this.BaseURI + 'Rent/GetRent', params)
+    //return this.http.get(this.BaseURI + 'Rent/GetRent', params)
   }
 }

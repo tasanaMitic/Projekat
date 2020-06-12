@@ -155,7 +155,6 @@ namespace WebApp.Controllers
                     Subject = new ClaimsIdentity(new Claim[]
                     {
                         new Claim("UserID", user.Id.ToString())
-                        //,new Claim("Roles", "admin")
                     }),
                     Expires = DateTime.UtcNow.AddMinutes(60),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
