@@ -1,25 +1,36 @@
 <h1>Spisak Vasih pozivnica</h1>
+<div [hidden]="empty != 0">
+  <button class="btn btn-primary" (click)="prikaziPozivnice()" type="button">Prikazi pozivnice</button>
+</div>
 <div [hidden]="empty ==0">
   <table>
-    <tr>
-      <th *ngFor="let column of letHeaders">
-        {{column}}
-      </th>
-    </tr>
+    <thead>
+      <tr>
+        <th *ngFor="let column of letHeaders">
+          {{column}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
       <tr *ngFor="let row of letData">
-        <td> {{row[1]}}</td>
-        <td> {{row[2]}}</td>
-        <td> {{row[3]}}</td>
-        <td> {{row[4]}}</td>
-        <td> {{row[5]}}</td>
+        <td >{{row[0]}}</td>
+        <td >{{row[1]}}</td>
+        <td >{{row[2]}}</td>
+        <td >{{row[3]}}</td>
+        <td >{{row[4]}}</td>
+        <td >{{row[5]}}</td>
+        <td >{{row[6]}}</td>
+        <td >{{row[7]}}</td>
+        <td >{{row[8]}}</td>
         <td>
-          <button class="btn-rez" (click)="OtkaziLet(row[0])">Otkazi</button>
+          <button class="btn-rez" (click)="PrihvatiPozivnicu(row[9])">Prihvati</button>
+        </td>
+        <td>
+          <button class="btn-rez" (click)="OdbijPozivnicu(row[9])">Odbij</button>
         </td>
       </tr>
+    </tbody>
   </table>
-</div>
-<div [hidden]="empty !=0">
-  <h5>Trenutno nema pozivnica!</h5>
 </div>
 <div>
   <button class="btn btn-primary" (click)="onBack()" type="button">Nazad</button>

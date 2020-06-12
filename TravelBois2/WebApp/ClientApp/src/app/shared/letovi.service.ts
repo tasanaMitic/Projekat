@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Let } from '../entities/objects/let';
 import { Sediste } from '../entities/objects/sediste';
+import { Pozivnica } from '../entities/objects/pozivnica';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,13 @@ export class LetoviService {
 
   getSediste(): Observable<Sediste[]> {
     return this.http.get<Sediste[]>(this.BaseURI + '/Aviokompanija/GetSedista');
+  }
+
+  posaljiPozivnicu(pozivnica: Pozivnica): Observable<Pozivnica> {
+    return this.http.post<Pozivnica>(this.BaseURI + '/Aviokompanija/AddPozivnica', pozivnica);
+  }
+
+  getPozivnice(): Observable<Pozivnica[]> {
+    return this.http.get<Pozivnica[]>(this.BaseURI + '/Aviokompanija/GetPozivnice');
   }
 }

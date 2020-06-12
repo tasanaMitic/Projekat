@@ -10,6 +10,7 @@ import { AppComponent } from '../../../app.component';
 import { LetoviService } from '../../../shared/letovi.service';
 import { UserService } from '../../../shared/user.service';
 import { User } from '../../../entities/users/user/user';
+import { Pozivnica } from '../../../entities/objects/pozivnica';
 
 @Component({
   selector: 'app-rezervacija-leta',
@@ -30,6 +31,7 @@ export class RezervacijaLetaComponent implements OnInit {
   podaciForm: FormGroup;
   numChecked = 0;
   sediste: Sediste;
+  pozivnica: Pozivnica;
   brojPreostalih = 0;
   i = 1;
   max: number;
@@ -367,8 +369,10 @@ export class RezervacijaLetaComponent implements OnInit {
           if (p.userName == username[2]) {
             this.idSedista = this.cart.selectedSeats[0].toString(); 
             this.cart.selectedSeats.splice(0, 1);
-            this.sediste = new Sediste(this.idLeta, this.idSedista, p.name, p.lastname, p.brojPasosa, true, this.cenaSedista);
+            this.sediste = new Sediste(this.idLeta, this.idSedista, p.name, p.lastname, p.brojPasosa, false, this.cenaSedista);
+            this.pozivnica = new Pozivnica(this.idLeta, this.idSedista, p.name, p.lastname, p.brojPasosa, true, this.cenaSedista, this.currentUser.Username);
             this.service.rezervisiSediste(this.sediste).subscribe();
+            this.service.posaljiPozivnicu(this.pozivnica).subscribe();
           }
         })
       })
@@ -384,8 +388,10 @@ export class RezervacijaLetaComponent implements OnInit {
           if (p.userName == username[2]) {
             this.idSedista = this.cart.selectedSeats[0].toString(); 
             this.cart.selectedSeats.splice(0, 1);
-            this.sediste = new Sediste(this.idLeta, this.idSedista, p.name, p.lastname, p.brojPasosa, true, this.cenaSedista);
+            this.sediste = new Sediste(this.idLeta, this.idSedista, p.name, p.lastname, p.brojPasosa, false, this.cenaSedista);
+            this.pozivnica = new Pozivnica(this.idLeta, this.idSedista, p.name, p.lastname, p.brojPasosa, true, this.cenaSedista, this.currentUser.Username);
             this.service.rezervisiSediste(this.sediste).subscribe();
+            this.service.posaljiPozivnicu(this.pozivnica).subscribe();
           }
         })
       })

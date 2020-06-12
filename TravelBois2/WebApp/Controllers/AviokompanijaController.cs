@@ -109,6 +109,16 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
+        [Route("AddPozivnica")]
+        public async Task<ActionResult<Pozivnica>> AddPozivnica(Pozivnica pozivnica)
+        {
+            _context.Pozivnice.Add(pozivnica);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetPozivnica", new { id = pozivnica.Id }, pozivnica);
+
+        }
+
+        [HttpPost]
         [Route("AddOcenaAviokompanije")]
         public async Task<ActionResult<Ocena>> AddOcenaAviokompanije(Ocena ocena)
         {
@@ -154,6 +164,13 @@ namespace WebApp.Controllers
         public async Task<ActionResult<IEnumerable<Sediste>>> GetSedista()
         {
             return await _context.SedistaLeta.ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("GetPozivnice")]
+        public async Task<ActionResult<IEnumerable<Pozivnica>>> GetPozivnice()
+        {
+            return await _context.Pozivnice.ToListAsync();
         }
 
         [HttpGet]
