@@ -51,6 +51,8 @@ import { RezervacijaLetaComponent } from './Komponente/Avio/rezervacija-leta/rez
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor } from './shared/auth.interceptor';
+import { BrzeRezervacijeAdminComponent } from './Komponente/Avio/brze-rezervacije-admin/brze-rezervacije-admin.component';
+import { LetBrzaRezervacijaComponent } from './Komponente/Avio/let-brza-rezervacija/let-brza-rezervacija.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +92,9 @@ import { AuthInterceptor } from './shared/auth.interceptor';
     OcenjivanjeComponent,
     OceniLetComponent,
     PozivniceComponent,
-    RezervacijaLetaComponent
+    RezervacijaLetaComponent,
+    BrzeRezervacijeAdminComponent,
+    LetBrzaRezervacijaComponent
   ],
   imports: [
     BrowserModule,

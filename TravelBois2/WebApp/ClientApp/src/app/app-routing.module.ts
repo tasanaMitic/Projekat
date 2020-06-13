@@ -34,6 +34,8 @@ import { OceniLetComponent } from './Komponente/Avio/oceni-let/oceni-let.compone
 import { PozivniceComponent } from './Komponente/Korisnicki/pozivnice/pozivnice.component';
 import { RezervacijaLetaComponent } from './Komponente/Avio/rezervacija-leta/rezervacija-leta.component';
 import { AuthGuard } from './shared/auth.guard';
+import { BrzeRezervacijeAdminComponent } from './Komponente/Avio/brze-rezervacije-admin/brze-rezervacije-admin.component';
+import { LetBrzaRezervacijaComponent } from './Komponente/Avio/let-brza-rezervacija/let-brza-rezervacija.component';
 
 
 const routes: Routes = [
@@ -70,7 +72,9 @@ const routes: Routes = [
   { path: 'oceni/:naziv', component: OcenjivanjeComponent, canActivate: [AuthGuard]},
   { path: 'oceniLet/:id/:relacija', component: OceniLetComponent, canActivate: [AuthGuard]},
   { path: 'pozivnice', component: PozivniceComponent, canActivate: [AuthGuard] },
-  { path: 'rezervacija/:naziv/:id', component: RezervacijaLetaComponent, canActivate: [AuthGuard]}
+  { path: 'rezervacija/:naziv/:id', component: RezervacijaLetaComponent, canActivate: [AuthGuard] },
+  { path: 'napravi-brze-rezervacije', component: BrzeRezervacijeAdminComponent, canActivate: [AuthGuard] },
+  { path: 'let-brza-rezervacija/:id', component: LetBrzaRezervacijaComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

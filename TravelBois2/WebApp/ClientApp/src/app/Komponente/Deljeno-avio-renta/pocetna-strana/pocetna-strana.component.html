@@ -67,39 +67,47 @@
 
         <!--Prikaz adminima avio kompanija-->
 
-<div *ngIf="getType() === 'AvioAdmin'" class="grid-container">    
-    <a routerLink="/lista-letova">
-        <div class="servis-blok">
-            <img class="servis-image" src="assets\images\pocetna\airline-admin/let.jpg">
-            <div class="img-text-container">
-                Lista letova
-            </div>
-        </div>
-    </a>
-    <a routerLink="/izvestaj-avio">
-        <div class="servis-blok">
-            <img class="servis-image" src="assets\images\pocetna\airline-admin\izvestaj-prihoda.jpeg">
-            <div class="img-text-container">
-                Izvestaj o poslovanju
-            </div>
-        </div>
-    </a>
-    <a routerLink="/cenovnik-avio">
-        <div class="servis-blok">
-            <img class="servis-image" src="assets\images\pocetna\airline-admin\wallet.jpg">
-            <div class="img-text-container">
-                Cenovnik usluga
-            </div>
-        </div>
-    </a>
-    <a routerLink="/destinacije-avio">
-        <div class="servis-blok">
-            <img class="servis-image" src="assets\images\pocetna\airline-admin\destinacije.jpg">
-            <div class="img-text-container">
-                Destinacije
-            </div>
-        </div>
-    </a>
+<div *ngIf="getType() === 'AvioAdmin'" class="grid-container">
+  <a routerLink="/lista-letova">
+    <div class="servis-blok">
+      <img class="servis-image" src="assets\images\pocetna\airline-admin/let.jpg">
+      <div class="img-text-container">
+        Lista letova
+      </div>
+    </div>
+  </a>
+  <a routerLink="/izvestaj-avio">
+    <div class="servis-blok">
+      <img class="servis-image" src="assets\images\pocetna\airline-admin\izvestaj-prihoda.jpeg">
+      <div class="img-text-container">
+        Izvestaj o poslovanju
+      </div>
+    </div>
+  </a>
+  <a routerLink="/cenovnik-avio">
+    <div class="servis-blok">
+      <img class="servis-image" src="assets\images\pocetna\airline-admin\wallet.jpg">
+      <div class="img-text-container">
+        Cenovnik usluga
+      </div>
+    </div>
+  </a>
+  <a routerLink="/destinacije-avio">
+    <div class="servis-blok">
+      <img class="servis-image" src="assets\images\pocetna\airline-admin\destinacije.jpg">
+      <div class="img-text-container">
+        Destinacije
+      </div>
+    </div>
+  </a>
+  <a routerLink="/napravi-brze-rezervacije">
+    <div class="servis-blok">
+      <img class="servis-image" src="assets\images\pocetna\airline-admin\brzeRezevacije.jpg">
+      <div class="img-text-container">
+        Brze rezervacije
+      </div>
+    </div>
+  </a>
 </div>
 
         <!--Prikaz adminima rent-a-car-a -->
