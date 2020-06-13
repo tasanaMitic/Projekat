@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common'
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { Let } from '../../../entities/objects/let';
 import { LetoviService } from '../../../shared/letovi.service';
 import { element } from 'protractor';
@@ -8,6 +8,7 @@ import { Aerodrom } from '../../../entities/objects/aerodrom';
 import { AppComponent } from '../../../app.component';
 import { ToastrService } from 'ngx-toastr';
 import { DestinacijeService } from '../../../shared/destinacije.service';
+import { Presedanje } from '../../../entities/objects/presedanje';
 
 @Component({
   selector: 'app-dodaj-let',
@@ -16,6 +17,7 @@ import { DestinacijeService } from '../../../shared/destinacije.service';
 })
 export class DodajLetComponent implements OnInit {
   letPodaciForm: FormGroup;
+  presedanjaForm: FormGroup;
   tip: String;
   empty: number;
   let: Let;
@@ -33,16 +35,21 @@ export class DodajLetComponent implements OnInit {
   lokacije: string;
   lokacijePresedanja: Array<string>;
   cenaKarte: number;
-  listaAerodroma: Array<Aerodrom>;
   moguceDestinacije: Array<string>;
   grad: string;
   drzava: string;
   aerodrom: Aerodrom;
 
-  constructor(private location: Location, private service: LetoviService, private toastr: ToastrService, private serviceD: DestinacijeService) {
+  presedanjaData: Array<string>;
+  presedanjaDataFilter: Array<string>;
+  listaPresedanja: Array<Presedanje>;
+
+
+  constructor(private location: Location, private formBuilder: FormBuilder, private service: LetoviService, private toastr: ToastrService, private serviceD: DestinacijeService) {
     this.empty = 0;
     this.dugme = false;
     this.moguceDestinacije = new Array<string>();
+    this.presedanjaData = new Array<string>();
   }
 
   ngOnInit(): void {
@@ -62,7 +69,6 @@ export class DodajLetComponent implements OnInit {
       'duzinaPutovanja': new FormControl('', Validators.required),
       'klasa': new FormControl('', Validators.required),
       'tipLeta': new FormControl('', Validators.required),
-      'lokacijePresedanja': new FormControl('',),
       'cenaKarte': new FormControl('', Validators.required)
     });
 
@@ -71,7 +77,7 @@ export class DodajLetComponent implements OnInit {
 
   }
 
-  PolaznaChanged(e) { }
+  PolaznaChanged(e) {}
   OdredisnaChanged(e) {}
 
 
@@ -80,8 +86,13 @@ export class DodajLetComponent implements OnInit {
       destinacije.forEach(element => {
         if (element.aviokompanija == AppComponent.avioKompanija.naziv) {
           this.moguceDestinacije.push(element.grad);
+          this.presedanjaData.push(element.grad + ',' + element.drzava);
         }        
       })
+    });
+
+    this.presedanjaForm = this.formBuilder.group({
+      presedanja: new FormArray([])
     });
   }
 
@@ -97,7 +108,8 @@ export class DodajLetComponent implements OnInit {
 
   onSubmit() {
     this.lokacijePresedanja = new Array<string>();
-    this.listaAerodroma = new Array<Aerodrom>();
+    this.listaPresedanja = new Array<Presedanje>();
+
     this.polaznaDestinacija = this.letPodaciForm.get('polaznaDestinacija').value;
     this.odredisnaDestinacija = this.letPodaciForm.get('odredisnaDestinacija').value;
     this.datumPoletanja = this.letPodaciForm.get('datumPoletanja').value;
@@ -108,27 +120,35 @@ export class DodajLetComponent implements OnInit {
     this.duzinaPutovanja = this.letPodaciForm.get('duzinaPutovanja').value;
     this.klasa = this.letPodaciForm.get('klasa').value;
     this.tipLeta = this.letPodaciForm.get('tipLeta').value;
-    this.lokacije = this.letPodaciForm.get('lokacijePresedanja').value;
-    if (this.lokacije != "") {
-    this.lokacijePresedanja = this.lokacije.split(",");
-    
-      this.lokacijePresedanja.forEach(element => {
-        let a = element.split("/");
-        this.grad = a[0];
-        this.drzava = a[1];
-        this.aerodrom = new Aerodrom(this.grad, this.drzava, AppComponent.avioKompanija.naziv);
-        this.listaAerodroma.push(this.aerodrom);
-      })
-    }
+    this.lokacijePresedanja = this.presedanjaForm.get('presedanja').value;
     this.cenaKarte = this.letPodaciForm.get('cenaKarte').value;
 
-    console.log(this.lokacijePresedanja);
+    this.lokacijePresedanja.forEach(element => {
+      var lok = element.split(",");
+      this.listaPresedanja.push(new Presedanje(lok[0], lok[1]));
+    })
 
-    this.let = new Let(AppComponent.avioKompanija.naziv, this.polaznaDestinacija, this.odredisnaDestinacija, this.datumPoletanja, this.vremePoletanja, this.datumSletanja, this.vremeSletanja, this.vremePutovanja, this.duzinaPutovanja, this.klasa, this.tipLeta, this.listaAerodroma, this.cenaKarte);
+    
+    this.let = new Let(AppComponent.avioKompanija.naziv, this.polaznaDestinacija, this.odredisnaDestinacija, this.datumPoletanja, this.vremePoletanja, this.datumSletanja, this.vremeSletanja, this.vremePutovanja, this.duzinaPutovanja, this.klasa, this.tipLeta, this.listaPresedanja, this.cenaKarte);
     this.service.addLet(this.let).subscribe();
     this.toastr.success('Uspesno ste dodali let!');
     this.dugme = true;
     //this.location.back();
+  }
+
+  onPresedanjaChange(e) {
+    const presedanja: FormArray = this.presedanjaForm.get('presedanja') as FormArray;
+    if (e.target.checked) {
+      if (!presedanja.value.includes(e.target.value)) {
+        presedanja.push(new FormControl(e.target.value));
+      }
+    }
+    else {
+      const index = presedanja.controls.findIndex(x => x.value === e.target.value);
+      presedanja.removeAt(index);
+    }
+
+
   }
 
   onBack(){

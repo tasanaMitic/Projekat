@@ -42,28 +42,6 @@
   </div>
 </div>
 
-<!--<div [hidden]="!rezervisano">
-  <table>
-    <thead>
-      <tr>
-        <td colspan="4" style="font-weight:700">
-          Rezervisana sedista:
-        </td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let seat of cart.selectedSeats">
-        <td>{{seat}}</td>
-        <td [hidden]="moje || !vise">
-          <button class="btn btn-let" (click)="MojeSediste(seat)">Moje sediste</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div>
-    <button [hidden]="!vise" style=" margin-left: 0.2%;" class="btn btn-success" (click)="PozoviPrijatelja()">Pozovi prijatelja</button>
-  </div>
-</div>-->
 <div [hidden]="empty != 2">
   <form [formGroup]="prijateljiForm" (ngSubmit)="PrijateljiCheckBox()">
     <div class="form-group">

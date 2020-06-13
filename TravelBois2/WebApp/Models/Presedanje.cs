@@ -17,8 +17,6 @@ namespace WebApp.Models
         public string Grad { get; set; }
         [Required]
         public string Drzava { get; set; }
-        [Required]
-        public int IdLeta { get; set; }
 
     }
 }

@@ -27,7 +27,7 @@ namespace ServerApp.Models
         public string MestoPolaska { get; set; }
         [Required]
         public string MestoDolaska { get; set; }
-        public ICollection<Aerodrom> Presedanja { get; set; }
+        public ICollection<Presedanje> PresedanjaLeta { get; set; }
         [Required]
         public int RazdaljinaPutovanja { get; set; }
         [Required]
@@ -36,7 +36,6 @@ namespace ServerApp.Models
         public KlasaLeta KlasaLeta { get; set; }
         [Required]
         public TipLeta TipLeta { get; set; }
-        //public ICollection<Ocena> Ocene { get; set; }
         [Required]
         public int CenaKarte { get; set; }
         [Required]

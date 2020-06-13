@@ -4,6 +4,8 @@ import { TipPrtljaga } from 'src/app/_enums';
 import { AvioKompanija } from './avio-kompanija';
 import { Aerodrom } from './aerodrom';
 import { Sediste } from './sediste';
+import { Presedanje } from './presedanje';
+import { element } from 'protractor';
 
 enum TipLeta {
   oneWay = 0,
@@ -16,7 +18,6 @@ enum KlasaLeta {
   bussiness = 2,
 }
 export class Let {
-  //cenovnikPrtljaga: Map<TipPrtljaga, number>
   id: number;
   datumPolaska: string;
   datumDolaska: string;
@@ -24,7 +25,7 @@ export class Let {
   vremeSletanja: string;
   mestoPolaska: string;
   mestoDolaska: string;
-  presedanja: Array<Aerodrom>;
+  presedanjaLeta: Array<Presedanje>;
   razdaljinaPutovanja: number;
   trajanjePutovanja: number; //u minutima
   ocene: Array<Ocena>;
@@ -42,10 +43,13 @@ export class Let {
   this.vremePoletanja = vremePoletanja;
   this.vremeSletanja = vremeSletanja;
     if (presedanja == null) {
-      this.presedanja = new Array<Aerodrom>();
+      this.presedanjaLeta = new Array<Presedanje>();
     }
     else {
-      this.presedanja = presedanja;
+      this.presedanjaLeta = new Array<Presedanje>();
+      presedanja.forEach(element => {
+        this.presedanjaLeta.push(element);
+      })
     }
   this.trajanjePutovanja = trajanjePutovanja;
   this.razdaljinaPutovanja = razdaljinaPutovanja;
@@ -84,15 +88,4 @@ export class Let {
   this.cenaKarte = cena;
   this.ocene = new Array<Ocena>();
   }
-
-    //getTrajanjePutovanja(){
-    //    //return Math.round(this.datDolaska.getTime() - this.datPolaska.getTime()) / 6000;
-    //}
-    //ProsecnaOcena(){
-    //    let sum = 0;
-    //    this.ocene.forEach(element => {
-    //        sum += element.O;
-    //    });
-    //    return Math.round(sum / this.ocene.length);
-    //}
 }

@@ -114,14 +114,18 @@
       </div>
 
       <div [hidden]="empty == 0">
-        <div>
-          <div>
-            <label for="lokacijePresedanja">Lokacije presedanja(odvojene zarezom ukoliko ih ima vise):</label>
-            <input type="text" class="form-control" id="lokacijePresedanja" formControlName="lokacijePresedanja">
-            <div class="alert alert-danger" *ngIf="letPodaciForm.controls.lokacijePresedanja.invalid && (letPodaciForm.controls.lokacijePresedanja.dirty || letPodaciForm.controls.lokacijePresedanja.touched)">
-              Unesite lokaciju/e presedanja
+        <div >
+          <form [formGroup]="presedanjaForm">
+            <div>
+              <label for="lokacijePresedanja">Lokacije presedanja:</label>
+              <div *ngFor="let pres of presedanjaData">
+                <input style="margin-left: 60px" type="checkbox" [value]="pres" (change)="onPresedanjaChange($event)">{{pres}}
+              </div>
+              <!--<div class="alert alert-danger" *ngIf="letPodaciForm.controls.lokacijePresedanja.invalid && (letPodaciForm.controls.lokacijePresedanja.dirty || letPodaciForm.controls.lokacijePresedanja.touched)">
+      Unesite lokaciju/e presedanja
+    </div>-->
             </div>
-          </div>
+          </form>
         </div>
       </div>
 

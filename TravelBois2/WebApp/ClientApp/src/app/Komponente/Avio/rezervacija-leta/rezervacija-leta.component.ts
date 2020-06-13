@@ -266,17 +266,6 @@ export class RezervacijaLetaComponent implements OnInit {
     });
   }
 
-  //MojeSediste(seat: string) {
-  //  this.moje = true;
-  //  var sediste = seat.replace(" ", "_");
-  //  this.blockSeats(sediste);
-    
-  //  this.cart.selectedSeats = this.cart.selectedSeats.filter(item => item != seat);
-
-  //  //UPISATI PODATKE U SEDISTE
-  //  this.prijatelj = true;
-  //}
-
   ucitajLetInfo() {
     this.service.getLetovi().subscribe(letovi => {
       letovi.forEach(element => {
@@ -314,10 +303,7 @@ export class RezervacijaLetaComponent implements OnInit {
           }
         })
       })
-    });
-
-    
-    
+    });      
 
     this.prijateljiForm = this.formBuilder.group({
       prijatelji: new FormArray([])
