@@ -32,7 +32,7 @@ export class IstorijaComponent implements OnInit {
   avioRezervacije: Array<Let>;
   avioIstorija: Array<Let>;
   idLetLista: Array<number>;
-  avioSediste: Array<{ idLeta: number, idSedista: string }>;
+  avioSediste: Array<{ idLeta: number, idSedista: string, cenaSedista: number }>;
   listaSedista: Array<string>;  //za otkazivanje
   listaLetova: Array<number>;  //za otkazivanje
 
@@ -48,12 +48,13 @@ export class IstorijaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.avioSediste = new Array<{ idLeta: number, idSedista: string }>();
+    this.avioSediste = new Array<{ idLeta: number, idSedista: string, cenaSedista: number }>();
     this.service.getSediste().subscribe(sedista => {
       sedista.forEach(element => {
         if (element.brojPasosa == this.currentUser.BrojPasosa) {
           if (element.rezervisano) {
-            this.avioSediste.push({ idLeta: element.idLeta, idSedista: element.idSedista });
+
+            this.avioSediste.push({ idLeta: element.idLeta, idSedista: element.idSedista, cenaSedista: element.cenaSedista });
           }
         }
       })
@@ -86,9 +87,15 @@ export class IstorijaComponent implements OnInit {
 
                     this.emptyRL = 1;
 
+                    if (element.cenaKarte! = s.cenaSedista) {
+                      this.avioRezervacije.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+                        element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanjaLeta, s.cenaSedista));
+                    }
+                    else {
+                      this.avioRezervacije.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+                        element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanjaLeta, element.cenaKarte));
+                    }
 
-                    this.avioRezervacije.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
-                      element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanjaLeta, element.cenaKarte));
                     this.idLetLista.push(element.id);
                     this.listaSedista.push(s.idSedista);
                     this.listaLetova.push(s.idLeta);
@@ -102,8 +109,16 @@ export class IstorijaComponent implements OnInit {
                 }
                 else {
                   this.emptyRL = 1;
-                  this.avioRezervacije.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
-                    element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanjaLeta, element.cenaKarte));
+
+                  if (element.cenaKarte != s.cenaSedista) {
+                    this.avioRezervacije.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+                      element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanjaLeta, s.cenaSedista));
+                  }
+                  else {
+                    this.avioRezervacije.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
+                      element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanjaLeta, element.cenaKarte));
+                  }
+                  
                   this.idLetLista.push(element.id);
                   this.listaSedista.push(s.idSedista);
                   this.listaLetova.push(s.idLeta);
