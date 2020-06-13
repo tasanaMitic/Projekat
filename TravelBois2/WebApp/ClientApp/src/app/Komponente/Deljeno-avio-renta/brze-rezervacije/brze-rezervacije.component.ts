@@ -7,6 +7,8 @@ import { LetoviService } from '../../../shared/letovi.service';
 import { element } from 'protractor';
 import { Let } from '../../../entities/objects/let';
 import { BrzaRezervacija } from '../../../entities/objects/brza-rezervacija';
+import { Sediste } from '../../../entities/objects/sediste';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-brze-rezervacije',
@@ -19,6 +21,7 @@ export class BrzeRezervacijeComponent implements OnInit {
   letData: Array<Array<string>>;
   letovi: Array<Let>;
   idLetova: Array<number>;
+  idBrzihRezervacija: Array<number>;
   brzeRezervacije: Array<BrzaRezervacija>;
   empty: number;
 
@@ -26,8 +29,8 @@ export class BrzeRezervacijeComponent implements OnInit {
   kolaData: Array<Array<string>>;
 
 
-  constructor(private router: Router, private service: LetoviService) { 
-    this.currentUser = AppComponent.currentUser as RegisteredUser;
+  constructor(private router: Router, private service: LetoviService, private toastr: ToastrService) { 
+    this.currentUser = AppComponent.currentUser ;
     this.letData = new Array<Array<string>>();
     this.kolaData = new Array<Array<string>>();
     this.empty = 0;
@@ -35,23 +38,6 @@ export class BrzeRezervacijeComponent implements OnInit {
     this.ucitajLetove();
     this.ucitajBrzeRezervacije();
     
-
-    //AppComponent.rente.forEach(element => {
-    //  element.Filijale.forEach(element => {
-    //    element.ListaKola.forEach(element => {
-    //      let temp = new Array<string>();
-    //      temp.push(element.renta);
-    //      temp.push(element.GetMarka())
-    //      temp.push(element.GetModel())
-    //      temp.push(element.Godiste.toString())
-    //      temp.push(element.BrojMesta.toString())
-    //      temp.push(TipVozila[element.Tip])
-    //      temp.push('1500')
-    //      //temp.push(element.ProsecnaOcena().toString())
-    //      this.kolaData.push(temp)
-    //    });
-    //  });
-    //});
   }
   ngOnInit(): void {}
 
@@ -72,6 +58,7 @@ export class BrzeRezervacijeComponent implements OnInit {
           temp.push(element.idSedista);
           temp.push(this.letovi[index].cenaKarte.toString());
           temp.push(element.cenaSedista.toString())
+          temp.push(letic);
           this.letData.push(temp);
         }
       })
@@ -95,16 +82,34 @@ export class BrzeRezervacijeComponent implements OnInit {
   }
 
   ucitajBrzeRezervacije() {
+    this.idBrzihRezervacija = new Array<number>();
     this.brzeRezervacije = new Array<BrzaRezervacija>();
     this.service.getBrzeRezervacije().subscribe(brze => {
       brze.forEach(element => {
+        this.idBrzihRezervacija.push(element.id);
         this.brzeRezervacije.push(new BrzaRezervacija(element.idLeta, element.idSedista, element.cenaSedista));
       })
     });
   }
 
   RezervisiLet(i: number) {
-    console.log(i)
+    var idLeta = this.letData[i][10];
+    var idSedista = this.letData[i][7];
+    var idBrzeRezervacije = this.idBrzihRezervacija[i];
+    var cenaSedista = this.letData[i][9];
+    var sediste = new Sediste(parseInt(idLeta), idSedista, this.currentUser.Ime, this.currentUser.Prezime, this.currentUser.BrojPasosa, true, parseInt(cenaSedista));
+
+    this.rezervisi(sediste, idBrzeRezervacije);
+    this.letData.splice(i, 1);
+    if (this.letData.length == 0) {
+      this.empty = 2;
+    }
+    this.toastr.success("Uspesno ste rezervisali mesto na letu!")
+  }
+
+  rezervisi(sediste: Sediste, idBrzeRezervacije: number) {
+    this.service.rezervisiSediste(sediste).subscribe();
+    this.service.deleteBrzaRezervacija(idBrzeRezervacije).subscribe();
   }
   RezervisiKola() { }
 

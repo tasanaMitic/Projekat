@@ -3,7 +3,7 @@
 <div [hidden]="empty == 1">
   <button type="button" class="btn btn-primary"  (click)="prikazi()">Brze rezervacije</button>
 </div>
-<div class="istorija-container" [hidden]="empty == 0">
+<div class="istorija-container" [hidden]="empty != 1">
   <table>
     <thead>
       <tr>
@@ -35,22 +35,6 @@
   <h5>Trenutno nema brzih rezervacija!</h5>
 </div>
 <br>
-<!--<div class="istorija-container">
-    <h2> Brze rezervacije rentiranih kola</h2>
-    <table>
-        <th *ngFor="let column of kolaHeaders">
-            {{column}}
-        </th>
-        <tr *ngFor="let row of kolaData">
-            <td *ngFor="let data of row">
-                {{data}}
-            </td>
-            <td>
-                <button (click)="RezervisiKola()">Rezervisi</button>
-            </td>
-        </tr>
-    </table>
-</div>-->
 
 <div>
   <button class="btn btn-primary" style="float: left; margin-left: 0.2%;" (click)="onBack()" type="button">Nazad</button>

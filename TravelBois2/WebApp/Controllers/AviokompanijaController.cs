@@ -236,6 +236,21 @@ namespace WebApp.Controllers
         }
 
         [HttpDelete]
+        [Route("DeleteBrzaRezervacija/{id}")]
+        public async Task<ActionResult<BrzaRezervacija>> DeleteBrzaRezervacija(int id)
+        {
+            var brzaRezervacija = await _context.BrzeRezervacije.FindAsync(id);
+            if (brzaRezervacija == null)
+            {
+                return NotFound();
+            }
+
+            _context.BrzeRezervacije.Remove(brzaRezervacija);
+            await _context.SaveChangesAsync();
+            return brzaRezervacija;
+        }
+
+        [HttpDelete]
         [Route("DeleteSediste/{idLeta}/{idSedista}")]
         public async Task<ActionResult<Sediste>> DeleteSediste(int idLeta, string idSedista)
         {

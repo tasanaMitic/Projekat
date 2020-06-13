@@ -47,6 +47,10 @@ export class LetoviService {
     return this.http.post<BrzaRezervacija>(this.BaseURI + '/Aviokompanija/AddBrzaRezervacija', brzaRezervacija);
   }
 
+  deleteBrzaRezervacija(id: number): Observable<any> {
+    return this.http.delete(this.BaseURI + '/Aviokompanija/DeleteBrzaRezervacija/' + id);
+  }
+
   posaljiPozivnicu(pozivnica: Pozivnica): Observable<Pozivnica> {
     return this.http.post<Pozivnica>(this.BaseURI + '/Aviokompanija/AddPozivnica', pozivnica);
   }
