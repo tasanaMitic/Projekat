@@ -3,7 +3,7 @@ export class BrzaRezervacija {
   cenaSedista: number;
   idSedista: string;
 
-  constructor(idLeta: number, idSedista: string, ime: string, prezime: string, brojPasosa: string, rezervisano: boolean, cenaSedista: number) {
+  constructor(idLeta: number, idSedista: string, cenaSedista: number) {
     this.idLeta = idLeta;
     this.idSedista = idSedista;
     this.cenaSedista = cenaSedista;

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { LetoviService } from '../../../shared/letovi.service';
 import { element } from 'protractor';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { BrzaRezervacija } from '../../../entities/objects/brza-rezervacija';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-let-brza-rezervacija',
@@ -12,6 +14,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LetBrzaRezervacijaComponent implements OnInit {
   cenaForm: FormGroup;
+  novaCena: number;
 
   private seatConfig: any = null;
   private seatmap = [];
@@ -33,12 +36,14 @@ export class LetBrzaRezervacijaComponent implements OnInit {
 
   idLeta: number;
 
-  constructor(private route: ActivatedRoute, private location: Location, private service: LetoviService) {
+  constructor(private route: ActivatedRoute, private location: Location, private service: LetoviService, private toastr: ToastrService, private router: Router) {
     this.cenaForm = new FormGroup({
       'cena': new FormControl('', Validators.required)
     });
 
+    this.ucitajBrzeRezervacije();
     this.ucitajSedista();
+    
   }
 
   ngOnInit(): void {
@@ -184,13 +189,17 @@ export class LetBrzaRezervacijaComponent implements OnInit {
       for (let index = 0; index < seatsToBlockArr.length; index++) {
         var seat = seatsToBlockArr[index] + "";
         var seatSplitArr = seat.split("_");
+        console.log("Split seat: ", seatSplitArr);
         for (let index2 = 0; index2 < this.seatmap.length; index2++) {
           const element = this.seatmap[index2];
           if (element.seatRowLabel == seatSplitArr[0]) {
             var seatObj = element.seats[parseInt(seatSplitArr[1]) - 1];
             if (seatObj) {
+              console.log("\n\n\nFount Seat to block: ", seatObj);
               seatObj["status"] = "unavailable";
               this.seatmap[index2]["seats"][parseInt(seatSplitArr[1]) - 1] = seatObj;
+              console.log("\n\n\nSeat Obj", seatObj);
+              console.log(this.seatmap[index2]["seats"][parseInt(seatSplitArr[1]) - 1]);
               break;
             }
           }
@@ -207,7 +216,18 @@ export class LetBrzaRezervacijaComponent implements OnInit {
           this.blockSeats(sediste);
         }
       })
-    });
+    });    
+  }
+
+  ucitajBrzeRezervacije() {
+    this.service.getBrzeRezervacije().subscribe(sedista => {
+      sedista.forEach(element => {
+        if (element.idLeta == this.idLeta) {
+          var sediste = element.idSedista.replace(" ", "_");
+          this.blockSeats(sediste);
+        }
+      })
+    });    
   }
 
   processBooking() {
@@ -215,7 +235,13 @@ export class LetBrzaRezervacijaComponent implements OnInit {
   }
 
   NapraviBrzuRezervaciju() {
-    console.log(this.cart.selectedSeats);
+    this.cart.selectedSeats.forEach(element => {
+      this.novaCena = this.cenaForm.get('cena').value;
+      var brzaRezervacija = new BrzaRezervacija(this.idLeta, element.toString(), this.novaCena);
+      this.service.addBrzaRezervacija(brzaRezervacija).subscribe();
+    })
+    this.toastr.success("Uspesno ste napravili brzu rezervaciju!");
+    this.router.navigateByUrl('/napravi-brze-rezervacije');
   }
 
   onBack() {
