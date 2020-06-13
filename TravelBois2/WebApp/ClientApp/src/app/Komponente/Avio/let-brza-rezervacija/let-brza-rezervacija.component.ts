@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { LetoviService } from '../../../shared/letovi.service';
 import { element } from 'protractor';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-let-brza-rezervacija',
@@ -10,6 +11,8 @@ import { element } from 'protractor';
   styleUrls: ['./let-brza-rezervacija.component.css']
 })
 export class LetBrzaRezervacijaComponent implements OnInit {
+  cenaForm: FormGroup;
+
   private seatConfig: any = null;
   private seatmap = [];
   empty = 0;
@@ -31,6 +34,10 @@ export class LetBrzaRezervacijaComponent implements OnInit {
   idLeta: number;
 
   constructor(private route: ActivatedRoute, private location: Location, private service: LetoviService) {
+    this.cenaForm = new FormGroup({
+      'cena': new FormControl('', Validators.required)
+    });
+
     this.ucitajSedista();
   }
 
@@ -207,8 +214,19 @@ export class LetBrzaRezervacijaComponent implements OnInit {
     this.empty = 1;
   }
 
+  NapraviBrzuRezervaciju() {
+    console.log(this.cart.selectedSeats);
+  }
+
   onBack() {
-    this.location.back();
+    if (this.empty == 0) {
+      this.location.back();
+    }
+    else {
+      this.empty = 0;
+    }
+
+    
   }
 
 }

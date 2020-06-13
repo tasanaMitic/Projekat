@@ -40,7 +40,22 @@
   </div>
 </div>
 
-<br />
+<div [hidden]="empty == 0">
+  <h3>Unesite novu cenu za odabrano sediste/a:</h3>
+  <form [formGroup]="cenaForm" (ngSubmit)="NapraviBrzuRezervaciju()">
+    <div class="form-group">
+      <div>
+        <label>Cena:</label>
+        <input type="number" class="form-control" id="cena" formControlName="cena" />
+      </div>
+    </div>
+    <div>
+      <button [disabled]="!cenaForm.valid" class="btn btn-rez" style="float: left; margin-left: 0.2%;" type="submit">Sacuvaj</button>
+    </div>
+  </form>
+</div>
+
+<br /><br /><br />
 <div>
   <button class="btn btn-primary" style=" margin-left: 0.2%;" (click)="onBack()" type="button">Nazad</button>
 </div>
