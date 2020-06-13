@@ -9,6 +9,7 @@ import { Aerodrom } from '../../../entities/objects/aerodrom';
 import { element } from 'protractor';
 import { Router } from '@angular/router';
 import { LetoviService } from '../../../shared/letovi.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-istorija',
@@ -31,10 +32,12 @@ export class IstorijaComponent implements OnInit {
   avioRezervacije: Array<Let>;
   avioIstorija: Array<Let>;
   idLetLista: Array<number>;
-  avioSediste: Array<number>;
+  avioSediste: Array<{ idLeta: number, idSedista: string }>;
+  listaSedista: Array<string>;  //za otkazivanje
+  listaLetova: Array<number>;  //za otkazivanje
 
 
-  constructor(private router: Router, private service: LetoviService) { 
+  constructor(private router: Router, private service: LetoviService, private toastr: ToastrService) { 
     this.currentUser = AppComponent.currentUser as RegisteredUser;
     this.letData = new Array<Array<string>>();
     this.letDataRez = new Array<Array<string>>();
@@ -45,12 +48,12 @@ export class IstorijaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.avioSediste = new Array<number>();
+    this.avioSediste = new Array<{ idLeta: number, idSedista: string }>();
     this.service.getSediste().subscribe(sedista => {
       sedista.forEach(element => {
         if (element.brojPasosa == this.currentUser.BrojPasosa) {
           if (element.rezervisano) {
-            this.avioSediste.push(element.idLeta);
+            this.avioSediste.push({ idLeta: element.idLeta, idSedista: element.idSedista });
           }
         }
       })
@@ -60,12 +63,14 @@ export class IstorijaComponent implements OnInit {
     this.avioIstorija = new Array<Let>();
     this.avioRezervacije = new Array<Let>();
     this.idLetLista = new Array<number>();
+    this.listaSedista = new Array<string>();
+    this.listaLetova = new Array<number>();
 
     //UCITAVANJE LETOVA
     this.service.getLetovi().subscribe(letovi => {
       letovi.forEach(element => {
         this.avioSediste.forEach(s => {
-          if (s == element.id) {
+          if (s.idLeta == element.id) {
             var datum = element.datumPolaska.split("-");
             var danasnji = new Date().toString();
             var danasnjiDatum = danasnji.split(" ");
@@ -85,6 +90,8 @@ export class IstorijaComponent implements OnInit {
                     this.avioRezervacije.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
                       element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
                     this.idLetLista.push(element.id);
+                    this.listaSedista.push(s.idSedista);
+                    this.listaLetova.push(s.idLeta);
                   }
                   else { //od juce pa nadalje
                     this.emptyIL = 1;
@@ -98,6 +105,8 @@ export class IstorijaComponent implements OnInit {
                   this.avioRezervacije.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
                     element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanja, element.cenaKarte));
                   this.idLetLista.push(element.id);
+                  this.listaSedista.push(s.idSedista);
+                  this.listaLetova.push(s.idLeta);
                 }
               }
               else {  //proslog meseca i nadalje
@@ -127,8 +136,15 @@ export class IstorijaComponent implements OnInit {
   }
 
   OtkaziLet(i: number) {
+    var idLeta = this.listaLetova[i];
+    var idSedista = this.listaSedista[i];
 
-    //povezati se sa servisom
+    this.avioRezervacije.splice(i, 1);
+    if (this.avioRezervacije.length == 0) {
+      this.emptyRL = 0
+    }
+    this.service.deleteSediste(idLeta, idSedista).subscribe();
+    this.toastr.success("Uspesno ste otkazali let!");
   }
   OceniKola() { }
   onBack() {
