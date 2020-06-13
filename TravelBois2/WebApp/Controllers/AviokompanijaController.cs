@@ -85,7 +85,7 @@ namespace WebApp.Controllers
             _context.Aerodromi.Add(aerodrom);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAerodrom", new { grad = aerodrom.Grad }, aerodrom);
+            return CreatedAtAction("GetAerodrom", new { id = aerodrom.Id }, aerodrom);
         }
 
         [HttpPost]

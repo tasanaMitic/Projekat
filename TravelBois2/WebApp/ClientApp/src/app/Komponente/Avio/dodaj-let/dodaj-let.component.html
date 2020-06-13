@@ -4,7 +4,10 @@
       <div class="row">
         <div>
           <label for="polaznaDestinacija">Polazna destinacija:</label>
-          <input type="text" class="form-control" id="polaznaDestinacija" formControlName="polaznaDestinacija">
+          <select class="dropbtn" formControlName="polaznaDestinacija" (change)="PolaznaChanged($event)">
+            <option></option>
+            <option *ngFor="let dest of moguceDestinacije">{{dest}}</option>
+          </select>
           <div class="alert alert-danger" *ngIf="letPodaciForm.controls.polaznaDestinacija.invalid && (letPodaciForm.controls.polaznaDestinacija.dirty || letPodaciForm.controls.polaznaDestinacija.touched)">
             Unesite destinaciju
           </div>
@@ -13,7 +16,10 @@
       <div>
         <div>
           <label for="odredisnaDestinacija">Odredisna destinacija:</label>
-          <input type="text" class="form-control" id="odredisnaDestinacija" formControlName="odredisnaDestinacija">
+          <select class="dropbtn" formControlName="odredisnaDestinacija" (change)="OdredisnaChanged($event)">
+            <option></option>
+            <option *ngFor="let dest of moguceDestinacije">{{dest}}</option>
+          </select>
           <div class="alert alert-danger" *ngIf="letPodaciForm.controls.odredisnaDestinacija.invalid && (letPodaciForm.controls.odredisnaDestinacija.dirty || letPodaciForm.controls.odredisnaDestinacija.touched)">
             Unesite destinaciju
           </div>

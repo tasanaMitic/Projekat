@@ -7,6 +7,7 @@ import { element } from 'protractor';
 import { Aerodrom } from '../../../entities/objects/aerodrom';
 import { AppComponent } from '../../../app.component';
 import { ToastrService } from 'ngx-toastr';
+import { DestinacijeService } from '../../../shared/destinacije.service';
 
 @Component({
   selector: 'app-dodaj-let',
@@ -33,16 +34,19 @@ export class DodajLetComponent implements OnInit {
   lokacijePresedanja: Array<string>;
   cenaKarte: number;
   listaAerodroma: Array<Aerodrom>;
+  moguceDestinacije: Array<string>;
   grad: string;
   drzava: string;
   aerodrom: Aerodrom;
 
-  constructor(private location: Location, private service: LetoviService, private toastr: ToastrService) {
+  constructor(private location: Location, private service: LetoviService, private toastr: ToastrService, private serviceD: DestinacijeService) {
     this.empty = 0;
     this.dugme = false;
+    this.moguceDestinacije = new Array<string>();
   }
 
   ngOnInit(): void {
+    this.ucitajMoguceDestinacije();
     this.initForm();
   }
 
@@ -65,6 +69,20 @@ export class DodajLetComponent implements OnInit {
     this.letPodaciForm.controls['klasa'].setValue('economy');
     this.letPodaciForm.controls['tipLeta'].setValue('oneWay');
 
+  }
+
+  PolaznaChanged(e) { }
+  OdredisnaChanged(e) {}
+
+
+  ucitajMoguceDestinacije() {
+    this.serviceD.getAerodromi().subscribe(destinacije => {
+      destinacije.forEach(element => {
+        if (element.aviokompanija == AppComponent.avioKompanija.naziv) {
+          this.moguceDestinacije.push(element.grad);
+        }        
+      })
+    });
   }
 
   radioButton(e: string): void {

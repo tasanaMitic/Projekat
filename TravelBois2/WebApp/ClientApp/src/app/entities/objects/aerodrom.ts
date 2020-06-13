@@ -1,4 +1,5 @@
 export class Aerodrom {
+  id: number;
   grad: string;
   drzava: string;
   aviokompanija: string;
