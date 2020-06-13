@@ -58,7 +58,7 @@ export class BrzeRezervacijeComponent implements OnInit {
           temp.push(element.idSedista);
           temp.push(this.letovi[index].cenaKarte.toString());
           temp.push(element.cenaSedista.toString())
-          temp.push(letic);
+          temp.push(letic.toString());
           this.letData.push(temp);
         }
       })
