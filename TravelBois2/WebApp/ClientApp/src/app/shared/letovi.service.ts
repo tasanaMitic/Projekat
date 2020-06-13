@@ -5,6 +5,7 @@ import { Let } from '../entities/objects/let';
 import { Sediste } from '../entities/objects/sediste';
 import { Pozivnica } from '../entities/objects/pozivnica';
 import { Presedanje } from '../entities/objects/presedanje';
+import { BrzaRezervacija } from '../entities/objects/brza-rezervacija';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,14 @@ export class LetoviService {
 
   getSediste(): Observable<Sediste[]> {
     return this.http.get<Sediste[]>(this.BaseURI + '/Aviokompanija/GetSedista');
+  }
+
+  getBrzeRezervacije(): Observable<BrzaRezervacija[]> {
+    return this.http.get<BrzaRezervacija[]>(this.BaseURI + '/Aviokompanija/GetBrzeRezervacije');
+  }
+
+  addBrzaRezervacija(brzaRezervacija: BrzaRezervacija): Observable<BrzaRezervacija> {
+    return this.http.post<BrzaRezervacija>(this.BaseURI + '/Aviokompanija/AddBrzaRezervacija', brzaRezervacija);
   }
 
   posaljiPozivnicu(pozivnica: Pozivnica): Observable<Pozivnica> {

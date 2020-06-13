@@ -117,6 +117,16 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
+        [Route("AddBrzaRezervacija")]
+        public async Task<ActionResult<BrzaRezervacija>> AddBrzaRezervacija(BrzaRezervacija brzaRezervacija)
+        {
+            _context.BrzeRezervacije.Add(brzaRezervacija);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetBrzaRezervacija", new { id = brzaRezervacija.Id }, brzaRezervacija);
+
+        }
+
+        [HttpPost]
         [Route("AddPozivnica")]
         public async Task<ActionResult<Pozivnica>> AddPozivnica(Pozivnica pozivnica)
         {
@@ -172,6 +182,13 @@ namespace WebApp.Controllers
         public async Task<ActionResult<IEnumerable<Sediste>>> GetSedista()
         {
             return await _context.SedistaLeta.ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("GetBrzeRezervacije")]
+        public async Task<ActionResult<IEnumerable<BrzaRezervacija>>> GetBrzeRezervacije()
+        {
+            return await _context.BrzeRezervacije.ToListAsync();
         }
 
         [HttpGet]
