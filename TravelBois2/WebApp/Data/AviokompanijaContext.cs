@@ -21,5 +21,6 @@ namespace WebApp.Data
         public DbSet<OcenaLeta> OceneLeta { get; set; }
         public DbSet<Sediste> SedistaLeta { get; set; }
         public DbSet<Pozivnica> Pozivnice { get; set; }
+        public DbSet<Presedanje> Presedanja { get; set; }
     }
 }

@@ -39,7 +39,7 @@ export class PrijateljiComponent implements OnInit {
   prijatelj: Prijatelj;
   prihvacenPrijatelj: PrihvacenPrijatelj;
 
-  constructor(private router: Router, public fb: FormBuilder, private service: UserService) {
+  constructor(private router: Router, public fb: FormBuilder, private service: UserService, private toastr: ToastrService) {
     this.empty = 0;
     this.empty1 = 0;
     this.empty2 = 0;
