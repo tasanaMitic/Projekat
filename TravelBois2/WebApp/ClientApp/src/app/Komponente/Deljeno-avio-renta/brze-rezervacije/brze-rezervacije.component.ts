@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { RegisteredUser } from '../../../entities/users/registered-user/registered-user';
 import { AppComponent } from '../../../app.component';
 import { TipVozila } from '../../../_enums';
+import { Router } from '@angular/router';
+import { LetoviService } from '../../../shared/letovi.service';
+import { element } from 'protractor';
+import { Let } from '../../../entities/objects/let';
+import { BrzaRezervacija } from '../../../entities/objects/brza-rezervacija';
 
 @Component({
   selector: 'app-brze-rezervacije',
@@ -10,53 +15,100 @@ import { TipVozila } from '../../../_enums';
 })
 export class BrzeRezervacijeComponent implements OnInit {
   currentUser : RegisteredUser;
-  letHeaders = ['Avio kompanija', 'Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Klasa', 'Cena', 'Prosecna ocena', ''];
-  letData : Array<Array<string>>;
+  letHeaders = ['Aviokompanija', 'Mesto polaska', 'Mesto dolaska', 'Datum polaska', 'Datum dolaska', 'Vreme poletanja', 'Vreme sletanja', 'Sediste','Originalna cena', 'Cena s popustom' ];
+  letData: Array<Array<string>>;
+  letovi: Array<Let>;
+  idLetova: Array<number>;
+  brzeRezervacije: Array<BrzaRezervacija>;
+  empty: number;
 
   kolaHeaders = ['Rent-A-Car', 'Marka', 'Model', 'Godiste', 'Broj mesta', 'Tip', 'Cena po danu', 'Prosecna ocena'];
   kolaData: Array<Array<string>>;
 
 
-  constructor() { 
+  constructor(private router: Router, private service: LetoviService) { 
     this.currentUser = AppComponent.currentUser as RegisteredUser;
     this.letData = new Array<Array<string>>();
     this.kolaData = new Array<Array<string>>();
+    this.empty = 0;
+
+    this.ucitajLetove();
+    this.ucitajBrzeRezervacije();
     
-    //AppComponent.avioKompanije.forEach(element => {
-    //  element.letovi.forEach(element => {
-    //    let temp = new Array<string>();
-    //    temp.push(element.avioKompanija.naziv);
-    //    temp.push(element.mestoPolaska)
-    //    temp.push(element.mestoDolaska)
-    //    temp.push(element.DatumPolaska)
-    //    temp.push(element.DatumDolaska)
-    //    temp.push('Business')
-    //    temp.push('5000')
-    //    temp.push(element.ProsecnaOcena().toString())
-    //    this.letData.push(temp)
+
+    //AppComponent.rente.forEach(element => {
+    //  element.Filijale.forEach(element => {
+    //    element.ListaKola.forEach(element => {
+    //      let temp = new Array<string>();
+    //      temp.push(element.renta);
+    //      temp.push(element.GetMarka())
+    //      temp.push(element.GetModel())
+    //      temp.push(element.Godiste.toString())
+    //      temp.push(element.BrojMesta.toString())
+    //      temp.push(TipVozila[element.Tip])
+    //      temp.push('1500')
+    //      //temp.push(element.ProsecnaOcena().toString())
+    //      this.kolaData.push(temp)
+    //    });
     //  });
     //});
+  }
+  ngOnInit(): void {}
 
-    AppComponent.rente.forEach(element => {
-      element.Filijale.forEach(element => {
-        element.ListaKola.forEach(element => {
+  prikazi() {
+    this.brzeRezervacije.forEach(element => {
+      this.idLetova.forEach(letic => {
+        if (element.idLeta == letic) {
+          var index = this.idLetova.indexOf(letic);      
+          this.empty = 1;
           let temp = new Array<string>();
-          temp.push(element.renta);
-          temp.push(element.GetMarka())
-          temp.push(element.GetModel())
-          temp.push(element.Godiste.toString())
-          temp.push(element.BrojMesta.toString())
-          temp.push(TipVozila[element.Tip])
-          temp.push('1500')
-          //temp.push(element.ProsecnaOcena().toString())
-          this.kolaData.push(temp)
-        });
-      });
+          temp.push(this.letovi[index].aviokompanija);
+          temp.push(this.letovi[index].mestoPolaska);
+          temp.push(this.letovi[index].mestoDolaska);
+          temp.push(this.letovi[index].datumPolaska);
+          temp.push(this.letovi[index].datumDolaska);
+          temp.push(this.letovi[index].vremePoletanja);
+          temp.push(this.letovi[index].vremeSletanja);
+          temp.push(element.idSedista);
+          temp.push(this.letovi[index].cenaKarte.toString());
+          temp.push(element.cenaSedista.toString())
+          this.letData.push(temp);
+        }
+      })
+    })
+
+    if (this.letData.length == 0) {
+      this.empty = 2;
+    }
+  }
+
+  ucitajLetove() {
+    this.idLetova = new Array<number>();
+    this.letovi = new Array<Let>();
+    this.service.getLetovi().subscribe(letovi => {
+      letovi.forEach(element => {
+        this.idLetova.push(element.id);
+        this.letovi.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja, element.datumDolaska,
+          element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta, element.presedanjaLeta, element.cenaKarte));
+      })
     });
   }
-  ngOnInit(): void {
+
+  ucitajBrzeRezervacije() {
+    this.brzeRezervacije = new Array<BrzaRezervacija>();
+    this.service.getBrzeRezervacije().subscribe(brze => {
+      brze.forEach(element => {
+        this.brzeRezervacije.push(new BrzaRezervacija(element.idLeta, element.idSedista, element.cenaSedista));
+      })
+    });
   }
 
-  RezervisiLet(){}
-  RezervisiKola(){}
+  RezervisiLet(i: number) {
+    console.log(i)
+  }
+  RezervisiKola() { }
+
+  onBack() {
+    this.router.navigateByUrl('/pocetna');
+  }
 }

@@ -68,6 +68,7 @@ export class RezervacijaLetaComponent implements OnInit {
     this.ucitajLetInfo();
     this.ucitajSedista();
     this.ucitajPresedanja();
+    this.ucitajBrzeRezervacije();
     
   } 
 
@@ -264,6 +265,18 @@ export class RezervacijaLetaComponent implements OnInit {
           var sediste = element.idSedista.replace(" ", "_");
           this.blockSeats(sediste);
         }        
+        //this.cart.selectedSeats = this.cart.selectedSeats.filter(item => item != seat);
+      })
+    });
+  }
+
+  ucitajBrzeRezervacije() {
+    this.service.getBrzeRezervacije().subscribe(sedista => {
+      sedista.forEach(element => {
+        if (element.idLeta == this.idLeta) {
+          var sediste = element.idSedista.replace(" ", "_");
+          this.blockSeats(sediste);
+        }
         //this.cart.selectedSeats = this.cart.selectedSeats.filter(item => item != seat);
       })
     });

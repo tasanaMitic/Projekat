@@ -42,8 +42,7 @@ export class LetBrzaRezervacijaComponent implements OnInit {
     });
 
     this.ucitajBrzeRezervacije();
-    this.ucitajSedista();
-    
+    this.ucitajSedista();    
   }
 
   ngOnInit(): void {
