@@ -7,9 +7,9 @@
       <form [formGroup]="LetSelectForm" style=" display: inline-block">
         <select formControlName="selectedLet" (change)="LetChanged($event)">
           <option></option>
-          <option *ngFor="let id of GetLetoviId()">{{id}}</option>
+          <option *ngFor="let id of Letovi">{{id}}</option>
         </select>
-        : {{ocenaLeta}}
+        : {{GetOcenaLeta()}}
       </form>
     </li>
 </ul>

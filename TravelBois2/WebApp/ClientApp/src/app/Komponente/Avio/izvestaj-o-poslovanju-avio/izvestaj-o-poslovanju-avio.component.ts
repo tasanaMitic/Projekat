@@ -8,6 +8,7 @@ import { LetoviComponent } from '../letovi/letovi.component';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { LetoviService } from '../../../shared/letovi.service';
 import { Router } from '@angular/router';
+import { OcenaService } from '../../../shared/ocena.service';
 
 @Component({
   selector: 'app-izvestaj-o-poslovanju-avio',
@@ -21,16 +22,21 @@ export class IzvestajOPoslovanjuAvioComponent implements OnInit {
   MesecSelectForm: FormGroup;
   GodinaSelectForm: FormGroup;
   toDate: NgbDateStruct;
-  ocenaLeta: number;
   prihodNedelje: number;
   prihodMeseca: number;
   prihodGodine: number;
-  Letovi = new Array<Let>();
+  Letovi = new Array<number>();
   Nedelje = new Array<number>();
   Meseci = new Array<string>();
   Godine = new Array<number>();
 
-  constructor(private service: LetoviService, public fb: FormBuilder, calendar: NgbCalendar, private router: Router) {
+  OcenaAviokompanije = 0;
+  brojocenaAviokompanije = 0;
+  OcenaLeta = 0;
+  brojOcenaLeta = 0;
+  prosecnaOcenaLeta = 0;
+
+  constructor(private service: LetoviService, public fb: FormBuilder, calendar: NgbCalendar, private router: Router, private serviceO: OcenaService) {
     var CurrntMonth: string[] = ["Januar", "Februar", "Mart", "April", "Maj", "Jun", "Jul", "Avgust", "Septembar", "Octobar", "Novembar", "Decembar",];
     this.Godine.push(2019);
 
@@ -69,10 +75,26 @@ export class IzvestajOPoslovanjuAvioComponent implements OnInit {
 
     this.currentUser = AppComponent.currentUser as AvioAdmin;
 
+    this.Letovi = new Array<number>();
 
-    //
-    //this.Letovi.push(new Let(0, this.currentUser.avioKompanija, 0, 5000, 10000, new Date(2020, 1, 2), new Date(2020, 1, 2), 'Beograd', 'Bec', new Avion(10000, 20, 5000, 30, 1000, 50)));
-    //this.Letovi.push(new Let(1, this.currentUser.avioKompanija, 0, 5000, 10000, new Date(2020, 1, 2), new Date(2020, 1, 2), 'Beograd', 'Prag', new Avion(10000, 20, 5000, 30, 1000, 50)));
+    this.service.getLetovi().subscribe(letovi => {
+      letovi.forEach(element => {
+        if (element.aviokompanija == AppComponent.avioKompanija.naziv) {
+          this.Letovi.push(element.id);
+        }        
+      })
+    });
+
+    this.serviceO.getOceneAvio().subscribe(ocene => {
+      ocene.forEach(element => {
+        if (element.kompanija == AppComponent.avioKompanija.naziv) {
+          this.OcenaAviokompanije += element.value;
+          this.brojocenaAviokompanije += 1;
+        }
+      })
+    });
+
+    
   }
 
   ngOnInit(): void {
@@ -99,37 +121,31 @@ export class IzvestajOPoslovanjuAvioComponent implements OnInit {
 
 
   GetOcena() {
-    //return this.currentUser.avioKompanija.ProsecnaOcena();
-    return 0;
+    return this.OcenaAviokompanije / this.brojocenaAviokompanije;
   }
 
-  GetLetoviId() {
-    //this.service
-
-    //let Letovi = this.currentUser.avioKompanija.letovi;
-
-    //let ids = new Array<number>();
-    //this.Letovi.forEach(element => {
-    //  ids.push(element.ID);
-    //});
-    //return ids;
+  GetOcenaLeta() {
+    if (this.OcenaLeta != 0) {
+      return this.OcenaLeta / this.brojOcenaLeta;
+    }
+    else {
+      return "Nema ocena!";
+    }
+    
   }
 
- // GetLetoviById(id): Let {
-  GetLetoviById(id){
-    //let letovi = this.currentUser.avioKompanija.letovi;
-    //let ret = null;
-    //this.Letovi.forEach(element => {
-    //  //if (element.ID == id) {
-    //  //  ret = element;
-    //  //}
-    //});
-    //return ret;
+  LetChanged(e) {
+    this.OcenaLeta = 0;
+    var letId = this.LetSelectForm.get('selectedLet').value;
+    this.serviceO.getOceneLeta().subscribe(ocene => {
+      ocene.forEach(element => {
+        if (element.idLeta == letId) {
+          this.OcenaLeta += element.value;
+          this.brojOcenaLeta += 1;
+        }
+      })
+    })
   }
-
-  //LetChanged(e) {
-  //  this.ocenaLeta = this.GetLetoviById(this.LetSelectForm.get('selectedLet').value).ProsecnaOcena();
-  //}
 
   NedeljaChanged(e) {
     //this.prihodNedelje =   ///IZRACUNATI PRIHOD U OVOJ NEDELJI
