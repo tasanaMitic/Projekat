@@ -35,7 +35,7 @@ export class AppComponent {
   static datum: Date;
   static avioKompanija: AvioKompanija;
   static rente: Array<RentACar>;
-  static OceneAviokompanije: Array<Ocena>;
+  static OceneAviokompanije: Array<{ocena:number, nazivKompanije:string}>;
 
   title = 'Travel-bois';
 

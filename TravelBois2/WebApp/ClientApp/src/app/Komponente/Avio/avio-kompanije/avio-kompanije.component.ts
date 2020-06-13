@@ -21,10 +21,8 @@ export class AvioKompanijeComponent implements OnInit {
   kompanije: Array<AvioKompanija>;
   SortForm: FormGroup;
   currentUser: User;
-  ocene: Array<OcenaAviokompanije>;
-  listaOcena: number;
-  broj: number;
-  OceneAviokompanije: Array<OcenaAviokompanije>
+  zbirOcena: number;
+  brojOcena: number;
   aviokompanija: AvioKompanija;
 
 
@@ -34,7 +32,6 @@ export class AvioKompanijeComponent implements OnInit {
 
   constructor(private router: Router, public fb: FormBuilder, private service: AvioAdminService, private serviceO: OcenaService) {
     this.currentUser = AppComponent.currentUser;
-    this.ocene = new Array<OcenaAviokompanije>();
 
     this.klasa = 'kompanija-slika';
     this.tip = 'AvioKompanije';
@@ -45,20 +42,11 @@ export class AvioKompanijeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.kompanije = new Array<AvioKompanija>();
-    this.OceneAviokompanije = new Array<OcenaAviokompanije>();
-
-    
+    this.kompanije = new Array<AvioKompanija>();    
 
     this.service.getAviokompanije().subscribe(aviokompanije =>
       aviokompanije.forEach(element => {
         this.aviokompanija = new AvioKompanija(element.naziv, element.adresa, element.grad, element.opis);        
-
-        AppComponent.OceneAviokompanije.forEach(k => {
-          if (k.kompanija == element.naziv) {
-            this.aviokompanija.OceneAviokompanije.push(new OcenaAviokompanije(k.value, k.userID, k.kompanija));
-          }
-        })
         this.kompanije.push(this.aviokompanija);
       }));
     
@@ -77,7 +65,7 @@ export class AvioKompanijeComponent implements OnInit {
       this.kompanije.sort((a, b) => a.grad.localeCompare(b.grad));
     }
     else if (kriterijum == 'prosecna ocena') {
-      //this.kompanije.sort((a, b) => a.ProsecnaOcena() - b.ProsecnaOcena());
+      this.kompanije.sort((a, b) => this.IzracunajProsecnuOcenu(a.naziv) - this.IzracunajProsecnuOcenu(b.naziv));
     }
   }
 
@@ -98,12 +86,16 @@ export class AvioKompanijeComponent implements OnInit {
   }
 
   IzracunajProsecnuOcenu(kompanija: string) {
-    this.kompanije.forEach(element => {
-      if (element.naziv == kompanija) {
-        return element.ProsecnaOcena();
+    this.zbirOcena = 0;
+    this.brojOcena = 0;
+
+    AppComponent.OceneAviokompanije.forEach(element => {
+      if (element.nazivKompanije == kompanija) {
+        this.zbirOcena += element.ocena;
+        this.brojOcena += 1;
       }
     })
+
+    return this.zbirOcena / this.brojOcena;
   }
-
-
 }

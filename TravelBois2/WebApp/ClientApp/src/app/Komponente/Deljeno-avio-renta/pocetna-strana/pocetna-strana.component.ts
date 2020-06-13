@@ -11,6 +11,7 @@ import { AvioAdminService } from '../../../shared/avio-admin.service';
 import { AvioKompanija } from '../../../entities/objects/avio-kompanija';
 import { OcenaService } from '../../../shared/ocena.service';
 import { Ocena } from '../../../entities/misc/ocena';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-pocetna-strana',
@@ -106,8 +107,12 @@ export class PocetnaStranaComponent implements OnInit {
     });   
   }
   ucitajOcene() {
-    AppComponent.OceneAviokompanije = new Array<Ocena>();
-    this.serviceO.getOceneAvio().subscribe(ocene => { AppComponent.OceneAviokompanije = ocene });
+    AppComponent.OceneAviokompanije = new Array<{ ocena: number, nazivKompanije:string}>();
+    this.serviceO.getOceneAvio().subscribe(ocene => {
+      ocene.forEach(element => {
+        AppComponent.OceneAviokompanije.push({ ocena: element.value, nazivKompanije: element.kompanija })
+      })
+    });
   }
 
 
