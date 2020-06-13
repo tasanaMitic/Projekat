@@ -77,6 +77,14 @@ namespace WebApp.Controllers
             
         }
 
+        [HttpGet]
+        [Route("GetPresedanja")]
+        public async Task<ActionResult<IEnumerable<Presedanje>>> GetPresedanja()
+        {
+            return await _context.Presedanja.ToListAsync();
+
+        }
+
 
         [HttpPost]
         [Route("AddAerodrom")]

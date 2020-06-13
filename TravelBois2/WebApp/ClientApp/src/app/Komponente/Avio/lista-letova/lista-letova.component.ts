@@ -40,7 +40,7 @@ export class ListaLetovaComponent implements OnInit {
           this.empty = 1;
           this.listaLetova.push(new Let(this.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska,
             element.vremePoletanja, element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta,
-            element.tipLeta, element.presedanja, element.cenaKarte));
+            element.tipLeta, element.presedanjaLeta, element.cenaKarte));
           this.idLetova.push(element.id);
         }
       }));

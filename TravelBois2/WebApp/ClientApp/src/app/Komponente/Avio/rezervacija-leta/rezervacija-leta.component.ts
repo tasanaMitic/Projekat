@@ -33,8 +33,10 @@ export class RezervacijaLetaComponent implements OnInit {
   sediste: Sediste;
   pozivnica: Pozivnica;
   brojPreostalih = 0;
+  presedanja: Array<string>;
   i = 1;
   max: number;
+  emptyPres = 0;
 
 
   private seatmap = [];
@@ -65,6 +67,7 @@ export class RezervacijaLetaComponent implements OnInit {
     this.ucitajListuPrijatelja();
     this.ucitajLetInfo();
     this.ucitajSedista();
+    this.ucitajPresedanja();
     
   } 
 
@@ -274,6 +277,18 @@ export class RezervacijaLetaComponent implements OnInit {
         }
       })
     });
+  }
+
+  ucitajPresedanja() {
+    this.presedanja = new Array<string>();
+    this.service.getPresedanja().subscribe(presedanja => {
+      presedanja.forEach(element => {
+        if (element.LetId == this.idLeta) {
+          this.presedanja.push(element.grad + ', ' + element.drzava);
+          this.emptyPres = 1;
+        }
+      })
+    })
   }
 
   ucitajListuPrijatelja() {///

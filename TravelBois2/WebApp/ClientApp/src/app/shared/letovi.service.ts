@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Let } from '../entities/objects/let';
 import { Sediste } from '../entities/objects/sediste';
 import { Pozivnica } from '../entities/objects/pozivnica';
+import { Presedanje } from '../entities/objects/presedanje';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class LetoviService {
 
   getLetovi(): Observable<Let[]> {
     return this.http.get<Let[]>(this.BaseURI + '/Aviokompanija/GetLetovi');
+  }
+
+  getPresedanja(): Observable<Presedanje[]> {
+    return this.http.get<Presedanje[]>(this.BaseURI + '/Aviokompanija/GetPresedanja');
   }
 
   deleteLet(id: number): Observable<any> {

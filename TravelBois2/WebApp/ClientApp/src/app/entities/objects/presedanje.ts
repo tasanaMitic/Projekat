@@ -2,7 +2,7 @@ export class Presedanje {
   id: number;
   grad: string;
   drzava: string;
-  //idLeta: number;
+  LetId: number;
 
   constructor(grad: string, drzava: string) {
     this.grad = grad;

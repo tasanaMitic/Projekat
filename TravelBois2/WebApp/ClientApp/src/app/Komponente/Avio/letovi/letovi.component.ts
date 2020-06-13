@@ -535,7 +535,7 @@ export class LetoviComponent implements OnInit {
                   this.empty = 1;
                   this.letovi.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
                     element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta,
-                    element.presedanja, element.cenaKarte));
+                    element.presedanjaLeta, element.cenaKarte));
                   this.idLetova.push(element.id);
                 }               
               }
@@ -543,7 +543,7 @@ export class LetoviComponent implements OnInit {
                 this.empty = 1;
                 this.letovi.push(new Let(element.aviokompanija, element.mestoPolaska, element.mestoDolaska, element.datumPolaska, element.vremePoletanja,
                   element.datumDolaska, element.vremeSletanja, element.trajanjePutovanja, element.razdaljinaPutovanja, element.klasaLeta, element.tipLeta,
-                  element.presedanja, element.cenaKarte));
+                  element.presedanjaLeta, element.cenaKarte));
                 this.idLetova.push(element.id);
               }      
             }            
