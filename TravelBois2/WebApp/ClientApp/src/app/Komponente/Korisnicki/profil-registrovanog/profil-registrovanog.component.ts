@@ -49,10 +49,24 @@ export class ProfilRegistrovanogComponent implements OnInit {
         BrojTelefona: this.podaciForm.get('brojTelefona').value,
         BrojPasosa: this.brojP.toString(),
       }
-      this.service.updateRegisteredUser(body).subscribe();
+      this.service.updateRegisteredUser(body).subscribe(
+        (res: any) => {
+          this.toastr.success('Uspesno ste izmenili podatke!');
+        },
+        (err) =>{
+          if (err.status == 400) {
+            this.toastr.error("Podaci nisu ispravni!");
+          }
+          else if(err.status == 404){
+            this.toastr.error("Korisnik nije pronadjen!");
+          }
+          else {
+            console.log(err);
+          }
+        }
+      );
 
-      this.toastr.success('Uspesno ste izmenili podatke!');
-      //this.router.navigate(['/pocetna'])
+      
     }
     else {
       this.toastr.error('Morate izmeniti vrednosti polja!');

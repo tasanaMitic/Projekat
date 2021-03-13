@@ -50,12 +50,12 @@ namespace WebApp.Controllers
                 BrojPasosa = body.BrojPasosa.ToString(),
                 BrojTelefona = body.BrojTelefona.ToString(),
                 TipKorisnika = body.TipKorisnika
-               
+
             };
             try
             {
                 var result = await _userManager.CreateAsync(applicationUser, body.Password);
-                if(result.Errors.Any())
+                if (result.Errors.Any())
                 {
                     var test = result.Errors.ToList();
                     //return BadRequest(new { message = test[0].Description});
@@ -145,27 +145,35 @@ namespace WebApp.Controllers
         [HttpPost]
         [Route("Login")]
         //POST: /api/ApplicationUser/Login
-        public async Task<IActionResult> Login([FromBody]LoginModel model)
+        public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            var user = await _userManager.FindByNameAsync(model.UserName);
-            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+            try
             {
-                var tokenDescriptor = new SecurityTokenDescriptor
+                var user = await _userManager.FindByNameAsync(model.UserName);
+                if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
                 {
-                    Subject = new ClaimsIdentity(new Claim[]
+                    var tokenDescriptor = new SecurityTokenDescriptor
                     {
+                        Subject = new ClaimsIdentity(new Claim[]
+                        {
                         new Claim("UserID", user.Id.ToString())
-                    }),
-                    Expires = DateTime.UtcNow.AddMinutes(60),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
-                };
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
-                var token = tokenHandler.WriteToken(securityToken);
-                return Ok(new { token });
+                        }),
+                        Expires = DateTime.UtcNow.AddMinutes(60),
+                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
+                    };
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                    var token = tokenHandler.WriteToken(securityToken);
+                    return Ok(new { token });
+                }
+                else
+                    return BadRequest(new { message = "Username or password is incorrect." });
             }
-            else
-                return BadRequest(new { message = "Username or password is incorrect." });
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
 
@@ -178,6 +186,21 @@ namespace WebApp.Controllers
                 return NotFound();
             }
 
+            if (body.BrojPasosa == "" || body.BrojTelefona == "" || body.Grad == "" || body.Name == "" || body.Lastname == "")
+            {
+                return BadRequest();
+            }
+
+            if (body.Name.Any(char.IsDigit) || body.Lastname.Any(char.IsDigit) || body.Grad.Any(char.IsDigit))
+            {
+                return BadRequest();
+            }
+
+            if (!int.TryParse(body.BrojTelefona, out int n) || !int.TryParse(body.BrojPasosa, out int b) )
+            {
+                return BadRequest();
+            }
+
             var user = await _userManager.FindByNameAsync(body.UserName);
             _context.AppUsers.Remove(user);
             try
@@ -186,7 +209,7 @@ namespace WebApp.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                return NotFound();
             }
 
             user.BrojPasosa = body.BrojPasosa;
@@ -202,7 +225,7 @@ namespace WebApp.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                return BadRequest();
             }
 
             return NoContent();
