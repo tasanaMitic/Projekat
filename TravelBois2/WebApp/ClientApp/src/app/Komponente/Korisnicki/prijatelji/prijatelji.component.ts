@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { element } from 'protractor';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { RegisteredUser } from '../../../entities/users/registered-user/registered-user';
 import { Router } from '@angular/router';
 import { UserService } from '../../../shared/user.service';
-import { User } from '../../../entities/users/user/user';
 import { AppComponent } from '../../../app.component';
 import { Prijatelj } from '../../../entities/objects/prijatelj';
 import { ToastrService } from 'ngx-toastr';

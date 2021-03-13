@@ -299,8 +299,16 @@ namespace WebApp.Controllers
                 return NotFound();
             }
 
-            _context.Prijatelji.Remove(prijatelj);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Prijatelji.Remove(prijatelj);
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
+            }
+            
             return prijatelj;
         }
 
